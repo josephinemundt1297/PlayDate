@@ -2,7 +2,10 @@ import { useState, type SyntheticEvent } from "react";
 import { CalendarDays, Check } from "lucide-react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useUser } from "@clerk/clerk-react";
-import { readPlayDates } from "../../hooks/usePlayDates";
+import {
+  playDatesStorageKey,
+  readPlayDates,
+} from "../../hooks/usePlayDates";
 import { readFamilyProfile } from "../../hooks/useFamilyProfile";
 import type { PlayDate } from "../../domain/playdates";
 
@@ -36,7 +39,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
     const next = existing
       ? dates.map((date) => (date.id === existing.id ? form : date))
       : [...dates, form];
-    localStorage.setItem(`playpal.playdates.${user.id}`, JSON.stringify(next));
+    localStorage.setItem(playDatesStorageKey(user.id), JSON.stringify(next));
     navigate({ to: "/" });
   };
   return (

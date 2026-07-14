@@ -1,6 +1,6 @@
-# PlayPal – PlayDates einfach planen
+# PlayDate – PlayDates einfach planen
 
-PlayPal ist ein mobile-first React-Prototyp, mit dem Eltern sichere und übersichtliche Spieletreffen für ihre Kinder planen können. Die Oberfläche ist deutschsprachig, tastaturbedienbar und für kleine Displays optimiert.
+PlayDate ist ein mobile-first React-Prototyp, mit dem Eltern sichere und übersichtliche Spieletreffen für ihre Kinder planen können. Die Oberfläche ist deutschsprachig, tastaturbedienbar und für kleine Displays optimiert.
 
 ## Funktionen
 
@@ -64,7 +64,7 @@ src/components/
 
 ## App installieren
 
-PlayPal ist als PWA konfiguriert. In unterstützten Browsern erscheint **App laden** beziehungsweise **App installieren**. Alternativ kann die Installation über das Browsermenü erfolgen. Auf iOS wird dafür in Safari **Teilen → Zum Home-Bildschirm** verwendet.
+PlayDate ist als PWA konfiguriert. In unterstützten Browsern erscheint **App laden** beziehungsweise **App installieren**. Alternativ kann die Installation über das Browsermenü erfolgen. Auf iOS wird dafür in Safari **Teilen → Zum Home-Bildschirm** verwendet.
 
 ## Skripte
 

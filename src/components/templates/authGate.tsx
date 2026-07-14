@@ -10,7 +10,7 @@ export function AuthGate({ children }: { children: ReactNode }) {
             <span className="auth-logo" aria-hidden="true">
               ✦
             </span>
-            <p className="eyebrow">Willkommen bei PlayPal</p>
+            <p className="eyebrow">Willkommen bei PlayDate</p>
             <h1 id="auth-title">
               Mehr Spielen.
               <br />

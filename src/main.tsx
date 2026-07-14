@@ -40,7 +40,7 @@ createRoot(document.getElementById("root")!).render(
   </StrictMode>,
 );
 
-// Der Service Worker macht PlayPal installierbar und hält wichtige Dateien offline bereit.
+// Der Service Worker macht PlayDate installierbar und hält wichtige Dateien offline bereit.
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () =>
     navigator.serviceWorker.register("/sw.js"),

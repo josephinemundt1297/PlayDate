@@ -9,7 +9,7 @@ export function AppHeader() {
   const { canInstall, installed, install } = useInstallApp();
   return (
     <header className="topbar">
-      <Link to="/" className="brand" aria-label="PlayPal Startseite">
+      <Link to="/" className="brand" aria-label="PlayDate Startseite">
         <span className="brand-mark">
           <Sparkles size={20} />
         </span>
@@ -38,7 +38,7 @@ export function AppHeader() {
             installed
               ? "App ist installiert"
               : canInstall
-                ? "PlayPal installieren"
+                ? "PlayDate installieren"
                 : "Installation im Browsermenü verfügbar"
           }
         >

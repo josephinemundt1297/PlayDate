@@ -20,7 +20,7 @@ export function SettingsPage() {
       </section>
       <section className="settings-card">
         <div>
-          <h2>PlayPal herunterladen</h2>
+          <h2>PlayDate herunterladen</h2>
           <p>
             Installiere die App auf deinem Gerät. Danach kannst du sie wie eine
             normale App vom Startbildschirm öffnen.

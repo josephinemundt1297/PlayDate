@@ -13,14 +13,14 @@ describe('Kalenderfunktionen', () => {
   })
 
   it('erstellt beim Export eine Kalenderdatei', () => {
-    const createObjectURL = vi.fn(() => 'blob:playpal')
+    const createObjectURL = vi.fn(() => 'blob:playDate')
     const revokeObjectURL = vi.fn()
     vi.stubGlobal('URL', { createObjectURL, revokeObjectURL })
     const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => undefined)
     downloadCalendar([date])
     expect(createObjectURL).toHaveBeenCalledOnce()
     expect(click).toHaveBeenCalledOnce()
-    expect(revokeObjectURL).toHaveBeenCalledWith('blob:playpal')
+    expect(revokeObjectURL).toHaveBeenCalledWith('blob:playDate')
     vi.unstubAllGlobals()
   })
 })

@@ -79,7 +79,7 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
               description="Familien unkompliziert einladen"
               onClick={() =>
                 window.open(
-                  "https://wa.me/?text=Komm%20zu%20PlayPal!",
+                  "https://wa.me/?text=Komm%20zu%20PlayDate!",
                   "_blank",
                   "noopener,noreferrer",
                 )

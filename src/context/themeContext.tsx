@@ -13,11 +13,20 @@ type ThemeContextValue = {
   resolvedTheme: "light" | "dark";
 };
 const themeContext = createContext<ThemeContextValue | null>(null);
+const themeKey = "playDate.theme";
+const legacyThemeKey = "playpal.theme";
 
 // Der Provider hält das Farbschema zentral. Einzelne Komponenten müssen so nicht selbst herumrechnen.
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(
-    () => (localStorage.getItem("playpal.theme") as Theme) || "system",
+    () => {
+      const saved = (localStorage.getItem(themeKey) ??
+        localStorage.getItem(legacyThemeKey)) as Theme | null;
+      if (saved && !localStorage.getItem(themeKey)) {
+        localStorage.setItem(themeKey, saved);
+      }
+      return saved || "system";
+    },
   );
   const [systemDark, setSystemDark] = useState(
     () => matchMedia("(prefers-color-scheme: dark)").matches,
@@ -40,7 +49,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const setTheme = (next: Theme) => {
     setThemeState(next);
-    localStorage.setItem("playpal.theme", next);
+    localStorage.setItem(themeKey, next);
   };
   return (
     <themeContext.Provider value={{ theme, setTheme, resolvedTheme }}>

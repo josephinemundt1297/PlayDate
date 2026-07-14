@@ -7,12 +7,21 @@ import {
   type SharedBirthday,
 } from "../domain/family";
 
-const keyFor = (userId: string) => `playpal.family.${userId}`;
-const connectionsKey = (userId: string) => `playpal.shared-birthdays.${userId}`;
+const keyFor = (userId: string) => `playDate.family.${userId}`;
+const connectionsKey = (userId: string) =>
+  `playDate.sharedBirthdays.${userId}`;
+const legacyKeyFor = (userId: string) => `playpal.family.${userId}`;
+const legacyConnectionsKey = (userId: string) =>
+  `playpal.shared-birthdays.${userId}`;
 // Alte Profile hatten nur Namen als Text. Beim Lesen bauen wir daraus automatisch das neue Format.
 export function readFamilyProfile(userId: string): FamilyProfile {
-  const value = localStorage.getItem(keyFor(userId));
+  const value =
+    localStorage.getItem(keyFor(userId)) ??
+    localStorage.getItem(legacyKeyFor(userId));
   if (!value) return emptyFamilyProfile;
+  if (!localStorage.getItem(keyFor(userId))) {
+    localStorage.setItem(keyFor(userId), value);
+  }
   const parsed = JSON.parse(value) as
     | FamilyProfile
     | { familyName: string; children: string[] };
@@ -30,7 +39,12 @@ export function readFamilyProfile(userId: string): FamilyProfile {
 }
 // Hier landen später die freigegebenen Geburtstage aus echten Familienverbindungen.
 export function readSharedBirthdays(userId: string): SharedBirthday[] {
-  const value = localStorage.getItem(connectionsKey(userId));
+  const value =
+    localStorage.getItem(connectionsKey(userId)) ??
+    localStorage.getItem(legacyConnectionsKey(userId));
+  if (value && !localStorage.getItem(connectionsKey(userId))) {
+    localStorage.setItem(connectionsKey(userId), value);
+  }
   return value ? JSON.parse(value) : [];
 }
 export function useFamilyProfile() {

@@ -20,7 +20,7 @@ export function downloadCalendar(dates: PlayDate[]) {
     .map((date) =>
       [
         "BEGIN:VEVENT",
-        `UID:playpal-${date.id}@playpal.app`,
+        `UID:playDate-${date.id}@playdate.app`,
         `DTSTAMP:${new Date()
           .toISOString()
           .replace(/[-:]/g, "")
@@ -37,7 +37,7 @@ export function downloadCalendar(dates: PlayDate[]) {
   const ics = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//PlayPal//PlayDates//DE",
+    "PRODID:-//PlayDate//PlayDates//DE",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     events,
@@ -48,7 +48,7 @@ export function downloadCalendar(dates: PlayDate[]) {
   );
   const anchor = document.createElement("a");
   anchor.href = url;
-  anchor.download = "playpal-playdates.ics";
+  anchor.download = "playDate-playDates.ics";
   anchor.click();
   URL.revokeObjectURL(url);
 }
