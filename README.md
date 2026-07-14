@@ -11,7 +11,11 @@ PlayPal ist ein mobile-first React-Prototyp, mit dem Eltern sichere und übersic
 - Status für bestätigte und ausstehende Treffen
 - Datenschutz-Hinweise für Fotos, Kommentare und eingeladene Familien
 - Clerk-Provider für Login vorbereitet
+- PlayDate-Bereich vollständig durch Clerk geschützt; ohne gültige Anmeldung werden keine Termindaten gerendert
+- Benutzerspezifische Trennung der lokalen Prototyp-Daten über die Clerk User-ID
 - Routing mit TanStack Router
+- Light Mode, Dark Mode und automatische Systemeinstellung
+- installierbare Progressive Web App (PWA) mit Manifest und Service Worker
 - Persistenz des Prototyps über `localStorage`
 
 ## Lokale Entwicklung
@@ -36,7 +40,25 @@ Die App läuft anschließend normalerweise unter `http://localhost:5173`.
 VITE_CLERK_PUBLISHABLE_KEY=pk_test_...
 ```
 
-Ohne Key startet die App im lokalen Vorschau-Modus. Geheimnisse wie der Clerk Secret Key gehören nie in eine `VITE_`-Variable oder ins Repository.
+Ohne gültigen Key bleibt der PlayDate-Bereich gesperrt und zeigt ausschließlich einen Konfigurationshinweis. Geheimnisse wie der Clerk Secret Key gehören nie in eine `VITE_`-Variable oder ins Repository.
+
+## Atomic Design
+
+Die Oberfläche folgt dem Atomic-Design-Pattern:
+
+```text
+src/components/
+├── atoms/       # Buttons, Status und Theme-Steuerung
+├── molecules/   # Quick Actions, Karten und Datenschutzhinweis
+├── organisms/   # Header, Navigation, Grid und Formular
+└── templates/   # App-Shell und Authentifizierungsgrenze
+```
+
+Routenspezifische Kompositionen liegen in `src/pages`, Geschäftsmodelle in `src/domain`, wiederverwendbarer Zustand in `src/hooks` und globale UI-Zustände in `src/context`.
+
+## App installieren
+
+PlayPal ist als PWA konfiguriert. In unterstützten Browsern erscheint **App laden** beziehungsweise **App installieren**. Alternativ kann die Installation über das Browsermenü erfolgen. Auf iOS wird dafür in Safari **Teilen → Zum Home-Bildschirm** verwendet.
 
 ## Skripte
 
@@ -79,10 +101,13 @@ Technische Gestaltung allein macht eine App nicht automatisch DSGVO-konform. Vor
 
 ```text
 src/
-├── App.tsx      # Routen, Seiten, Formulare und Prototyp-Daten
-├── App.css      # Mobile-first Designsystem und Komponenten
-├── index.css    # globale Tokens und A11Y-Grundlagen
-└── main.tsx     # React, ClerkProvider und RouterProvider
+├── components/  # Atomic-Design-Ebenen
+├── context/     # Theme-Zustand
+├── domain/      # PlayDate-Modell und Beispieldaten
+├── hooks/       # Daten- und Installationslogik
+├── pages/       # Routenseiten
+├── router.tsx   # TanStack-Routen
+└── main.tsx     # Clerk-Grenze und App-Start
 ```
 
 ## Lizenz

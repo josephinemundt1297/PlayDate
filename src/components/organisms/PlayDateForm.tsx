@@ -1,0 +1,14 @@
+import { useState, type FormEvent } from 'react'
+import { CalendarDays, Check } from 'lucide-react'
+import { Link, useNavigate } from '@tanstack/react-router'
+import { useUser } from '@clerk/clerk-react'
+import { readPlayDates } from '../../hooks/usePlayDates'
+import type { PlayDate } from '../../domain/playdates'
+
+export function PlayDateForm({ editId }: { editId?: number }) {
+  const navigate = useNavigate(); const {user}=useUser(); if(!user)throw new Error('Anmeldung erforderlich'); const dates = readPlayDates(user.id); const existing = dates.find(d => d.id === editId)
+  const [form, setForm] = useState<PlayDate>(existing ?? { id: Date.now(), title:'', child:'', friend:'', date:'', time:'', location:'', bring:'', status:'Ausstehend', color:'mint' })
+  const update = (key:keyof PlayDate,value:string) => setForm(prev => ({...prev,[key]:value}))
+  const submit = (event:FormEvent) => { event.preventDefault(); const next = existing ? dates.map(d=>d.id===existing.id?form:d) : [...dates,form]; localStorage.setItem(`playpal.playdates.${user.id}`,JSON.stringify(next)); navigate({to:'/'}) }
+  return <form onSubmit={submit} className="playdate-form"><label className="full">Titel<span>Wie soll euer Treffen heißen?</span><input required value={form.title} onChange={e=>update('title',e.target.value)} placeholder="z. B. Abenteuer im Stadtpark"/></label><label>Dein Kind<input required value={form.child} onChange={e=>update('child',e.target.value)} placeholder="Vorname"/></label><label>Trifft sich mit<input required value={form.friend} onChange={e=>update('friend',e.target.value)} placeholder="Vorname"/></label><label>Datum<input required type="date" value={form.date} onChange={e=>update('date',e.target.value)}/></label><label>Uhrzeit<input required type="time" value={form.time} onChange={e=>update('time',e.target.value)}/></label><label className="full">Treffpunkt<input required value={form.location} onChange={e=>update('location',e.target.value)} placeholder="Adresse oder Lieblingsplatz"/></label><label className="full">Wer bringt was mit?<textarea value={form.bring} onChange={e=>update('bring',e.target.value)} placeholder="Snacks, Getränke, Spielsachen …"/></label><fieldset className="full"><legend>Erinnerung</legend><label className="check-row"><input type="checkbox" defaultChecked/> 24 Stunden vorher erinnern</label><label className="check-row"><input type="checkbox"/> Auch per E-Mail erinnern</label></fieldset><div className="consent full"><Check/><p><strong>Privat geteilt</strong><br/>Details, Kommentare und Fotos sehen ausschließlich eingeladene Familien.</p></div><div className="form-actions full"><Link to="/" className="secondary-button">Abbrechen</Link><button className="primary-button" type="submit"><CalendarDays/>{existing?'Änderungen speichern':'PlayDate erstellen'}</button></div></form>
+}

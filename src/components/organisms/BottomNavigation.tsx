@@ -1,0 +1,3 @@
+import { CalendarDays, Home, Plus, Settings, Users } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+export function BottomNavigation() { return <nav className="bottom-nav" aria-label="Mobile Navigation"><Link to="/" activeProps={{className:'active'}}><Home/><span>Start</span></Link><Link to="/playdates" activeProps={{className:'active'}}><CalendarDays/><span>Termine</span></Link><Link to="/new" className="new-mobile" aria-label="Neues PlayDate"><Plus/></Link><a href="#familien"><Users/><span>Familien</span></a><Link to="/settings" activeProps={{className:'active'}}><Settings/><span>Mehr</span></Link></nav> }

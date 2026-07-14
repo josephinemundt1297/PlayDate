@@ -1,31 +1,18 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ClerkProvider, SignInButton, SignedIn, SignedOut } from '@clerk/clerk-react'
+import { ClerkProvider } from '@clerk/clerk-react'
 import { RouterProvider } from '@tanstack/react-router'
-import { router } from './App'
+import { AuthGate } from './components/templates/AuthGate'
+import { ThemeProvider } from './context/ThemeContext'
+import { router } from './router'
 import './index.css'
+import './App.css'
 
-const key = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
-const app = <RouterProvider router={router} />
+const clerkKey=import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
-const authenticatedApp = key ? (
-  <ClerkProvider publishableKey={key}>
-    <SignedOut>
-      <main className="auth-page">
-        <section className="auth-card" aria-labelledby="auth-title">
-          <span className="auth-logo" aria-hidden="true">✦</span>
-          <p className="eyebrow">Willkommen bei PlayPal</p>
-          <h1 id="auth-title">Mehr Spielen.<br/>Weniger Organisieren.</h1>
-          <p>Plane sichere PlayDates mit Familien, denen du vertraust.</p>
-          <SignInButton mode="modal"><button className="primary-button">Sicher anmelden</button></SignInButton>
-          <small>Deine Daten bleiben privat und werden nur mit eingeladenen Familien geteilt.</small>
-        </section>
-      </main>
-    </SignedOut>
-    <SignedIn>{app}</SignedIn>
-  </ClerkProvider>
-) : app
+function MissingConfiguration(){return <main className="auth-page"><section className="auth-card"><span className="auth-logo">!</span><p className="eyebrow">Einrichtung erforderlich</p><h1>Login noch nicht konfiguriert</h1><p>PlayDate-Daten bleiben gesperrt, bis ein gültiger Clerk Publishable Key hinterlegt ist.</p><code>VITE_CLERK_PUBLISHABLE_KEY</code></section></main>}
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>{authenticatedApp}</StrictMode>,
-)
+const content=clerkKey?<ClerkProvider publishableKey={clerkKey}><AuthGate><RouterProvider router={router}/></AuthGate></ClerkProvider>:<MissingConfiguration/>
+createRoot(document.getElementById('root')!).render(<StrictMode><ThemeProvider>{content}</ThemeProvider></StrictMode>)
+
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js'))}

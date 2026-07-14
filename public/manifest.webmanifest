@@ -1,0 +1,13 @@
+{
+  "name": "PlayPal – PlayDates einfach planen",
+  "short_name": "PlayPal",
+  "description": "Private PlayDates sicher planen und teilen.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f8f3",
+  "theme_color": "#2d5a4d",
+  "lang": "de",
+  "icons": [
+    { "src": "/pwa-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
