@@ -1,0 +1,10 @@
+import { useState, type FormEvent } from 'react'
+import { Baby, Plus, Save, Trash2 } from 'lucide-react'
+import { useFamilyProfile } from '../hooks/useFamilyProfile'
+
+export function FamiliesPage(){
+  const {profile,save}=useFamilyProfile(); const [familyName,setFamilyName]=useState(profile.familyName); const [children,setChildren]=useState(profile.children.length?profile.children:['']); const [saved,setSaved]=useState(false)
+  const setChild=(index:number,value:string)=>setChildren(current=>current.map((child,i)=>i===index?value:child))
+  const submit=(event:FormEvent)=>{event.preventDefault();save({familyName,children:children.map(value=>value.trim()).filter(Boolean)});setSaved(true);setTimeout(()=>setSaved(false),2500)}
+  return <div className="families-page"><p className="eyebrow">Dein geschütztes Familienprofil</p><h1>Meine Familie</h1><p className="page-lead">Hinterlege deine Kinder einmal. Beim Erstellen eines PlayDates kannst du sie anschließend bequem auswählen.</p><form className="family-form" onSubmit={submit}><label>Familienname<input value={familyName} onChange={event=>setFamilyName(event.target.value)} placeholder="z. B. Familie Mustermann"/></label><fieldset><legend><Baby/> Kinder ({children.filter(Boolean).length})</legend>{children.map((child,index)=><div className="child-row" key={index}><label htmlFor={`child-${index}`}>Vorname Kind {index+1}</label><input id={`child-${index}`} required value={child} onChange={event=>setChild(index,event.target.value)} placeholder="Vorname"/><button type="button" onClick={()=>setChildren(current=>current.filter((_,i)=>i!==index))} disabled={children.length===1} aria-label={`Kind ${index+1} entfernen`}><Trash2/></button></div>)}<button className="secondary-button add-child" type="button" onClick={()=>setChildren(current=>[...current,''])}><Plus/>Weiteres Kind</button></fieldset><button className="primary-button" type="submit"><Save/>{saved?'Gespeichert':'Familie speichern'}</button></form><p className="privacy-caption">Diese Angaben werden nur in deinem angemeldeten Benutzerbereich verwendet.</p></div>
+}

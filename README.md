@@ -5,9 +5,12 @@ PlayPal ist ein mobile-first React-Prototyp, mit dem Eltern sichere und übersic
 ## Funktionen
 
 - PlayDates erstellen, bearbeiten und löschen
+- Familienprofil mit beliebig vielen Kindern verwalten
+- eigenes Kind beim Erstellen eines PlayDates aus dem Familienprofil auswählen
 - Treffpunkt, Teilnehmende und Mitbringsel festhalten
 - Einladungen über die Web Share-/WhatsApp-Schnittstelle vorbereiten
-- Kalender- und Erinnerungsaktionen als klar markierte Integrationspunkte
+- alle PlayDates als `.ics`-Kalenderdatei exportieren
+- einzelne PlayDates direkt in Google Kalender öffnen
 - Status für bestätigte und ausstehende Treffen
 - Datenschutz-Hinweise für Fotos, Kommentare und eingeladene Familien
 - Clerk-Provider für Login vorbereitet
@@ -109,6 +112,10 @@ src/
 ├── router.tsx   # TanStack-Routen
 └── main.tsx     # Clerk-Grenze und App-Start
 ```
+
+### Hinweis zur Kalendersynchronisation
+
+Der aktuelle Frontend-Stand unterstützt standardkonformen `.ics`-Export und das Öffnen einzelner Termine in Google Kalender. Eine dauerhaft bidirektionale Synchronisation benötigt OAuth, ein geschütztes Backend und die jeweilige Google- beziehungsweise Microsoft-Calendar-API.
 
 ## Lizenz
 
