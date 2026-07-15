@@ -560,7 +560,245 @@ Diese Regeln gelten in jeder Phase:
 - externe Dienste werden nur mit minimalen Berechtigungen angebunden
 - Dokumentation, Konzept und Spezifikation werden bei relevanten Änderungen aktualisiert
 
-## 14. Empfohlene Meilensteine
+## 14. Auditplan
+
+Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrolle kurz vor dem Release. Jede Prüfung erzeugt nachvollziehbare Nachweise, konkrete Feststellungen und eine Entscheidung darüber, ob die nächste Phase beginnen darf.
+
+### Auditziele
+
+- private Familien- und Kinderdaten vor unberechtigtem Zugriff schützen
+- nachweisen, dass Datenschutzentscheidungen technisch umgesetzt werden
+- Barrieren früh erkennen und vor dem Pilotbetrieb beheben
+- Code-, Test- und Betriebsqualität messbar prüfen
+- externe Integrationen nur mit notwendigen Berechtigungen verwenden
+- offene Risiken sichtbar priorisieren und nachverfolgen
+
+### Auditarten und Zeitpunkte
+
+| Audit | Erster Zeitpunkt | Wiederholung | Ergebnis beziehungsweise Nachweis |
+| --- | --- | --- | --- |
+| Code- und Architektur-Audit | Ende Phase 0 | vor jedem Meilenstein | Review-Protokoll, technische Schulden und Architekturentscheidungen |
+| Datenschutz-Audit | Ende Phase 1 | bei neuen Datenarten oder Anbietern, mindestens jährlich | Dateninventar, Rechtsgrundlagen, Löschfristen und Maßnahmenliste |
+| Berechtigungs-Audit | Ende Phase 2 | nach Änderungen am Rollenmodell und vor Releases | Rollenmatrix und automatisierte Autorisierungstests |
+| Einladungs- und Token-Audit | Ende Phase 3 | bei Änderungen am Einladungsablauf | Missbrauchsszenarien, Token-Prüfung und Testnachweise |
+| PlayDate-Datenfluss-Audit | Ende Phase 4 | vor jedem größeren Release | Datenflussdiagramm und Prüfung fremder Zugriffsversuche |
+| Kalender- und Benachrichtigungs-Audit | Ende Phase 5 | bei jeder neuen Integration | Berechtigungsumfang, Opt-in-Nachweis und Zeitzonentests |
+| Security-Audit | Ende Phase 6 | vor Produktion, nach kritischen Änderungen und mindestens jährlich | Schwachstellenbericht, Risikoeinstufung und Behebungsnachweis |
+| A11Y-Audit | Ende Phase 7 | vor Releases und bei größeren UI-Änderungen | WCAG-Prüfbericht mit automatischen und manuellen Tests |
+| Betriebs-Audit | vor Phase 8 | halbjährlich sowie nach schweren Vorfällen | Backup-, Restore-, Monitoring- und Incident-Nachweise |
+| Lieferanten-Audit | vor Produktivnutzung eines Anbieters | jährlich und bei Vertragsänderungen | Anbieterübersicht, AV-Verträge und Transferbewertung |
+
+### Audit 1 – Code und Architektur
+
+**Prüfumfang:**
+
+- Einhaltung der Atomic-Design-Struktur
+- klare Trennung zwischen UI, Zustand, Domain und API
+- kleine und verständliche Komponenten
+- TypeScript ohne unnötige unsichere Typen
+- konsistente lower-camelCase-Dateinamen
+- keine doppelten oder veralteten Codepfade
+- verständliche Kommentare ohne irreführende Aussagen
+- Abhängigkeiten, Bundle-Größe und Wartbarkeit
+
+**Prüfungen und Nachweise:**
+
+- [ ] `npm run check` protokollieren
+- [ ] offene Oxlint-Warnungen bewerten und beheben oder begründen
+- [ ] Architekturdiagramm mit tatsächlichem Code abgleichen
+- [ ] veraltete und ungenutzte Abhängigkeiten prüfen
+- [ ] zentrale Komponenten stichprobenartig im Vier-Augen-Prinzip reviewen
+- [ ] technische Schulden als priorisierte Issues dokumentieren
+
+### Audit 2 – Datenschutz
+
+**Prüfumfang:**
+
+- Zweck und Rechtsgrundlage jeder Datenart
+- Datensparsamkeit bei Kinder- und Familiendaten
+- Einwilligungen und Widerrufe
+- Auskunft, Berichtigung, Export und Löschung
+- Aufbewahrungsfristen und Backups
+- Auftragsverarbeiter und Drittlandtransfers
+- Datenschutzinformation und verständliche Nutzertexte
+
+**Prüfungen und Nachweise:**
+
+- [ ] vollständiges Dateninventar erstellen
+- [ ] Datenflüsse vom Browser bis zu allen Anbietern dokumentieren
+- [ ] Zweck, Sichtbarkeit und Löschfrist je Datenfeld festhalten
+- [ ] Einwilligungen mit Zeitstempel und Version nachweisen
+- [ ] Widerruf und Kontolöschung praktisch testen
+- [ ] Datenexport auf Vollständigkeit und Verständlichkeit prüfen
+- [ ] AV-Verträge und Transfermechanismen dokumentieren
+- [ ] Datenschutz-Folgenabschätzung fachkundig prüfen
+
+Das Datenschutz-Audit benötigt vor dem Produktivstart eine fachkundige rechtliche Bewertung. Die technische Prüfung ersetzt keine Rechtsberatung.
+
+### Audit 3 – Authentifizierung und Berechtigungen
+
+**Prüfumfang:**
+
+- gültige und ungültige Clerk-Sitzungen
+- Familien-, Kinder- und PlayDate-Zugehörigkeit
+- Organisator- und Teilnehmerrechte
+- entfernte oder blockierte Verbindungen
+- Schutz vor IDOR und erratenen Ressourcen-IDs
+- unmittelbare Wirkung von Widerrufen
+
+**Prüfungen und Nachweise:**
+
+- [ ] Zugriff ohne Anmeldung abweisen
+- [ ] manipulierte Nutzer-, Familien- und PlayDate-IDs testen
+- [ ] Zugriff einer fremden Familie automatisiert prüfen
+- [ ] Rechte nach Entfernen einer Verbindung erneut prüfen
+- [ ] Rechte nach Absage, Widerruf und Kontolöschung prüfen
+- [ ] Server-Endpunkte mit einer Berechtigungsmatrix abgleichen
+- [ ] negative Autorisierungstests in die CI aufnehmen
+
+### Audit 4 – Einladungen und Freigabelinks
+
+**Prüfumfang:**
+
+- Entropie und Ablaufzeit von Tokens
+- einmalige oder widerrufbare Verwendung
+- Schutz privater Inhalte vor Anmeldung
+- Weiterleitung eines Links an Dritte
+- Rate Limits und Missbrauchserkennung
+- sichere Vorschautexte in WhatsApp und Messengern
+
+**Prüfungen und Nachweise:**
+
+- [ ] abgelaufene und widerrufene Tokens testen
+- [ ] manipulierte Tokens ablehnen
+- [ ] Weiterleitung an ein falsches Konto simulieren
+- [ ] prüfen, dass Link-Vorschauen keine Kinderdaten zeigen
+- [ ] Rate Limits mit kontrollierten Lasttests prüfen
+- [ ] Einladungsereignisse datensparsam protokollieren
+
+### Audit 5 – Anwendungssicherheit
+
+**Prüfumfang:**
+
+- XSS, CSRF, IDOR und Injection
+- sichere HTTP-Header und Content Security Policy
+- Secret-Management
+- Abhängigkeiten und bekannte Schwachstellen
+- Transport- und Speicherverschlüsselung
+- Logging ohne private Inhaltsdaten
+- Schutz vor automatisiertem Missbrauch
+
+**Prüfungen und Nachweise:**
+
+- [ ] automatisierten Dependency-Scan ausführen
+- [ ] Secret-Scan für Repository und Build-Artefakte ausführen
+- [ ] Security-Header in der Produktionsumgebung prüfen
+- [ ] Eingabefelder und API-Endpunkte mit ungültigen Daten testen
+- [ ] Logs auf Tokens, Kinderdaten und andere Geheimnisse prüfen
+- [ ] Rate Limits und Sperrmechanismen testen
+- [ ] externen Penetrationstest vor größerem Rollout durchführen
+- [ ] behobene kritische Befunde gezielt erneut testen
+
+### Audit 6 – Barrierefreiheit
+
+**Prüfumfang:**
+
+- WCAG 2.2 auf Konformitätsstufe AA
+- Tastaturbedienung und Fokusreihenfolge
+- Screenreader-Ausgabe
+- Farbkontraste in Light und Dark Mode
+- Formularfehler und Statusmeldungen
+- Vergrößerung, kleine Displays und reduzierte Animation
+
+**Prüfungen und Nachweise:**
+
+- [ ] axe-Prüfung für jede zentrale Route durchführen
+- [ ] alle Kernabläufe ohne Maus abschließen
+- [ ] VoiceOver auf Safari testen
+- [ ] NVDA mit einem unterstützten Browser testen
+- [ ] Kontrastwerte dokumentieren
+- [ ] Ansicht bei 200 Prozent Vergrößerung prüfen
+- [ ] Fehlertexte und `aria-live`-Meldungen kontrollieren
+- [ ] gefundene Barrieren mit WCAG-Kriterium dokumentieren
+
+### Audit 7 – Kalender, Erinnerungen und PWA
+
+**Prüfumfang:**
+
+- korrekte Termine in verschiedenen Zeitzonen
+- Sommer- und Winterzeit
+- Kalenderberechtigungen und OAuth-Scopes
+- Opt-in und Abbestellung von Erinnerungen
+- Offline-Verhalten und Service-Worker-Updates
+- installierte Darstellung und App-Symbole
+
+**Prüfungen und Nachweise:**
+
+- [ ] `.ics`-Dateien in Google, Apple und Microsoft Kalender testen
+- [ ] Zeitumstellungen und Zeitzonenwechsel testen
+- [ ] doppelte und veraltete Erinnerungen ausschließen
+- [ ] Kalenderzugriff ohne Freigabe verhindern
+- [ ] PWA-Installation auf Android und iOS prüfen
+- [ ] Update von einer älteren PWA-Version testen
+- [ ] Offline- und Wiederverbindungsverhalten dokumentieren
+
+### Audit 8 – Betrieb und Notfallvorsorge
+
+**Prüfumfang:**
+
+- Monitoring und Alarmierung
+- Backups und Wiederherstellung
+- Verfügbarkeit und Fehlerbehandlung
+- Incident Response und Datenschutzverletzungen
+- Rollback eines fehlerhaften Releases
+- Zuständigkeiten und Erreichbarkeit
+
+**Prüfungen und Nachweise:**
+
+- [ ] Restore aus einem echten Backup durchführen
+- [ ] Produktionsausfall simulieren
+- [ ] Alarmwege und Reaktionszeiten prüfen
+- [ ] Rollback auf die vorherige Version testen
+- [ ] Ablauf für Datenschutzverletzungen üben
+- [ ] Status- und Supportkommunikation vorbereiten
+- [ ] Verantwortliche und Vertretungen dokumentieren
+
+### Umgang mit Auditfeststellungen
+
+Jede Feststellung erhält:
+
+- eine eindeutige ID
+- Beschreibung und nachvollziehbaren Nachweis
+- betroffene Daten, Funktionen und Nutzergruppen
+- Schweregrad
+- verantwortliche Person
+- Zieldatum
+- Status „offen“, „in Arbeit“, „behoben“ oder „akzeptiertes Risiko“
+- Ergebnis des erneuten Tests
+
+| Schweregrad | Bedeutung | Reaktion |
+| --- | --- | --- |
+| Kritisch | akuter unberechtigter Zugriff, Datenverlust oder vollständiger Ausfall | Release stoppen, sofort bearbeiten und erneut prüfen |
+| Hoch | erheblicher Schutz-, Datenschutz- oder A11Y-Verstoß | vor Pilot beziehungsweise Release beheben |
+| Mittel | begrenztes Risiko oder deutliche Qualitätsabweichung | verbindlich terminieren und zeitnah beheben |
+| Niedrig | geringe Auswirkung oder Verbesserung | ins Backlog aufnehmen und priorisieren |
+
+Ein akzeptiertes Risiko muss begründet, zeitlich begrenzt und von der fachlich verantwortlichen Person bestätigt werden. Kritische Befunde dürfen nicht als akzeptiertes Risiko in einen Release übernommen werden.
+
+### Audit-Freigaben je Meilenstein
+
+- **Meilenstein A:** Code-, Architektur-, Datenschutz- und erstes Berechtigungs-Audit abgeschlossen
+- **Meilenstein B:** Berechtigungs-, Einladungs- und PlayDate-Datenfluss-Audit ohne kritische offene Befunde
+- **Meilenstein C:** Security-, A11Y-, Kalender-, PWA- und Betriebs-Audit abgeschlossen
+- **Meilenstein D:** alle kritischen und hohen Befunde behoben und erneut geprüft
+
+### Audit-Dokumentation
+
+Auditberichte dürfen keine produktiven Kinderdaten, Tokens oder andere Geheimnisse enthalten. Sensible Berichte werden nicht öffentlich im Repository gespeichert. Im Repository können bereinigte Zusammenfassungen, Checklisten und verlinkte Issue-IDs abgelegt werden.
+
+Für jedes Audit werden mindestens Datum, geprüfte Version beziehungsweise Commit, Prüfer, Umfang, verwendete Werkzeuge, Einschränkungen, Feststellungen und Freigabeentscheidung dokumentiert.
+
+## 15. Empfohlene Meilensteine
 
 ### Meilenstein A – Technische Basis bereit
 
@@ -578,7 +816,7 @@ Phasen 5 bis 7 abgeschlossen. Kalender, Erinnerungen, Datenschutzfunktionen und 
 
 Phase 8 abgeschlossen. PlayDate läuft kontrolliert mit echten Nutzern.
 
-## 15. Unmittelbar nächste Schritte
+## 16. Unmittelbar nächste Schritte
 
 1. Phase 0 als GitHub-Meilenstein anlegen.
 2. vorhandene Warnungen, Testlücken und technische Übergangslösungen als Issues erfassen.
