@@ -14,7 +14,7 @@ export function QuickAction({
   onClick: () => void;
 }) {
   return (
-    <button onClick={onClick}>
+    <button className="btn quick-action" onClick={onClick}>
       <span className={`quick-icon ${tone}`}>
         <Icon />
       </span>

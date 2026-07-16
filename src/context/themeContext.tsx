@@ -5,17 +5,17 @@ import {
 } from "react";
 import {
   themeContext,
-  type Theme,
+  type theme,
 } from "./themeContextDefinition";
 const themeKey = "playDate.theme";
 const legacyThemeKey = "playpal.theme";
 
 // Der Provider hält das Farbschema zentral. Einzelne Komponenten müssen so nicht selbst herumrechnen.
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(
+  const [theme, setThemeState] = useState<theme>(
     () => {
       const saved = (localStorage.getItem(themeKey) ??
-        localStorage.getItem(legacyThemeKey)) as Theme | null;
+        localStorage.getItem(legacyThemeKey)) as theme | null;
       if (saved && !localStorage.getItem(themeKey)) {
         localStorage.setItem(themeKey, saved);
       }
@@ -41,7 +41,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     document.documentElement.style.colorScheme = resolvedTheme;
   }, [resolvedTheme]);
 
-  const setTheme = (next: Theme) => {
+  const setTheme = (next: theme) => {
     setThemeState(next);
     localStorage.setItem(themeKey, next);
   };

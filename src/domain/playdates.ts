@@ -1,5 +1,5 @@
 // Der gemeinsame Bauplan für ein PlayDate. So wissen alle Dateien, welche Felder vorhanden sind.
-export type PlayDate = {
+export type playDate = {
   id: number;
   title: string;
   child: string;
@@ -13,7 +13,7 @@ export type PlayDate = {
 };
 
 // Nur Startdaten für den Prototyp. Echte Termine kommen später aus dem Backend.
-export const initialPlayDates: PlayDate[] = [
+export const initialPlayDates: playDate[] = [
   {
     id: 1,
     title: "Abenteuer im Stadtpark",

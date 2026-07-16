@@ -64,6 +64,8 @@ Die wichtigsten Abläufe müssen auf kleinen Displays schnell, übersichtlich un
 
 Texte, Fehlermeldungen und Einwilligungen werden in einfacher deutscher Sprache formuliert. Nutzer sollen immer erkennen, was eine Aktion bewirkt.
 
+Auch der Code folgt diesem Prinzip: KISS, kurze nachvollziehbare Datenwege und eine Struktur, die Junior-Entwickler ohne unnötige Abstraktionen verstehen können.
+
 ### Barrierearm von Anfang an
 
 Tastaturbedienung, ausreichende Kontraste, sichtbarer Fokus, verständliche Labels und Unterstützung für Screenreader gehören zur Grundarchitektur und sind keine spätere Ergänzung.
@@ -224,7 +226,7 @@ PlayDate strebt WCAG 2.2 AA an. Die Qualität wird nicht nur automatisiert, sond
 - vollständige Tastaturbedienung
 - sichtbare Fokuszustände
 - ausreichend große Touch-Ziele
-- kontrastreiche Light- und Dark-Modi
+- kontrastreiche Light- und Dark-Modi mit mindestens 4,5:1 für normalen Text und wichtige Bedienelemente
 - verständliche Fehlertexte direkt am jeweiligen Feld
 - Statusinformationen nicht nur über Farben
 - Unterstützung für Screenreader
@@ -234,6 +236,8 @@ PlayDate strebt WCAG 2.2 AA an. Die Qualität wird nicht nur automatisiert, sond
 ## 12. Technisches Konzept
 
 Der Prototyp verwendet React, TypeScript, Vite, TanStack Router und Clerk. Die Oberfläche folgt Atomic Design. Vitest und Testing Library bilden die Testbasis.
+
+Die visuelle Richtung nutzt DaisyUI mit eigenen PlayDate-Themes. Der Light Mode ist hell, neutral und blau akzentuiert. Der Dark Mode verwendet einen fast schwarzen Hintergrund und gedämpftes Blau. Grün bleibt positiven Zuständen vorbehalten. Große Rundungen sorgen für Freundlichkeit, ohne den klaren, modernen Charakter aufzugeben.
 
 Für den produktiven Betrieb wird zusätzlich benötigt:
 

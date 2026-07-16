@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest'
 import { downloadCalendar, googleCalendarUrl } from './calendar'
-import type { PlayDate } from '../domain/playdates'
+import type { playDate } from '../domain/playdates'
 
-const date: PlayDate = { id: 7, title: 'Park & Eis', child: 'Mila', friend: 'Noah', date: '2026-08-02', time: '15:30', location: 'Stadtpark', bring: 'Wasser', status: 'Bestätigt', color: 'mint' }
+const date: playDate = { id: 7, title: 'Park & Eis', child: 'Mila', friend: 'Noah', date: '2026-08-02', time: '15:30', location: 'Stadtpark', bring: 'Wasser', status: 'Bestätigt', color: 'mint' }
 
 describe('Kalenderfunktionen', () => {
   it('baut einen passenden Google-Kalender-Link', () => {

@@ -124,7 +124,7 @@ Für die produktive Umsetzung gelten folgende Anforderungen:
 ### PlayDate
 
 ```ts
-type PlayDate = {
+type playDate = {
   id: number;
   title: string;
   child: string;
@@ -141,16 +141,16 @@ type PlayDate = {
 ### Kind und Familie
 
 ```ts
-type ChildProfile = {
+type childProfile = {
   id: string;
   name: string;
   birthday: string;
   shareBirthday: boolean;
 };
 
-type FamilyProfile = {
+type familyProfile = {
   familyName: string;
-  children: ChildProfile[];
+  children: childProfile[];
 };
 ```
 
@@ -160,6 +160,7 @@ In einer produktiven Datenbank werden Beziehungen über unveränderliche IDs sta
 
 - React mit TypeScript
 - Vite als Entwicklungs- und Build-Werkzeug
+- Tailwind CSS 4 und DaisyUI 5 mit eigenen Light- und Dark-Themes
 - TanStack Router für die Navigation
 - Clerk für Authentifizierung
 - Atomic Design für die Komponentenstruktur
@@ -179,7 +180,7 @@ src/components/
 └── pages/
 ```
 
-Geschäftsmodelle liegen unter `src/domain`, wiederverwendbare Zustandslogik unter `src/hooks` und globale UI-Zustände unter `src/context`. Selbst angelegte Datei- und Ordnernamen verwenden lower camelCase.
+Geschäftsmodelle liegen unter `src/domain`, wiederverwendbare Zustandslogik unter `src/hooks` und globale UI-Zustände unter `src/context`. Selbst angelegte Datei- und Ordnernamen sowie selbst definierte TypeScript-Typen verwenden lower camelCase. React-Komponentenbezeichner bilden wegen der JSX-Erkennung die technische Ausnahme; ihre Dateien bleiben lower camelCase. Der Code folgt KISS und muss für Junior-Entwickler gut lesbar bleiben.
 
 ## 9. Barrierefreiheit
 
@@ -189,7 +190,9 @@ PlayDate soll mindestens WCAG 2.2 auf Konformitätsstufe AA anstreben.
 - sichtbare Fokusmarkierungen
 - semantische Überschriften und Navigationen
 - verständliche Formularbeschriftungen und Fehlermeldungen
-- ausreichende Farbkontraste in Light und Dark Mode
+- mindestens 4,5:1 Farbkontrast für normalen Text und wichtige Bedienelemente in Light und Dark Mode
+- fast schwarzer Dark Mode mit gedämpftem Blau als Haupt- und Grün als positiver Statusfarbe
+- stark gerundete DaisyUI-Komponenten mit ausgewogenen Abständen
 - Touch-Ziele von möglichst mindestens 44 × 44 CSS-Pixeln
 - Inhalte dürfen nicht ausschließlich über Farbe erklärt werden
 - Unterstützung für `prefers-reduced-motion`

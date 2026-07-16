@@ -1,5 +1,5 @@
 import { PlayDateCard } from "../molecules/playDateCard";
-import type { PlayDate } from "../../domain/playdates";
+import type { playDate } from "../../domain/playdates";
 // Das Grid kümmert sich nur um die Liste. Die einzelne Karte steckt im Molecule darunter.
 export function PlayDateGrid({
   dates,
@@ -7,10 +7,10 @@ export function PlayDateGrid({
   onInvite,
   onCalendar,
 }: {
-  dates: PlayDate[];
+  dates: playDate[];
   onDelete: (id: number) => void;
-  onInvite: (date: PlayDate) => void;
-  onCalendar: (date: PlayDate) => void;
+  onInvite: (date: playDate) => void;
+  onCalendar: (date: playDate) => void;
 }) {
   return (
     <section className="date-grid" aria-label="Anstehende PlayDates">

@@ -42,13 +42,26 @@ Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich
 
 - Selbst angelegte Datei- und Ordnernamen verwenden lower camelCase.
 - Vorgeschriebene Standarddateien wie `AGENTS.md`, `README.md` und `LICENSE` behalten ihre übliche Schreibweise.
-- React-Komponenten und TypeScript-Typen verwenden PascalCase.
-- Funktionen, Hooks und Variablen verwenden camelCase.
+- Selbst definierte TypeScript-Typen und Interfaces verwenden immer lower camelCase.
+- Funktionen, Hooks und Variablen verwenden immer lower camelCase.
+- React-Komponenten sind die einzige technische Ausnahme bei eigenen Bezeichnern: JSX erkennt Komponenten nur mit großem Anfangsbuchstaben als Komponenten. Deshalb bleibt der Komponentenbezeichner PascalCase, während die zugehörige Datei lower camelCase verwendet. Eine künstliche Umgehung mit `createElement` würde KISS und Lesbarkeit verschlechtern.
+- Namen aus externen APIs und Bibliotheken werden nicht umbenannt. Dazu gehören zum Beispiel `ReactNode` und TanStacks vorgeschriebenes `Register`-Interface.
 - Hooks beginnen mit `use`.
 - Benutzertexte sind auf Deutsch und in einfacher, freundlicher Sprache formuliert.
 - Kommentare sind kurz, locker und für Junior-Entwickler verständlich. Erkläre das Warum, nicht jede offensichtliche Codezeile.
 - Vermeide doppelte Kommentare, tote Dateien und unnötige Abstraktionen.
 - Verwende TypeScript-Typen präzise und führe kein `any` ohne nachvollziehbare Begründung ein.
+- Halte dich an KISS: Bevorzuge die kleinste verständliche Lösung und abstrahiere erst, wenn echte Wiederverwendung entsteht.
+- Schreibe den Code so, dass ein Junior-Entwickler Kontrollfluss, Datenweg und Zuständigkeit ohne Rätselraten nachvollziehen kann.
+
+## Styling
+
+- Bevorzuge eine ruhige Grün-Blau-Farbwelt. Neue Hauptfarben sollen dazu passen.
+- DaisyUI ist eingebunden und die bevorzugte Komponentenbibliothek für Buttons, Formulare, Karten, Badges, Alerts und ähnliche UI-Bausteine.
+- Nutze zuerst semantische DaisyUI-Klassen und ergänze eigenes CSS nur für PlayDate-spezifische Gestaltung oder Layouts.
+- Vermische DaisyUI nicht unnötig mit einem zweiten Komponentenframework.
+- Halte Styling ebenfalls nach KISS: wenige wiederverwendbare Variablen, klare Zustände und keine unnötigen Sonderregeln.
+- Prüfe neue oder geänderte Farben in Light und Dark Mode.
 
 ## Authentifizierung, Datenschutz und Sicherheit
 
@@ -70,7 +83,7 @@ Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich
 - Jeder Ablauf muss per Tastatur bedienbar sein.
 - Fokuszustände müssen sichtbar bleiben.
 - Status darf nicht ausschließlich über Farbe vermittelt werden.
-- Prüfe Light und Dark Mode.
+- Prüfe Light und Dark Mode. Normaler Text und wichtige Bedienelemente müssen in beiden Modi mindestens ein Kontrastverhältnis von 4,5:1 erreichen.
 - Plane Touch-Ziele möglichst mit mindestens 44 × 44 CSS-Pixeln.
 - Beachte `prefers-reduced-motion`.
 - Neue Dialoge, Formulare und Statusmeldungen benötigen eine sinnvolle Screenreader-Ausgabe.

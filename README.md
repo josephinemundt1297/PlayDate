@@ -6,7 +6,7 @@ PlayDate ist ein mobile-first React-Prototyp, mit dem Eltern sichere und übersi
 
 **Stand: 16. Juli 2026 – Frontend-Prototyp, nicht für den Produktivbetrieb freigegeben.**
 
-Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Kalenderexport, Teilen, Themes und PWA funktionieren. Die Prüfkette besteht aktuell aus Oxlint, 7 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler oder Warnungen durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
+Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Kalenderexport, Teilen, eigene DaisyUI-Themes und PWA funktionieren. Die Prüfkette besteht aktuell aus Oxlint, 7 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler oder Warnungen durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
 
 Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos, produktive Datenlöschung und bidirektionale Kalendersynchronisation sind noch nicht umgesetzt. `localStorage` ist ausschließlich die lokale Persistenz des Prototyps.
 
@@ -28,6 +28,10 @@ Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, ser
 - Benutzerspezifische Trennung der lokalen Prototyp-Daten über die Clerk User-ID
 - Routing mit TanStack Router
 - Light Mode, Dark Mode und automatische Systemeinstellung
+- DaisyUI mit eigenen, stark gerundeten Light- und Dark-Themes
+- heller Blau-Weiß-Look im Light Mode und fast schwarzer Dark Mode mit gedämpftem Blau
+- Grün ausschließlich als unterstützende Farbe für positive Zustände
+- mindestens 4,5:1 Kontrast für normalen Text und wichtige Bedienelemente
 - installierbare Progressive Web App (PWA) mit Manifest und Service Worker
 - Persistenz des Prototyps über `localStorage`
 
@@ -69,6 +73,8 @@ src/components/
 ```
 
 `src/app.tsx` enthält ausschließlich die minimale Verbindung aus Authentifizierungsgrenze und Router. Alle selbst angelegten Dateinamen verwenden lower camelCase. Geschäftsmodelle liegen in `src/domain`, wiederverwendbarer Zustand in `src/hooks` und globale UI-Zustände in `src/context`.
+
+Der Code folgt KISS und soll auch für Junior-Entwickler gut lesbar bleiben. Selbst definierte TypeScript-Typen verwenden lower camelCase. React-Komponentenbezeichner bleiben wegen der JSX-Erkennung die technische Ausnahme; ihre Dateien verwenden weiterhin lower camelCase. DaisyUI stellt die semantischen UI-Bausteine bereit; eigenes CSS ergänzt nur das PlayDate-spezifische Layout und Branding.
 
 ## App installieren
 

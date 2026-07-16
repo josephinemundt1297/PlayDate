@@ -2,7 +2,7 @@ import { Check } from "lucide-react";
 // Der Datenschutzhinweis ist ein eigenes Molecule, damit er auf mehreren Seiten gleich bleibt.
 export function PrivacyNote() {
   return (
-    <section className="privacy-note">
+    <section className="alert privacy-note">
       <span>
         <Check />
       </span>

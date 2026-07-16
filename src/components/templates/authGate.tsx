@@ -6,7 +6,7 @@ export function AuthGate({ children }: { children: ReactNode }) {
     <>
       <SignedOut>
         <main className="auth-page">
-          <section className="auth-card" aria-labelledby="auth-title">
+          <section className="card bg-base-100 border border-base-300 auth-card" aria-labelledby="auth-title">
             <span className="auth-logo" aria-hidden="true">
               ✦
             </span>
@@ -21,7 +21,7 @@ export function AuthGate({ children }: { children: ReactNode }) {
               sehen und zu verwalten.
             </p>
             <SignInButton mode="modal">
-              <button className="primary-button">Sicher anmelden</button>
+              <button className="btn btn-primary primary-button">Sicher anmelden</button>
             </SignInButton>
             <small>
               Deine Daten werden nur angemeldeten, berechtigten Personen

@@ -37,6 +37,11 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Clerk-Anmeldung eingebunden
 - [x] PlayDate- und Familiendaten hinter der Anmeldung geschützt
 - [x] Light Mode, Dark Mode und Systemmodus umgesetzt
+- [x] Grün-Blau-Farbwelt als bevorzugtes Theme umgesetzt
+- [x] zentrale Dark-Mode-Kontraste rechnerisch auf mindestens 4,5:1 geprüft
+- [x] Tailwind CSS 4 und DaisyUI 5 eingebunden
+- [x] eigene DaisyUI-Themes für Light und Dark Mode erstellt
+- [x] zentrale Karten, Buttons, Formulare, Badges, Alerts und Navigation auf DaisyUI umgestellt
 - [x] mobile-first Oberfläche umgesetzt
 - [x] PWA-Manifest und Service Worker eingerichtet
 - [x] App und Repository einheitlich in PlayDate umbenannt
@@ -160,7 +165,7 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [ ] automatisierte axe-Tests einrichten
 - [ ] alle Kernabläufe ausschließlich per Tastatur testen
 - [ ] manuelle Tests mit VoiceOver und NVDA durchführen
-- [ ] Kontraste vollständig messen und dokumentieren
+- [x] zentrale Text- und Bedienkontraste für Light und Dark Mode gemessen und dokumentiert
 - [ ] unterstützte mobile Geräte und Browser festlegen und testen
 - [ ] Pilotgruppe mit freiwilligen Testfamilien durchführen
 - [ ] kritische Ergebnisse aus dem Pilot beheben
@@ -555,6 +560,8 @@ Diese Regeln gelten in jeder Phase:
 - private Daten werden serverseitig autorisiert
 - neue Datenfelder benötigen Zweck, Sichtbarkeit und Löschfrist
 - neue Oberflächen werden in Light und Dark Mode geprüft
+- neue Farbpaare erreichen für normalen Text und wichtige Bedienelemente mindestens 4,5:1
+- Code und Styling folgen KISS und bleiben für Junior-Entwickler nachvollziehbar
 - neue Abläufe müssen per Tastatur bedienbar sein
 - Geheimnisse gehören weder in den Browser noch in Git
 - externe Dienste werden nur mit minimalen Berechtigungen angebunden
@@ -752,10 +759,25 @@ Das Datenschutz-Audit benötigt vor dem Produktivstart eine fachkundige rechtlic
 - [ ] alle Kernabläufe ohne Maus abschließen
 - [ ] VoiceOver auf Safari testen
 - [ ] NVDA mit einem unterstützten Browser testen
-- [ ] Kontrastwerte dokumentieren
+- [x] zentrale Kontrastwerte für Theme-Texte und Hauptaktionen dokumentiert
 - [ ] Ansicht bei 200 Prozent Vergrößerung prüfen
 - [ ] Fehlertexte und `aria-live`-Meldungen kontrollieren
 - [ ] gefundene Barrieren mit WCAG-Kriterium dokumentieren
+
+**Gemessene zentrale Farbpaare, Stand 16. Juli 2026:**
+
+| Modus | Farbpaar | Verhältnis |
+| --- | --- | ---: |
+| Light | Haupttext auf Seitenhintergrund | 14,33:1 |
+| Light | Sekundärtext auf Seitenhintergrund | 5,53:1 |
+| Light | weißer Text auf Hauptaktion | 6,74:1 |
+| Dark | Haupttext auf Seitenhintergrund | 18,08:1 |
+| Dark | Sekundärtext auf Seitenhintergrund | 10,67:1 |
+| Dark | blauer Akzent auf Oberfläche | 7,76:1 |
+| Dark | grüner Akzent auf Oberfläche | 8,28:1 |
+| Dark | weißer Text auf Hauptaktion | 4,65:1 |
+
+Damit bestehen die zentralen Theme-Farbpaare die geforderten 4,5:1. Das vollständige WCAG-Audit aller Komponenten, Zustände und Fokusvarianten bleibt offen.
 
 ### Audit 7 – Kalender, Erinnerungen und PWA
 

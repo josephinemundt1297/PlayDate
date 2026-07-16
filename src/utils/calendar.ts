@@ -1,4 +1,4 @@
-import type { PlayDate } from "../domain/playdates";
+import type { playDate } from "../domain/playdates";
 
 // Kalenderdateien sind etwas pingelig: Sonderzeichen müssen vorher sauber escaped werden.
 const escapeIcs = (value: string) =>
@@ -14,7 +14,7 @@ const stampLocalDate = (date: Date) => {
   return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}T${pad(date.getHours())}${pad(date.getMinutes())}00`;
 };
 
-export function downloadCalendar(dates: PlayDate[]) {
+export function downloadCalendar(dates: playDate[]) {
   // Aus jedem PlayDate wird ein VEVENT. Danach laden wir alles als eine .ics-Datei herunter.
   const events = dates
     .map((date) =>
@@ -53,7 +53,7 @@ export function downloadCalendar(dates: PlayDate[]) {
   URL.revokeObjectURL(url);
 }
 
-export function googleCalendarUrl(date: PlayDate) {
+export function googleCalendarUrl(date: playDate) {
   // Google Kalender versteht Termine über URL-Parameter. Dafür brauchen wir hier kein OAuth.
   const start = stamp(date.date, date.time);
   const endDate = new Date(`${date.date}T${date.time}:00`);

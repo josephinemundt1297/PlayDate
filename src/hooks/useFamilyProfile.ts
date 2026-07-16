@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import {
   emptyFamilyProfile,
-  type ChildProfile,
-  type FamilyProfile,
-  type SharedBirthday,
+  type childProfile,
+  type familyProfile,
+  type sharedBirthday,
 } from "../domain/family";
 
 const keyFor = (userId: string) => `playDate.family.${userId}`;
@@ -14,7 +14,7 @@ const legacyKeyFor = (userId: string) => `playpal.family.${userId}`;
 const legacyConnectionsKey = (userId: string) =>
   `playpal.shared-birthdays.${userId}`;
 // Alte Profile hatten nur Namen als Text. Beim Lesen bauen wir daraus automatisch das neue Format.
-export function readFamilyProfile(userId: string): FamilyProfile {
+export function readFamilyProfile(userId: string): familyProfile {
   const value =
     localStorage.getItem(keyFor(userId)) ??
     localStorage.getItem(legacyKeyFor(userId));
@@ -23,9 +23,9 @@ export function readFamilyProfile(userId: string): FamilyProfile {
     localStorage.setItem(keyFor(userId), value);
   }
   const parsed = JSON.parse(value) as
-    | FamilyProfile
+    | familyProfile
     | { familyName: string; children: string[] };
-  const children: ChildProfile[] = parsed.children.map((child) =>
+  const children: childProfile[] = parsed.children.map((child) =>
     typeof child === "string"
       ? {
           id: crypto.randomUUID(),
@@ -38,7 +38,7 @@ export function readFamilyProfile(userId: string): FamilyProfile {
   return { ...parsed, children };
 }
 // Hier landen später die freigegebenen Geburtstage aus echten Familienverbindungen.
-export function readSharedBirthdays(userId: string): SharedBirthday[] {
+export function readSharedBirthdays(userId: string): sharedBirthday[] {
   const value =
     localStorage.getItem(connectionsKey(userId)) ??
     localStorage.getItem(legacyConnectionsKey(userId));
@@ -50,10 +50,10 @@ export function readSharedBirthdays(userId: string): SharedBirthday[] {
 export function useFamilyProfile() {
   const { user } = useUser();
   if (!user) throw new Error("Anmeldung erforderlich");
-  const [profile, setProfile] = useState<FamilyProfile>(() =>
+  const [profile, setProfile] = useState<familyProfile>(() =>
     readFamilyProfile(user.id),
   );
-  const save = (next: FamilyProfile) => {
+  const save = (next: familyProfile) => {
     setProfile(next);
     localStorage.setItem(keyFor(user.id), JSON.stringify(next));
   };

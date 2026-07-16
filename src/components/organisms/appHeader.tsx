@@ -8,7 +8,7 @@ import { useInstallApp } from "../../hooks/useInstallApp";
 export function AppHeader() {
   const { canInstall, installed, install } = useInstallApp();
   return (
-    <header className="topbar">
+    <header className="navbar topbar">
       <Link to="/" className="brand" aria-label="PlayDate Startseite">
         <span className="brand-mark">
           <Sparkles size={20} />
@@ -31,7 +31,7 @@ export function AppHeader() {
       <div className="header-actions">
         <ThemeToggle />
         <button
-          className="install-button"
+          className="btn btn-ghost install-button"
           onClick={install}
           disabled={!canInstall || installed}
           title={

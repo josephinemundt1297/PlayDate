@@ -11,10 +11,9 @@ import { usePlayDates } from "../../hooks/usePlayDates";
 import { QuickAction } from "../molecules/quickAction";
 import { PlayDateGrid } from "../organisms/playDateGrid";
 import { PrivacyNote } from "../molecules/privacyNote";
-import type { PlayDate } from "../../domain/playdates";
+import type { playDate } from "../../domain/playdates";
 import { downloadCalendar, googleCalendarUrl } from "../../utils/calendar";
 
-// Die Dashboard-Page setzt mehrere kleinere Atomic-Bausteine zur fertigen Übersicht zusammen.
 // Die Dashboard-Page setzt mehrere kleinere Atomic-Bausteine zur fertigen Übersicht zusammen.
 export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
   const { dates, save } = usePlayDates();
@@ -24,7 +23,6 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
     [dates],
   );
   // Kleine Rückmeldung unten im Bildschirm. Nach drei Sekunden räumen wir sie wieder weg.
-  // Kleine Rückmeldung unten im Bildschirm. Nach drei Sekunden räumen wir sie wieder weg.
   const announce = (message: string) => {
     setToast(message);
     setTimeout(() => setToast(""), 3000);
@@ -33,7 +31,7 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
     if (confirm("Möchtest du dieses PlayDate wirklich löschen?"))
       save(dates.filter((d) => d.id !== id));
   };
-  const invite = (date: PlayDate) => {
+  const invite = (date: playDate) => {
     window.open(
       `https://wa.me/?text=${encodeURIComponent(`Einladung zu „${date.title}“ am ${date.date} um ${date.time} Uhr.`)}`,
       "_blank",
@@ -45,7 +43,7 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
     <div className="page-wrap">
       {!showAll && (
         <>
-          <section className="welcome-card" aria-labelledby="welcome-title">
+          <section className="card bg-base-100 border border-base-300 welcome-card" aria-labelledby="welcome-title">
             <div>
               <p className="eyebrow">Deine private Übersicht</p>
               <h1 id="welcome-title">
@@ -53,7 +51,7 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
               </h1>
               <p>Bereit für ein bisschen Kinderlachen und neue Erinnerungen?</p>
             </div>
-            <Link to="/new" className="primary-button">
+            <Link to="/new" className="btn btn-primary primary-button">
               <Plus />
               PlayDate planen
             </Link>
@@ -96,7 +94,7 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
           <h2>{showAll ? "Alle PlayDates" : "Deine PlayDates"}</h2>
         </div>
         {showAll ? (
-          <Link to="/new" className="primary-button new-playdate-button">
+          <Link to="/new" className="btn btn-primary primary-button new-playdate-button">
             <Plus />
             Neues PlayDate
           </Link>

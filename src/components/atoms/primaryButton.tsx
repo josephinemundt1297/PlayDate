@@ -6,7 +6,7 @@ export function PrimaryButton({
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement> & { children: ReactNode }) {
   return (
-    <button className={`primary-button ${className}`} {...props}>
+    <button className={`btn btn-primary primary-button ${className}`} {...props}>
       {children}
     </button>
   );

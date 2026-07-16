@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-interface InstallPromptEvent extends Event {
+interface installPromptEvent extends Event {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 }
@@ -8,14 +8,14 @@ interface InstallPromptEvent extends Event {
 // Der Browser schickt dieses Event, sobald die PWA installiert werden darf.
 // Wir merken es uns, damit unser eigener Button den Dialog später öffnen kann.
 export function useInstallApp() {
-  const [prompt, setPrompt] = useState<InstallPromptEvent | null>(null);
+  const [prompt, setPrompt] = useState<installPromptEvent | null>(null);
   const [installed, setInstalled] = useState(
     matchMedia("(display-mode: standalone)").matches,
   );
   useEffect(() => {
     const ready = (event: Event) => {
       event.preventDefault();
-      setPrompt(event as InstallPromptEvent);
+      setPrompt(event as installPromptEvent);
     };
     const done = () => {
       setInstalled(true);

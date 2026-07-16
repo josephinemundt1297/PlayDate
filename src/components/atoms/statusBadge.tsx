@@ -1,8 +1,10 @@
-import type { PlayDate } from "../../domain/playdates";
+import type { playDate } from "../../domain/playdates";
 // Kleiner Status-Baustein, damit „Bestätigt“ überall gleich aussieht.
-export function StatusBadge({ status }: Pick<PlayDate, "status">) {
+export function StatusBadge({ status }: Pick<playDate, "status">) {
   return (
-    <span className={`status ${status === "Bestätigt" ? "confirmed" : ""}`}>
+    <span
+      className={`badge status ${status === "Bestätigt" ? "badge-success confirmed" : "badge-warning"}`}
+    >
       {status}
     </span>
   );

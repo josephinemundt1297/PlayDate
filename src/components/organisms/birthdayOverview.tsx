@@ -1,6 +1,6 @@
 import { CakeSlice, LockKeyhole } from "lucide-react";
-import type { FamilyProfile, SharedBirthday } from "../../domain/family";
-type BirthdayEntry = {
+import type { familyProfile, sharedBirthday } from "../../domain/family";
+type birthdayEntry = {
   id: string;
   childName: string;
   familyName: string;
@@ -20,10 +20,10 @@ export function BirthdayOverview({
   profile,
   shared,
 }: {
-  profile: FamilyProfile;
-  shared: SharedBirthday[];
+  profile: familyProfile;
+  shared: sharedBirthday[];
 }) {
-  const own: BirthdayEntry[] = profile.children
+  const own: birthdayEntry[] = profile.children
     .filter((child) => child.birthday)
     .map((child) => ({
       id: child.id,

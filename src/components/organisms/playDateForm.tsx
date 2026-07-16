@@ -7,7 +7,7 @@ import {
   readPlayDates,
 } from "../../hooks/usePlayDates";
 import { readFamilyProfile } from "../../hooks/useFamilyProfile";
-import type { PlayDate } from "../../domain/playdates";
+import type { playDate } from "../../domain/playdates";
 
 // Das Formular kann beides: einen neuen Termin anlegen oder einen vorhandenen bearbeiten.
 export function PlayDateForm({ editId }: { editId?: number }) {
@@ -17,7 +17,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
   const dates = readPlayDates(user.id);
   const family = readFamilyProfile(user.id);
   const existing = dates.find((date) => date.id === editId);
-  const [form, setForm] = useState<PlayDate>(
+  const [form, setForm] = useState<playDate>(
     existing ?? {
       id: Date.now(),
       title: "",
@@ -31,7 +31,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
       color: "mint",
     },
   );
-  const update = (key: keyof PlayDate, value: string) =>
+  const update = (key: keyof playDate, value: string) =>
     setForm((current) => ({ ...current, [key]: value }));
   // Beim Bearbeiten tauschen wir den passenden Eintrag aus, sonst hängen wir einen neuen hinten dran.
   const submit = (event: SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
@@ -43,10 +43,11 @@ export function PlayDateForm({ editId }: { editId?: number }) {
     navigate({ to: "/" });
   };
   return (
-    <form onSubmit={submit} className="playdate-form">
+    <form onSubmit={submit} className="card bg-base-100 border border-base-300 playdate-form">
       <label className="full">
         Titel<span>Wie soll euer Treffen heißen?</span>
         <input
+          className="input input-bordered w-full"
           required
           value={form.title}
           onChange={(event) => update("title", event.target.value)}
@@ -57,6 +58,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
         Dein Kind
         {family.children.length ? (
           <select
+            className="select select-bordered w-full"
             required
             value={form.child}
             onChange={(event) => update("child", event.target.value)}
@@ -84,6 +86,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
       <label>
         Trifft sich mit
         <input
+          className="input input-bordered w-full"
           required
           value={form.friend}
           onChange={(event) => update("friend", event.target.value)}
@@ -93,6 +96,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
       <label>
         Datum
         <input
+          className="input input-bordered w-full"
           required
           type="date"
           value={form.date}
@@ -102,6 +106,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
       <label>
         Uhrzeit
         <input
+          className="input input-bordered w-full"
           required
           type="time"
           value={form.time}
@@ -111,6 +116,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
       <label className="full">
         Treffpunkt
         <input
+          className="input input-bordered w-full"
           required
           value={form.location}
           onChange={(event) => update("location", event.target.value)}
@@ -120,6 +126,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
       <label className="full">
         Wer bringt was mit?
         <textarea
+          className="textarea textarea-bordered w-full"
           value={form.bring}
           onChange={(event) => update("bring", event.target.value)}
           placeholder="Snacks, Getränke, Spielsachen …"
@@ -128,10 +135,16 @@ export function PlayDateForm({ editId }: { editId?: number }) {
       <fieldset className="full">
         <legend>Erinnerung</legend>
         <label className="check-row">
-          <input type="checkbox" defaultChecked /> 24 Stunden vorher erinnern
+          <input
+            className="checkbox checkbox-primary"
+            type="checkbox"
+            defaultChecked
+          />{" "}
+          24 Stunden vorher erinnern
         </label>
         <label className="check-row">
-          <input type="checkbox" /> Auch per E-Mail erinnern
+          <input className="checkbox checkbox-primary" type="checkbox" /> Auch
+          per E-Mail erinnern
         </label>
       </fieldset>
       <div className="consent full">
@@ -144,11 +157,11 @@ export function PlayDateForm({ editId }: { editId?: number }) {
         </p>
       </div>
       <div className="form-actions full">
-        <Link to="/" className="secondary-button">
+        <Link to="/" className="btn btn-outline secondary-button">
           Abbrechen
         </Link>
         <button
-          className="primary-button"
+          className="btn btn-primary primary-button"
           type="submit"
           disabled={!family.children.length}
         >

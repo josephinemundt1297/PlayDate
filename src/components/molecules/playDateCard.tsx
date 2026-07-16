@@ -9,7 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import type { PlayDate } from "../../domain/playdates";
+import type { playDate } from "../../domain/playdates";
 import { StatusBadge } from "../atoms/statusBadge";
 
 // Eine Karte zeigt genau ein PlayDate und reicht Klicks an die übergeordnete Page zurück.
@@ -19,7 +19,7 @@ export function PlayDateCard({
   onInvite,
   onCalendar,
 }: {
-  date: PlayDate;
+  date: playDate;
   onDelete: (id: number) => void;
   onInvite: () => void;
   onCalendar: () => void;
@@ -36,17 +36,21 @@ export function PlayDateCard({
     .format(value)
     .replace(/\.$/, "");
   return (
-    <article className={`date-card ${date.color}`}>
+    <article
+      className={`card bg-base-100 border border-base-300 date-card ${date.color}`}
+    >
       <div className="card-top">
         <StatusBadge status={date.status} />
         <div className="card-actions">
           <button
+            className="btn btn-ghost btn-sm btn-square"
             onClick={onCalendar}
             aria-label={`${date.title} zu Google Kalender hinzufügen`}
           >
             <CalendarPlus />
           </button>
           <Link
+            className="btn btn-ghost btn-sm btn-square"
             to="/edit/$playDateId"
             params={{ playDateId: String(date.id) }}
             aria-label={`${date.title} bearbeiten`}
@@ -54,6 +58,7 @@ export function PlayDateCard({
             <Edit3 />
           </Link>
           <button
+            className="btn btn-ghost btn-sm btn-square"
             onClick={() => onDelete(date.id)}
             aria-label={`${date.title} löschen`}
           >
@@ -78,7 +83,10 @@ export function PlayDateCard({
       <p>
         <Gift /> {date.bring}
       </p>
-      <button className="invite-button" onClick={onInvite}>
+      <button
+        className="btn btn-outline btn-primary invite-button"
+        onClick={onInvite}
+      >
         <Send /> Einladung teilen
       </button>
     </article>
