@@ -1,10 +1,10 @@
 # PlayDate – Phasenplan
 
-> **Projektstatus:** PlayDate ist ein Übungsprojekt. Ein Haken bei rechtlichen oder betrieblichen Konzeptpunkten bedeutet „für die Übung dokumentiert“, nicht „von einer Rechtsberatung oder für einen echten Produktivbetrieb freigegeben“.
+> **Lernkontext:** PlayDate ist mein Trainingsprojekt im React-Modul der einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklerin. Ein Haken bedeutet „als Lernziel umgesetzt oder als Übung dokumentiert“, nicht „produktiv oder rechtlich freigegeben“.
 
 ## 1. Zweck des Plans
 
-Dieser Phasenplan überführt das Produktkonzept von PlayDate in eine realistische Reihenfolge für die weitere Entwicklung. Ausgangspunkt ist der vorhandene Frontend-Prototyp. Ziel der Übung ist die nachvollziehbare Planung eines sicheren, barrierearmen und datenschutzbewussten MVP.
+Dieser Phasenplan ordnet meinen Lernfortschritt und mögliche spätere Erweiterungen. Phase 0 und 1 bilden den abgeschlossenen Kern des React-Trainingsprojekts. Ab Phase 2 beginnt ein optionaler Full-Stack- und Produktionsausblick, der nicht zur abgeschlossenen React-Modul-Leistung gehört.
 
 Die Zeitangaben sind grobe Richtwerte für ein kleines Team. Sie sind keine festen Veröffentlichungstermine. Datenschutz, externe Anbieter, App-Freigaben und Rückmeldungen aus Nutzertests können den Zeitbedarf verändern.
 
@@ -12,8 +12,8 @@ Die Zeitangaben sind grobe Richtwerte für ein kleines Team. Sie sind keine fest
 
 | Phase | Schwerpunkt                          | Richtwert   | Ergebnis                                          |
 | ----- | ------------------------------------ | ----------- | ------------------------------------------------- |
-| 0     | Prototyp stabilisieren               | 1–2 Wochen  | belastbare technische Ausgangsbasis               |
-| 1     | Produkt- und Datenschutzgrundlage    | 1–2 Wochen  | abgestimmter MVP und rechtliche Leitplanken       |
+| 0     | React-Prototyp und technische Basis  | abgeschlossen | nachweisbare React-Lernleistung                  |
+| 1     | Produkt- und Datenschutzübung        | abgeschlossen | dokumentierte fachliche Leitplanken              |
 | 2     | Backend und Datenmodell              | 2–4 Wochen  | sichere serverseitige Speicherung                 |
 | 3     | Familien und Verbindungen            | 2–3 Wochen  | echte private Familienbeziehungen                 |
 | 4     | PlayDates und Einladungen            | 2–4 Wochen  | vollständiger gemeinsamer Planungsablauf          |
@@ -23,7 +23,7 @@ Die Zeitangaben sind grobe Richtwerte für ein kleines Team. Sie sind keine fest
 | 8     | Produktionsstart                     | 1–2 Wochen  | kontrollierter öffentlicher Betrieb               |
 | 9     | Ausbau nach dem MVP                  | fortlaufend | Kommentare, Fotos und weitere Komfortfunktionen   |
 
-Mehrere Arbeitspakete können parallel laufen. Eine Phase gilt aber erst als abgeschlossen, wenn ihre Abnahmekriterien erfüllt sind.
+Phasen 0 und 1 sind anhand der dokumentierten Nachweise abgeschlossen. Die folgenden Phasen sind optionale Ideen für eine spätere Vertiefung und keine offenen Pflichtaufgaben des React-Moduls.
 
 ## Zentrale Umsetzungscheckliste
 
@@ -63,11 +63,13 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Formularvalidierung für alle dokumentierten Randfälle erweitern
 - [x] Tests für Auth-Grenze, Familienseite und PlayDate-Formular ergänzen
 - [x] vollständige End-to-End-Teststrecke einrichten
-- [ ] PWA-Updates auf mehreren Browsern und Geräten prüfen
+- [ ] optionaler Zusatznachweis: PWA-Updates auf mehreren Browsern und Geräten prüfen
 - [x] Playwright-Prüfung für Service-Worker-Registrierung und Cache-Version eingerichtet
 - [x] Chromium, Firefox, WebKit, Pixel 7 und iPhone 14 als Projekte konfiguriert
-- [ ] Browserläufe auf einer Umgebung mit installierten Playwright-Browsern ausführen
-- [ ] PWA-Update zusätzlich auf echten Android- und iOS-Geräten prüfen
+- [ ] optionaler Zusatznachweis: Browserläufe mit installierten Playwright-Browsern ausführen
+- [ ] optionaler Zusatznachweis: PWA-Update auf echten Android- und iOS-Geräten prüfen
+
+**Bewertung Phase 0:** für das React-Modul abgeschlossen. Die drei offenen PWA-/Browserpunkte sind freiwillige Zusatznachweise, die eine Umgebung mit Browser-Binaries beziehungsweise echte Geräte benötigen.
 
 ### Phase 1 – Produkt und Datenschutz
 
@@ -88,6 +90,8 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Bedrohungsmodell dokumentieren
 
 Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die bei einer echten Veröffentlichung neu nötigen Prüfungen stehen in [`phase1Datenschutz.md`](phase1Datenschutz.md).
+
+**Bewertung Phase 1:** als Produkt-, Datenschutz- und Sicherheitsübung im React-Modul vollständig abgeschlossen.
 
 ### Phase 2 – Backend und Datenmodell
 
@@ -217,7 +221,8 @@ Die Checkliste wird bei jeder abgeschlossenen Funktion aktualisiert. Ein Punkt w
 
 ## 3. Phase 0 – Prototyp stabilisieren
 
-**Status:** teilweise umgesetzt  
+**Status:** für das React-Trainingsprojekt abgeschlossen; freiwillige Geräteprüfung offen
+
 **Richtwert:** 1–2 Wochen
 
 ### Ziel
@@ -258,9 +263,11 @@ Ein reproduzierbar baubarer Frontend-Stand mit klarer Testbasis und dokumentiert
 - kritische Abläufe besitzen automatisierte Tests
 - keine privaten Beispieldaten erscheinen versehentlich bei neuen Nutzern
 - Fehler- und Leerzustände sind verständlich und per Tastatur erreichbar
-- aktuelle Browser auf Smartphone und Desktop wurden geprüft
+- responsive Zielbreiten wurden automatisiert beziehungsweise im Layout geprüft; reale Mehrbrowser- und Geräteläufe bleiben Zusatznachweise
 
 ## 4. Phase 1 – Produkt- und Datenschutzgrundlage
+
+**Status:** für das Trainingsprojekt abgeschlossen
 
 **Richtwert:** 1–2 Wochen  
 **Abhängigkeit:** kann parallel zu Phase 0 beginnen
@@ -296,7 +303,7 @@ Ein freigegebener MVP-Scope sowie ein dokumentiertes Datenschutz- und Berechtigu
 - Anbieter und Datenflüsse sind vollständig erfasst
 - reale rechtliche Risiken sind klar vom abgeschlossenen Übungsumfang getrennt
 
-## 5. Phase 2 – Backend und Datenmodell
+## 5. Phase 2 – Backend und Datenmodell (optionale Full-Stack-Vertiefung)
 
 **Richtwert:** 2–4 Wochen  
 **Abhängigkeit:** Phase 1
@@ -601,7 +608,7 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 
 **Geprüfter Stand:** Frontend-Prototyp im lokalen Projektordner
 
-**Gesamtergebnis:** Übungsstand technisch teilweise bestanden; Phase 1 konzeptionell abgeschlossen; keine Freigabe für echte Daten oder Produktivbetrieb
+**Gesamtergebnis:** Phase 0 und 1 als React-Trainingsprojekt bestanden; freiwillige Geräteprüfungen und spätere Full-Stack-Phasen offen; keine Freigabe für echte Daten oder Produktivbetrieb
 
 - [x] Oxlint ausgeführt
 - [x] alle 46 vorhandenen Vitest-Tests bestanden
@@ -899,7 +906,7 @@ Für jedes Audit werden mindestens Datum, geprüfte Version beziehungsweise Comm
 
 ## 15. Empfohlene Meilensteine
 
-### Meilenstein A – Technische Basis bereit
+### Meilenstein A – React-Trainingsbasis abgeschlossen
 
 Phasen 0 bis 2 abgeschlossen. Der Prototyp verwendet ein sicheres Backend.
 

@@ -1,12 +1,21 @@
-# PlayDate – Phase 1: Produkt und Datenschutz
+# PlayDate – Phase 1: Produkt- und Datenschutzübung im React-Modul
 
 **Stand:** 17. Juli 2026
 
 **Status:** Für das Übungsprojekt abgeschlossen
 
-**Geltungsbereich:** simuliertes Produkt für erwachsene Sorgeberechtigte in Deutschland; keine echten personenbezogenen Daten
+**Geltungsbereich:** Trainingsprojekt im React-Modul der einjährigen DCI-Weiterbildung; simuliertes Produkt ohne echte personenbezogene Daten
 
-Dieses Dokument macht die fachlichen Entscheidungen für Phase 1 prüfbar. Es ist keine Rechtsberatung. Alle Freigaben gelten nur als Produktannahmen der Übung und niemals als Aussage, dass eine reale App DSGVO-konform wäre.
+Dieses Dokument zeigt als Lernnachweis, dass Frontend-Funktionen Daten, Rollen, Sichtbarkeit und Risiken beeinflussen. Es ist keine Rechtsberatung. Alle Freigaben gelten nur als Produktannahmen des Trainingsprojekts und niemals als Aussage, dass eine reale App DSGVO-konform wäre.
+
+## Lernziele dieser Phase
+
+- Anforderungen in MVP und spätere Funktionen trennen
+- Rollen und erlaubte Aktionen verständlich beschreiben
+- Datenarten, Zweck, Sichtbarkeit und Löschung zusammendenken
+- Einwilligungen und externe Datenflüsse im UI berücksichtigen
+- typische Bedrohungen einer React-App mit Login und Freigabelinks erkennen
+- technische Grenzen eines reinen Frontend-Prototyps ehrlich dokumentieren
 
 ## 1. Verbindlicher MVP-Scope
 

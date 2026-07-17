@@ -1,6 +1,12 @@
 # PlayDate – Produktkonzept
 
-> **Projektstatus:** PlayDate ist ein Übungsprojekt. Das Konzept beschreibt einen simulierten MVP und darf nicht als Freigabe für echte Kinderdaten verstanden werden.
+> **Lernkontext:** PlayDate ist mein Trainingsprojekt im React-Modul meiner einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklerin. Das Konzept beschreibt eine simulierte Produktidee und ist keine Freigabe für echte Kinderdaten.
+
+## 0. Ziel des Trainingsprojekts
+
+Das Projekt verbindet die Lerninhalte des React-Moduls mit einer größeren, realitätsnahen Frontend-Aufgabe. Im Mittelpunkt stehen Komponenten, Props, State, Hooks, Context, Routing, Formulare, TypeScript, Tests und responsive Benutzeroberflächen. Produkt-, Datenschutz- und Sicherheitsfragen werden als Konzeptübung betrachtet, damit technische Entscheidungen nicht isoliert von ihren Auswirkungen getroffen werden.
+
+Backend, Datenbank, produktiver Betrieb und echte Rechtsfreigaben sind nicht Teil des abgeschlossenen React-Modul-Umfangs. Die konkreten Lernnachweise stehen in [`lernNachweis.md`](lernNachweis.md).
 
 ## 1. Die Idee
 
@@ -256,9 +262,18 @@ Für den produktiven Betrieb wird zusätzlich benötigt:
 
 `localStorage` ist nur für den aktuellen Prototyp geeignet und darf nicht die produktive Hauptspeicherung privater Daten übernehmen.
 
-## 13. Erfolgskriterien
+## 13. Lern- und Projekterfolg
 
-Der Produkterfolg soll nicht an möglichst vielen gespeicherten Kinderdaten gemessen werden. Sinnvolle Kennzahlen sind:
+Im React-Modul wird der Erfolg zuerst daran gemessen, ob die Lernziele verständlich und überprüfbar umgesetzt sind:
+
+- nachvollziehbare Komponenten- und Datenstruktur
+- funktionierende Formulare, State-Updates und Routennavigation
+- wiederverwendbare Hooks und Context ohne unnötige Komplexität
+- mobile und tastaturbedienbare Kernabläufe
+- automatisierte Tests für zentrale Logik und Fehlerfälle
+- verständliche Dokumentation der Entscheidungen und Grenzen
+
+Für eine rein gedachte spätere Produktphase wären zusätzlich folgende Kennzahlen sinnvoll:
 
 - Anteil erfolgreich abgeschlossener PlayDate-Erstellungen
 - benötigte Zeit bis zum gespeicherten ersten PlayDate

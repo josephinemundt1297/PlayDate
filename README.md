@@ -1,18 +1,34 @@
 # PlayDate – PlayDates einfach planen
 
-PlayDate ist ein mobile-first React-Prototyp, mit dem Eltern sichere und übersichtliche Spieletreffen für ihre Kinder planen können. Die Oberfläche ist deutschsprachig, tastaturbedienbar und für kleine Displays optimiert.
+PlayDate ist mein mobile-first React-Trainingsprojekt im Rahmen meiner einjährigen Weiterbildung zur Web- und Softwareentwicklerin beim Digital Career Institute (DCI). An einer App zur Planung von Spieletreffen übe ich React, TypeScript, Routing, Formulare, State-Management, Tests, Responsive Design, A11Y und den Umgang mit externen Diensten.
+
+Die Oberfläche ist deutschsprachig, tastaturbedienbar und für kleine Displays optimiert. Das Projekt ist ein Lern- und Portfolio-Prototyp, kein Kundenauftrag und keine produktive Anwendung.
 
 ## Aktueller Status
 
-**Stand: 17. Juli 2026 – Übungsprojekt und Frontend-Prototyp, nicht für echte personenbezogene Daten oder den Produktivbetrieb freigegeben.**
+**Stand: 17. Juli 2026 – Phase 0 und 1 des React-Trainingsprojekts sind abgeschlossen. Es dürfen ausschließlich erfundene Demo-Daten verwendet werden.**
 
 Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Monatskalender mit Detail-Dialog, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Error Boundary, Lade-, Leer- und Offline-Zustände sowie zentrale Formularvalidierung sind vorhanden. Die Prüfkette besteht aktuell aus Oxlint, 46 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
 
-Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos, produktive Datenlöschung und bidirektionale Kalendersynchronisation sind noch nicht umgesetzt. `localStorage` ist ausschließlich die lokale Persistenz des Prototyps.
+Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos, produktive Datenlöschung und bidirektionale Kalendersynchronisation sind bewusst nicht Teil der abgeschlossenen React-Modul-Leistung. `localStorage` dient ausschließlich dazu, Persistenz im Frontend-Prototyp zu üben.
 
 Die fachlichen Übungsunterlagen für Phase 1 stehen in [`docs/phase1Datenschutz.md`](docs/phase1Datenschutz.md). Der simulierte MVP-Scope, Rollen, Rechtsgrundlagen, Einwilligungen, Löschfristen, Anbieterprüfung, Pflichttext-Muster, DSFA-Vorprüfung und Bedrohungen sind für das Übungsprojekt abgeschlossen. Vor einer echten Veröffentlichung müssten alle Angaben mit realem Betreiber, Hosting und fachkundiger Rechtsberatung neu geprüft werden. Zur Datensparsamkeit lädt die App keine Schriftarten mehr zur Laufzeit von Google Fonts.
 
-## Funktionen
+## Lernschwerpunkte
+
+- React-Komponenten, Props, State, Events und bedingtes Rendering
+- eigene Hooks, Context und klar getrennte Zuständigkeiten
+- TypeScript-Modelle und typisierte Komponenten
+- TanStack Router und geschützte Routen
+- Formulare, Validierung und CRUD-Abläufe
+- Atomic Design und KISS
+- Responsive Design, A11Y und Themes
+- Unit-, Komponenten- und vorbereitete End-to-End-Tests
+- GitHub-Workflow und technische Dokumentation
+
+Der ausführliche Abgleich steht im [`docs/lernNachweis.md`](docs/lernNachweis.md).
+
+## Umgesetzte Funktionen
 
 - PlayDates erstellen, bearbeiten und löschen
 - Familienprofil mit beliebig vielen Kindern verwalten
@@ -131,9 +147,9 @@ E2E_STORAGE_STATE=e2e/.auth/clerk.json npm run test:e2e
 
 Die Einrichtung ersetzt keine abschließenden Tests auf echten physischen Geräten.
 
-## Integrationen: nächste Produktionsschritte
+## Mögliche Vertiefung nach dem React-Modul
 
-Der aktuelle Stand ist ein funktionsfähiger Frontend-Prototyp. Für den Produktivbetrieb werden serverseitige Dienste benötigt:
+Der aktuelle Stand ist ein funktionsfähiger Frontend-Prototyp. Folgende Themen wären mögliche spätere Full-Stack-, Backend- oder Deployment-Vertiefungen:
 
 - **Authentifizierung:** Clerk-Sitzungen später zusätzlich im Backend prüfen und jede private Ressource serverseitig autorisieren.
 - **Datenbank:** PlayDates, Einladungen, Kommentare und Einwilligungen mandantenfähig speichern (z. B. PostgreSQL).
@@ -177,6 +193,7 @@ src/
 ## Projektdokumentation
 
 - [`docs/README.md`](./docs/README.md): zentrale Übersicht aller Projektunterlagen
+- [`docs/lernNachweis.md`](./docs/lernNachweis.md): Lernziele und Bewertung von Phase 0 und 1
 - [`docs/konzept.md`](./docs/konzept.md): Produktidee, Zielgruppe, MVP und Leitplanken
 - [`docs/speck.md`](./docs/speck.md): Anforderungen, Datenmodell und Abnahmekriterien
 - [`docs/phasenPlan.md`](./docs/phasenPlan.md): Phasen, Statuscheckliste, Risiken und Auditplan

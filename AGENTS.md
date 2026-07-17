@@ -4,7 +4,7 @@ Diese Datei gilt für das gesamte Repository. Sie richtet sich an Coding-Agents 
 
 ## Projektziel und aktueller Stand
 
-PlayDate ist ein deutschsprachiges Übungsprojekt für eine mobile-first React-App zur privaten Planung von Spieletreffen zwischen bereits bekannten Familien.
+PlayDate ist ein deutschsprachiges React-Trainingsprojekt im Rahmen einer einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklung. Es dient als Lern- und Portfolio-Nachweis für das React-Modul und zeigt eine mobile-first App zur privaten Planung von Spieletreffen.
 
 Der aktuelle Stand ist ein Frontend-Prototyp:
 
@@ -14,6 +14,15 @@ Der aktuelle Stand ist ein Frontend-Prototyp:
 - Ein produktives Backend, echte Familienverbindungen, gemeinsame Einladungsantworten, serverseitige Erinnerungen, Kommentare, Foto-Uploads und bidirektionale Kalendersynchronisation fehlen noch.
 
 Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich vollständig DSGVO-konform ist. Verwende keine echten personenbezogenen Daten. Rechtliche Checklisten gelten nur als Übungsunterlagen und müssen vor einem echten Betrieb neu fachkundig geprüft werden.
+
+## Lernorientierung
+
+- Bevorzuge Lösungen, an denen React-Grundlagen und Datenflüsse gut nachvollziehbar bleiben.
+- Erkläre bei größeren Änderungen, welches Lernziel damit geübt oder nachgewiesen wird.
+- Verstecke verständliche React-Logik nicht hinter unnötigen Abstraktionen oder Magie.
+- Unterscheide klar zwischen React-Trainingsumfang und späterem Backend-/Produktionsumfang.
+- Pflege `docs/lernNachweis.md`, wenn sich der belegte Lernstand von Phase 0 oder 1 ändert.
+- Formuliere Dokumentation als persönliche Projekt- und Lernleistung, nicht als offizielle Aussage oder Bewertung des DCI.
 
 ## Vor jeder Änderung
 
@@ -115,6 +124,7 @@ Für Browserabläufe zusätzlich `npm run test:e2e` ausführen. Angemeldete Abl�
 
 - `README.md`: tatsächliche Einrichtung, Funktionen, Grenzen und Befehle
 - `docs/README.md`: Einstiegspunkt für alle ausführlichen Projektunterlagen
+- `docs/lernNachweis.md`: Lernziele, Nachweise und Reflexion für das React-Modul
 - `docs/konzept.md`: Produktidee, Zielgruppe, MVP und fachliche Leitplanken
 - `docs/speck.md`: detaillierte Anforderungen und Abnahmekriterien
 - `docs/phasenPlan.md`: Reihenfolge, Statuscheckliste, Risiken und Auditnachweise
