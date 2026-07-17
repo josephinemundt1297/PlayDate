@@ -8,6 +8,7 @@ import {
 } from "../../hooks/usePlayDates";
 import { readFamilyProfile } from "../../hooks/useFamilyProfile";
 import type { playDate } from "../../domain/playdates";
+import { validatePlayDate, type validationErrors } from "../../utils/validation";
 
 // Das Formular kann beides: einen neuen Termin anlegen oder einen vorhandenen bearbeiten.
 export function PlayDateForm({ editId }: { editId?: number }) {
@@ -31,24 +32,32 @@ export function PlayDateForm({ editId }: { editId?: number }) {
       color: "mint",
     },
   );
+  const [errors, setErrors] = useState<validationErrors>({});
   const update = (key: keyof playDate, value: string) =>
     setForm((current) => ({ ...current, [key]: value }));
   // Beim Bearbeiten tauschen wir den passenden Eintrag aus, sonst hängen wir einen neuen hinten dran.
   const submit = (event: SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
     event.preventDefault();
+    const validation = validatePlayDate(form, family.children.map((child) => child.name), Boolean(existing));
+    setErrors(validation);
+    if (Object.keys(validation).length) return;
+    const cleaned = { ...form, title: form.title.trim(), friend: form.friend.trim(), location: form.location.trim(), bring: form.bring.trim() };
     const next = existing
-      ? dates.map((date) => (date.id === existing.id ? form : date))
-      : [...dates, form];
+      ? dates.map((date) => (date.id === existing.id ? cleaned : date))
+      : [...dates, cleaned];
     localStorage.setItem(playDatesStorageKey(user.id), JSON.stringify(next));
     navigate({ to: "/" });
   };
   return (
-    <form onSubmit={submit} className="card bg-base-100 border border-base-300 playdate-form">
+    <form noValidate onSubmit={submit} className="card bg-base-100 border border-base-300 playdate-form">
+      {Object.keys(errors).length > 0 && <div className="alert alert-error validation-summary full" role="alert"><strong>Bitte prüfe deine Angaben.</strong><span>{Object.values(errors)[0]}</span></div>}
       <label className="full">
         Titel<span>Wie soll euer Treffen heißen?</span>
         <input
           className="input input-bordered w-full"
           required
+          maxLength={80}
+          aria-invalid={Boolean(errors.title)}
           value={form.title}
           onChange={(event) => update("title", event.target.value)}
           placeholder="z. B. Abenteuer im Stadtpark"
@@ -60,6 +69,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
           <select
             className="select select-bordered w-full"
             required
+            aria-invalid={Boolean(errors.child)}
             value={form.child}
             onChange={(event) => update("child", event.target.value)}
           >
@@ -88,6 +98,8 @@ export function PlayDateForm({ editId }: { editId?: number }) {
         <input
           className="input input-bordered w-full"
           required
+          maxLength={60}
+          aria-invalid={Boolean(errors.friend)}
           value={form.friend}
           onChange={(event) => update("friend", event.target.value)}
           placeholder="Vorname"
@@ -99,6 +111,8 @@ export function PlayDateForm({ editId }: { editId?: number }) {
           className="input input-bordered w-full"
           required
           type="date"
+          min={existing ? undefined : new Date().toISOString().slice(0, 10)}
+          aria-invalid={Boolean(errors.date)}
           value={form.date}
           onChange={(event) => update("date", event.target.value)}
         />
@@ -109,6 +123,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
           className="input input-bordered w-full"
           required
           type="time"
+          aria-invalid={Boolean(errors.time)}
           value={form.time}
           onChange={(event) => update("time", event.target.value)}
         />
@@ -118,6 +133,8 @@ export function PlayDateForm({ editId }: { editId?: number }) {
         <input
           className="input input-bordered w-full"
           required
+          maxLength={160}
+          aria-invalid={Boolean(errors.location)}
           value={form.location}
           onChange={(event) => update("location", event.target.value)}
           placeholder="Adresse oder Lieblingsplatz"
@@ -127,6 +144,8 @@ export function PlayDateForm({ editId }: { editId?: number }) {
         Wer bringt was mit?
         <textarea
           className="textarea textarea-bordered w-full"
+          maxLength={500}
+          aria-invalid={Boolean(errors.bring)}
           value={form.bring}
           onChange={(event) => update("bring", event.target.value)}
           placeholder="Snacks, Getränke, Spielsachen …"

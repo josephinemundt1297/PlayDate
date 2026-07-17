@@ -9,6 +9,9 @@
     "lint": "oxlint",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:install": "playwright install chromium firefox webkit",
+    "test:pwa": "playwright test e2e/pwaUpdate.e2e.ts",
     "check": "npm run lint && npm run test && npm run build",
     "preview": "vite preview"
   },
@@ -24,6 +27,7 @@
     "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",

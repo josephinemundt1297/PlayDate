@@ -301,6 +301,6 @@ Der vorhandene Frontend-Prototyp bildet bereits wesentliche Teile des Konzepts a
 - mobile PWA
 - Atomic-Design-Struktur und erste automatisierte Tests
 
-Die lokale Prüfkette aus Oxlint, 27 Vitest-Tests, TypeScript und Vite-Build läuft ohne Fehler. Der aktuelle Auditstand und alle offenen Produktionsanforderungen werden in [`phasenPlan.md`](./phasenPlan.md) gepflegt. Verbindliche Arbeitsregeln für Änderungen stehen in [`AGENTS.md`](./AGENTS.md).
+Die lokale Prüfkette aus Oxlint, 43 Vitest-Tests, TypeScript und Vite-Build läuft ohne Fehler. Eine Playwright-Strecke mit 40 Desktop-, Mobil-, Responsive- und PWA-Szenarien ist eingerichtet; reale Mehrbrowser- und Geräteläufe stehen noch aus. Der aktuelle Auditstand wird in [`phasenPlan.md`](./phasenPlan.md) gepflegt.
 
 Noch nicht produktiv umgesetzt sind insbesondere ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos und eine dauerhafte Kalendersynchronisation.

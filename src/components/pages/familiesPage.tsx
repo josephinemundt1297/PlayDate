@@ -3,6 +3,7 @@ import { Baby, Plus, Save, Trash2 } from "lucide-react";
 import { useFamilyProfile } from "../../hooks/useFamilyProfile";
 import { newChild, type childProfile } from "../../domain/family";
 import { BirthdayOverview } from "../organisms/birthdayOverview";
+import { validateFamily, type validationErrors } from "../../utils/validation";
 // Hier pflegen Eltern ihr Familienprofil. Die Page speichert nur Daten des eingeloggten Users.
 export function FamiliesPage() {
   const { profile, save, sharedBirthdays } = useFamilyProfile();
@@ -11,6 +12,7 @@ export function FamiliesPage() {
     profile.children.length ? profile.children : [newChild()],
   );
   const [saved, setSaved] = useState(false);
+  const [errors, setErrors] = useState<validationErrors>({});
   const updateChild = (id: string, patch: Partial<childProfile>) =>
     setChildren((current) =>
       current.map((child) =>
@@ -19,6 +21,9 @@ export function FamiliesPage() {
     );
   const submit = (event: SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
     event.preventDefault();
+    const validation = validateFamily(familyName, children);
+    setErrors(validation);
+    if (Object.keys(validation).length) return;
     const next = {
       familyName: familyName.trim(),
       children: children
@@ -39,11 +44,15 @@ export function FamiliesPage() {
         Geburtstage können verbundene Familien sehen – das vollständige
         Geburtsdatum bleibt privat.
       </p>
-      <form className="card bg-base-100 border border-base-300 family-form" onSubmit={submit}>
+      <form noValidate className="card bg-base-100 border border-base-300 family-form" onSubmit={submit}>
+        {Object.keys(errors).length > 0 && <div className="alert alert-error validation-summary" role="alert"><strong>Bitte prüfe dein Familienprofil.</strong><span>{Object.values(errors)[0]}</span></div>}
         <label>
           Familienname
           <input
             className="input input-bordered w-full"
+            required
+            maxLength={80}
+            aria-invalid={Boolean(errors.familyName)}
             value={familyName}
             onChange={(event) => setFamilyName(event.target.value)}
             placeholder="z. B. Familie Mustermann"
@@ -63,6 +72,9 @@ export function FamiliesPage() {
                   className="input input-bordered w-full"
                   id={`child-${child.id}`}
                   required
+                  minLength={2}
+                  maxLength={60}
+                  aria-invalid={Boolean(errors[`child-${child.id}`]) || Boolean(errors.children)}
                   value={child.name}
                   onChange={(event) =>
                     updateChild(child.id, { name: event.target.value })
@@ -88,6 +100,8 @@ export function FamiliesPage() {
                 <input
                   className="input input-bordered w-full"
                   type="date"
+                  max={new Date().toISOString().slice(0, 10)}
+                  aria-invalid={Boolean(errors[`birthday-${child.id}`])}
                   value={child.birthday}
                   onChange={(event) =>
                     updateChild(child.id, { birthday: event.target.value })

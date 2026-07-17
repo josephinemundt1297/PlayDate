@@ -6,7 +6,7 @@ PlayDate ist ein mobile-first React-Prototyp, mit dem Eltern sichere und übersi
 
 **Stand: 17. Juli 2026 – Frontend-Prototyp, nicht für den Produktivbetrieb freigegeben.**
 
-Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Monatskalender mit Detail-Dialog, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Die Prüfkette besteht aktuell aus Oxlint, 27 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
+Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Monatskalender mit Detail-Dialog, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Error Boundary, Lade-, Leer- und Offline-Zustände sowie zentrale Formularvalidierung sind vorhanden. Die Prüfkette besteht aktuell aus Oxlint, 43 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
 
 Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos, produktive Datenlöschung und bidirektionale Kalendersynchronisation sind noch nicht umgesetzt. `localStorage` ist ausschließlich die lokale Persistenz des Prototyps.
 
@@ -96,6 +96,9 @@ npm run build    # TypeScript-Prüfung und Produktions-Build
 npm run lint     # Statische Codeprüfung
 npm run test     # Alle Vitest-Tests einmal ausführen
 npm run test:watch # Tests beim Entwickeln automatisch wiederholen
+npm run test:e2e   # Playwright-Abläufe in Desktop- und Mobilbrowsern
+npm run test:e2e:install # benötigte Playwright-Browser installieren
+npm run test:pwa   # Service-Worker- und Cache-Update prüfen
 npm run check    # Linting, Tests und Build als komplette Prüfkette
 npm run preview  # Produktions-Build lokal ansehen
 ```
@@ -112,8 +115,18 @@ Die Testbasis verwendet Vitest, Testing Library, jest-dom und jsdom. Abgedeckt s
 - Viewport, Tablet-Breakpoint und schrumpfbare Navigation als Responsive-Regression
 - erlaubte Cache-Anfragen und behandelte Service-Worker-Promises
 - Darstellung bestätigter und ausstehender Status-Badges
+- Auth-Grenze, Error Boundary, Lade-, Leer- und Offline-Zustände
+- Familienseite, PlayDate-Formular und Validierungsrandfälle
 
 Die Tests haben bereits einen echten Zeitzonenfehler bei der Google-Kalender-Endzeit gefunden und abgesichert.
+
+Zusätzlich sind 40 Playwright-Szenarien für Chromium, Firefox, WebKit, Pixel 7 und iPhone 14 eingerichtet. Sie prüfen Responsive-Überlauf, einen angemeldeten Familien-/PlayDate-Ablauf und PWA-Cache-Updates. Für den angemeldeten Ablauf wird ein nicht eingecheckter Clerk-Storage-State benötigt:
+
+```bash
+E2E_STORAGE_STATE=e2e/.auth/clerk.json npm run test:e2e
+```
+
+Die Einrichtung ersetzt keine abschließenden Tests auf echten physischen Geräten.
 
 ## Integrationen: nächste Produktionsschritte
 

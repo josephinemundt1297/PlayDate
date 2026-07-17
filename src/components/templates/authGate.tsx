@@ -1,10 +1,12 @@
-import { SignInButton, SignedIn, SignedOut } from "@clerk/clerk-react";
+import { ClerkLoaded, ClerkLoading, SignInButton, SignedIn, SignedOut } from "@clerk/clerk-react";
 import type { ReactNode } from "react";
+import { PlayfulLoader } from "../atoms/playfulLoader";
 // Dieses Template ist die Tür zur App: Ausgeloggt gibt's Login, eingeloggt den echten Inhalt.
 export function AuthGate({ children }: { children: ReactNode }) {
   return (
     <>
-      <SignedOut>
+      <ClerkLoading><main className="auth-page"><PlayfulLoader label="Wir bauen euren Spielplatz auf …" /></main></ClerkLoading>
+      <ClerkLoaded><SignedOut>
         <main className="auth-page">
           <section className="card bg-base-100 border border-base-300 auth-card" aria-labelledby="auth-title">
             <span className="auth-logo" aria-hidden="true">
@@ -30,7 +32,7 @@ export function AuthGate({ children }: { children: ReactNode }) {
           </section>
         </main>
       </SignedOut>
-      <SignedIn>{children}</SignedIn>
+      <SignedIn>{children}</SignedIn></ClerkLoaded>
     </>
   );
 }

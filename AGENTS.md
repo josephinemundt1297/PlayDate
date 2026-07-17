@@ -101,6 +101,8 @@ npm run check
 
 Das umfasst Oxlint, Vitest, TypeScript und den Vite-Produktions-Build.
 
+Für Browserabläufe zusätzlich `npm run test:e2e` ausführen. Angemeldete Abläufe benötigen einen sicheren Clerk-Testlogin über `E2E_STORAGE_STATE`; diese Datei darf nie committed werden.
+
 - Ergänze Tests für neue Logik und behobene Fehler.
 - Tests dürfen keine echten personenbezogenen Daten enthalten.
 - Prüfe Datums- und Kalenderlogik mit festen Testwerten und relevanten Zeitzonen.

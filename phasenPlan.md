@@ -56,12 +56,16 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] gemeinsame Prüfkette über `npm run check` eingerichtet
 - [x] Projektspezifikation und Produktkonzept dokumentiert
 - [x] bestehende Oxlint-Warnungen vollständig behoben
-- [ ] Error Boundary und einheitliche Fehlerzustände ergänzen
-- [ ] Lade-, Leer- und Offline-Zustände vollständig prüfen
-- [ ] Formularvalidierung für alle Randfälle erweitern
-- [ ] Tests für Auth-Grenze, Familienseite und PlayDate-Formular ergänzen
-- [ ] vollständige End-to-End-Tests einrichten
+- [x] Error Boundary und einheitliche Fehlerzustände ergänzen
+- [x] Lade-, Leer- und Offline-Zustände vollständig prüfen
+- [x] Formularvalidierung für alle dokumentierten Randfälle erweitern
+- [x] Tests für Auth-Grenze, Familienseite und PlayDate-Formular ergänzen
+- [x] vollständige End-to-End-Teststrecke einrichten
 - [ ] PWA-Updates auf mehreren Browsern und Geräten prüfen
+  - [x] Playwright-Prüfung für Service-Worker-Registrierung und Cache-Version eingerichtet
+  - [x] Chromium, Firefox, WebKit, Pixel 7 und iPhone 14 als Projekte konfiguriert
+  - [ ] Browserläufe auf einer Umgebung mit installierten Playwright-Browsern ausführen
+  - [ ] PWA-Update zusätzlich auf echten Android- und iOS-Geräten prüfen
 
 ### Phase 1 – Produkt und Datenschutz
 
@@ -592,7 +596,9 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 **Gesamtergebnis:** teilweise bestanden, noch keine Freigabe für Pilot- oder Produktivbetrieb
 
 - [x] Oxlint ausgeführt
-- [x] alle 27 vorhandenen automatisierten Tests bestanden
+- [x] alle 43 vorhandenen Vitest-Tests bestanden
+- [x] 40 Playwright-Szenarien werden von der E2E-Konfiguration erkannt
+- [ ] Playwright-Szenarien in echten Browser-Engines ausführen
 - [x] TypeScript-Prüfung bestanden
 - [x] Produktions-Build mit Vite erfolgreich erstellt
 - [x] Dependency-Audit für produktive npm-Abhängigkeiten ausgeführt
