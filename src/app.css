@@ -285,20 +285,28 @@
 .calendar-grid td:last-child {
   border-right: 0;
 }
-.calendar-grid td > button {
+.calendar-grid td > div {
   width: 100%;
   height: 100%;
   min-height: 126px;
   padding: 0.55rem;
-  border: 0;
   background: transparent;
   color: var(--ink);
   text-align: left;
-  cursor: pointer;
 }
-.calendar-grid td > button:hover,
-.calendar-grid td > button.selected {
+.calendar-grid td > div:hover,
+.calendar-grid td > div.selected {
   background: color-mix(in srgb, var(--color-primary) 12%, var(--surface));
+}
+.calendar-day-button {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
 }
 .calendar-grid .outside-month {
   background: var(--color-base-200);
@@ -322,6 +330,7 @@
   margin-top: 0.35rem;
 }
 .calendar-event {
+  width: 100%;
   display: block;
   overflow: hidden;
   padding: 0.35rem 0.45rem;
@@ -333,6 +342,9 @@
   line-height: 1.25;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
 }
 .calendar-event.confirmed {
   border-left-color: var(--color-success);
@@ -374,6 +386,43 @@
 .calendar-detail small svg {
   width: 16px;
 }
+.playdate-dialog .modal-box {
+  width: min(92vw, 560px);
+  max-width: 560px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+.dialog-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+}
+.playdate-dialog-details {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+}
+.playdate-dialog-details div {
+  padding: 0.85rem;
+  border-radius: 14px;
+  background: var(--color-base-200);
+}
+.playdate-dialog-details dt {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.playdate-dialog-details dt svg {
+  width: 17px;
+}
+.playdate-dialog-details dd {
+  margin: 0.35rem 0 0;
+  font-weight: 600;
+}
 .sr-only {
   position: absolute;
   width: 1px;
@@ -401,6 +450,10 @@
   gap: 0.3rem;
   color: var(--accent);
   font-weight: 700;
+}
+/* Primäre Links brauchen ihre Button-Textfarbe. Sonst gewinnt die allgemeine Linkregel darüber. */
+.section-heading a.btn-primary {
+  color: var(--color-primary-content);
 }
 .section-heading svg {
   width: 16px;
@@ -804,7 +857,7 @@
   .calendar-grid td {
     height: 58px;
   }
-  .calendar-grid td > button {
+  .calendar-grid td > div {
     min-height: 58px;
     padding: 0.25rem;
   }
@@ -869,7 +922,7 @@
   .bottom-nav {
     position: fixed;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     align-items: center;
     bottom: 0;
     left: 0;
@@ -941,6 +994,98 @@
   }
   .settings-card .primary-button {
     width: 100%;
+  }
+}
+.privacy-page > h1,
+.photos-page > h1 {
+  max-width: 760px;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+.privacy-warning {
+  margin: 1.5rem 0;
+}
+.privacy-topic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.privacy-topic,
+.privacy-contact,
+.photo-intro {
+  padding: 1.4rem;
+  border: 1px solid var(--line);
+}
+.privacy-topic {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.privacy-topic > svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+.privacy-topic h2,
+.photo-intro h2 {
+  font-size: 1.15rem;
+}
+.privacy-topic p,
+.privacy-contact p,
+.photo-intro p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.privacy-contact {
+  margin-top: 1rem;
+}
+.photo-intro {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 1.5rem 0 2rem;
+}
+.photo-icon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--color-primary) 16%, var(--surface));
+  color: var(--accent);
+}
+.photo-security-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+.photo-security-steps li {
+  display: flex;
+  gap: 0.8rem;
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--muted);
+}
+.photo-security-steps svg {
+  flex: 0 0 auto;
+  color: var(--forest);
+}
+.photo-security-steps strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--ink);
+}
+@media (max-width: 760px) {
+  .privacy-topic-grid,
+  .photo-security-steps {
+    grid-template-columns: 1fr;
+  }
+  .photo-intro {
+    align-items: flex-start;
   }
 }
 

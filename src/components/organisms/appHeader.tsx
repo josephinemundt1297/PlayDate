@@ -30,19 +30,22 @@ export function AppHeader() {
         <Link to="/families" activeProps={{ className: "active" }}>
           Familien
         </Link>
+        <Link to="/photos" activeProps={{ className: "active" }}>
+          Fotos
+        </Link>
       </nav>
       <div className="header-actions">
         <ThemeToggle />
         <button
           className="btn btn-ghost install-button"
           onClick={install}
-          disabled={!canInstall || installed}
+          disabled={installed}
           title={
             installed
               ? "App ist installiert"
               : canInstall
                 ? "PlayDate installieren"
-                : "Installation im Browsermenü verfügbar"
+                : "PlayDate-Website als Verknüpfung herunterladen"
           }
         >
           <Download />

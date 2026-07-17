@@ -6,7 +6,7 @@ PlayDate ist eine mobile-first Web-App, mit der Eltern private Spieletreffen fü
 
 Der aktuelle Stand ist ein Frontend-Prototyp. Funktionen, die ein Backend oder externe Freigaben benötigen, sind als Zielanforderungen beschrieben und klar vom bereits umgesetzten Stand getrennt.
 
-**Dokumentationsstand: 17. Juli 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 13 Vitest-Tests, TypeScript und Produktions-Build ohne Fehler. Er besitzt noch kein produktives Backend und ist nicht für den Betrieb mit echten Kinderdaten freigegeben. Der Umsetzungs- und Auditstatus wird in [`phasenPlan.md`](./phasenPlan.md) gepflegt.
+**Dokumentationsstand: 17. Juli 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 18 Vitest-Tests, TypeScript und Produktions-Build ohne Fehler. Er besitzt noch kein produktives Backend und ist nicht für den Betrieb mit echten Kinderdaten freigegeben. Der Umsetzungs- und Auditstatus wird in [`phasenPlan.md`](./phasenPlan.md) gepflegt.
 
 ## 2. Produktziele
 
@@ -80,6 +80,7 @@ Nutzer können PlayDates erstellen, anzeigen, bearbeiten und löschen. Vor dem L
 - Eine responsive Monatsansicht zeigt die vorhandenen PlayDates am jeweiligen Tag.
 - Auf kleinen Displays wird nach der Monatsmatrix eine gut lesbare Liste für den ausgewählten Tag angezeigt.
 - Der Monat kann über beschriftete, tastaturbedienbare Schaltflächen gewechselt werden.
+- Ein Klick auf einen Termin öffnet dessen Details in einem modalen Layer; Fokus und Schließen per Escape werden vom nativen Dialog unterstützt.
 - Alle PlayDates können als standardkonforme `.ics`-Datei exportiert werden.
 - Einzelne PlayDates können über einen vorbereiteten Link in Google Kalender geöffnet werden.
 - Eine echte, dauerhafte Synchronisation mit Google oder Microsoft Kalender ist ein späterer Produktionsschritt und benötigt OAuth, ein Backend und möglichst kleine Kalenderberechtigungen.
@@ -87,6 +88,8 @@ Nutzer können PlayDates erstellen, anzeigen, bearbeiten und löschen. Vor dem L
 ### 5.6 Fotos und Kommentare
 
 Fotos und Kommentare gehören zum geplanten Produktumfang, sind im aktuellen Prototyp aber noch nicht technisch umgesetzt.
+
+Die Route `/photos` macht den geplanten Ablauf sichtbar, nimmt aber noch keine Dateien entgegen. Ein produktiver Freigabelink benötigt Anmeldung, kurzlebige widerrufbare Tokens, serverseitige Berechtigungsprüfung, verschlüsselten EU-Dateispeicher und dokumentierte Einwilligung. Der Schlüssel darf nicht als alleiniger Schutz im Link liegen.
 
 Für die produktive Umsetzung gelten folgende Anforderungen:
 
@@ -121,6 +124,8 @@ Für die produktive Umsetzung gelten folgende Anforderungen:
 | `/new` | neues PlayDate erstellen | angemeldet |
 | `/edit/$playDateId` | PlayDate bearbeiten | angemeldet |
 | `/families` | Familie, Kinder und Geburtstage verwalten | angemeldet |
+| `/photos` | Sicherheitskonzept und späterer privater Fotobereich | angemeldet |
+| `/privacy` | technische Datenschutzübersicht des Prototyps | angemeldet |
 | `/settings` | Darstellung und Installation | angemeldet |
 
 ## 7. Datenmodell des Prototyps

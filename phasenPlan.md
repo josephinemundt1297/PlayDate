@@ -40,6 +40,7 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Grün-Blau-Farbwelt als bevorzugtes Theme umgesetzt
 - [x] zentrale Dark-Mode-Kontraste rechnerisch auf mindestens 4,5:1 geprüft
 - [x] zentrale Light-Mode-Textkontraste und UI-Grenzen nach WCAG 2.2 AA nachgemessen
+- [x] Kontrast der primären Theme-Aktionen automatisiert gegen mindestens 4,5:1 getestet
 - [x] Tailwind CSS 4 und DaisyUI 5 eingebunden
 - [x] eigene DaisyUI-Themes für Light und Dark Mode erstellt
 - [x] zentrale Karten, Buttons, Formulare, Badges, Alerts und Navigation auf DaisyUI umgestellt
@@ -129,6 +130,7 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 ### Phase 5 – Kalender und Erinnerungen
 
 - [x] responsive Monatsansicht mit PlayDates umgesetzt
+- [x] vergrößerbare PlayDate-Details als modalen Kalender-Layer umgesetzt
 - [x] Kalenderroute in Desktop- und Mobilnavigation eingebunden
 - [x] Export aller PlayDates als `.ics`-Datei umgesetzt
 - [x] Link zum Öffnen eines PlayDates in Google Kalender umgesetzt
@@ -147,6 +149,8 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 
 - [x] private Bereiche erfordern eine Clerk-Anmeldung
 - [x] Hinweise zu privaten Fotos, Kommentaren und Daten eingebaut
+- [x] Datenschutzhinweis mit technischer Datenschutzseite verknüpft
+- [x] Foto-Menü und sichere technische Anforderungen sichtbar dokumentiert
 - [x] Secret Keys aus der Browserkonfiguration ausgeschlossen und dokumentiert
 - [ ] serverseitige Autorisierung für jede private Ressource umsetzen
 - [ ] Einwilligungsübersicht und Widerruf umsetzen
@@ -584,7 +588,7 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 **Gesamtergebnis:** teilweise bestanden, noch keine Freigabe für Pilot- oder Produktivbetrieb
 
 - [x] Oxlint ausgeführt
-- [x] alle 13 vorhandenen automatisierten Tests bestanden
+- [x] alle 18 vorhandenen automatisierten Tests bestanden
 - [x] TypeScript-Prüfung bestanden
 - [x] Produktions-Build mit Vite erfolgreich erstellt
 - [x] Dependency-Audit für produktive npm-Abhängigkeiten ausgeführt
@@ -593,6 +597,8 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 - [x] Monatsraster, Terminzuordnung und Monatswechsel automatisiert getestet
 - [x] zentrale Light-Mode-Kontraste für Text, Fokus und UI-Grenzen rechnerisch geprüft
 - [x] responsive Regression der PlayDate-Liste anhand der gemeldeten schmalen Ansicht behoben
+- [x] Regressionstest für unsichtbare primäre Aktionen in Light und Dark Mode ergänzt
+- [x] Kalender-Detail-Layer und Website-Verknüpfung automatisiert geprüft
 - [ ] Testabdeckung für Authentifizierung, Formulare und vollständige Nutzerabläufe erweitern
 - [ ] Backend-, API- und Datenbank-Audit durchführen
 - [ ] formales Berechtigungs- und IDOR-Audit durchführen

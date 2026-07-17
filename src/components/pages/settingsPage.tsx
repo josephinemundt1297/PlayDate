@@ -1,6 +1,8 @@
 import { Download } from "lucide-react";
 import { ThemeToggle } from "../atoms/themeToggle";
 import { useInstallApp } from "../../hooks/useInstallApp";
+import { Link } from "@tanstack/react-router";
+import { ShieldCheck } from "lucide-react";
 // Alles, was die Darstellung oder Installation betrifft, landet gesammelt auf dieser Seite.
 export function SettingsPage() {
   const { canInstall, installed, install } = useInstallApp();
@@ -19,6 +21,13 @@ export function SettingsPage() {
       </section>
       <section className="card bg-base-100 border border-base-300 settings-card">
         <div>
+          <h2>Datenschutz</h2>
+          <p>Sieh nach, welche Daten der Prototyp speichert und welche Schutzmaßnahmen noch fehlen.</p>
+        </div>
+        <Link className="btn btn-outline" to="/privacy"><ShieldCheck /> Datenschutz öffnen</Link>
+      </section>
+      <section className="card bg-base-100 border border-base-300 settings-card">
+        <div>
           <h2>PlayDate herunterladen</h2>
           <p>
             Installiere die App auf deinem Gerät. Danach kannst du sie wie eine
@@ -28,14 +37,14 @@ export function SettingsPage() {
         <button
           className="btn btn-primary primary-button"
           onClick={install}
-          disabled={!canInstall || installed}
+          disabled={installed}
         >
           <Download />
           {installed
             ? "Bereits installiert"
             : canInstall
               ? "App installieren"
-              : "Im Browsermenü installieren"}
+              : "Website-Link herunterladen"}
         </button>
       </section>
     </div>

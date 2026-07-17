@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { downloadWebsiteShortcut } from "../utils/websiteShortcut";
 
 interface installPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -29,7 +30,12 @@ export function useInstallApp() {
     };
   }, []);
   const install = async () => {
-    if (!prompt) return false;
+    // Gibt es keinen PWA-Dialog, bekommt der Nutzer trotzdem einen funktionierenden Website-Link.
+    if (!prompt) {
+      const appUrl = new URL(import.meta.env.BASE_URL, window.location.origin);
+      downloadWebsiteShortcut(appUrl.href);
+      return true;
+    }
     await prompt.prompt();
     const choice = await prompt.userChoice;
     if (choice.outcome === "accepted") setPrompt(null);

@@ -8,6 +8,7 @@ import {
   shiftCalendarMonth,
   toLocalDateKey,
 } from "../../utils/calendarGrid";
+import { PlayDateDetailsDialog } from "./playDateDetailsDialog";
 
 const weekDays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 
@@ -26,6 +27,7 @@ export function PlayDateCalendar({
   const [selectedDate, setSelectedDate] = useState(() =>
     dates[0]?.date ?? toLocalDateKey(new Date()),
   );
+  const [selectedEvent, setSelectedEvent] = useState<playDate | null>(null);
   const days = useMemo(() => buildCalendarDays(month, dates), [dates, month]);
   const selectedEvents = dates.filter((date) => date.date === selectedDate);
   const selectedLabel = new Intl.DateTimeFormat("de-DE", {
@@ -79,22 +81,29 @@ export function PlayDateCalendar({
                     key={day.dateKey}
                     className={`${day.isCurrentMonth ? "" : "outside-month"} ${day.isToday ? "today" : ""}`}
                   >
-                    <button
-                      className={selectedDate === day.dateKey ? "selected" : ""}
-                      aria-label={`${day.date.toLocaleDateString("de-DE")}, ${day.events.length} PlayDates`}
-                      aria-pressed={selectedDate === day.dateKey}
-                      onClick={() => setSelectedDate(day.dateKey)}
-                    >
-                      <span className="calendar-day-number">{day.date.getDate()}</span>
+                    <div className={selectedDate === day.dateKey ? "selected" : ""}>
+                      <button
+                        className="calendar-day-button"
+                        aria-label={`${day.date.toLocaleDateString("de-DE")}, ${day.events.length} PlayDates`}
+                        aria-pressed={selectedDate === day.dateKey}
+                        onClick={() => setSelectedDate(day.dateKey)}
+                      >
+                        <span className="calendar-day-number">{day.date.getDate()}</span>
+                      </button>
                       <span className="calendar-events">
                         {day.events.map((event) => (
-                          <span className={`calendar-event ${event.status === "Bestätigt" ? "confirmed" : "pending"}`} key={event.id}>
+                          <button
+                            className={`calendar-event ${event.status === "Bestätigt" ? "confirmed" : "pending"}`}
+                            key={event.id}
+                            onClick={() => setSelectedEvent(event)}
+                            aria-label={`${event.title} um ${event.time} Uhr vergrößern`}
+                          >
                             <span className="calendar-event-time">{event.time}</span>
                             <span>{event.title}</span>
-                          </span>
+                          </button>
                         ))}
                       </span>
-                    </button>
+                    </div>
                   </td>
                 ))}
               </tr>
@@ -107,7 +116,7 @@ export function PlayDateCalendar({
         <h2>{selectedLabel}</h2>
         {selectedEvents.length ? (
           selectedEvents.map((event) => (
-            <button className="calendar-detail" key={event.id} onClick={() => onEdit(event.id)}>
+            <button className="calendar-detail" key={event.id} onClick={() => setSelectedEvent(event)}>
               <span>
                 <strong>{event.title}</strong>
                 <small><Clock /> {event.time} Uhr</small>
@@ -122,6 +131,11 @@ export function PlayDateCalendar({
           <p>An diesem Tag ist noch kein PlayDate geplant.</p>
         )}
       </div>
+      <PlayDateDetailsDialog
+        date={selectedEvent}
+        onClose={() => setSelectedEvent(null)}
+        onEdit={onEdit}
+      />
     </section>
   );
 }

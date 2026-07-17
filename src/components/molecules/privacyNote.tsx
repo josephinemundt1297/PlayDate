@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 // Der Datenschutzhinweis ist ein eigenes Molecule, damit er auf mehreren Seiten gleich bleibt.
 export function PrivacyNote() {
   return (
@@ -13,7 +14,7 @@ export function PrivacyNote() {
           sichtbar. Einwilligungen können jederzeit widerrufen werden.
         </p>
       </div>
-      <a href="#datenschutz">Datenschutz</a>
+      <Link to="/privacy">Datenschutz</Link>
     </section>
   );
 }

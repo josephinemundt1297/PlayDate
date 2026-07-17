@@ -166,7 +166,7 @@ Für eine spätere Version ist ein geschützter Bereich pro Treffen vorgesehen:
 | Familien | eigene Kinder, Geburtstage und Verbindungen |
 | Einstellungen | Darstellung, Installation, Datenschutz und Konto |
 
-Die mobile Navigation konzentriert sich auf diese Kernbereiche. Selten genutzte Datenschutz- und Kontofunktionen liegen gebündelt in den Einstellungen.
+Die mobile Navigation enthält Start, Kalender, neue PlayDates, Familien, Fotos und Einstellungen. Die technische Datenschutzübersicht ist über Hinweise und Einstellungen erreichbar.
 
 ## 9. MVP
 
@@ -293,11 +293,14 @@ Der vorhandene Frontend-Prototyp bildet bereits wesentliche Teile des Konzepts a
 - Familienprofil und Kindergeburtstage
 - Kalenderexport
 - responsive Monatsansicht mit den vorhandenen PlayDates
+- vergrößerbare Kalenderdetails in einer modalen Ebene
+- technische Datenschutzseite und sicher abgegrenzter Foto-Konzeptbereich
+- PWA-Installation mit Website-Verknüpfung als Browser-Fallback
 - Teilen über die Geräteschnittstelle und WhatsApp
 - Light und Dark Mode
 - mobile PWA
 - Atomic-Design-Struktur und erste automatisierte Tests
 
-Die lokale Prüfkette aus Oxlint, 13 Vitest-Tests, TypeScript und Vite-Build läuft ohne Fehler. Der aktuelle Auditstand und alle offenen Produktionsanforderungen werden in [`phasenPlan.md`](./phasenPlan.md) gepflegt. Verbindliche Arbeitsregeln für Änderungen stehen in [`AGENTS.md`](./AGENTS.md).
+Die lokale Prüfkette aus Oxlint, 18 Vitest-Tests, TypeScript und Vite-Build läuft ohne Fehler. Der aktuelle Auditstand und alle offenen Produktionsanforderungen werden in [`phasenPlan.md`](./phasenPlan.md) gepflegt. Verbindliche Arbeitsregeln für Änderungen stehen in [`AGENTS.md`](./AGENTS.md).
 
 Noch nicht produktiv umgesetzt sind insbesondere ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos und eine dauerhafte Kalendersynchronisation.

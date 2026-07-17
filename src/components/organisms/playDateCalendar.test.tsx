@@ -44,4 +44,26 @@ describe("PlayDateCalendar", () => {
     await userEvent.click(screen.getByRole("button", { name: "Nächster Monat" }));
     expect(screen.getByRole("heading", { name: "August 2026" })).toBeInTheDocument();
   });
+
+  it("vergrößert einen Termin in einer modalen Detail-Ebene", async () => {
+    HTMLDialogElement.prototype.showModal = function showModal() {
+      this.setAttribute("open", "");
+    };
+    HTMLDialogElement.prototype.close = function close() {
+      this.removeAttribute("open");
+    };
+    render(
+      <PlayDateCalendar
+        dates={[date]}
+        initialMonth={new Date(2026, 6, 1, 12)}
+        onEdit={vi.fn()}
+      />,
+    );
+
+    await userEvent.click(
+      screen.getByRole("button", { name: `${date.title} um ${date.time} Uhr vergrößern` }),
+    );
+    expect(screen.getByRole("dialog")).toHaveTextContent("Mitbringen");
+    expect(screen.getByRole("dialog")).toHaveTextContent(date.location);
+  });
 });

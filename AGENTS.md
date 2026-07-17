@@ -10,8 +10,8 @@ Der aktuelle Stand ist ein Frontend-Prototyp:
 
 - Clerk schützt die Oberfläche und stellt den Login bereit.
 - Familien, Kinder, Geburtstage und PlayDates werden lokal und pro Clerk User-ID getrennt gespeichert.
-- Monatskalender, Kalenderexport, Google-Kalender-Link, Web Share, WhatsApp-Link, Themes und PWA sind vorhanden.
-- Ein produktives Backend, echte Familienverbindungen, gemeinsame Einladungsantworten, serverseitige Erinnerungen, Kommentare, Fotos und bidirektionale Kalendersynchronisation fehlen noch.
+- Monatskalender mit Detail-Dialog, Kalenderexport, Google-Kalender-Link, Web Share, WhatsApp-Link, technische Datenschutzseite, Foto-Konzeptseite, Themes und PWA sind vorhanden.
+- Ein produktives Backend, echte Familienverbindungen, gemeinsame Einladungsantworten, serverseitige Erinnerungen, Kommentare, Foto-Uploads und bidirektionale Kalendersynchronisation fehlen noch.
 
 Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich vollständig DSGVO-konform ist.
 
@@ -62,6 +62,7 @@ Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich
 - Vermische DaisyUI nicht unnötig mit einem zweiten Komponentenframework.
 - Halte Styling ebenfalls nach KISS: wenige wiederverwendbare Variablen, klare Zustände und keine unnötigen Sonderregeln.
 - Prüfe neue oder geänderte Farben in Light und Dark Mode.
+- Primäre Aktionen müssen ihre semantische DaisyUI-Textfarbe behalten. Ergänze bei Kontrastfehlern einen automatisierten Regressionstest.
 
 ## Authentifizierung, Datenschutz und Sicherheit
 

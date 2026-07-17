@@ -9,6 +9,8 @@ import { PlayDateEditorPage } from "./components/pages/playDateEditorPage";
 import { SettingsPage } from "./components/pages/settingsPage";
 import { FamiliesPage } from "./components/pages/familiesPage";
 import { CalendarPage } from "./components/pages/calendarPage";
+import { PhotosPage } from "./components/pages/photosPage";
+import { PrivacyPage } from "./components/pages/privacyPage";
 
 // Jede Route verbindet eine URL mit genau einer Page-Komponente.
 // Wenn später eine neue Seite dazukommt, wird sie hier eingetragen.
@@ -50,6 +52,16 @@ const familiesRoute = createRoute({
   path: "/families",
   component: FamiliesPage,
 });
+const photosRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/photos",
+  component: PhotosPage,
+});
+const privacyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/privacy",
+  component: PrivacyPage,
+});
 // Der Route-Tree fasst alle Seiten zusammen, die innerhalb unseres AppShell laufen.
 const routeTree = rootRoute.addChildren([
   indexRoute,
@@ -59,6 +71,8 @@ const routeTree = rootRoute.addChildren([
   editRoute,
   settingsRoute,
   familiesRoute,
+  photosRoute,
+  privacyRoute,
 ]);
 export const router = createRouter({ routeTree });
 declare module "@tanstack/react-router" {

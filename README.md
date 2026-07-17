@@ -6,7 +6,7 @@ PlayDate ist ein mobile-first React-Prototyp, mit dem Eltern sichere und übersi
 
 **Stand: 17. Juli 2026 – Frontend-Prototyp, nicht für den Produktivbetrieb freigegeben.**
 
-Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Monatskalender, Kalenderexport, Teilen, eigene DaisyUI-Themes und PWA funktionieren. Die Prüfkette besteht aktuell aus Oxlint, 13 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
+Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Monatskalender mit Detail-Dialog, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Die Prüfkette besteht aktuell aus Oxlint, 18 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
 
 Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos, produktive Datenlöschung und bidirektionale Kalendersynchronisation sind noch nicht umgesetzt. `localStorage` ist ausschließlich die lokale Persistenz des Prototyps.
 
@@ -21,10 +21,13 @@ Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, ser
 - Einladungen über die Web Share-/WhatsApp-Schnittstelle vorbereiten
 - alle PlayDates als `.ics`-Kalenderdatei exportieren
 - PlayDates in einer responsiven Monatsansicht anzeigen und nach Tagen auswählen
+- Kalendertermine in einer modalen Detail-Ebene vergrößern
 - PlayDate-Listen ohne horizontales Überlaufen bis zur unterstützten Mindestbreite von 320 CSS-Pixeln nutzen
 - einzelne PlayDates direkt in Google Kalender öffnen
 - Status für bestätigte und ausstehende Treffen
 - Datenschutz-Hinweise für Fotos, Kommentare und eingeladene Familien
+- verknüpfte technische Datenschutzübersicht
+- eigener Fotomenüpunkt mit transparent dokumentiertem Sicherheitskonzept; Upload noch gesperrt
 - Clerk-Login und Abmeldung eingebunden
 - PlayDate-Bereich vollständig durch Clerk geschützt; ohne gültige Anmeldung werden keine Termindaten gerendert
 - Benutzerspezifische Trennung der lokalen Prototyp-Daten über die Clerk User-ID
@@ -80,7 +83,7 @@ Der Code folgt KISS und soll auch für Junior-Entwickler gut lesbar bleiben. Sel
 
 ## App installieren
 
-PlayDate ist als PWA konfiguriert. In unterstützten Browsern erscheint **App laden** beziehungsweise **App installieren**. Alternativ kann die Installation über das Browsermenü erfolgen. Auf iOS wird dafür in Safari **Teilen → Zum Home-Bildschirm** verwendet.
+PlayDate ist als PWA konfiguriert. Unterstützt der Browser die direkte Installation, öffnet **App laden** den Installationsdialog. Andernfalls wird eine `PlayDate.url`-Website-Verknüpfung heruntergeladen. Auf iOS kann zusätzlich in Safari **Teilen → Zum Home-Bildschirm** verwendet werden.
 
 ## Skripte
 
@@ -102,6 +105,7 @@ Die Testbasis verwendet Vitest, Testing Library, jest-dom und jsdom. Abgedeckt s
 - Lesen freigegebener Geburtstage
 - Google-Kalender-Links und `.ics`-Download
 - Monatsraster, Terminzuordnung und Monatswechsel der Kalenderansicht
+- modale Kalenderdetails, Website-Verknüpfung und Theme-Kontrastregression
 - Darstellung bestätigter und ausstehender Status-Badges
 
 Die Tests haben bereits einen echten Zeitzonenfehler bei der Google-Kalender-Endzeit gefunden und abgesichert.
