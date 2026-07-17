@@ -42,7 +42,7 @@ Mit PlayDate übe und belege ich:
 | A11Y | Semantik, Fokus, Tastatur, Kontraste und Statusmeldungen | als Frontend-Basis erledigt |
 | Authentifizierung | Clerk-Grenze vor privaten Routen | erledigt |
 | Persistenz | benutzerbezogener Prototyp mit `localStorage` | erledigt |
-| Tests | 47 Unit- und Komponententests | erledigt |
+| Tests | 58 Unit- und Komponententests | erledigt |
 | E2E-Vorbereitung | 40 Playwright-Szenarien konfiguriert | erledigt |
 | E2E auf realen Browsern/Geräten | Browser-Binaries und physische Geräte nötig | freiwilliger Zusatznachweis offen |
 | Produktkonzept | Zielgruppe, MVP, Rollen und Nicht-Ziele | erledigt |
@@ -54,7 +54,22 @@ Mit PlayDate übe und belege ich:
 
 **Ergebnis: für das React-Trainingsprojekt abgeschlossen.**
 
-Die App lässt sich bauen, besitzt eine nachvollziehbare Komponentenstruktur und deckt zentrale React-Themen ab. Linting, 47 automatisierte Tests, TypeScript und der Produktions-Build laufen fehlerfrei. Reale Mehrbrowser- und Gerätetests bleiben als zusätzlicher Praxisnachweis offen und sind kein fehlendes React-Lernziel.
+Die App lässt sich bauen, besitzt eine nachvollziehbare Komponentenstruktur und deckt zentrale React-Themen ab. Linting, 58 automatisierte Tests, TypeScript und der Produktions-Build laufen fehlerfrei. Reale Mehrbrowser- und Gerätetests bleiben als zusätzlicher Praxisnachweis offen und sind kein fehlendes React-Lernziel.
+
+## Spätere Phasen als React-Simulation
+
+Da Backend noch nicht Teil meines Lernstands ist, werden ausgewählte Inhalte der Phasen 2 bis 9 bewusst lokal geübt:
+
+- Repository-Schicht als Trennung zwischen React und Speicherung
+- sichere Behandlung beschädigter `localStorage`-Daten
+- Demo-Familienverbindungen mit offenen, verbundenen und blockierten Zuständen
+- mehrere Sorgeberechtigte als dynamische React-Formularliste
+- Absagen, Mitbringsel-Zuständigkeiten und Aktivitätsverlauf
+- lokale Erinnerungsoptionen und Kommentare
+- Export und vollständiges Entfernen der lokalen Trainingsdaten
+- axe-Basisprüfungen zusätzlich zu Kontrast- und Responsive-Tests
+
+Diese Simulationen belegen React-State und UI-Logik. Sie werden nicht als Backend, Verschlüsselung oder Mehrbenutzerbetrieb bezeichnet.
 
 ### Phase 1 – Produkt- und Datenschutzkonzept
 

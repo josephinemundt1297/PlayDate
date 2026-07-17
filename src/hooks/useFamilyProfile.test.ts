@@ -3,13 +3,13 @@ import { readFamilyProfile, readSharedBirthdays } from './useFamilyProfile'
 
 describe('Familienprofil', () => {
   it('liefert ein leeres Profil, wenn noch nichts gespeichert wurde', () => {
-    expect(readFamilyProfile('user-1')).toEqual({ familyName: '', children: [] })
+    expect(readFamilyProfile('user-1')).toEqual({ familyName: '', children: [], caregivers: [] })
   })
 
   it('holt alte Namenslisten automatisch ins neue Kinderformat', () => {
     vi.stubGlobal('crypto', { randomUUID: () => 'kind-1' })
     localStorage.setItem('playpal.family.user-1', JSON.stringify({ familyName: 'Muster', children: ['Mila'] }))
-    expect(readFamilyProfile('user-1')).toEqual({ familyName: 'Muster', children: [{ id: 'kind-1', name: 'Mila', birthday: '', shareBirthday: true }] })
+    expect(readFamilyProfile('user-1')).toEqual({ familyName: 'Muster', children: [{ id: 'kind-1', name: 'Mila', birthday: '', shareBirthday: true }], caregivers: [] })
     vi.unstubAllGlobals()
   })
 

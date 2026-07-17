@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { initialPlayDates, type playDate } from "../domain/playdates";
+import { createLocalRepository } from "../data/localRepository";
 
 // Die User-ID steckt im Schlüssel, damit zwei Eltern nicht dieselben lokalen Daten sehen.
 export const playDatesStorageKey = (userId: string) =>
@@ -8,15 +9,11 @@ export const playDatesStorageKey = (userId: string) =>
 const legacyStorageKey = (userId: string) => `playpal.playdates.${userId}`;
 
 export function readPlayDates(userId: string): playDate[] {
-  // LocalStorage reicht für den Prototyp. In Produktion gehört das in eine geschützte Datenbank.
-  const stored =
-    localStorage.getItem(playDatesStorageKey(userId)) ??
-    localStorage.getItem(legacyStorageKey(userId));
-  // Wer die App schon genutzt hat, behält seine Daten trotz des neuen Namens.
-  if (stored && !localStorage.getItem(playDatesStorageKey(userId))) {
-    localStorage.setItem(playDatesStorageKey(userId), stored);
-  }
-  return stored ? JSON.parse(stored) : initialPlayDates;
+  return createLocalRepository<playDate[]>({
+    key: playDatesStorageKey(userId),
+    legacyKeys: [legacyStorageKey(userId)],
+    fallback: initialPlayDates,
+  }).read();
 }
 
 export function usePlayDates() {
@@ -27,7 +24,11 @@ export function usePlayDates() {
   // State aktualisiert sofort die Ansicht, LocalStorage merkt sich alles nach dem Neuladen.
   const save = (next: playDate[]) => {
     setDates(next);
-    localStorage.setItem(playDatesStorageKey(user.id), JSON.stringify(next));
+    createLocalRepository({
+      key: playDatesStorageKey(user.id),
+      legacyKeys: [legacyStorageKey(user.id)],
+      fallback: initialPlayDates,
+    }).write(next);
   };
   return { dates, save };
 }

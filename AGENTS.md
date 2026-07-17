@@ -15,6 +15,8 @@ Der aktuelle Stand ist ein Frontend-Prototyp:
 
 Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich vollständig DSGVO-konform ist. Verwende keine echten personenbezogenen Daten. Rechtliche Checklisten gelten nur als Übungsunterlagen und müssen vor einem echten Betrieb neu fachkundig geprüft werden.
 
+Für die aktuellen Lernphasen ist „React-Simulation, lokal zuerst“ festgelegt. Neue Funktionen dürfen lokale Zustände und Repository-Schnittstellen üben, aber niemals als echte API, Verschlüsselung, Mehrbenutzersynchronisation oder produktive Löschung bezeichnet werden.
+
 ## Lernorientierung
 
 - Bevorzuge Lösungen, an denen React-Grundlagen und Datenflüsse gut nachvollziehbar bleiben.

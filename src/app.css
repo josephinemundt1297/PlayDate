@@ -742,6 +742,13 @@
   color: var(--muted);
   max-width: 30rem;
 }
+.settings-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
 .auth-page {
   min-height: 100vh;
   display: grid;
@@ -1024,6 +1031,106 @@
   }
   .settings-card .primary-button {
     width: 100%;
+  }
+  .settings-actions {
+    width: 100%;
+  }
+  .settings-actions > * {
+    width: 100%;
+  }
+}
+.family-connections {
+  margin-top: 3rem;
+}
+.connection-form {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  align-items: end;
+  gap: 1rem;
+  padding: 1.25rem;
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+}
+.connection-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 700;
+}
+.connection-list {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 1rem 0 0;
+  list-style: none;
+}
+.connection-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+}
+.connection-list span {
+  display: block;
+  color: var(--muted);
+}
+.connection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.empty-connection {
+  padding: 1rem;
+  color: var(--muted);
+}
+.comment-area {
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+.comment-area summary {
+  font-weight: 700;
+  cursor: pointer;
+}
+.comment-area ul {
+  padding-left: 1.25rem;
+}
+.comment-area form,
+.comment-area label {
+  display: grid;
+  gap: 0.5rem;
+}
+.comment-area form {
+  margin-top: 0.75rem;
+}
+.comment-area button {
+  justify-self: start;
+}
+.caregiver-row {
+  display: grid;
+  grid-template-columns: 8.75rem 1fr 2.75rem;
+  align-items: center;
+  gap: 0.75rem;
+}
+@media (max-width: 1024px) {
+  .caregiver-row {
+    grid-template-columns: 1fr 2.75rem;
+  }
+  .caregiver-row label {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 1024px) {
+  .connection-form {
+    grid-template-columns: 1fr;
+  }
+  .connection-list li {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .connection-actions > * {
+    flex: 1 1 auto;
   }
 }
 .safety-header h1 {

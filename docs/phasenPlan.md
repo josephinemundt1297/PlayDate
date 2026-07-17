@@ -98,6 +98,8 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 - [x] Datenmodelle für den Frontend-Prototyp definiert
 - [x] lokale Prototyp-Daten nach Clerk User-ID getrennt
 - [x] Migration alter lokaler PlayDate-Schlüssel eingebaut
+- [x] lokale Repository-Schicht als API-Vorbereitung ergänzt
+- [x] beschädigte Browserdaten mit sicheren Startwerten abgefangen
 - [ ] Backend-Technologie und EU-Hosting auswählen
 - [ ] relationale Datenbank einrichten
 - [ ] produktives Datenmodell mit stabilen IDs erstellen
@@ -117,6 +119,9 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 - [x] Freigabeeinstellung für Geburtstage vorhanden
 - [x] eigenes Kind im PlayDate-Formular auswählbar
 - [x] Oberfläche für freigegebene Geburtstage vorbereitet
+- [x] Verbindungsanfragen lokal als React-Zustände simulieren
+- [x] Demo-Verbindungen annehmen, blockieren und entfernen
+- [x] Geburtstage nur aus angenommenen Demo-Verbindungen übernehmen
 - [ ] Familienprofile über die API speichern
 - [ ] echte private Familienverbindungen implementieren
 - [ ] Verbindungsanfragen annehmen, ablehnen und widerrufen
@@ -135,6 +140,9 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 - [x] Treffpunkt und Mitbringsel erfassen
 - [x] Status „Bestätigt“ und „Ausstehend“ anzeigen
 - [x] Teilen über Web Share beziehungsweise WhatsApp vorbereitet
+- [x] bestätigte PlayDates lokal absagen und im Verlauf behalten
+- [x] Mitbringsel mit lokaler Zuständigkeit versehen
+- [x] lokalen Aktivitätsverlauf für Erstellen, Bearbeiten, Absage und Kommentare ergänzen
 - [ ] PlayDates im Backend speichern
 - [ ] Teilnehmer über stabile IDs zuordnen
 - [ ] echte Einladung an verbundene Familien senden
@@ -154,6 +162,7 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 - [x] Link zum Öffnen eines PlayDates in Google Kalender umgesetzt
 - [x] Kalenderfunktionen durch erste Tests abgesichert
 - [x] Erinnerungsoptionen im Formular dargestellt
+- [x] Erinnerungsoptionen im lokalen PlayDate-Modell speichern und bei Absage deaktivieren
 - [ ] `.ics`-Export mit mehreren Kalenderprogrammen prüfen
 - [ ] Zeitzonen und Sommerzeit umfassend testen
 - [ ] Erinnerungseinstellungen produktiv speichern
@@ -170,6 +179,8 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 - [x] Datenschutzhinweis mit technischer Datenschutzseite verknüpft
 - [x] Foto-Menü und sichere technische Anforderungen sichtbar dokumentiert
 - [x] Secret Keys aus der Browserkonfiguration ausgeschlossen und dokumentiert
+- [x] lokale Trainingsdaten als verständliche JSON-Datei exportieren
+- [x] lokale Familien-, Verbindungs- und PlayDate-Daten gemeinsam löschen
 - [ ] serverseitige Autorisierung für jede private Ressource umsetzen
 - [ ] Einwilligungsübersicht und Widerruf umsetzen
 - [ ] Datenauskunft und Datenexport anbieten
@@ -188,7 +199,7 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 - [x] ausreichend große mobile Bedienelemente berücksichtigt
 - [x] reduzierte Animation über `prefers-reduced-motion` berücksichtigt
 - [x] Light und Dark Mode vorhanden
-- [ ] automatisierte axe-Tests einrichten
+- [x] automatisierte axe-Basisprüfungen für zentrale Sicherheitsseiten einrichten
 - [ ] alle Kernabläufe ausschließlich per Tastatur testen
 - [ ] manuelle Tests mit VoiceOver und NVDA durchführen
 - [x] zentrale Text- und Bedienkontraste für Light und Dark Mode gemessen und dokumentiert
@@ -198,6 +209,9 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 - [ ] kritische Ergebnisse aus dem Pilot beheben
 
 ### Phase 8 – Produktionsstart
+
+- [x] lokalen Release-Build und gemeinsame Prüfkette für das Trainingsprojekt eingerichtet
+- [x] Änderungen über GitHub-Branch und Draft Pull Request nachvollziehbar bereitgestellt
 
 - [ ] Produktionsumgebung und eigene Domain einrichten
 - [ ] Monitoring, Alarmierung und Fehlertracking aktivieren
@@ -209,9 +223,9 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 
 ### Phase 9 – Ausbau nach dem MVP
 
-- [ ] strukturierte Mitbringlisten mit Zuständigkeiten
-- [ ] Kommentare im geschützten PlayDate-Bereich
-- [ ] mehrere Sorgeberechtigte pro Familie
+- [x] Mitbringsel mit Zuständigkeiten lokal simulieren
+- [x] Kommentare im angemeldeten lokalen PlayDate-Bereich speichern
+- [x] mehrere Sorgeberechtigte pro Familie lokal simulieren
 - [ ] private Fotos mit geprüfter Einwilligung
 - [ ] bidirektionale Google- und Microsoft-Kalendersynchronisation
 - [ ] feinere Benachrichtigungseinstellungen
@@ -219,6 +233,8 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 ### Fortschrittsregel
 
 Die Checkliste wird bei jeder abgeschlossenen Funktion aktualisiert. Ein Punkt wird erst abgehakt, wenn die Implementierung geprüft ist und die zugehörigen Abnahmekriterien erfüllt sind. Eine sichtbare Oberfläche ohne produktive Backend-Funktion bleibt deshalb als offener Punkt markiert.
+
+**Gewählte Trainingsarchitektur:** React-Simulation mit lokalem Betrieb. Alle zusätzlichen Haken in Phase 2 bis 9 belegen Frontend-Lernziele. Nicht abgehakte API-, Server-, Hosting-, Foto-, OAuth-, Rechts- und Gerätethemen sind bewusst keine Bestandteile des aktuellen React-Moduls.
 
 ## 3. Phase 0 – Prototyp stabilisieren
 
@@ -612,7 +628,7 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 **Gesamtergebnis:** Phase 0 und 1 als React-Trainingsprojekt bestanden; freiwillige Geräteprüfungen und spätere Full-Stack-Phasen offen; keine Freigabe für echte Daten oder Produktivbetrieb
 
 - [x] Oxlint ausgeführt
-- [x] alle 47 vorhandenen Vitest-Tests bestanden
+- [x] alle 58 vorhandenen Vitest-Tests bestanden
 - [x] 40 Playwright-Szenarien werden von der E2E-Konfiguration erkannt
 - [ ] Playwright-Szenarien in echten Browser-Engines ausführen
 - [x] TypeScript-Prüfung bestanden

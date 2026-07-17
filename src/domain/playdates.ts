@@ -8,9 +8,51 @@ export type playDate = {
   time: string;
   location: string;
   bring: string;
-  status: "Bestätigt" | "Ausstehend";
+  status: "Bestätigt" | "Ausstehend" | "Abgesagt";
   color: "mint" | "peach" | "lilac";
+  reminder?: "Keine" | "24 Stunden vorher";
+  emailReminder?: boolean;
+  bringOwner?: "Wir" | "Andere Familie" | "Gemeinsam";
+  activity?: playDateActivity[];
+  comments?: playDateComment[];
 };
+export type playDateActivity = {
+  id: string;
+  message: string;
+  createdAt: string;
+};
+export type playDateComment = {
+  id: string;
+  text: string;
+  createdAt: string;
+};
+
+export function cancelPlayDate(date: playDate): playDate {
+  return {
+    ...date,
+    status: "Abgesagt",
+    reminder: "Keine",
+    emailReminder: false,
+    activity: [
+      ...(date.activity ?? []),
+      { id: crypto.randomUUID(), message: "PlayDate abgesagt", createdAt: new Date().toISOString() },
+    ],
+  };
+}
+
+export function addPlayDateComment(date: playDate, text: string): playDate {
+  return {
+    ...date,
+    comments: [
+      ...(date.comments ?? []),
+      { id: crypto.randomUUID(), text, createdAt: new Date().toISOString() },
+    ],
+    activity: [
+      ...(date.activity ?? []),
+      { id: crypto.randomUUID(), message: "Kommentar ergänzt", createdAt: new Date().toISOString() },
+    ],
+  };
+}
 
 // Nur Startdaten für den Prototyp. Echte Termine kommen später aus dem Backend.
 export const initialPlayDates: playDate[] = [
@@ -25,6 +67,11 @@ export const initialPlayDates: playDate[] = [
     bring: "Picknickdecke & Trauben",
     status: "Bestätigt",
     color: "mint",
+    reminder: "24 Stunden vorher",
+    emailReminder: false,
+    bringOwner: "Gemeinsam",
+    activity: [],
+    comments: [],
   },
   {
     id: 2,
@@ -37,6 +84,11 @@ export const initialPlayDates: playDate[] = [
     bring: "Malkittel",
     status: "Ausstehend",
     color: "peach",
+    reminder: "24 Stunden vorher",
+    emailReminder: false,
+    bringOwner: "Wir",
+    activity: [],
+    comments: [],
   },
   {
     id: 3,
@@ -49,5 +101,10 @@ export const initialPlayDates: playDate[] = [
     bring: "Sonnencreme",
     status: "Bestätigt",
     color: "lilac",
+    reminder: "Keine",
+    emailReminder: false,
+    bringOwner: "Andere Familie",
+    activity: [],
+    comments: [],
   },
 ];

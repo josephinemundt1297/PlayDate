@@ -12,4 +12,9 @@ describe('StatusBadge', () => {
     render(<StatusBadge status="Ausstehend" />)
     expect(screen.getByText('Ausstehend')).not.toHaveClass('confirmed')
   })
+
+  it('zeigt eine Absage zusätzlich zum Farbzustand als Text', () => {
+    render(<StatusBadge status="Abgesagt" />)
+    expect(screen.getByText('Abgesagt')).toHaveClass('cancelled')
+  })
 })
