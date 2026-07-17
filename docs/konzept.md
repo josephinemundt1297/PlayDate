@@ -1,5 +1,7 @@
 # PlayDate – Produktkonzept
 
+> **Projektstatus:** PlayDate ist ein Übungsprojekt. Das Konzept beschreibt einen simulierten MVP und darf nicht als Freigabe für echte Kinderdaten verstanden werden.
+
 ## 1. Die Idee
 
 PlayDate ist eine private Organisations-App für Eltern und Sorgeberechtigte. Sie hilft dabei, Spieletreffen für Kinder unkompliziert zu planen, mit anderen Familien abzustimmen und zuverlässig im Blick zu behalten.
@@ -218,6 +220,8 @@ PlayDate verarbeitet besonders schützenswerte Informationen über Kinder. Desha
 
 Vor einem Produktivstart sind Rechtsgrundlagen, Auftragsverarbeitungsverträge, Drittlandtransfers und eine mögliche Datenschutz-Folgenabschätzung fachkundig zu prüfen.
 
+Der Übungsstand für diese Entscheidungen ist in [`phase1Datenschutz.md`](phase1Datenschutz.md) dokumentiert. Für den simulierten MVP sind Konten nur für Erwachsene vorgesehen; Fotos, Kommentare, öffentliche Vermittlung und das Teilen des Geburtsjahres bleiben außerhalb des MVP.
+
 ## 11. Barrierefreiheitskonzept
 
 PlayDate strebt WCAG 2.2 AA an. Die Qualität wird nicht nur automatisiert, sondern auch manuell geprüft.
@@ -301,6 +305,6 @@ Der vorhandene Frontend-Prototyp bildet bereits wesentliche Teile des Konzepts a
 - mobile PWA
 - Atomic-Design-Struktur und erste automatisierte Tests
 
-Die lokale Prüfkette aus Oxlint, 45 Vitest-Tests, TypeScript und Vite-Build läuft ohne Fehler. Eine Playwright-Strecke mit 40 Desktop-, Mobil-, Responsive- und PWA-Szenarien ist eingerichtet; reale Mehrbrowser- und Geräteläufe stehen noch aus. Der aktuelle Auditstand wird in [`phasenPlan.md`](./phasenPlan.md) gepflegt.
+Die lokale Prüfkette aus Oxlint, 46 Vitest-Tests, TypeScript und Vite-Build läuft ohne Fehler. Eine Playwright-Strecke mit 40 Desktop-, Mobil-, Responsive- und PWA-Szenarien ist eingerichtet; reale Mehrbrowser- und Geräteläufe stehen noch aus. Der aktuelle Auditstand wird in [`phasenPlan.md`](phasenPlan.md) gepflegt.
 
 Noch nicht produktiv umgesetzt sind insbesondere ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos und eine dauerhafte Kalendersynchronisation.

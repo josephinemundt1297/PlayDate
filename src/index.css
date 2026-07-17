@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@700;800&display=swap");
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
@@ -68,7 +67,8 @@
   --noise: 0;
 }
 :root {
-  font-family: "DM Sans", system-ui, sans-serif;
+  /* Systemschriften sind schnell, gut lesbar und schicken keinen Abruf an Google Fonts. */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--color-base-content);
   background: var(--color-base-200);
   font-synthesis: none;
@@ -161,7 +161,7 @@ p {
 h1,
 h2,
 h3 {
-  font-family: "Nunito", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.1;
 }
 svg {

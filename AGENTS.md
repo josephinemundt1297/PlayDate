@@ -4,7 +4,7 @@ Diese Datei gilt für das gesamte Repository. Sie richtet sich an Coding-Agents 
 
 ## Projektziel und aktueller Stand
 
-PlayDate ist eine deutschsprachige, mobile-first React-App zur privaten Planung von Spieletreffen zwischen bereits bekannten Familien.
+PlayDate ist ein deutschsprachiges Übungsprojekt für eine mobile-first React-App zur privaten Planung von Spieletreffen zwischen bereits bekannten Familien.
 
 Der aktuelle Stand ist ein Frontend-Prototyp:
 
@@ -13,11 +13,11 @@ Der aktuelle Stand ist ein Frontend-Prototyp:
 - Monatskalender mit Detail-Dialog, Kalenderexport, Google-Kalender-Link, Web Share, WhatsApp-Link, technische Datenschutzseite, Foto-Konzeptseite, Themes und PWA sind vorhanden.
 - Ein produktives Backend, echte Familienverbindungen, gemeinsame Einladungsantworten, serverseitige Erinnerungen, Kommentare, Foto-Uploads und bidirektionale Kalendersynchronisation fehlen noch.
 
-Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich vollständig DSGVO-konform ist.
+Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich vollständig DSGVO-konform ist. Verwende keine echten personenbezogenen Daten. Rechtliche Checklisten gelten nur als Übungsunterlagen und müssen vor einem echten Betrieb neu fachkundig geprüft werden.
 
 ## Vor jeder Änderung
 
-1. Lies `README.md`, `konzept.md`, `speck.md` und die betroffene Phase in `phasenPlan.md`.
+1. Lies `README.md`, `docs/konzept.md`, `docs/speck.md` und die betroffene Phase in `docs/phasenPlan.md`.
 2. Prüfe `git status`, damit fremde oder unfertige Änderungen erhalten bleiben.
 3. Suche zuerst nach bestehenden Komponenten, Hooks und Typen, bevor du etwas Neues anlegst.
 4. Kläre bei Kinderdaten immer Sichtbarkeit, Zweck, Berechtigung und Löschung mit.
@@ -114,9 +114,11 @@ Für Browserabläufe zusätzlich `npm run test:e2e` ausführen. Angemeldete Abl�
 ## Dokumentation aktuell halten
 
 - `README.md`: tatsächliche Einrichtung, Funktionen, Grenzen und Befehle
-- `konzept.md`: Produktidee, Zielgruppe, MVP und fachliche Leitplanken
-- `speck.md`: detaillierte Anforderungen und Abnahmekriterien
-- `phasenPlan.md`: Reihenfolge, Statuscheckliste, Risiken und Auditnachweise
+- `docs/README.md`: Einstiegspunkt für alle ausführlichen Projektunterlagen
+- `docs/konzept.md`: Produktidee, Zielgruppe, MVP und fachliche Leitplanken
+- `docs/speck.md`: detaillierte Anforderungen und Abnahmekriterien
+- `docs/phasenPlan.md`: Reihenfolge, Statuscheckliste, Risiken und Auditnachweise
+- `docs/phase1Datenschutz.md`: Übungskonzept für Rollen, Datenschutz und Bedrohungen
 
 Wenn eine Änderung den dokumentierten Status beeinflusst, aktualisiere die passenden Dateien im selben Commit. Ein sichtbarer Platzhalter zählt nicht als fertige produktive Funktion.
 

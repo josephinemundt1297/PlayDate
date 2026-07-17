@@ -4,11 +4,13 @@ PlayDate ist ein mobile-first React-Prototyp, mit dem Eltern sichere und übersi
 
 ## Aktueller Status
 
-**Stand: 17. Juli 2026 – Frontend-Prototyp, nicht für den Produktivbetrieb freigegeben.**
+**Stand: 17. Juli 2026 – Übungsprojekt und Frontend-Prototyp, nicht für echte personenbezogene Daten oder den Produktivbetrieb freigegeben.**
 
-Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Monatskalender mit Detail-Dialog, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Error Boundary, Lade-, Leer- und Offline-Zustände sowie zentrale Formularvalidierung sind vorhanden. Die Prüfkette besteht aktuell aus Oxlint, 45 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
+Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Monatskalender mit Detail-Dialog, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Error Boundary, Lade-, Leer- und Offline-Zustände sowie zentrale Formularvalidierung sind vorhanden. Die Prüfkette besteht aktuell aus Oxlint, 46 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
 
 Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos, produktive Datenlöschung und bidirektionale Kalendersynchronisation sind noch nicht umgesetzt. `localStorage` ist ausschließlich die lokale Persistenz des Prototyps.
+
+Die fachlichen Übungsunterlagen für Phase 1 stehen in [`docs/phase1Datenschutz.md`](docs/phase1Datenschutz.md). Der simulierte MVP-Scope, Rollen, Rechtsgrundlagen, Einwilligungen, Löschfristen, Anbieterprüfung, Pflichttext-Muster, DSFA-Vorprüfung und Bedrohungen sind für das Übungsprojekt abgeschlossen. Vor einer echten Veröffentlichung müssten alle Angaben mit realem Betreiber, Hosting und fachkundiger Rechtsberatung neu geprüft werden. Zur Datensparsamkeit lädt die App keine Schriftarten mehr zur Laufzeit von Google Fonts.
 
 ## Funktionen
 
@@ -144,9 +146,9 @@ Der aktuelle Stand ist ein funktionsfähiger Frontend-Prototyp. Für den Produkt
 
 Die Oberfläche nutzt semantische Überschriften, Navigationen, sichtbare Fokusmarkierungen, einen Skip-Link, ausreichend große Touch-Ziele, verständliche Labels und `aria-live`-Statusmeldungen. Animationen werden bei `prefers-reduced-motion` deaktiviert. Vor einem Release sollten zusätzlich automatisierte axe-Tests und manuelle Tests mit Tastatur, VoiceOver und NVDA erfolgen.
 
-## DSGVO-Checkliste
+## Datenschutzstatus des Übungsprojekts
 
-Technische Gestaltung allein macht eine App nicht automatisch DSGVO-konform. Vor einem Produktivstart sind mindestens erforderlich:
+Das Dateninventar, mögliche Rechtsgrundlagen, Einwilligungsabläufe, Übungs-Löschfristen, Rollen, Anbieter, Pflichttext-Muster, DSFA-Vorprüfung und Bedrohungsmodell sind für Phase 1 dokumentiert. Technische Gestaltung allein macht eine App trotzdem nicht automatisch DSGVO-konform. Bei einer späteren echten Veröffentlichung würden insbesondere folgende Aufgaben neu geöffnet:
 
 - Rechtsgrundlage und Einwilligung für Kinderfotos und Kommunikationskanäle dokumentieren
 - Datensparsamkeit, Zweckbindung und getrennte Einwilligungen umsetzen
@@ -154,8 +156,10 @@ Technische Gestaltung allein macht eine App nicht automatisch DSGVO-konform. Vor
 - Auskunft, Export, Berichtigung und vollständige Löschung ermöglichen
 - Lösch- und Aufbewahrungsfristen technisch erzwingen
 - Rollen- und Berechtigungskonzept für eingeladene Familien einführen
-- Datenschutzinformation, Impressum und Verzeichnis von Verarbeitungstätigkeiten erstellen
+- Datenschutzinformation, Impressum und Verzeichnis von Verarbeitungstätigkeiten mit echten Betreiberangaben veröffentlichen
 - Datenschutz-Folgenabschätzung mit fachkundiger Beratung prüfen
+
+Der genaue Übungsabschluss und die Trennung zu einer realen Freigabe stehen in [`docs/phase1Datenschutz.md`](docs/phase1Datenschutz.md).
 
 ## Architektur
 
@@ -172,9 +176,11 @@ src/
 
 ## Projektdokumentation
 
-- [`konzept.md`](./konzept.md): Produktidee, Zielgruppe, MVP und Leitplanken
-- [`speck.md`](./speck.md): Anforderungen, Datenmodell und Abnahmekriterien
-- [`phasenPlan.md`](./phasenPlan.md): Phasen, Statuscheckliste, Risiken und Auditplan
+- [`docs/README.md`](./docs/README.md): zentrale Übersicht aller Projektunterlagen
+- [`docs/konzept.md`](./docs/konzept.md): Produktidee, Zielgruppe, MVP und Leitplanken
+- [`docs/speck.md`](./docs/speck.md): Anforderungen, Datenmodell und Abnahmekriterien
+- [`docs/phasenPlan.md`](./docs/phasenPlan.md): Phasen, Statuscheckliste, Risiken und Auditplan
+- [`docs/phase1Datenschutz.md`](./docs/phase1Datenschutz.md): Übungskonzept für Produkt und Datenschutz
 - [`AGENTS.md`](./AGENTS.md): verbindliche Arbeitsregeln für Entwickler und Coding-Agents
 
 ### Hinweis zur Kalendersynchronisation

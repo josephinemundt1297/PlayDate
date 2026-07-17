@@ -28,7 +28,7 @@
   display: flex;
   align-items: center;
   gap: 0.55rem;
-  font: 800 1.35rem "Nunito";
+  font: 800 1.35rem system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .brand > span:last-child span {
   color: var(--accent);
@@ -534,7 +534,7 @@
   color: var(--accent);
 }
 .date-badge strong {
-  font: 800 1.8rem "Nunito";
+  font: 800 1.8rem system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 .date-badge span {
   text-transform: uppercase;

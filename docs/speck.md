@@ -1,12 +1,16 @@
 # PlayDate – Projektspezifikation
 
+> **Projektstatus:** Diese Spezifikation gehört zu einem Übungsprojekt. Demo-Daten sind erlaubt, echte personenbezogene Daten nicht.
+
 ## 1. Kurzbeschreibung
 
 PlayDate ist eine mobile-first Web-App, mit der Eltern private Spieletreffen für ihre Kinder planen, verwalten und mit anderen Familien abstimmen können. Termine und Familiendaten sind ausschließlich nach einer Anmeldung sichtbar.
 
 Der aktuelle Stand ist ein Frontend-Prototyp. Funktionen, die ein Backend oder externe Freigaben benötigen, sind als Zielanforderungen beschrieben und klar vom bereits umgesetzten Stand getrennt.
 
-**Dokumentationsstand: 17. Juli 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 45 Vitest-Tests, TypeScript und Produktions-Build ohne Fehler. 40 Playwright-Szenarien sind eingerichtet, aber noch nicht auf realen Browserinstallationen und physischen Geräten nachgewiesen. Er besitzt noch kein produktives Backend und ist nicht für echte Kinderdaten freigegeben.
+**Dokumentationsstand: 17. Juli 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 46 Vitest-Tests, TypeScript und Produktions-Build ohne Fehler. 40 Playwright-Szenarien sind eingerichtet, aber noch nicht auf realen Browserinstallationen und physischen Geräten nachgewiesen. Er besitzt noch kein produktives Backend und ist nicht für echte Kinderdaten freigegeben.
+
+[`phase1Datenschutz.md`](phase1Datenschutz.md) enthält den für die Übung freigegebenen MVP-Entwurf, die Rollenmatrix, das Dateninventar, Übungs-Löschfristen, die Anbieterübersicht, Pflichttext-Muster, eine DSFA-Vorprüfung und das Bedrohungsmodell. Eine echte Rechts- oder Produktfreigabe ist damit ausdrücklich nicht verbunden.
 
 ## 2. Produktziele
 

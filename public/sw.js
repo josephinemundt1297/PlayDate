@@ -1,5 +1,5 @@
 // Der Cache ist unser kleiner Offline-Rucksack mit den wichtigsten App-Dateien.
-const cacheName = "playDate-v3";
+const cacheName = "playDate-v4";
 const appShell = ["/", "/manifest.webmanifest", "/playDateIcon.svg"];
 
 self.addEventListener("install", (event) => {
@@ -27,9 +27,10 @@ self.addEventListener("activate", (event) => {
 const canCache = (request) => {
   const url = new URL(request.url);
   const isWebsiteRequest = url.protocol === "http:" || url.protocol === "https:";
+  const isPrivateApi = url.pathname.startsWith("/api/");
 
-  // Erweiterungen und fremde Domains gehören niemals in unseren App-Cache.
-  return request.method === "GET" && isWebsiteRequest && url.origin === self.location.origin;
+  // Erweiterungen, fremde Domains und spätere private API-Daten bleiben aus dem Cache.
+  return request.method === "GET" && isWebsiteRequest && url.origin === self.location.origin && !isPrivateApi;
 };
 
 self.addEventListener("fetch", (event) => {
@@ -40,7 +41,10 @@ self.addEventListener("fetch", (event) => {
       try {
         const response = await fetch(event.request);
 
-        if (response.ok && response.type === "basic") {
+        const cacheControl = response.headers.get("cache-control") ?? "";
+        const forbidsCaching = /private|no-store/i.test(cacheControl);
+
+        if (response.ok && response.type === "basic" && !forbidsCaching) {
           try {
             const cache = await caches.open(cacheName);
             await cache.put(event.request, response.clone());

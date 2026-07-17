@@ -1,8 +1,10 @@
 # PlayDate – Phasenplan
 
+> **Projektstatus:** PlayDate ist ein Übungsprojekt. Ein Haken bei rechtlichen oder betrieblichen Konzeptpunkten bedeutet „für die Übung dokumentiert“, nicht „von einer Rechtsberatung oder für einen echten Produktivbetrieb freigegeben“.
+
 ## 1. Zweck des Plans
 
-Dieser Phasenplan überführt das Produktkonzept von PlayDate in eine realistische Reihenfolge für die weitere Entwicklung. Ausgangspunkt ist der vorhandene Frontend-Prototyp. Ziel ist ein sicherer, barrierearmer und datenschutzbewusster MVP für einen begrenzten Pilotbetrieb.
+Dieser Phasenplan überführt das Produktkonzept von PlayDate in eine realistische Reihenfolge für die weitere Entwicklung. Ausgangspunkt ist der vorhandene Frontend-Prototyp. Ziel der Übung ist die nachvollziehbare Planung eines sicheren, barrierearmen und datenschutzbewussten MVP.
 
 Die Zeitangaben sind grobe Richtwerte für ein kleines Team. Sie sind keine festen Veröffentlichungstermine. Datenschutz, externe Anbieter, App-Freigaben und Rückmeldungen aus Nutzertests können den Zeitbedarf verändern.
 
@@ -25,7 +27,7 @@ Mehrere Arbeitspakete können parallel laufen. Eine Phase gilt aber erst als abg
 
 ## Zentrale Umsetzungscheckliste
 
-Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, dass der Punkt im vorhandenen Prototyp umgesetzt ist. Offene Punkte benötigen noch Entwicklung, fachliche Klärung oder eine Prüfung für den Produktivbetrieb.
+Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, dass ein technischer Punkt umgesetzt oder ein Konzeptpunkt für die Übung nachvollziehbar dokumentiert ist. Offene technische Punkte benötigen noch Entwicklung. Vor einem echten Betrieb beginnt eine separate Rechts-, Anbieter- und Betriebsfreigabe unabhängig von diesen Übungshaken neu.
 
 ### Phase 0 – Prototyp und technische Basis
 
@@ -73,15 +75,19 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] MVP und spätere Funktionen im Konzept voneinander getrennt
 - [x] grundlegende DSGVO- und A11Y-Anforderungen dokumentiert
 - [x] öffentliche Kinderprofile und öffentliche Vermittlung als Nicht-Ziele festgelegt
-- [ ] MVP-Scope fachlich verbindlich freigeben
-- [ ] Rollen- und Berechtigungsmatrix erstellen
-- [ ] Rechtsgrundlagen je Datenart rechtlich prüfen
-- [ ] Einwilligungsabläufe fachlich freigeben
-- [ ] Speicher- und Löschfristen verbindlich festlegen
-- [ ] Auftragsverarbeiter und Drittlandtransfers prüfen
-- [ ] Datenschutzinformation und Impressum erstellen
-- [ ] Notwendigkeit einer Datenschutz-Folgenabschätzung prüfen
-- [ ] Bedrohungsmodell dokumentieren
+- [x] MVP-Scope als verbindliche Übungsgrundlage festlegen
+- [x] Rollen- und Berechtigungsmatrix erstellen
+- [x] mögliche Rechtsgrundlagen je Datenart als Übung bewerten
+- [x] Einwilligungsabläufe für das Übungskonzept freigeben
+- [x] Speicher- und Löschfristen für das Übungskonzept festlegen
+- [x] Auftragsverarbeiter und Drittlandtransfers als Übung prüfen
+- [x] Entwürfe für Datenschutzinformation und Impressum erstellen
+- [x] Datenschutzinformation und Impressum als klar bezeichnete Übungsmuster einordnen
+- [x] technische Vorprüfung zur Datenschutz-Folgenabschätzung dokumentieren
+- [x] DSFA-Entscheidung für das Übungsprojekt dokumentieren
+- [x] Bedrohungsmodell dokumentieren
+
+Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die bei einer echten Veröffentlichung neu nötigen Prüfungen stehen in [`phase1Datenschutz.md`](phase1Datenschutz.md).
 
 ### Phase 2 – Backend und Datenmodell
 
@@ -276,6 +282,8 @@ Der MVP-Umfang, die Datenverarbeitung und die Verantwortlichkeiten werden vor de
 - Notwendigkeit einer Datenschutz-Folgenabschätzung fachkundig prüfen
 - Bedrohungsmodell für Einladungslinks und private Kinderdaten erstellen
 
+Der abgeschlossene Übungsstand mit MVP-Grenze, Berechtigungsmatrix, Dateninventar, Fristannahmen, Anbieterübersicht, Pflichttext-Mustern, DSFA-Vorprüfung und Bedrohungsmodell liegt in [`phase1Datenschutz.md`](phase1Datenschutz.md).
+
 ### Ergebnis
 
 Ein freigegebener MVP-Scope sowie ein dokumentiertes Datenschutz- und Berechtigungskonzept.
@@ -286,7 +294,7 @@ Ein freigegebener MVP-Scope sowie ein dokumentiertes Datenschutz- und Berechtigu
 - Rollen und erlaubte Aktionen sind als Berechtigungsmatrix dokumentiert
 - Einwilligungen sind getrennt, verständlich und widerrufbar geplant
 - Anbieter und Datenflüsse sind vollständig erfasst
-- offene rechtliche Risiken haben verantwortliche Personen und nächste Schritte
+- reale rechtliche Risiken sind klar vom abgeschlossenen Übungsumfang getrennt
 
 ## 5. Phase 2 – Backend und Datenmodell
 
@@ -593,10 +601,10 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 
 **Geprüfter Stand:** Frontend-Prototyp im lokalen Projektordner
 
-**Gesamtergebnis:** teilweise bestanden, noch keine Freigabe für Pilot- oder Produktivbetrieb
+**Gesamtergebnis:** Übungsstand technisch teilweise bestanden; Phase 1 konzeptionell abgeschlossen; keine Freigabe für echte Daten oder Produktivbetrieb
 
 - [x] Oxlint ausgeführt
-- [x] alle 43 vorhandenen Vitest-Tests bestanden
+- [x] alle 46 vorhandenen Vitest-Tests bestanden
 - [x] 40 Playwright-Szenarien werden von der E2E-Konfiguration erkannt
 - [ ] Playwright-Szenarien in echten Browser-Engines ausführen
 - [x] TypeScript-Prüfung bestanden
@@ -613,7 +621,7 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 - [x] fremde URL-Schemas im Service Worker vom Cache ausgeschlossen
 - [x] Cache- und Registrierungs-Promises gegen unbehandelte Fehler abgesichert
 - [x] Service-Worker-Regeln durch Regressionstests geschützt
-- [ ] Testabdeckung für Authentifizierung, Formulare und vollständige Nutzerabläufe erweitern
+- [x] Testabdeckung für Authentifizierungsgrenze, Familienseite und PlayDate-Formular erweitert
 - [ ] Backend-, API- und Datenbank-Audit durchführen
 - [ ] formales Berechtigungs- und IDOR-Audit durchführen
 - [ ] vollständiges DSGVO-Audit mit fachkundiger rechtlicher Prüfung durchführen
@@ -624,13 +632,13 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 
 **Offene Feststellungen:**
 
-| ID      | Schweregrad | Feststellung                                                                                                          | Status                                |
-| ------- | ----------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| AUD-001 | Niedrig     | `themeContext.tsx` löste eine Fast-Refresh-Warnung aus, weil dieselbe Datei Komponenten und weitere Exporte enthielt. | behoben und mit Oxlint erneut geprüft |
-| AUD-002 | Niedrig     | `main.tsx` löste eine Fast-Refresh-Warnung zur Komponentenstruktur aus.                                               | behoben und mit Oxlint erneut geprüft |
-| AUD-003 | Hoch        | Das Projekt besitzt noch kein produktives Backend; private Daten liegen im Prototyp in `localStorage`.                | bekannt, Phase 2 geplant              |
-| AUD-004 | Hoch        | Serverseitige Autorisierungs-, IDOR- und Rollenprüfungen können ohne Backend noch nicht stattfinden.                  | bekannt, Phasen 2 bis 4 geplant       |
-| AUD-005 | Hoch        | Die rechtliche DSGVO-Prüfung für die Verarbeitung von Kinderdaten steht aus.                                          | bekannt, Phase 1 geplant              |
+| ID      | Schweregrad | Feststellung                                                                                                          | Status                                                                        |
+| ------- | ----------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| AUD-001 | Niedrig     | `themeContext.tsx` löste eine Fast-Refresh-Warnung aus, weil dieselbe Datei Komponenten und weitere Exporte enthielt. | behoben und mit Oxlint erneut geprüft                                         |
+| AUD-002 | Niedrig     | `main.tsx` löste eine Fast-Refresh-Warnung zur Komponentenstruktur aus.                                               | behoben und mit Oxlint erneut geprüft                                         |
+| AUD-003 | Hoch        | Das Projekt besitzt noch kein produktives Backend; private Daten liegen im Prototyp in `localStorage`.                | bekannt, Phase 2 geplant                                                      |
+| AUD-004 | Hoch        | Serverseitige Autorisierungs-, IDOR- und Rollenprüfungen können ohne Backend noch nicht stattfinden.                  | bekannt, Phasen 2 bis 4 geplant                                               |
+| AUD-005 | Hoch        | Eine echte rechtliche DSGVO-Prüfung ist für das Übungsprojekt nicht vorgesehen.                                      | Übungskonzept abgeschlossen; vor realem Betrieb neu zu öffnen                 |
 
 Die erfolgreichen Prüfungen belegen ausschließlich den aktuellen Frontend-Build und die vorhandene Testbasis. Sie sind keine Aussage darüber, dass die Anwendung bereits produktionsreif, vollständig barrierefrei oder rechtlich DSGVO-konform ist.
 
@@ -694,16 +702,16 @@ Die erfolgreichen Prüfungen belegen ausschließlich den aktuellen Frontend-Buil
 
 **Prüfungen und Nachweise:**
 
-- [ ] vollständiges Dateninventar erstellen
-- [ ] Datenflüsse vom Browser bis zu allen Anbietern dokumentieren
-- [ ] Zweck, Sichtbarkeit und Löschfrist je Datenfeld festhalten
+- [x] Dateninventar für den Übungsumfang erstellt
+- [x] bekannte und geplante Datenflüsse zu Anbietern dokumentiert
+- [x] Zweck, Sichtbarkeit und Übungs-Löschfrist je Datenart festgehalten
 - [ ] Einwilligungen mit Zeitstempel und Version nachweisen
 - [ ] Widerruf und Kontolöschung praktisch testen
 - [ ] Datenexport auf Vollständigkeit und Verständlichkeit prüfen
-- [ ] AV-Verträge und Transfermechanismen dokumentieren
-- [ ] Datenschutz-Folgenabschätzung fachkundig prüfen
+- [x] mögliche Auftragsverarbeiter und Transfermechanismen für die Übung dokumentiert
+- [x] DSFA-Vorprüfung und Übungsentscheidung dokumentiert
 
-Das Datenschutz-Audit benötigt vor dem Produktivstart eine fachkundige rechtliche Bewertung. Die technische Prüfung ersetzt keine Rechtsberatung.
+Die konzeptionellen Nachweise stehen in [`phase1Datenschutz.md`](phase1Datenschutz.md). Praktische Nachweise für Einwilligung, Widerruf, Löschung und Export bleiben offen, weil die zugehörigen Backend-Funktionen noch fehlen. Vor einem echten Produktivstart wäre unabhängig vom Übungsstatus eine fachkundige rechtliche Bewertung nötig.
 
 ### Audit 3 – Authentifizierung und Berechtigungen
 
