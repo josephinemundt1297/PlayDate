@@ -1,4 +1,4 @@
-import { CalendarDays, Home, Images, Plus, Settings, Users } from "lucide-react";
+import { CalendarDays, Home, Images, Plus, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 // Auf kleinen Displays ersetzt diese Leiste die große Navigation aus dem Header.
 export function BottomNavigation() {
@@ -22,10 +22,6 @@ export function BottomNavigation() {
       <Link to="/photos" activeProps={{ className: "active" }}>
         <Images />
         <span>Fotos</span>
-      </Link>
-      <Link to="/settings" activeProps={{ className: "active" }}>
-        <Settings />
-        <span>Mehr</span>
       </Link>
     </nav>
   );

@@ -1,16 +1,35 @@
 # PlayDate – PlayDates einfach planen
 
-PlayDate ist ein mobile-first React-Prototyp, mit dem Eltern sichere und übersichtliche Spieletreffen für ihre Kinder planen können. Die Oberfläche ist deutschsprachig, tastaturbedienbar und für kleine Displays optimiert.
+PlayDate ist mein mobile-first React-Trainingsprojekt im Rahmen meiner einjährigen Weiterbildung zur Web- und Softwareentwicklerin beim Digital Career Institute (DCI). An einer App zur Planung von Spieletreffen übe ich React, TypeScript, Routing, Formulare, State-Management, Tests, Responsive Design, A11Y und den Umgang mit externen Diensten.
+
+Die Oberfläche ist deutschsprachig, tastaturbedienbar und für kleine Displays optimiert. Das Projekt ist ein Lern- und Portfolio-Prototyp, kein Kundenauftrag und keine produktive Anwendung.
 
 ## Aktueller Status
 
-**Stand: 17. Juli 2026 – Frontend-Prototyp, nicht für den Produktivbetrieb freigegeben.**
+**Stand: 17. Juli 2026 – Phase 0 und 1 des React-Trainingsprojekts sind abgeschlossen. Es dürfen ausschließlich erfundene Demo-Daten verwendet werden.**
 
-Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Monatskalender mit Detail-Dialog, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Error Boundary, Lade-, Leer- und Offline-Zustände sowie zentrale Formularvalidierung sind vorhanden. Die Prüfkette besteht aktuell aus Oxlint, 45 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
+Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Monatskalender mit Detail-Dialog, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Eine lokale Repository-Schicht, Demo-Familienverbindungen, Erinnerungsoptionen, Kommentare, Datenexport/-löschung, Error Boundary sowie Lade-, Leer- und Offline-Zustände sind vorhanden. Die Prüfkette besteht aktuell aus Oxlint, 58 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
 
-Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos, produktive Datenlöschung und bidirektionale Kalendersynchronisation sind noch nicht umgesetzt. `localStorage` ist ausschließlich die lokale Persistenz des Prototyps.
+Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos, produktive Datenlöschung und bidirektionale Kalendersynchronisation sind bewusst nicht Teil der abgeschlossenen React-Modul-Leistung. `localStorage` dient ausschließlich dazu, Persistenz im Frontend-Prototyp zu üben.
 
-## Funktionen
+Die fachlichen Übungsunterlagen für Phase 1 stehen in [`docs/phase1Datenschutz.md`](docs/phase1Datenschutz.md). Der simulierte MVP-Scope, Rollen, Rechtsgrundlagen, Einwilligungen, Löschfristen, Anbieterprüfung, Pflichttext-Muster, DSFA-Vorprüfung und Bedrohungen sind für das Übungsprojekt abgeschlossen. Vor einer echten Veröffentlichung müssten alle Angaben mit realem Betreiber, Hosting und fachkundiger Rechtsberatung neu geprüft werden. Zur Datensparsamkeit lädt die App keine Schriftarten mehr zur Laufzeit von Google Fonts.
+
+## Lernschwerpunkte
+
+- React-Komponenten, Props, State, Events und bedingtes Rendering
+- eigene Hooks, Context und klar getrennte Zuständigkeiten
+- TypeScript-Modelle und typisierte Komponenten
+- TanStack Router und geschützte Routen
+- Formulare, Validierung und CRUD-Abläufe
+- Atomic Design und KISS
+- Responsive Design, A11Y und Themes
+- skalierbare Layoutmaße überwiegend in `rem`; Pixel nur für feine Linien und feste Breakpoints
+- Unit-, Komponenten- und vorbereitete End-to-End-Tests
+- GitHub-Workflow und technische Dokumentation
+
+Der ausführliche Abgleich steht im [`docs/lernNachweis.md`](docs/lernNachweis.md).
+
+## Umgesetzte Funktionen
 
 - PlayDates erstellen, bearbeiten und löschen
 - Familienprofil mit beliebig vielen Kindern verwalten
@@ -24,7 +43,7 @@ Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, ser
 - Kalendertermine in einer modalen Detail-Ebene vergrößern
 - PlayDate-Listen ohne horizontales Überlaufen auch in sehr schmalen eingebetteten Ansichten ab 240 CSS-Pixeln nutzen
 - kompakte Navigation auf Mobilgeräten und Tablets bis einschließlich 1024 CSS-Pixel
-- reine Icon-Navigation unter 320 CSS-Pixeln, mit weiterhin vorhandenen zugänglichen Namen
+- fünfteilige mobile Navigation mit mittigem Erstellen-Button; Konto, Download und Einstellungen liegen im Header-Menü
 - einzelne PlayDates direkt in Google Kalender öffnen
 - Status für bestätigte und ausstehende Treffen
 - Datenschutz-Hinweise für Fotos, Kommentare und eingeladene Familien
@@ -43,6 +62,13 @@ Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, ser
 - installierbare Progressive Web App (PWA) mit Manifest und Service Worker
 - Service Worker cached ausschließlich eigene HTTP-/HTTPS-GET-Anfragen und behandelt Cachefehler ohne Seitenabbruch
 - Persistenz des Prototyps über `localStorage`
+- lokale Repository-Schicht mit sicherem Rückfall bei beschädigten Browserdaten
+- simulierte Familienverbindungen annehmen, blockieren und entfernen
+- mehrere Sorgeberechtigte im lokalen Familienprofil simulieren
+- bestätigte Termine absagen, Änderungen nachvollziehen und Kommentare speichern
+- Zuständigkeiten für Mitbringsel und lokale Erinnerungsoptionen
+- lokale Trainingsdaten als JSON exportieren oder vollständig löschen
+- automatisierte axe-Basisprüfungen für zentrale Seiten
 
 ## Lokale Entwicklung
 
@@ -114,6 +140,7 @@ Die Testbasis verwendet Vitest, Testing Library, jest-dom und jsdom. Abgedeckt s
 - Monatsraster, Terminzuordnung und Monatswechsel der Kalenderansicht
 - modale Kalenderdetails, Website-Verknüpfung und Theme-Kontrastregression
 - Viewport, Tablet-Breakpoint und schrumpfbare Navigation als Responsive-Regression
+- A11Y-freundliche `rem`-Verwendung im Styling
 - erlaubte Cache-Anfragen und behandelte Service-Worker-Promises
 - Darstellung bestätigter und ausstehender Status-Badges
 - Auth-Grenze, Error Boundary, Lade-, Leer- und Offline-Zustände
@@ -129,9 +156,9 @@ E2E_STORAGE_STATE=e2e/.auth/clerk.json npm run test:e2e
 
 Die Einrichtung ersetzt keine abschließenden Tests auf echten physischen Geräten.
 
-## Integrationen: nächste Produktionsschritte
+## Mögliche Vertiefung nach dem React-Modul
 
-Der aktuelle Stand ist ein funktionsfähiger Frontend-Prototyp. Für den Produktivbetrieb werden serverseitige Dienste benötigt:
+Der aktuelle Stand ist ein funktionsfähiger Frontend-Prototyp. Folgende Themen wären mögliche spätere Full-Stack-, Backend- oder Deployment-Vertiefungen:
 
 - **Authentifizierung:** Clerk-Sitzungen später zusätzlich im Backend prüfen und jede private Ressource serverseitig autorisieren.
 - **Datenbank:** PlayDates, Einladungen, Kommentare und Einwilligungen mandantenfähig speichern (z. B. PostgreSQL).
@@ -144,9 +171,9 @@ Der aktuelle Stand ist ein funktionsfähiger Frontend-Prototyp. Für den Produkt
 
 Die Oberfläche nutzt semantische Überschriften, Navigationen, sichtbare Fokusmarkierungen, einen Skip-Link, ausreichend große Touch-Ziele, verständliche Labels und `aria-live`-Statusmeldungen. Animationen werden bei `prefers-reduced-motion` deaktiviert. Vor einem Release sollten zusätzlich automatisierte axe-Tests und manuelle Tests mit Tastatur, VoiceOver und NVDA erfolgen.
 
-## DSGVO-Checkliste
+## Datenschutzstatus des Übungsprojekts
 
-Technische Gestaltung allein macht eine App nicht automatisch DSGVO-konform. Vor einem Produktivstart sind mindestens erforderlich:
+Das Dateninventar, mögliche Rechtsgrundlagen, Einwilligungsabläufe, Übungs-Löschfristen, Rollen, Anbieter, Pflichttext-Muster, DSFA-Vorprüfung und Bedrohungsmodell sind für Phase 1 dokumentiert. Technische Gestaltung allein macht eine App trotzdem nicht automatisch DSGVO-konform. Bei einer späteren echten Veröffentlichung würden insbesondere folgende Aufgaben neu geöffnet:
 
 - Rechtsgrundlage und Einwilligung für Kinderfotos und Kommunikationskanäle dokumentieren
 - Datensparsamkeit, Zweckbindung und getrennte Einwilligungen umsetzen
@@ -154,8 +181,10 @@ Technische Gestaltung allein macht eine App nicht automatisch DSGVO-konform. Vor
 - Auskunft, Export, Berichtigung und vollständige Löschung ermöglichen
 - Lösch- und Aufbewahrungsfristen technisch erzwingen
 - Rollen- und Berechtigungskonzept für eingeladene Familien einführen
-- Datenschutzinformation, Impressum und Verzeichnis von Verarbeitungstätigkeiten erstellen
+- Datenschutzinformation, Impressum und Verzeichnis von Verarbeitungstätigkeiten mit echten Betreiberangaben veröffentlichen
 - Datenschutz-Folgenabschätzung mit fachkundiger Beratung prüfen
+
+Der genaue Übungsabschluss und die Trennung zu einer realen Freigabe stehen in [`docs/phase1Datenschutz.md`](docs/phase1Datenschutz.md).
 
 ## Architektur
 
@@ -172,9 +201,12 @@ src/
 
 ## Projektdokumentation
 
-- [`konzept.md`](./konzept.md): Produktidee, Zielgruppe, MVP und Leitplanken
-- [`speck.md`](./speck.md): Anforderungen, Datenmodell und Abnahmekriterien
-- [`phasenPlan.md`](./phasenPlan.md): Phasen, Statuscheckliste, Risiken und Auditplan
+- [`docs/README.md`](./docs/README.md): zentrale Übersicht aller Projektunterlagen
+- [`docs/lernNachweis.md`](./docs/lernNachweis.md): Lernziele und Bewertung von Phase 0 und 1
+- [`docs/konzept.md`](./docs/konzept.md): Produktidee, Zielgruppe, MVP und Leitplanken
+- [`docs/speck.md`](./docs/speck.md): Anforderungen, Datenmodell und Abnahmekriterien
+- [`docs/phasenPlan.md`](./docs/phasenPlan.md): Phasen, Statuscheckliste, Risiken und Auditplan
+- [`docs/phase1Datenschutz.md`](./docs/phase1Datenschutz.md): Übungskonzept für Produkt und Datenschutz
 - [`AGENTS.md`](./AGENTS.md): verbindliche Arbeitsregeln für Entwickler und Coding-Agents
 
 ### Hinweis zur Kalendersynchronisation

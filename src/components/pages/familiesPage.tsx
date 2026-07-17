@@ -4,12 +4,16 @@ import { useFamilyProfile } from "../../hooks/useFamilyProfile";
 import { newChild, type childProfile } from "../../domain/family";
 import { BirthdayOverview } from "../organisms/birthdayOverview";
 import { validateFamily, type validationErrors } from "../../utils/validation";
+import { FamilyConnections } from "../organisms/familyConnections";
 // Hier pflegen Eltern ihr Familienprofil. Die Page speichert nur Daten des eingeloggten Users.
 export function FamiliesPage() {
   const { profile, save, sharedBirthdays } = useFamilyProfile();
   const [familyName, setFamilyName] = useState(profile.familyName);
   const [children, setChildren] = useState<childProfile[]>(
     profile.children.length ? profile.children : [newChild()],
+  );
+  const [caregivers, setCaregivers] = useState<string[]>(
+    profile.caregivers?.length ? profile.caregivers : [""],
   );
   const [saved, setSaved] = useState(false);
   const [errors, setErrors] = useState<validationErrors>({});
@@ -29,6 +33,7 @@ export function FamiliesPage() {
       children: children
         .filter((child) => child.name.trim())
         .map((child) => ({ ...child, name: child.name.trim() })),
+      caregivers: caregivers.map((name) => name.trim()).filter(Boolean),
     };
     save(next);
     setChildren(next.children.length ? next.children : [newChild()]);
@@ -132,6 +137,49 @@ export function FamiliesPage() {
             Weiteres Kind
           </button>
         </fieldset>
+        <fieldset>
+          <legend>Sorgeberechtigte Personen</legend>
+          <p className="privacy-caption">
+            Diese Liste ist nur eine lokale React-Simulation für ein späteres Familienkonto.
+          </p>
+          {caregivers.map((caregiver, index) => (
+            <div className="caregiver-row" key={`caregiver-${index}`}>
+              <label htmlFor={`caregiver-${index}`}>Person {index + 1}</label>
+              <input
+                id={`caregiver-${index}`}
+                maxLength={80}
+                value={caregiver}
+                onChange={(event) =>
+                  setCaregivers((current) =>
+                    current.map((name, itemIndex) =>
+                      itemIndex === index ? event.target.value : name,
+                    ),
+                  )
+                }
+              />
+              <button
+                className="btn btn-ghost btn-square"
+                type="button"
+                aria-label={`Person ${index + 1} entfernen`}
+                disabled={caregivers.length === 1}
+                onClick={() =>
+                  setCaregivers((current) =>
+                    current.filter((_, itemIndex) => itemIndex !== index),
+                  )
+                }
+              >
+                <Trash2 />
+              </button>
+            </div>
+          ))}
+          <button
+            className="btn btn-outline add-child"
+            type="button"
+            onClick={() => setCaregivers((current) => [...current, ""])}
+          >
+            <Plus /> Weitere Person
+          </button>
+        </fieldset>
         <button className="btn btn-primary primary-button" type="submit">
           <Save />
           {saved ? "Gespeichert" : "Familie speichern"}
@@ -145,6 +193,7 @@ export function FamiliesPage() {
         profile={{ familyName, children }}
         shared={sharedBirthdays}
       />
+      <FamilyConnections />
     </div>
   );
 }

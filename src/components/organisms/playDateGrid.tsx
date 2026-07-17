@@ -8,11 +8,13 @@ export function PlayDateGrid({
   onDelete,
   onInvite,
   onCalendar,
+  onComment,
 }: {
   dates: playDate[];
   onDelete: (id: number) => void;
   onInvite: (date: playDate) => void;
   onCalendar: (date: playDate) => void;
+  onComment?: (id: number, text: string) => void;
 }) {
   return (
     <section className="date-grid" aria-label="Anstehende PlayDates">
@@ -24,6 +26,7 @@ export function PlayDateGrid({
           onDelete={onDelete}
           onInvite={() => onInvite(date)}
           onCalendar={() => onCalendar(date)}
+          onComment={(text) => onComment?.(date.id, text)}
         />
       ))}
     </section>

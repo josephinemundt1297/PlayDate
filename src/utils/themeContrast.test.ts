@@ -32,4 +32,10 @@ describe("Theme-Kontraste", () => {
     expect(appCss).toContain("color: var(--color-primary-content)");
     expect(indexCss).toContain("--color-primary-content: #ffffff");
   });
+
+  it("schützt den Bearbeiten-Button im Kalenderdialog vor unlesbarer Textfarbe", () => {
+    expect(appCss).toMatch(
+      /\.playdate-dialog \.btn-primary \{[\s\S]*?background: var\(--color-primary\);[\s\S]*?color: var\(--color-primary-content\);/,
+    );
+  });
 });

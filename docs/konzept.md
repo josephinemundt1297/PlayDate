@@ -1,5 +1,13 @@
 # PlayDate – Produktkonzept
 
+> **Lernkontext:** PlayDate ist mein Trainingsprojekt im React-Modul meiner einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklerin. Das Konzept beschreibt eine simulierte Produktidee und ist keine Freigabe für echte Kinderdaten.
+
+## 0. Ziel des Trainingsprojekts
+
+Das Projekt verbindet die Lerninhalte des React-Moduls mit einer größeren, realitätsnahen Frontend-Aufgabe. Im Mittelpunkt stehen Komponenten, Props, State, Hooks, Context, Routing, Formulare, TypeScript, Tests und responsive Benutzeroberflächen. Produkt-, Datenschutz- und Sicherheitsfragen werden als Konzeptübung betrachtet, damit technische Entscheidungen nicht isoliert von ihren Auswirkungen getroffen werden.
+
+Backend, Datenbank, produktiver Betrieb und echte Rechtsfreigaben sind nicht Teil des abgeschlossenen React-Modul-Umfangs. Die konkreten Lernnachweise stehen in [`lernNachweis.md`](lernNachweis.md).
+
 ## 1. Die Idee
 
 PlayDate ist eine private Organisations-App für Eltern und Sorgeberechtigte. Sie hilft dabei, Spieletreffen für Kinder unkompliziert zu planen, mit anderen Familien abzustimmen und zuverlässig im Blick zu behalten.
@@ -166,7 +174,7 @@ Für eine spätere Version ist ein geschützter Bereich pro Treffen vorgesehen:
 | Familien | eigene Kinder, Geburtstage und Verbindungen |
 | Einstellungen | Darstellung, Installation, Datenschutz und Konto |
 
-Die mobile Navigation enthält Start, Kalender, neue PlayDates, Familien, Fotos und Einstellungen. Die technische Datenschutzübersicht ist über Hinweise und Einstellungen erreichbar.
+Die mobile Navigation enthält Start, Kalender, den mittigen Button für neue PlayDates, Familien und Fotos. Einstellungen, Download, Darstellung und Clerk-Konto liegen platzsparend in einem aufklappbaren Menü oben rechts. Die technische Datenschutzübersicht ist über Hinweise und Einstellungen erreichbar.
 
 ## 9. MVP
 
@@ -218,6 +226,8 @@ PlayDate verarbeitet besonders schützenswerte Informationen über Kinder. Desha
 
 Vor einem Produktivstart sind Rechtsgrundlagen, Auftragsverarbeitungsverträge, Drittlandtransfers und eine mögliche Datenschutz-Folgenabschätzung fachkundig zu prüfen.
 
+Der Übungsstand für diese Entscheidungen ist in [`phase1Datenschutz.md`](phase1Datenschutz.md) dokumentiert. Für den simulierten MVP sind Konten nur für Erwachsene vorgesehen; Fotos, Kommentare, öffentliche Vermittlung und das Teilen des Geburtsjahres bleiben außerhalb des MVP.
+
 ## 11. Barrierefreiheitskonzept
 
 PlayDate strebt WCAG 2.2 AA an. Die Qualität wird nicht nur automatisiert, sondern auch manuell geprüft.
@@ -252,9 +262,18 @@ Für den produktiven Betrieb wird zusätzlich benötigt:
 
 `localStorage` ist nur für den aktuellen Prototyp geeignet und darf nicht die produktive Hauptspeicherung privater Daten übernehmen.
 
-## 13. Erfolgskriterien
+## 13. Lern- und Projekterfolg
 
-Der Produkterfolg soll nicht an möglichst vielen gespeicherten Kinderdaten gemessen werden. Sinnvolle Kennzahlen sind:
+Im React-Modul wird der Erfolg zuerst daran gemessen, ob die Lernziele verständlich und überprüfbar umgesetzt sind:
+
+- nachvollziehbare Komponenten- und Datenstruktur
+- funktionierende Formulare, State-Updates und Routennavigation
+- wiederverwendbare Hooks und Context ohne unnötige Komplexität
+- mobile und tastaturbedienbare Kernabläufe
+- automatisierte Tests für zentrale Logik und Fehlerfälle
+- verständliche Dokumentation der Entscheidungen und Grenzen
+
+Für eine rein gedachte spätere Produktphase wären zusätzlich folgende Kennzahlen sinnvoll:
 
 - Anteil erfolgreich abgeschlossener PlayDate-Erstellungen
 - benötigte Zeit bis zum gespeicherten ersten PlayDate
@@ -301,6 +320,6 @@ Der vorhandene Frontend-Prototyp bildet bereits wesentliche Teile des Konzepts a
 - mobile PWA
 - Atomic-Design-Struktur und erste automatisierte Tests
 
-Die lokale Prüfkette aus Oxlint, 45 Vitest-Tests, TypeScript und Vite-Build läuft ohne Fehler. Eine Playwright-Strecke mit 40 Desktop-, Mobil-, Responsive- und PWA-Szenarien ist eingerichtet; reale Mehrbrowser- und Geräteläufe stehen noch aus. Der aktuelle Auditstand wird in [`phasenPlan.md`](./phasenPlan.md) gepflegt.
+Die lokale Prüfkette aus Oxlint, 58 Vitest-Tests, TypeScript und Vite-Build läuft ohne Fehler. Eine Playwright-Strecke mit 40 Desktop-, Mobil-, Responsive- und PWA-Szenarien ist eingerichtet; reale Mehrbrowser- und Geräteläufe stehen noch aus. Der aktuelle Auditstand wird in [`phasenPlan.md`](phasenPlan.md) gepflegt.
 
 Noch nicht produktiv umgesetzt sind insbesondere ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos und eine dauerhafte Kalendersynchronisation.

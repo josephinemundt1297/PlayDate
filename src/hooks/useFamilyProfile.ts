@@ -2,10 +2,13 @@ import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import {
   emptyFamilyProfile,
+  birthdaysFromConnections,
   type childProfile,
   type familyProfile,
   type sharedBirthday,
 } from "../domain/family";
+import { createLocalRepository } from "../data/localRepository";
+import { readFamilyConnections } from "./useFamilyConnections";
 
 const keyFor = (userId: string) => `playDate.family.${userId}`;
 const connectionsKey = (userId: string) =>
@@ -15,16 +18,14 @@ const legacyConnectionsKey = (userId: string) =>
   `playpal.shared-birthdays.${userId}`;
 // Alte Profile hatten nur Namen als Text. Beim Lesen bauen wir daraus automatisch das neue Format.
 export function readFamilyProfile(userId: string): familyProfile {
-  const value =
-    localStorage.getItem(keyFor(userId)) ??
-    localStorage.getItem(legacyKeyFor(userId));
-  if (!value) return emptyFamilyProfile;
-  if (!localStorage.getItem(keyFor(userId))) {
-    localStorage.setItem(keyFor(userId), value);
-  }
-  const parsed = JSON.parse(value) as
+  const parsed = createLocalRepository<
     | familyProfile
-    | { familyName: string; children: string[] };
+    | { familyName: string; children: string[] }
+  >({
+    key: keyFor(userId),
+    legacyKeys: [legacyKeyFor(userId)],
+    fallback: emptyFamilyProfile,
+  }).read();
   const children: childProfile[] = parsed.children.map((child) =>
     typeof child === "string"
       ? {
@@ -35,17 +36,19 @@ export function readFamilyProfile(userId: string): familyProfile {
         }
       : child,
   );
-  return { ...parsed, children };
+  return {
+    ...parsed,
+    children,
+    caregivers: "caregivers" in parsed ? parsed.caregivers ?? [] : [],
+  };
 }
 // Hier landen später die freigegebenen Geburtstage aus echten Familienverbindungen.
 export function readSharedBirthdays(userId: string): sharedBirthday[] {
-  const value =
-    localStorage.getItem(connectionsKey(userId)) ??
-    localStorage.getItem(legacyConnectionsKey(userId));
-  if (value && !localStorage.getItem(connectionsKey(userId))) {
-    localStorage.setItem(connectionsKey(userId), value);
-  }
-  return value ? JSON.parse(value) : [];
+  return createLocalRepository<sharedBirthday[]>({
+    key: connectionsKey(userId),
+    legacyKeys: [legacyConnectionsKey(userId)],
+    fallback: [],
+  }).read();
 }
 export function useFamilyProfile() {
   const { user } = useUser();
@@ -55,7 +58,15 @@ export function useFamilyProfile() {
   );
   const save = (next: familyProfile) => {
     setProfile(next);
-    localStorage.setItem(keyFor(user.id), JSON.stringify(next));
+    createLocalRepository({
+      key: keyFor(user.id),
+      legacyKeys: [legacyKeyFor(user.id)],
+      fallback: emptyFamilyProfile,
+    }).write(next);
   };
-  return { profile, save, sharedBirthdays: readSharedBirthdays(user.id) };
+  const sharedBirthdays = [
+    ...readSharedBirthdays(user.id),
+    ...birthdaysFromConnections(readFamilyConnections(user.id)),
+  ];
+  return { profile, save, sharedBirthdays };
 }

@@ -4,7 +4,7 @@ Diese Datei gilt für das gesamte Repository. Sie richtet sich an Coding-Agents 
 
 ## Projektziel und aktueller Stand
 
-PlayDate ist eine deutschsprachige, mobile-first React-App zur privaten Planung von Spieletreffen zwischen bereits bekannten Familien.
+PlayDate ist ein deutschsprachiges React-Trainingsprojekt im Rahmen einer einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklung. Es dient als Lern- und Portfolio-Nachweis für das React-Modul und zeigt eine mobile-first App zur privaten Planung von Spieletreffen.
 
 Der aktuelle Stand ist ein Frontend-Prototyp:
 
@@ -13,11 +13,22 @@ Der aktuelle Stand ist ein Frontend-Prototyp:
 - Monatskalender mit Detail-Dialog, Kalenderexport, Google-Kalender-Link, Web Share, WhatsApp-Link, technische Datenschutzseite, Foto-Konzeptseite, Themes und PWA sind vorhanden.
 - Ein produktives Backend, echte Familienverbindungen, gemeinsame Einladungsantworten, serverseitige Erinnerungen, Kommentare, Foto-Uploads und bidirektionale Kalendersynchronisation fehlen noch.
 
-Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich vollständig DSGVO-konform ist.
+Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich vollständig DSGVO-konform ist. Verwende keine echten personenbezogenen Daten. Rechtliche Checklisten gelten nur als Übungsunterlagen und müssen vor einem echten Betrieb neu fachkundig geprüft werden.
+
+Für die aktuellen Lernphasen ist „React-Simulation, lokal zuerst“ festgelegt. Neue Funktionen dürfen lokale Zustände und Repository-Schnittstellen üben, aber niemals als echte API, Verschlüsselung, Mehrbenutzersynchronisation oder produktive Löschung bezeichnet werden.
+
+## Lernorientierung
+
+- Bevorzuge Lösungen, an denen React-Grundlagen und Datenflüsse gut nachvollziehbar bleiben.
+- Erkläre bei größeren Änderungen, welches Lernziel damit geübt oder nachgewiesen wird.
+- Verstecke verständliche React-Logik nicht hinter unnötigen Abstraktionen oder Magie.
+- Unterscheide klar zwischen React-Trainingsumfang und späterem Backend-/Produktionsumfang.
+- Pflege `docs/lernNachweis.md`, wenn sich der belegte Lernstand von Phase 0 oder 1 ändert.
+- Formuliere Dokumentation als persönliche Projekt- und Lernleistung, nicht als offizielle Aussage oder Bewertung des DCI.
 
 ## Vor jeder Änderung
 
-1. Lies `README.md`, `konzept.md`, `speck.md` und die betroffene Phase in `phasenPlan.md`.
+1. Lies `README.md`, `docs/konzept.md`, `docs/speck.md` und die betroffene Phase in `docs/phasenPlan.md`.
 2. Prüfe `git status`, damit fremde oder unfertige Änderungen erhalten bleiben.
 3. Suche zuerst nach bestehenden Komponenten, Hooks und Typen, bevor du etwas Neues anlegst.
 4. Kläre bei Kinderdaten immer Sichtbarkeit, Zweck, Berechtigung und Löschung mit.
@@ -81,6 +92,7 @@ Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich
 ## A11Y und mobile Bedienung
 
 - Strebe WCAG 2.2 AA an.
+- Verwende für Abstände, Größen, Radien und Schriftbezüge möglichst `rem`. Pixel sind nur für feine 1-px-Linien, technisch feste Media-Query-Grenzen und begründete gerätespezifische Tests vorgesehen.
 - Verwende semantisches HTML und verständliche Labels.
 - Jeder Ablauf muss per Tastatur bedienbar sein.
 - Fokuszustände müssen sichtbar bleiben.
@@ -105,6 +117,7 @@ Das umfasst Oxlint, Vitest, TypeScript und den Vite-Produktions-Build.
 Für Browserabläufe zusätzlich `npm run test:e2e` ausführen. Angemeldete Abläufe benötigen einen sicheren Clerk-Testlogin über `E2E_STORAGE_STATE`; diese Datei darf nie committed werden.
 
 - Ergänze Tests für neue Logik und behobene Fehler.
+- Der Test `remUsage.test.ts` schützt die skalierbaren CSS-Maße. Neue Pixelwerte benötigen eine nachvollziehbare Ausnahme.
 - Tests dürfen keine echten personenbezogenen Daten enthalten.
 - Prüfe Datums- und Kalenderlogik mit festen Testwerten und relevanten Zeitzonen.
 - Teste sowohl erfolgreiche Abläufe als auch Fehler- und Berechtigungsfälle.
@@ -114,9 +127,12 @@ Für Browserabläufe zusätzlich `npm run test:e2e` ausführen. Angemeldete Abl�
 ## Dokumentation aktuell halten
 
 - `README.md`: tatsächliche Einrichtung, Funktionen, Grenzen und Befehle
-- `konzept.md`: Produktidee, Zielgruppe, MVP und fachliche Leitplanken
-- `speck.md`: detaillierte Anforderungen und Abnahmekriterien
-- `phasenPlan.md`: Reihenfolge, Statuscheckliste, Risiken und Auditnachweise
+- `docs/README.md`: Einstiegspunkt für alle ausführlichen Projektunterlagen
+- `docs/lernNachweis.md`: Lernziele, Nachweise und Reflexion für das React-Modul
+- `docs/konzept.md`: Produktidee, Zielgruppe, MVP und fachliche Leitplanken
+- `docs/speck.md`: detaillierte Anforderungen und Abnahmekriterien
+- `docs/phasenPlan.md`: Reihenfolge, Statuscheckliste, Risiken und Auditnachweise
+- `docs/phase1Datenschutz.md`: Übungskonzept für Rollen, Datenschutz und Bedrohungen
 
 Wenn eine Änderung den dokumentierten Status beeinflusst, aktualisiere die passenden Dateien im selben Commit. Ein sichtbarer Platzhalter zählt nicht als fertige produktive Funktion.
 

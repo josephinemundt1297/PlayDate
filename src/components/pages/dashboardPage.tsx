@@ -11,7 +11,7 @@ import { usePlayDates } from "../../hooks/usePlayDates";
 import { QuickAction } from "../molecules/quickAction";
 import { PlayDateGrid } from "../organisms/playDateGrid";
 import { PrivacyNote } from "../molecules/privacyNote";
-import type { playDate } from "../../domain/playdates";
+import { addPlayDateComment, cancelPlayDate, type playDate } from "../../domain/playdates";
 import { googleCalendarUrl } from "../../utils/calendar";
 
 // Die Dashboard-Page setzt mehrere kleinere Atomic-Bausteine zur fertigen Übersicht zusammen.
@@ -29,8 +29,18 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
     setTimeout(() => setToast(""), 3000);
   };
   const remove = (id: number) => {
-    if (confirm("Möchtest du dieses PlayDate wirklich löschen?"))
-      save(dates.filter((d) => d.id !== id));
+    const selected = dates.find((date) => date.id === id);
+    if (!selected) return;
+
+    if (selected.status === "Bestätigt") {
+      if (!confirm("Bestätigtes PlayDate wirklich absagen? Der Termin bleibt im Verlauf sichtbar.")) return;
+      save(dates.map((date) => date.id === id ? cancelPlayDate(date) : date));
+      announce("PlayDate wurde abgesagt");
+      return;
+    }
+
+    if (confirm("Möchtest du diese offene PlayDate-Anfrage wirklich löschen?"))
+      save(dates.filter((date) => date.id !== id));
   };
   const invite = (date: playDate) => {
     window.open(
@@ -39,6 +49,10 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
       "noopener,noreferrer",
     );
     announce("WhatsApp-Einladung geöffnet");
+  };
+  const addComment = (id: number, text: string) => {
+    save(dates.map((date) => date.id === id ? addPlayDateComment(date, text) : date));
+    announce("Kommentar lokal gespeichert");
   };
   return (
     <div className="page-wrap">
@@ -109,6 +123,7 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
         onCalendar={(date) =>
           window.open(googleCalendarUrl(date), "_blank", "noopener,noreferrer")
         }
+        onComment={addComment}
       />
       <PrivacyNote />
       <div className="toast" role="status" aria-live="polite">

@@ -8,6 +8,8 @@ import {
 } from "../../hooks/usePlayDates";
 import { readFamilyProfile } from "../../hooks/useFamilyProfile";
 import type { playDate } from "../../domain/playdates";
+import { initialPlayDates } from "../../domain/playdates";
+import { createLocalRepository } from "../../data/localRepository";
 import { validatePlayDate, type validationErrors } from "../../utils/validation";
 
 // Das Formular kann beides: einen neuen Termin anlegen oder einen vorhandenen bearbeiten.
@@ -30,6 +32,11 @@ export function PlayDateForm({ editId }: { editId?: number }) {
       bring: "",
       status: "Ausstehend",
       color: "mint",
+      reminder: "24 Stunden vorher",
+      emailReminder: false,
+      bringOwner: "Gemeinsam",
+      activity: [],
+      comments: [],
     },
   );
   const [errors, setErrors] = useState<validationErrors>({});
@@ -41,11 +48,28 @@ export function PlayDateForm({ editId }: { editId?: number }) {
     const validation = validatePlayDate(form, family.children.map((child) => child.name), Boolean(existing));
     setErrors(validation);
     if (Object.keys(validation).length) return;
-    const cleaned = { ...form, title: form.title.trim(), friend: form.friend.trim(), location: form.location.trim(), bring: form.bring.trim() };
+    const cleaned = {
+      ...form,
+      title: form.title.trim(),
+      friend: form.friend.trim(),
+      location: form.location.trim(),
+      bring: form.bring.trim(),
+      activity: [
+        ...(form.activity ?? []),
+        {
+          id: crypto.randomUUID(),
+          message: existing ? "PlayDate bearbeitet" : "PlayDate erstellt",
+          createdAt: new Date().toISOString(),
+        },
+      ],
+    };
     const next = existing
       ? dates.map((date) => (date.id === existing.id ? cleaned : date))
       : [...dates, cleaned];
-    localStorage.setItem(playDatesStorageKey(user.id), JSON.stringify(next));
+    createLocalRepository({
+      key: playDatesStorageKey(user.id),
+      fallback: initialPlayDates,
+    }).write(next);
     navigate({ to: "/" });
   };
   return (
@@ -62,6 +86,23 @@ export function PlayDateForm({ editId }: { editId?: number }) {
           onChange={(event) => update("title", event.target.value)}
           placeholder="z. B. Abenteuer im Stadtpark"
         />
+      </label>
+      <label>
+        Zuständig für Mitbringsel
+        <select
+          className="select select-bordered w-full"
+          value={form.bringOwner ?? "Gemeinsam"}
+          onChange={(event) =>
+            setForm((current) => ({
+              ...current,
+              bringOwner: event.target.value as playDate["bringOwner"],
+            }))
+          }
+        >
+          <option>Wir</option>
+          <option>Andere Familie</option>
+          <option>Gemeinsam</option>
+        </select>
       </label>
       <label>
         Dein Kind
@@ -157,12 +198,25 @@ export function PlayDateForm({ editId }: { editId?: number }) {
           <input
             className="checkbox checkbox-primary"
             type="checkbox"
-            defaultChecked
+            checked={form.reminder === "24 Stunden vorher"}
+            onChange={(event) =>
+              setForm((current) => ({
+                ...current,
+                reminder: event.target.checked ? "24 Stunden vorher" : "Keine",
+              }))
+            }
           />{" "}
           24 Stunden vorher erinnern
         </label>
         <label className="check-row">
-          <input className="checkbox checkbox-primary" type="checkbox" /> Auch
+          <input
+            className="checkbox checkbox-primary"
+            type="checkbox"
+            checked={Boolean(form.emailReminder)}
+            onChange={(event) =>
+              setForm((current) => ({ ...current, emailReminder: event.target.checked }))
+            }
+          /> Auch
           per E-Mail erinnern
         </label>
       </fieldset>

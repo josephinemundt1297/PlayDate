@@ -1,12 +1,20 @@
 # PlayDate – Projektspezifikation
 
+> **Lernkontext:** Diese Spezifikation gehört zu meinem Trainingsprojekt im React-Modul der einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklerin. Erfundene Demo-Daten sind erlaubt, echte personenbezogene Daten nicht.
+
 ## 1. Kurzbeschreibung
 
 PlayDate ist eine mobile-first Web-App, mit der Eltern private Spieletreffen für ihre Kinder planen, verwalten und mit anderen Familien abstimmen können. Termine und Familiendaten sind ausschließlich nach einer Anmeldung sichtbar.
 
 Der aktuelle Stand ist ein Frontend-Prototyp. Funktionen, die ein Backend oder externe Freigaben benötigen, sind als Zielanforderungen beschrieben und klar vom bereits umgesetzten Stand getrennt.
 
-**Dokumentationsstand: 17. Juli 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 45 Vitest-Tests, TypeScript und Produktions-Build ohne Fehler. 40 Playwright-Szenarien sind eingerichtet, aber noch nicht auf realen Browserinstallationen und physischen Geräten nachgewiesen. Er besitzt noch kein produktives Backend und ist nicht für echte Kinderdaten freigegeben.
+Der bewertete Trainingsumfang umfasst Phase 0 und 1. React, TypeScript, Komponentenarchitektur, Routing, Formulare, Hooks, Context, Frontend-Persistenz, Responsive Design und Tests sind praktische Lernnachweise. Backend- und Produktionsanforderungen dienen nur als späterer Ausblick.
+
+**Dokumentationsstand: 17. Juli 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 58 Vitest-Tests, TypeScript und Produktions-Build ohne Fehler. 40 Playwright-Szenarien sind eingerichtet, aber noch nicht auf realen Browserinstallationen und physischen Geräten nachgewiesen. Er besitzt bewusst kein produktives Backend und ist nicht für echte Kinderdaten freigegeben.
+
+Für die Phasen 2 bis 9 wurde „React-Simulation, lokal zuerst“ gewählt. Repository, Verbindungen, Erinnerungen, Kommentare, Aktivitätsverlauf sowie Export und Löschung werden lokal geübt. Serverseitige Sicherheit, echte Synchronisation und Produktivbetrieb bleiben außerhalb dieser Simulation.
+
+[`phase1Datenschutz.md`](phase1Datenschutz.md) enthält den für die Übung freigegebenen MVP-Entwurf, die Rollenmatrix, das Dateninventar, Übungs-Löschfristen, die Anbieterübersicht, Pflichttext-Muster, eine DSFA-Vorprüfung und das Bedrohungsmodell. Eine echte Rechts- oder Produktfreigabe ist damit ausdrücklich nicht verbunden.
 
 ## 2. Produktziele
 
@@ -204,6 +212,7 @@ PlayDate soll mindestens WCAG 2.2 auf Konformitätsstufe AA anstreben.
 - fast schwarzer Dark Mode mit gedämpftem Blau als Haupt- und Grün als positiver Statusfarbe
 - stark gerundete DaisyUI-Komponenten mit ausgewogenen Abständen
 - Touch-Ziele von möglichst mindestens 44 × 44 CSS-Pixeln
+- skalierbare Abstände, Größen und Radien grundsätzlich in `rem`; Pixel nur für feine Linien und feste Breakpoints
 - Inhalte dürfen nicht ausschließlich über Farbe erklärt werden
 - Unterstützung für `prefers-reduced-motion`
 - sinnvolle Statusmeldungen über `aria-live`
@@ -228,9 +237,9 @@ Da Daten von Kindern verarbeitet werden, gelten besonders hohe Anforderungen. Di
 
 Geheimnisse dürfen niemals über `VITE_`-Umgebungsvariablen an den Browser ausgeliefert oder in Git eingecheckt werden.
 
-## 11. Abnahmekriterien für den Prototyp
+## 11. Abnahmekriterien für das React-Trainingsprojekt
 
-Der aktuelle Prototyp gilt als technisch abgenommen, wenn:
+Phase 0 des Trainingsprojekts gilt als technisch abgeschlossen, weil:
 
 1. ohne Anmeldung keine PlayDate- oder Familiendaten sichtbar sind;
 2. ein angemeldeter Nutzer Kinder mit Geburtstag verwalten kann;
@@ -243,7 +252,9 @@ Der aktuelle Prototyp gilt als technisch abgenommen, wenn:
 9. `npm run check` ohne Fehler durchläuft;
 10. die Anwendung auf kleinen Displays ohne horizontales Scrollen nutzbar ist.
 
-## 12. Noch offene Produktionsanforderungen
+Phase 1 gilt als konzeptionell abgeschlossen, wenn Zielgruppe, MVP, Rollen, Datenarten, Datenschutzannahmen und Bedrohungen nachvollziehbar dokumentiert sind. Der Nachweis liegt in [`phase1Datenschutz.md`](phase1Datenschutz.md).
+
+## 12. Mögliche Vertiefungen außerhalb des React-Moduls
 
 - geschütztes Backend und relationale Datenbank
 - echte Familienverbindungen und Einladungsstatus

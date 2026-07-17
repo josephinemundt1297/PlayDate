@@ -1,8 +1,10 @@
 # PlayDate – Phasenplan
 
+> **Lernkontext:** PlayDate ist mein Trainingsprojekt im React-Modul der einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklerin. Ein Haken bedeutet „als Lernziel umgesetzt oder als Übung dokumentiert“, nicht „produktiv oder rechtlich freigegeben“.
+
 ## 1. Zweck des Plans
 
-Dieser Phasenplan überführt das Produktkonzept von PlayDate in eine realistische Reihenfolge für die weitere Entwicklung. Ausgangspunkt ist der vorhandene Frontend-Prototyp. Ziel ist ein sicherer, barrierearmer und datenschutzbewusster MVP für einen begrenzten Pilotbetrieb.
+Dieser Phasenplan ordnet meinen Lernfortschritt und mögliche spätere Erweiterungen. Phase 0 und 1 bilden den abgeschlossenen Kern des React-Trainingsprojekts. Ab Phase 2 beginnt ein optionaler Full-Stack- und Produktionsausblick, der nicht zur abgeschlossenen React-Modul-Leistung gehört.
 
 Die Zeitangaben sind grobe Richtwerte für ein kleines Team. Sie sind keine festen Veröffentlichungstermine. Datenschutz, externe Anbieter, App-Freigaben und Rückmeldungen aus Nutzertests können den Zeitbedarf verändern.
 
@@ -10,8 +12,8 @@ Die Zeitangaben sind grobe Richtwerte für ein kleines Team. Sie sind keine fest
 
 | Phase | Schwerpunkt                          | Richtwert   | Ergebnis                                          |
 | ----- | ------------------------------------ | ----------- | ------------------------------------------------- |
-| 0     | Prototyp stabilisieren               | 1–2 Wochen  | belastbare technische Ausgangsbasis               |
-| 1     | Produkt- und Datenschutzgrundlage    | 1–2 Wochen  | abgestimmter MVP und rechtliche Leitplanken       |
+| 0     | React-Prototyp und technische Basis  | abgeschlossen | nachweisbare React-Lernleistung                  |
+| 1     | Produkt- und Datenschutzübung        | abgeschlossen | dokumentierte fachliche Leitplanken              |
 | 2     | Backend und Datenmodell              | 2–4 Wochen  | sichere serverseitige Speicherung                 |
 | 3     | Familien und Verbindungen            | 2–3 Wochen  | echte private Familienbeziehungen                 |
 | 4     | PlayDates und Einladungen            | 2–4 Wochen  | vollständiger gemeinsamer Planungsablauf          |
@@ -21,11 +23,11 @@ Die Zeitangaben sind grobe Richtwerte für ein kleines Team. Sie sind keine fest
 | 8     | Produktionsstart                     | 1–2 Wochen  | kontrollierter öffentlicher Betrieb               |
 | 9     | Ausbau nach dem MVP                  | fortlaufend | Kommentare, Fotos und weitere Komfortfunktionen   |
 
-Mehrere Arbeitspakete können parallel laufen. Eine Phase gilt aber erst als abgeschlossen, wenn ihre Abnahmekriterien erfüllt sind.
+Phasen 0 und 1 sind anhand der dokumentierten Nachweise abgeschlossen. Die folgenden Phasen sind optionale Ideen für eine spätere Vertiefung und keine offenen Pflichtaufgaben des React-Moduls.
 
 ## Zentrale Umsetzungscheckliste
 
-Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, dass der Punkt im vorhandenen Prototyp umgesetzt ist. Offene Punkte benötigen noch Entwicklung, fachliche Klärung oder eine Prüfung für den Produktivbetrieb.
+Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, dass ein technischer Punkt umgesetzt oder ein Konzeptpunkt für die Übung nachvollziehbar dokumentiert ist. Offene technische Punkte benötigen noch Entwicklung. Vor einem echten Betrieb beginnt eine separate Rechts-, Anbieter- und Betriebsfreigabe unabhängig von diesen Übungshaken neu.
 
 ### Phase 0 – Prototyp und technische Basis
 
@@ -47,6 +49,7 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] mobile-first Oberfläche umgesetzt
 - [x] mobile PlayDate-Liste bei 320 CSS-Pixeln gegen horizontales Überlaufen abgesichert
 - [x] Tablet- und kleine Laptopbreiten bis 1024 CSS-Pixel mit kompakter Navigation abgesichert
+- [x] mobile Navigation auf fünf gleich breite Plätze mit mittigem Erstellen-Button reduziert; Einstellungen und Konto in das Header-Menü verschoben
 - [x] feste Mindestbreite des Seitenkörpers entfernt und Engstellen bis 240 CSS-Pixel abgesichert
 - [x] Kalenderaktionen auf sehr schmalen Ansichten gestapelt
 - [x] Datenschutzlink im mobilen Layout wieder sichtbar gemacht
@@ -61,11 +64,13 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Formularvalidierung für alle dokumentierten Randfälle erweitern
 - [x] Tests für Auth-Grenze, Familienseite und PlayDate-Formular ergänzen
 - [x] vollständige End-to-End-Teststrecke einrichten
-- [ ] PWA-Updates auf mehreren Browsern und Geräten prüfen
+- [ ] optionaler Zusatznachweis: PWA-Updates auf mehreren Browsern und Geräten prüfen
 - [x] Playwright-Prüfung für Service-Worker-Registrierung und Cache-Version eingerichtet
 - [x] Chromium, Firefox, WebKit, Pixel 7 und iPhone 14 als Projekte konfiguriert
-- [ ] Browserläufe auf einer Umgebung mit installierten Playwright-Browsern ausführen
-- [ ] PWA-Update zusätzlich auf echten Android- und iOS-Geräten prüfen
+- [ ] optionaler Zusatznachweis: Browserläufe mit installierten Playwright-Browsern ausführen
+- [ ] optionaler Zusatznachweis: PWA-Update auf echten Android- und iOS-Geräten prüfen
+
+**Bewertung Phase 0:** für das React-Modul abgeschlossen. Die drei offenen PWA-/Browserpunkte sind freiwillige Zusatznachweise, die eine Umgebung mit Browser-Binaries beziehungsweise echte Geräte benötigen.
 
 ### Phase 1 – Produkt und Datenschutz
 
@@ -73,21 +78,29 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] MVP und spätere Funktionen im Konzept voneinander getrennt
 - [x] grundlegende DSGVO- und A11Y-Anforderungen dokumentiert
 - [x] öffentliche Kinderprofile und öffentliche Vermittlung als Nicht-Ziele festgelegt
-- [ ] MVP-Scope fachlich verbindlich freigeben
-- [ ] Rollen- und Berechtigungsmatrix erstellen
-- [ ] Rechtsgrundlagen je Datenart rechtlich prüfen
-- [ ] Einwilligungsabläufe fachlich freigeben
-- [ ] Speicher- und Löschfristen verbindlich festlegen
-- [ ] Auftragsverarbeiter und Drittlandtransfers prüfen
-- [ ] Datenschutzinformation und Impressum erstellen
-- [ ] Notwendigkeit einer Datenschutz-Folgenabschätzung prüfen
-- [ ] Bedrohungsmodell dokumentieren
+- [x] MVP-Scope als verbindliche Übungsgrundlage festlegen
+- [x] Rollen- und Berechtigungsmatrix erstellen
+- [x] mögliche Rechtsgrundlagen je Datenart als Übung bewerten
+- [x] Einwilligungsabläufe für das Übungskonzept freigeben
+- [x] Speicher- und Löschfristen für das Übungskonzept festlegen
+- [x] Auftragsverarbeiter und Drittlandtransfers als Übung prüfen
+- [x] Entwürfe für Datenschutzinformation und Impressum erstellen
+- [x] Datenschutzinformation und Impressum als klar bezeichnete Übungsmuster einordnen
+- [x] technische Vorprüfung zur Datenschutz-Folgenabschätzung dokumentieren
+- [x] DSFA-Entscheidung für das Übungsprojekt dokumentieren
+- [x] Bedrohungsmodell dokumentieren
+
+Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die bei einer echten Veröffentlichung neu nötigen Prüfungen stehen in [`phase1Datenschutz.md`](phase1Datenschutz.md).
+
+**Bewertung Phase 1:** als Produkt-, Datenschutz- und Sicherheitsübung im React-Modul vollständig abgeschlossen.
 
 ### Phase 2 – Backend und Datenmodell
 
 - [x] Datenmodelle für den Frontend-Prototyp definiert
 - [x] lokale Prototyp-Daten nach Clerk User-ID getrennt
 - [x] Migration alter lokaler PlayDate-Schlüssel eingebaut
+- [x] lokale Repository-Schicht als API-Vorbereitung ergänzt
+- [x] beschädigte Browserdaten mit sicheren Startwerten abgefangen
 - [ ] Backend-Technologie und EU-Hosting auswählen
 - [ ] relationale Datenbank einrichten
 - [ ] produktives Datenmodell mit stabilen IDs erstellen
@@ -107,6 +120,9 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Freigabeeinstellung für Geburtstage vorhanden
 - [x] eigenes Kind im PlayDate-Formular auswählbar
 - [x] Oberfläche für freigegebene Geburtstage vorbereitet
+- [x] Verbindungsanfragen lokal als React-Zustände simulieren
+- [x] Demo-Verbindungen annehmen, blockieren und entfernen
+- [x] Geburtstage nur aus angenommenen Demo-Verbindungen übernehmen
 - [ ] Familienprofile über die API speichern
 - [ ] echte private Familienverbindungen implementieren
 - [ ] Verbindungsanfragen annehmen, ablehnen und widerrufen
@@ -125,6 +141,9 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Treffpunkt und Mitbringsel erfassen
 - [x] Status „Bestätigt“ und „Ausstehend“ anzeigen
 - [x] Teilen über Web Share beziehungsweise WhatsApp vorbereitet
+- [x] bestätigte PlayDates lokal absagen und im Verlauf behalten
+- [x] Mitbringsel mit lokaler Zuständigkeit versehen
+- [x] lokalen Aktivitätsverlauf für Erstellen, Bearbeiten, Absage und Kommentare ergänzen
 - [ ] PlayDates im Backend speichern
 - [ ] Teilnehmer über stabile IDs zuordnen
 - [ ] echte Einladung an verbundene Familien senden
@@ -144,6 +163,7 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Link zum Öffnen eines PlayDates in Google Kalender umgesetzt
 - [x] Kalenderfunktionen durch erste Tests abgesichert
 - [x] Erinnerungsoptionen im Formular dargestellt
+- [x] Erinnerungsoptionen im lokalen PlayDate-Modell speichern und bei Absage deaktivieren
 - [ ] `.ics`-Export mit mehreren Kalenderprogrammen prüfen
 - [ ] Zeitzonen und Sommerzeit umfassend testen
 - [ ] Erinnerungseinstellungen produktiv speichern
@@ -160,6 +180,8 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Datenschutzhinweis mit technischer Datenschutzseite verknüpft
 - [x] Foto-Menü und sichere technische Anforderungen sichtbar dokumentiert
 - [x] Secret Keys aus der Browserkonfiguration ausgeschlossen und dokumentiert
+- [x] lokale Trainingsdaten als verständliche JSON-Datei exportieren
+- [x] lokale Familien-, Verbindungs- und PlayDate-Daten gemeinsam löschen
 - [ ] serverseitige Autorisierung für jede private Ressource umsetzen
 - [ ] Einwilligungsübersicht und Widerruf umsetzen
 - [ ] Datenauskunft und Datenexport anbieten
@@ -178,15 +200,19 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] ausreichend große mobile Bedienelemente berücksichtigt
 - [x] reduzierte Animation über `prefers-reduced-motion` berücksichtigt
 - [x] Light und Dark Mode vorhanden
-- [ ] automatisierte axe-Tests einrichten
+- [x] automatisierte axe-Basisprüfungen für zentrale Sicherheitsseiten einrichten
 - [ ] alle Kernabläufe ausschließlich per Tastatur testen
 - [ ] manuelle Tests mit VoiceOver und NVDA durchführen
 - [x] zentrale Text- und Bedienkontraste für Light und Dark Mode gemessen und dokumentiert
+- [x] skalierbare CSS-Maße auf `rem` umgestellt und mit Regressionstest abgesichert
 - [ ] unterstützte mobile Geräte und Browser festlegen und testen
 - [ ] Pilotgruppe mit freiwilligen Testfamilien durchführen
 - [ ] kritische Ergebnisse aus dem Pilot beheben
 
 ### Phase 8 – Produktionsstart
+
+- [x] lokalen Release-Build und gemeinsame Prüfkette für das Trainingsprojekt eingerichtet
+- [x] Änderungen über GitHub-Branch und Draft Pull Request nachvollziehbar bereitgestellt
 
 - [ ] Produktionsumgebung und eigene Domain einrichten
 - [ ] Monitoring, Alarmierung und Fehlertracking aktivieren
@@ -198,9 +224,9 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 
 ### Phase 9 – Ausbau nach dem MVP
 
-- [ ] strukturierte Mitbringlisten mit Zuständigkeiten
-- [ ] Kommentare im geschützten PlayDate-Bereich
-- [ ] mehrere Sorgeberechtigte pro Familie
+- [x] Mitbringsel mit Zuständigkeiten lokal simulieren
+- [x] Kommentare im angemeldeten lokalen PlayDate-Bereich speichern
+- [x] mehrere Sorgeberechtigte pro Familie lokal simulieren
 - [ ] private Fotos mit geprüfter Einwilligung
 - [ ] bidirektionale Google- und Microsoft-Kalendersynchronisation
 - [ ] feinere Benachrichtigungseinstellungen
@@ -209,9 +235,12 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 
 Die Checkliste wird bei jeder abgeschlossenen Funktion aktualisiert. Ein Punkt wird erst abgehakt, wenn die Implementierung geprüft ist und die zugehörigen Abnahmekriterien erfüllt sind. Eine sichtbare Oberfläche ohne produktive Backend-Funktion bleibt deshalb als offener Punkt markiert.
 
+**Gewählte Trainingsarchitektur:** React-Simulation mit lokalem Betrieb. Alle zusätzlichen Haken in Phase 2 bis 9 belegen Frontend-Lernziele. Nicht abgehakte API-, Server-, Hosting-, Foto-, OAuth-, Rechts- und Gerätethemen sind bewusst keine Bestandteile des aktuellen React-Moduls.
+
 ## 3. Phase 0 – Prototyp stabilisieren
 
-**Status:** teilweise umgesetzt  
+**Status:** für das React-Trainingsprojekt abgeschlossen; freiwillige Geräteprüfung offen
+
 **Richtwert:** 1–2 Wochen
 
 ### Ziel
@@ -252,9 +281,11 @@ Ein reproduzierbar baubarer Frontend-Stand mit klarer Testbasis und dokumentiert
 - kritische Abläufe besitzen automatisierte Tests
 - keine privaten Beispieldaten erscheinen versehentlich bei neuen Nutzern
 - Fehler- und Leerzustände sind verständlich und per Tastatur erreichbar
-- aktuelle Browser auf Smartphone und Desktop wurden geprüft
+- responsive Zielbreiten wurden automatisiert beziehungsweise im Layout geprüft; reale Mehrbrowser- und Geräteläufe bleiben Zusatznachweise
 
 ## 4. Phase 1 – Produkt- und Datenschutzgrundlage
+
+**Status:** für das Trainingsprojekt abgeschlossen
 
 **Richtwert:** 1–2 Wochen  
 **Abhängigkeit:** kann parallel zu Phase 0 beginnen
@@ -276,6 +307,8 @@ Der MVP-Umfang, die Datenverarbeitung und die Verantwortlichkeiten werden vor de
 - Notwendigkeit einer Datenschutz-Folgenabschätzung fachkundig prüfen
 - Bedrohungsmodell für Einladungslinks und private Kinderdaten erstellen
 
+Der abgeschlossene Übungsstand mit MVP-Grenze, Berechtigungsmatrix, Dateninventar, Fristannahmen, Anbieterübersicht, Pflichttext-Mustern, DSFA-Vorprüfung und Bedrohungsmodell liegt in [`phase1Datenschutz.md`](phase1Datenschutz.md).
+
 ### Ergebnis
 
 Ein freigegebener MVP-Scope sowie ein dokumentiertes Datenschutz- und Berechtigungskonzept.
@@ -286,9 +319,9 @@ Ein freigegebener MVP-Scope sowie ein dokumentiertes Datenschutz- und Berechtigu
 - Rollen und erlaubte Aktionen sind als Berechtigungsmatrix dokumentiert
 - Einwilligungen sind getrennt, verständlich und widerrufbar geplant
 - Anbieter und Datenflüsse sind vollständig erfasst
-- offene rechtliche Risiken haben verantwortliche Personen und nächste Schritte
+- reale rechtliche Risiken sind klar vom abgeschlossenen Übungsumfang getrennt
 
-## 5. Phase 2 – Backend und Datenmodell
+## 5. Phase 2 – Backend und Datenmodell (optionale Full-Stack-Vertiefung)
 
 **Richtwert:** 2–4 Wochen  
 **Abhängigkeit:** Phase 1
@@ -593,10 +626,10 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 
 **Geprüfter Stand:** Frontend-Prototyp im lokalen Projektordner
 
-**Gesamtergebnis:** teilweise bestanden, noch keine Freigabe für Pilot- oder Produktivbetrieb
+**Gesamtergebnis:** Phase 0 und 1 als React-Trainingsprojekt bestanden; freiwillige Geräteprüfungen und spätere Full-Stack-Phasen offen; keine Freigabe für echte Daten oder Produktivbetrieb
 
 - [x] Oxlint ausgeführt
-- [x] alle 43 vorhandenen Vitest-Tests bestanden
+- [x] alle 58 vorhandenen Vitest-Tests bestanden
 - [x] 40 Playwright-Szenarien werden von der E2E-Konfiguration erkannt
 - [ ] Playwright-Szenarien in echten Browser-Engines ausführen
 - [x] TypeScript-Prüfung bestanden
@@ -613,7 +646,7 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 - [x] fremde URL-Schemas im Service Worker vom Cache ausgeschlossen
 - [x] Cache- und Registrierungs-Promises gegen unbehandelte Fehler abgesichert
 - [x] Service-Worker-Regeln durch Regressionstests geschützt
-- [ ] Testabdeckung für Authentifizierung, Formulare und vollständige Nutzerabläufe erweitern
+- [x] Testabdeckung für Authentifizierungsgrenze, Familienseite und PlayDate-Formular erweitert
 - [ ] Backend-, API- und Datenbank-Audit durchführen
 - [ ] formales Berechtigungs- und IDOR-Audit durchführen
 - [ ] vollständiges DSGVO-Audit mit fachkundiger rechtlicher Prüfung durchführen
@@ -624,13 +657,13 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 
 **Offene Feststellungen:**
 
-| ID      | Schweregrad | Feststellung                                                                                                          | Status                                |
-| ------- | ----------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| AUD-001 | Niedrig     | `themeContext.tsx` löste eine Fast-Refresh-Warnung aus, weil dieselbe Datei Komponenten und weitere Exporte enthielt. | behoben und mit Oxlint erneut geprüft |
-| AUD-002 | Niedrig     | `main.tsx` löste eine Fast-Refresh-Warnung zur Komponentenstruktur aus.                                               | behoben und mit Oxlint erneut geprüft |
-| AUD-003 | Hoch        | Das Projekt besitzt noch kein produktives Backend; private Daten liegen im Prototyp in `localStorage`.                | bekannt, Phase 2 geplant              |
-| AUD-004 | Hoch        | Serverseitige Autorisierungs-, IDOR- und Rollenprüfungen können ohne Backend noch nicht stattfinden.                  | bekannt, Phasen 2 bis 4 geplant       |
-| AUD-005 | Hoch        | Die rechtliche DSGVO-Prüfung für die Verarbeitung von Kinderdaten steht aus.                                          | bekannt, Phase 1 geplant              |
+| ID      | Schweregrad | Feststellung                                                                                                          | Status                                                                        |
+| ------- | ----------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| AUD-001 | Niedrig     | `themeContext.tsx` löste eine Fast-Refresh-Warnung aus, weil dieselbe Datei Komponenten und weitere Exporte enthielt. | behoben und mit Oxlint erneut geprüft                                         |
+| AUD-002 | Niedrig     | `main.tsx` löste eine Fast-Refresh-Warnung zur Komponentenstruktur aus.                                               | behoben und mit Oxlint erneut geprüft                                         |
+| AUD-003 | Hoch        | Das Projekt besitzt noch kein produktives Backend; private Daten liegen im Prototyp in `localStorage`.                | bekannt, Phase 2 geplant                                                      |
+| AUD-004 | Hoch        | Serverseitige Autorisierungs-, IDOR- und Rollenprüfungen können ohne Backend noch nicht stattfinden.                  | bekannt, Phasen 2 bis 4 geplant                                               |
+| AUD-005 | Hoch        | Eine echte rechtliche DSGVO-Prüfung ist für das Übungsprojekt nicht vorgesehen.                                      | Übungskonzept abgeschlossen; vor realem Betrieb neu zu öffnen                 |
 
 Die erfolgreichen Prüfungen belegen ausschließlich den aktuellen Frontend-Build und die vorhandene Testbasis. Sie sind keine Aussage darüber, dass die Anwendung bereits produktionsreif, vollständig barrierefrei oder rechtlich DSGVO-konform ist.
 
@@ -694,16 +727,16 @@ Die erfolgreichen Prüfungen belegen ausschließlich den aktuellen Frontend-Buil
 
 **Prüfungen und Nachweise:**
 
-- [ ] vollständiges Dateninventar erstellen
-- [ ] Datenflüsse vom Browser bis zu allen Anbietern dokumentieren
-- [ ] Zweck, Sichtbarkeit und Löschfrist je Datenfeld festhalten
+- [x] Dateninventar für den Übungsumfang erstellt
+- [x] bekannte und geplante Datenflüsse zu Anbietern dokumentiert
+- [x] Zweck, Sichtbarkeit und Übungs-Löschfrist je Datenart festgehalten
 - [ ] Einwilligungen mit Zeitstempel und Version nachweisen
 - [ ] Widerruf und Kontolöschung praktisch testen
 - [ ] Datenexport auf Vollständigkeit und Verständlichkeit prüfen
-- [ ] AV-Verträge und Transfermechanismen dokumentieren
-- [ ] Datenschutz-Folgenabschätzung fachkundig prüfen
+- [x] mögliche Auftragsverarbeiter und Transfermechanismen für die Übung dokumentiert
+- [x] DSFA-Vorprüfung und Übungsentscheidung dokumentiert
 
-Das Datenschutz-Audit benötigt vor dem Produktivstart eine fachkundige rechtliche Bewertung. Die technische Prüfung ersetzt keine Rechtsberatung.
+Die konzeptionellen Nachweise stehen in [`phase1Datenschutz.md`](phase1Datenschutz.md). Praktische Nachweise für Einwilligung, Widerruf, Löschung und Export bleiben offen, weil die zugehörigen Backend-Funktionen noch fehlen. Vor einem echten Produktivstart wäre unabhängig vom Übungsstatus eine fachkundige rechtliche Bewertung nötig.
 
 ### Audit 3 – Authentifizierung und Berechtigungen
 
@@ -891,7 +924,7 @@ Für jedes Audit werden mindestens Datum, geprüfte Version beziehungsweise Comm
 
 ## 15. Empfohlene Meilensteine
 
-### Meilenstein A – Technische Basis bereit
+### Meilenstein A – React-Trainingsbasis abgeschlossen
 
 Phasen 0 bis 2 abgeschlossen. Der Prototyp verwendet ein sicheres Backend.
 

@@ -9,6 +9,12 @@ describe("Service-Worker-Sicherheit", () => {
     expect(serviceWorker).toContain('url.protocol === "http:"');
     expect(serviceWorker).toContain('url.protocol === "https:"');
     expect(serviceWorker).toContain("url.origin === self.location.origin");
+    expect(serviceWorker).toContain('url.pathname.startsWith("/api/")');
+  });
+
+  it("respektiert private und nicht speicherbare Antworten", () => {
+    expect(serviceWorker).toMatch(/private\|no-store/i);
+    expect(serviceWorker).toContain("!forbidsCaching");
   });
 
   it("fängt Fehler beim Schreiben in den Cache ab", () => {
