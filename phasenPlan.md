@@ -39,6 +39,7 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Light Mode, Dark Mode und Systemmodus umgesetzt
 - [x] Grün-Blau-Farbwelt als bevorzugtes Theme umgesetzt
 - [x] zentrale Dark-Mode-Kontraste rechnerisch auf mindestens 4,5:1 geprüft
+- [x] zentrale Light-Mode-Textkontraste und UI-Grenzen nach WCAG 2.2 AA nachgemessen
 - [x] Tailwind CSS 4 und DaisyUI 5 eingebunden
 - [x] eigene DaisyUI-Themes für Light und Dark Mode erstellt
 - [x] zentrale Karten, Buttons, Formulare, Badges, Alerts und Navigation auf DaisyUI umgestellt
@@ -126,6 +127,8 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 
 ### Phase 5 – Kalender und Erinnerungen
 
+- [x] responsive Monatsansicht mit PlayDates umgesetzt
+- [x] Kalenderroute in Desktop- und Mobilnavigation eingebunden
 - [x] Export aller PlayDates als `.ics`-Datei umgesetzt
 - [x] Link zum Öffnen eines PlayDates in Google Kalender umgesetzt
 - [x] Kalenderfunktionen durch erste Tests abgesichert
@@ -573,19 +576,21 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 
 ### Aktueller Auditstatus
 
-**Prüfdatum:** 16. Juli 2026
+**Prüfdatum:** 17. Juli 2026
 
 **Geprüfter Stand:** Frontend-Prototyp im lokalen Projektordner
 
 **Gesamtergebnis:** teilweise bestanden, noch keine Freigabe für Pilot- oder Produktivbetrieb
 
 - [x] Oxlint ausgeführt
-- [x] alle 7 vorhandenen automatisierten Tests bestanden
+- [x] alle 13 vorhandenen automatisierten Tests bestanden
 - [x] TypeScript-Prüfung bestanden
 - [x] Produktions-Build mit Vite erfolgreich erstellt
 - [x] Dependency-Audit für produktive npm-Abhängigkeiten ausgeführt
 - [x] Dependency-Audit meldet 0 bekannte Schwachstellen
 - [x] die beiden zuvor dokumentierten Oxlint-Warnungen behoben
+- [x] Monatsraster, Terminzuordnung und Monatswechsel automatisiert getestet
+- [x] zentrale Light-Mode-Kontraste für Text, Fokus und UI-Grenzen rechnerisch geprüft
 - [ ] Testabdeckung für Authentifizierung, Formulare und vollständige Nutzerabläufe erweitern
 - [ ] Backend-, API- und Datenbank-Audit durchführen
 - [ ] formales Berechtigungs- und IDOR-Audit durchführen
@@ -764,20 +769,24 @@ Das Datenschutz-Audit benötigt vor dem Produktivstart eine fachkundige rechtlic
 - [ ] Fehlertexte und `aria-live`-Meldungen kontrollieren
 - [ ] gefundene Barrieren mit WCAG-Kriterium dokumentieren
 
-**Gemessene zentrale Farbpaare, Stand 16. Juli 2026:**
+**Gemessene zentrale Farbpaare, Stand 17. Juli 2026:**
 
 | Modus | Farbpaar | Verhältnis |
 | --- | --- | ---: |
 | Light | Haupttext auf Seitenhintergrund | 14,33:1 |
 | Light | Sekundärtext auf Seitenhintergrund | 5,53:1 |
 | Light | weißer Text auf Hauptaktion | 6,74:1 |
+| Light | UI-Linie auf weißer Oberfläche | 3,55:1 |
+| Light | Fokusmarkierung auf weißer Oberfläche | 6,70:1 |
+| Light | blaues Schnellaktions-Icon auf hellblauer Fläche | 4,79:1 |
+| Light | grünes Schnellaktions-Icon auf hellgrüner Fläche | 4,53:1 |
 | Dark | Haupttext auf Seitenhintergrund | 18,08:1 |
 | Dark | Sekundärtext auf Seitenhintergrund | 10,67:1 |
 | Dark | blauer Akzent auf Oberfläche | 7,76:1 |
 | Dark | grüner Akzent auf Oberfläche | 8,28:1 |
 | Dark | weißer Text auf Hauptaktion | 4,65:1 |
 
-Damit bestehen die zentralen Theme-Farbpaare die geforderten 4,5:1. Das vollständige WCAG-Audit aller Komponenten, Zustände und Fokusvarianten bleibt offen.
+Damit erfüllen die geprüften Textpaare mindestens 4,5:1 und die geprüfte erkennbare UI-Grenze mindestens 3:1. Das vollständige WCAG-Audit aller Komponenten, Zustände, Zoomstufen und Screenreader-Ausgaben bleibt offen.
 
 ### Audit 7 – Kalender, Erinnerungen und PWA
 
@@ -792,6 +801,8 @@ Damit bestehen die zentralen Theme-Farbpaare die geforderten 4,5:1. Das vollstä
 
 **Prüfungen und Nachweise:**
 
+- [x] Kalenderansicht ordnet PlayDates in einem Montag-basierten Monatsraster zu
+- [x] Monatswechsel und Jahreswechsel automatisiert getestet
 - [ ] `.ics`-Dateien in Google, Apple und Microsoft Kalender testen
 - [ ] Zeitumstellungen und Zeitzonenwechsel testen
 - [ ] doppelte und veraltete Erinnerungen ausschließen

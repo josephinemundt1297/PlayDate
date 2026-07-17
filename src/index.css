@@ -82,7 +82,8 @@
   --accent: var(--color-primary);
   --accent-strong: var(--color-primary);
   --forest: var(--color-success);
-  --line: var(--color-base-300);
+  /* Diese Linie schafft auf Weiß mehr als 3:1 und macht Bedienelemente gut erkennbar. */
+  --line: #7a8a98;
   --shadow: #17263418;
 }
 html[data-theme="dark"] {
@@ -97,7 +98,7 @@ html[data-theme="dark"] {
   --accent: #86aac8;
   --accent-strong: var(--color-primary);
   --forest: #75b99b;
-  --line: #263646;
+  --line: #526577;
   --shadow: #0009;
 }
 * {
@@ -133,8 +134,11 @@ a {
   text-decoration: none;
 }
 :focus-visible {
-  outline: 3px solid #4b9cff;
+  outline: 3px solid #1f5f96;
   outline-offset: 3px;
+}
+html[data-theme="dark"] :focus-visible {
+  outline-color: #86aac8;
 }
 h1,
 h2,

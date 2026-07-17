@@ -6,17 +6,18 @@ import {
   Plus,
   Sparkles,
 } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { usePlayDates } from "../../hooks/usePlayDates";
 import { QuickAction } from "../molecules/quickAction";
 import { PlayDateGrid } from "../organisms/playDateGrid";
 import { PrivacyNote } from "../molecules/privacyNote";
 import type { playDate } from "../../domain/playdates";
-import { downloadCalendar, googleCalendarUrl } from "../../utils/calendar";
+import { googleCalendarUrl } from "../../utils/calendar";
 
 // Die Dashboard-Page setzt mehrere kleinere Atomic-Bausteine zur fertigen Übersicht zusammen.
 export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
   const { dates, save } = usePlayDates();
+  const navigate = useNavigate();
   const [toast, setToast] = useState("");
   const sorted = useMemo(
     () => [...dates].sort((a, b) => a.date.localeCompare(b.date)),
@@ -63,12 +64,9 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
             <QuickAction
               icon={CalendarDays}
               tone="blue"
-              title="Kalender exportieren"
-              description="Alle PlayDates als Kalenderdatei laden"
-              onClick={() => {
-                downloadCalendar(sorted);
-                announce("Kalenderdatei wurde erstellt");
-              }}
+              title="Kalender ansehen"
+              description="Alle PlayDates in der Monatsansicht öffnen"
+              onClick={() => navigate({ to: "/calendar" })}
             />
             <QuickAction
               icon={MessageCircle}

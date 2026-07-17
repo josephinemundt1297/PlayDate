@@ -8,9 +8,9 @@ export function BottomNavigation() {
         <Home />
         <span>Start</span>
       </Link>
-      <Link to="/playdates" activeProps={{ className: "active" }}>
+      <Link to="/calendar" activeProps={{ className: "active" }}>
         <CalendarDays />
-        <span>Termine</span>
+        <span>Kalender</span>
       </Link>
       <Link to="/new" className="new-mobile" aria-label="Neues PlayDate">
         <Plus />

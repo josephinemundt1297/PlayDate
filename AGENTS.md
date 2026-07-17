@@ -10,7 +10,7 @@ Der aktuelle Stand ist ein Frontend-Prototyp:
 
 - Clerk schützt die Oberfläche und stellt den Login bereit.
 - Familien, Kinder, Geburtstage und PlayDates werden lokal und pro Clerk User-ID getrennt gespeichert.
-- Kalenderexport, Google-Kalender-Link, Web Share, WhatsApp-Link, Themes und PWA sind vorhanden.
+- Monatskalender, Kalenderexport, Google-Kalender-Link, Web Share, WhatsApp-Link, Themes und PWA sind vorhanden.
 - Ein produktives Backend, echte Familienverbindungen, gemeinsame Einladungsantworten, serverseitige Erinnerungen, Kommentare, Fotos und bidirektionale Kalendersynchronisation fehlen noch.
 
 Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich vollständig DSGVO-konform ist.
@@ -83,7 +83,7 @@ Behaupte deshalb niemals, dass der aktuelle Stand produktionsreif oder rechtlich
 - Jeder Ablauf muss per Tastatur bedienbar sein.
 - Fokuszustände müssen sichtbar bleiben.
 - Status darf nicht ausschließlich über Farbe vermittelt werden.
-- Prüfe Light und Dark Mode. Normaler Text und wichtige Bedienelemente müssen in beiden Modi mindestens ein Kontrastverhältnis von 4,5:1 erreichen.
+- Prüfe Light und Dark Mode nach WCAG 2.2 AA: normaler Text benötigt mindestens 4,5:1, große Schrift und erkennbare Grenzen wichtiger Bedienelemente mindestens 3:1.
 - Plane Touch-Ziele möglichst mit mindestens 44 × 44 CSS-Pixeln.
 - Beachte `prefers-reduced-motion`.
 - Neue Dialoge, Formulare und Statusmeldungen benötigen eine sinnvolle Screenreader-Ausgabe.

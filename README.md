@@ -4,9 +4,9 @@ PlayDate ist ein mobile-first React-Prototyp, mit dem Eltern sichere und übersi
 
 ## Aktueller Status
 
-**Stand: 16. Juli 2026 – Frontend-Prototyp, nicht für den Produktivbetrieb freigegeben.**
+**Stand: 17. Juli 2026 – Frontend-Prototyp, nicht für den Produktivbetrieb freigegeben.**
 
-Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Kalenderexport, Teilen, eigene DaisyUI-Themes und PWA funktionieren. Die Prüfkette besteht aktuell aus Oxlint, 7 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler oder Warnungen durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
+Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Monatskalender, Kalenderexport, Teilen, eigene DaisyUI-Themes und PWA funktionieren. Die Prüfkette besteht aktuell aus Oxlint, 13 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
 
 Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos, produktive Datenlöschung und bidirektionale Kalendersynchronisation sind noch nicht umgesetzt. `localStorage` ist ausschließlich die lokale Persistenz des Prototyps.
 
@@ -20,6 +20,7 @@ Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, ser
 - Treffpunkt, Teilnehmende und Mitbringsel festhalten
 - Einladungen über die Web Share-/WhatsApp-Schnittstelle vorbereiten
 - alle PlayDates als `.ics`-Kalenderdatei exportieren
+- PlayDates in einer responsiven Monatsansicht anzeigen und nach Tagen auswählen
 - einzelne PlayDates direkt in Google Kalender öffnen
 - Status für bestätigte und ausstehende Treffen
 - Datenschutz-Hinweise für Fotos, Kommentare und eingeladene Familien
@@ -31,7 +32,7 @@ Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, ser
 - DaisyUI mit eigenen, stark gerundeten Light- und Dark-Themes
 - heller Blau-Weiß-Look im Light Mode und fast schwarzer Dark Mode mit gedämpftem Blau
 - Grün ausschließlich als unterstützende Farbe für positive Zustände
-- mindestens 4,5:1 Kontrast für normalen Text und wichtige Bedienelemente
+- nachgemessene WCAG-2.2-AA-Kontraste: mindestens 4,5:1 für normalen Text und 3:1 für erkennbare Grenzen wichtiger Bedienelemente
 - installierbare Progressive Web App (PWA) mit Manifest und Service Worker
 - Persistenz des Prototyps über `localStorage`
 
@@ -99,6 +100,7 @@ Die Testbasis verwendet Vitest, Testing Library, jest-dom und jsdom. Abgedeckt s
 - Migration alter Familienprofile in das neue Kinderformat
 - Lesen freigegebener Geburtstage
 - Google-Kalender-Links und `.ics`-Download
+- Monatsraster, Terminzuordnung und Monatswechsel der Kalenderansicht
 - Darstellung bestätigter und ausstehender Status-Badges
 
 Die Tests haben bereits einen echten Zeitzonenfehler bei der Google-Kalender-Endzeit gefunden und abgesichert.

@@ -6,7 +6,7 @@ PlayDate ist eine mobile-first Web-App, mit der Eltern private Spieletreffen fü
 
 Der aktuelle Stand ist ein Frontend-Prototyp. Funktionen, die ein Backend oder externe Freigaben benötigen, sind als Zielanforderungen beschrieben und klar vom bereits umgesetzten Stand getrennt.
 
-**Dokumentationsstand: 16. Juli 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 7 Vitest-Tests, TypeScript und Produktions-Build ohne Fehler oder Warnungen. Er besitzt noch kein produktives Backend und ist nicht für den Betrieb mit echten Kinderdaten freigegeben. Der Umsetzungs- und Auditstatus wird in [`phasenPlan.md`](./phasenPlan.md) gepflegt.
+**Dokumentationsstand: 17. Juli 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 13 Vitest-Tests, TypeScript und Produktions-Build ohne Fehler. Er besitzt noch kein produktives Backend und ist nicht für den Betrieb mit echten Kinderdaten freigegeben. Der Umsetzungs- und Auditstatus wird in [`phasenPlan.md`](./phasenPlan.md) gepflegt.
 
 ## 2. Produktziele
 
@@ -77,6 +77,9 @@ Nutzer können PlayDates erstellen, anzeigen, bearbeiten und löschen. Vor dem L
 
 ### 5.5 Kalender
 
+- Eine responsive Monatsansicht zeigt die vorhandenen PlayDates am jeweiligen Tag.
+- Auf kleinen Displays wird nach der Monatsmatrix eine gut lesbare Liste für den ausgewählten Tag angezeigt.
+- Der Monat kann über beschriftete, tastaturbedienbare Schaltflächen gewechselt werden.
 - Alle PlayDates können als standardkonforme `.ics`-Datei exportiert werden.
 - Einzelne PlayDates können über einen vorbereiteten Link in Google Kalender geöffnet werden.
 - Eine echte, dauerhafte Synchronisation mit Google oder Microsoft Kalender ist ein späterer Produktionsschritt und benötigt OAuth, ein Backend und möglichst kleine Kalenderberechtigungen.
@@ -114,6 +117,7 @@ Für die produktive Umsetzung gelten folgende Anforderungen:
 | --- | --- | --- |
 | `/` | Übersicht der nächsten PlayDates | angemeldet |
 | `/playdates` | Übersicht aller PlayDates | angemeldet |
+| `/calendar` | Monatsansicht aller PlayDates und Kalenderexport | angemeldet |
 | `/new` | neues PlayDate erstellen | angemeldet |
 | `/edit/$playDateId` | PlayDate bearbeiten | angemeldet |
 | `/families` | Familie, Kinder und Geburtstage verwalten | angemeldet |

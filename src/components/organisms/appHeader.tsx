@@ -24,6 +24,9 @@ export function AppHeader() {
         <Link to="/playdates" activeProps={{ className: "active" }}>
           PlayDates
         </Link>
+        <Link to="/calendar" activeProps={{ className: "active" }}>
+          Kalender
+        </Link>
         <Link to="/families" activeProps={{ className: "active" }}>
           Familien
         </Link>

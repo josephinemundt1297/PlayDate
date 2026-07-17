@@ -8,6 +8,7 @@ import { DashboardPage } from "./components/pages/dashboardPage";
 import { PlayDateEditorPage } from "./components/pages/playDateEditorPage";
 import { SettingsPage } from "./components/pages/settingsPage";
 import { FamiliesPage } from "./components/pages/familiesPage";
+import { CalendarPage } from "./components/pages/calendarPage";
 
 // Jede Route verbindet eine URL mit genau einer Page-Komponente.
 // Wenn später eine neue Seite dazukommt, wird sie hier eingetragen.
@@ -21,6 +22,11 @@ const datesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/playdates",
   component: () => <DashboardPage showAll />,
+});
+const calendarRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/calendar",
+  component: CalendarPage,
 });
 const newRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -48,6 +54,7 @@ const familiesRoute = createRoute({
 const routeTree = rootRoute.addChildren([
   indexRoute,
   datesRoute,
+  calendarRoute,
   newRoute,
   editRoute,
   settingsRoute,
