@@ -63,6 +63,47 @@
   align-items: center;
   gap: 0.65rem;
 }
+.header-menu > summary {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border: 1px solid var(--line);
+  list-style: none;
+}
+.header-menu > summary::-webkit-details-marker {
+  display: none;
+}
+.header-menu-panel {
+  z-index: 40;
+  width: min(19rem, calc(100vw - 1rem));
+  margin-top: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  box-shadow: 0 0.75rem 2rem var(--shadow);
+}
+.header-menu-title {
+  margin-bottom: 0.75rem;
+  font-weight: 800;
+}
+.header-menu-theme,
+.header-menu-account {
+  display: flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0.75rem;
+  color: var(--ink);
+  font-weight: 700;
+}
+.header-menu-link {
+  width: 100%;
+  min-height: 3rem;
+  justify-content: flex-start;
+  color: var(--ink);
+}
+.header-menu-link svg {
+  width: 1.15rem;
+}
 .theme-toggle {
   display: flex;
   padding: 0.2rem;
@@ -399,6 +440,11 @@
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--ink);
+}
+/* Diese Farbe bleibt bewusst explizit: globale Button-Regeln dürfen sie nicht wieder überschreiben. */
+.playdate-dialog .btn-primary {
+  background: var(--color-primary);
+  color: var(--color-primary-content);
 }
 .dialog-close {
   position: absolute;
@@ -800,11 +846,7 @@
   .topbar {
     height: 4rem;
   }
-  .desktop-nav,
-  .install-button span {
-    display: none;
-  }
-  .topbar .theme-toggle {
+  .desktop-nav {
     display: none;
   }
   .page-wrap {
@@ -940,7 +982,7 @@
   .bottom-nav {
     position: fixed;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     align-items: center;
     bottom: 0;
     left: 0;
@@ -1290,25 +1332,15 @@
     padding-inline: 0.5rem;
   }
   .brand > span:last-child,
-  .install-button {
+  .header-menu-title {
     display: none;
   }
-  .bottom-nav a span {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-  }
   .bottom-nav {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 3.25rem);
-    height: 6.5rem;
+    grid-template-columns: repeat(5, 1fr);
   }
   .bottom-nav .new-mobile {
     width: 2.75rem;
     height: 2.75rem;
-    margin-top: 0;
   }
   .safety-page {
     width: calc(100% - 1.5rem);

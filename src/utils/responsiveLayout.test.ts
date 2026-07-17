@@ -17,6 +17,12 @@ describe("Responsive Layout", () => {
     expect(mobileLinkRule).toContain("overflow: hidden");
   });
 
+  it("setzt den Erstellen-Button in die mittlere von fünf Spalten", () => {
+    expect(appCss).toMatch(
+      /\.bottom-nav \{[\s\S]*?grid-template-columns: repeat\(5, 1fr\)/,
+    );
+  });
+
   it("stapelt breite Kalenderaktionen auf sehr schmalen Geräten", () => {
     expect(appCss).toContain("@media (max-width: 380px)");
     expect(appCss).toMatch(

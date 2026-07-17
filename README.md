@@ -43,7 +43,7 @@ Der ausführliche Abgleich steht im [`docs/lernNachweis.md`](docs/lernNachweis.m
 - Kalendertermine in einer modalen Detail-Ebene vergrößern
 - PlayDate-Listen ohne horizontales Überlaufen auch in sehr schmalen eingebetteten Ansichten ab 240 CSS-Pixeln nutzen
 - kompakte Navigation auf Mobilgeräten und Tablets bis einschließlich 1024 CSS-Pixel
-- reine Icon-Navigation unter 320 CSS-Pixeln, mit weiterhin vorhandenen zugänglichen Namen
+- fünfteilige mobile Navigation mit mittigem Erstellen-Button; Konto, Download und Einstellungen liegen im Header-Menü
 - einzelne PlayDates direkt in Google Kalender öffnen
 - Status für bestätigte und ausstehende Treffen
 - Datenschutz-Hinweise für Fotos, Kommentare und eingeladene Familien

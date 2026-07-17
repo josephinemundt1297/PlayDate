@@ -174,7 +174,7 @@ Für eine spätere Version ist ein geschützter Bereich pro Treffen vorgesehen:
 | Familien | eigene Kinder, Geburtstage und Verbindungen |
 | Einstellungen | Darstellung, Installation, Datenschutz und Konto |
 
-Die mobile Navigation enthält Start, Kalender, neue PlayDates, Familien, Fotos und Einstellungen. Die technische Datenschutzübersicht ist über Hinweise und Einstellungen erreichbar.
+Die mobile Navigation enthält Start, Kalender, den mittigen Button für neue PlayDates, Familien und Fotos. Einstellungen, Download, Darstellung und Clerk-Konto liegen platzsparend in einem aufklappbaren Menü oben rechts. Die technische Datenschutzübersicht ist über Hinweise und Einstellungen erreichbar.
 
 ## 9. MVP
 

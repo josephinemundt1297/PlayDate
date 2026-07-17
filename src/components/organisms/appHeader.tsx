@@ -1,10 +1,10 @@
-import { Download, Sparkles } from "lucide-react";
+import { Download, Menu, Settings, Sparkles } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { UserButton } from "@clerk/clerk-react";
 import { ThemeToggle } from "../atoms/themeToggle";
 import { useInstallApp } from "../../hooks/useInstallApp";
 
-// Der Header bündelt Navigation, Theme, PWA-Installation und das Clerk-Benutzermenü.
+// Der Header bündelt Navigation und Konto-Aktionen. Auf kleinen Geräten steckt alles im Aufklappmenü.
 export function AppHeader() {
   const { canInstall, installed, install } = useInstallApp();
   return (
@@ -35,23 +35,41 @@ export function AppHeader() {
         </Link>
       </nav>
       <div className="header-actions">
-        <ThemeToggle />
-        <button
-          className="btn btn-ghost install-button"
-          onClick={install}
-          disabled={installed}
-          title={
-            installed
-              ? "App ist installiert"
-              : canInstall
-                ? "PlayDate installieren"
-                : "PlayDate-Website als Verknüpfung herunterladen"
-          }
-        >
-          <Download />
-          <span>{installed ? "Installiert" : "App laden"}</span>
-        </button>
-        <UserButton />
+        <details className="header-menu dropdown dropdown-end">
+          <summary className="btn btn-ghost btn-square" aria-label="Menü öffnen">
+            <Menu />
+          </summary>
+          <div className="dropdown-content header-menu-panel card bg-base-100">
+            <p className="header-menu-title">Menü</p>
+            <div className="header-menu-theme">
+              <span>Darstellung</span>
+              <ThemeToggle />
+            </div>
+            <button
+              className="btn btn-ghost header-menu-link"
+              onClick={install}
+              disabled={installed}
+              title={
+                installed
+                  ? "App ist installiert"
+                  : canInstall
+                    ? "PlayDate installieren"
+                    : "PlayDate-Website als Verknüpfung herunterladen"
+              }
+            >
+              <Download />
+              <span>{installed ? "Installiert" : "App laden"}</span>
+            </button>
+            <Link to="/settings" className="btn btn-ghost header-menu-link">
+              <Settings />
+              Einstellungen
+            </Link>
+            <div className="header-menu-account">
+              <span>Clerk-Konto</span>
+              <UserButton />
+            </div>
+          </div>
+        </details>
       </div>
     </header>
   );

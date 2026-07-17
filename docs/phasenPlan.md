@@ -49,6 +49,7 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] mobile-first Oberfläche umgesetzt
 - [x] mobile PlayDate-Liste bei 320 CSS-Pixeln gegen horizontales Überlaufen abgesichert
 - [x] Tablet- und kleine Laptopbreiten bis 1024 CSS-Pixel mit kompakter Navigation abgesichert
+- [x] mobile Navigation auf fünf gleich breite Plätze mit mittigem Erstellen-Button reduziert; Einstellungen und Konto in das Header-Menü verschoben
 - [x] feste Mindestbreite des Seitenkörpers entfernt und Engstellen bis 240 CSS-Pixel abgesichert
 - [x] Kalenderaktionen auf sehr schmalen Ansichten gestapelt
 - [x] Datenschutzlink im mobilen Layout wieder sichtbar gemacht
