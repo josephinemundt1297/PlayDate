@@ -635,7 +635,7 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 **Gesamtergebnis:** Phase 0 und 1 als React-Trainingsprojekt bestanden; freiwillige Geräteprüfungen und spätere Full-Stack-Phasen offen; keine Freigabe für echte Daten oder Produktivbetrieb
 
 - [x] Oxlint ausgeführt
-- [x] alle 71 vorhandenen Vitest-Tests bestanden
+- [x] alle 72 vorhandenen Vitest-Tests bestanden
 - [x] alle Vitest-Dateien zentral nach `src/tests` verschoben
 - [x] 40 Playwright-Szenarien werden von der E2E-Konfiguration erkannt
 - [ ] Playwright-Szenarien in echten Browser-Engines ausführen

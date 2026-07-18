@@ -61,4 +61,13 @@ describe("Theme-Kontraste", () => {
     );
     expect(appCss).not.toContain(".playdate-form label span {");
   });
+
+  it("hält das Plus in der mobilen Navigation auch auf der aktiven Route lesbar", () => {
+    expect(appCss).toMatch(
+      /\.bottom-nav a\.new-mobile,[\s\S]*?\.bottom-nav a\.new-mobile\.active \{[\s\S]*?background: var\(--color-primary\);[\s\S]*?color: var\(--color-primary-content\);/,
+    );
+    expect(appCss).toMatch(
+      /\.bottom-nav a\.new-mobile svg \{[\s\S]*?stroke: currentColor;/,
+    );
+  });
 });

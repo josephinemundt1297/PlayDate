@@ -1105,18 +1105,24 @@
   .bottom-nav svg {
     width: 1.3125rem;
   }
-  .bottom-nav .new-mobile {
+  .bottom-nav a.new-mobile,
+  .bottom-nav a.new-mobile.active {
     position: absolute;
     top: 0;
     left: 50%;
     width: 3.125rem;
     height: 3.125rem;
     border-radius: 1rem;
-    background: var(--accent-strong);
-    color: #fff;
+    background: var(--color-primary);
+    color: var(--color-primary-content);
     transform: translate(-50%, -35%);
     justify-content: center;
     box-shadow: 0 0.4375rem 1.125rem #185fa555;
+  }
+  .bottom-nav a.new-mobile svg {
+    color: inherit;
+    stroke: currentColor;
+    stroke-width: 2.5;
   }
   .form-page,
   .settings-page {
@@ -1586,7 +1592,8 @@
   .bottom-nav {
     grid-template-columns: repeat(5, 1fr);
   }
-  .bottom-nav .new-mobile {
+  .bottom-nav a.new-mobile,
+  .bottom-nav a.new-mobile.active {
     width: 2.75rem;
     height: 2.75rem;
   }

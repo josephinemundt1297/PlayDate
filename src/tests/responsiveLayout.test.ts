@@ -22,7 +22,7 @@ describe("Responsive Layout", () => {
       /\.bottom-nav \{[\s\S]*?grid-template-columns: repeat\(5, 1fr\)/,
     );
     expect(appCss).toMatch(
-      /\.bottom-nav \.new-mobile \{[\s\S]*?position: absolute;[\s\S]*?left: 50%;[\s\S]*?transform: translate\(-50%, -35%\)/,
+      /\.bottom-nav a\.new-mobile,[\s\S]*?\.bottom-nav a\.new-mobile\.active \{[\s\S]*?position: absolute;[\s\S]*?left: 50%;[\s\S]*?transform: translate\(-50%, -35%\)/,
     );
   });
 

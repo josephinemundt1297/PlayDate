@@ -42,7 +42,7 @@ Mit PlayDate übe und belege ich:
 | A11Y | Semantik, Fokus, Tastatur, Kontraste und Statusmeldungen | als Frontend-Basis erledigt |
 | Authentifizierung | Clerk-Grenze vor privaten Routen | erledigt |
 | Persistenz | benutzerbezogener Prototyp mit `localStorage` | erledigt |
-| Tests | 71 Unit- und Komponententests in `src/tests` | erledigt |
+| Tests | 72 Unit- und Komponententests in `src/tests` | erledigt |
 | E2E-Vorbereitung | 40 Playwright-Szenarien konfiguriert | erledigt |
 | E2E auf realen Browsern/Geräten | Browser-Binaries und physische Geräte nötig | freiwilliger Zusatznachweis offen |
 | Produktkonzept | Zielgruppe, MVP, Rollen und Nicht-Ziele | erledigt |
@@ -54,7 +54,7 @@ Mit PlayDate übe und belege ich:
 
 **Ergebnis: für das React-Trainingsprojekt abgeschlossen.**
 
-Die App lässt sich bauen, besitzt eine nachvollziehbare Komponentenstruktur und deckt zentrale React-Themen ab. Linting, 71 automatisierte Tests, TypeScript und der Produktions-Build laufen fehlerfrei. Reale Mehrbrowser- und Gerätetests bleiben als zusätzlicher Praxisnachweis offen und sind kein fehlendes React-Lernziel.
+Die App lässt sich bauen, besitzt eine nachvollziehbare Komponentenstruktur und deckt zentrale React-Themen ab. Linting, 72 automatisierte Tests, TypeScript und der Produktions-Build laufen fehlerfrei. Reale Mehrbrowser- und Gerätetests bleiben als zusätzlicher Praxisnachweis offen und sind kein fehlendes React-Lernziel.
 
 ## Spätere Phasen als React-Simulation
 
