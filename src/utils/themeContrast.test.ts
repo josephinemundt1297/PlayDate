@@ -47,4 +47,10 @@ describe("Theme-Kontraste", () => {
       /\.selection-option input:checked ~ \.selection-check \{[\s\S]*?opacity: 1;/,
     );
   });
+
+  it("hält Auswahl-Checkboxen kompakt statt sie wie Textfelder aufzublasen", () => {
+    expect(appCss).toMatch(
+      /\.playdate-form \.selection-option input\[type="checkbox"\] \{[\s\S]*?min-height: 1\.25rem;[\s\S]*?padding: 0;/,
+    );
+  });
 });

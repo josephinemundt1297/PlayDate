@@ -3,7 +3,15 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import type { ReactNode } from "react";
 
-const formMock = vi.hoisted(() => ({ navigate: vi.fn() }));
+const formMock = vi.hoisted(() => ({
+  navigate: vi.fn(),
+  connections: [{
+    id: "contact-1",
+    familyName: "Familie Kontakt",
+    children: [{ name: "Noah", birthday: "" }],
+    status: "Verbunden",
+  }],
+}));
 vi.mock("@clerk/clerk-react", () => ({ useUser: () => ({ user: { id: "user-1" } }) }));
 vi.mock("@tanstack/react-router", () => ({
   useNavigate: () => formMock.navigate,
@@ -14,12 +22,9 @@ vi.mock("../../hooks/useFamilyProfile", () => ({ readFamilyProfile: () => ({ fam
   { id: "1", name: "Mila", birthday: "", shareBirthday: false },
   { id: "2", name: "Lina", birthday: "", shareBirthday: false },
 ] }) }));
-vi.mock("../../hooks/useFamilyConnections", () => ({ readFamilyConnections: () => [{
-  id: "contact-1",
-  familyName: "Familie Kontakt",
-  children: [{ name: "Noah", birthday: "" }],
-  status: "Verbunden",
-}] }));
+vi.mock("../../hooks/useFamilyConnections", () => ({
+  readFamilyConnections: () => formMock.connections,
+}));
 import { PlayDateForm } from "./playDateForm";
 
 describe("PlayDateForm", () => {
@@ -45,5 +50,13 @@ describe("PlayDateForm", () => {
     expect(stored[0].children).toEqual(["Mila", "Lina"]);
     expect(stored[0].friends).toEqual(["Noah", "Emma"]);
     expect(formMock.navigate).toHaveBeenCalledWith({ to: "/" });
+  });
+
+  it("erklärt den Weg zur Kontaktverwaltung, wenn noch niemand verbunden ist", () => {
+    formMock.connections = [];
+    render(<PlayDateForm />);
+
+    expect(screen.getByText("Noch keine Kontakte verbunden.", { exact: false })).toBeVisible();
+    expect(screen.getByRole("link", { name: "Kontakte verbinden" })).toBeVisible();
   });
 });

@@ -1,5 +1,5 @@
 // Der Cache ist unser kleiner Offline-Rucksack mit den wichtigsten App-Dateien.
-const cacheName = "playDate-v5";
+const cacheName = "playDate-v6";
 const appShell = ["/", "/manifest.webmanifest", "/playDateIcon.svg"];
 
 self.addEventListener("install", (event) => {

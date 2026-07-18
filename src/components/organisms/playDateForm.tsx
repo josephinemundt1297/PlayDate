@@ -169,29 +169,43 @@ export function PlayDateForm({ editId }: { editId?: number }) {
         <span className="field-help">
           Wähle verbundene Kontakte aus oder ergänze eigene Namen.
         </span>
-        {contactNames.length > 0 && (
-          <div className="contact-options" aria-label="Verbundene Kontakte">
-            {contactNames.map((name) => (
-              <label className="selection-option" key={name}>
-                <input
-                  className="checkbox checkbox-primary"
-                  type="checkbox"
-                  checked={selectedContacts.includes(name)}
-                  onChange={(event) =>
-                    setSelectedContacts((current) =>
-                      event.target.checked
-                        ? [...current, name]
-                        : current.filter((item) => item !== name),
-                    )
-                  }
-                />
-                <UsersRound aria-hidden="true" />
-                <span>{name}</span>
-                <Check className="selection-check" aria-hidden="true" />
-              </label>
-            ))}
-          </div>
-        )}
+        <div className="contact-picker">
+          <strong>Verbundene Kontakte</strong>
+          {contactNames.length > 0 ? (
+            <div className="contact-options" aria-label="Verbundene Kontakte">
+              {contactNames.map((name) => (
+                <label className="selection-option" key={name}>
+                  <input
+                    className="checkbox checkbox-primary"
+                    type="checkbox"
+                    checked={selectedContacts.includes(name)}
+                    onChange={(event) =>
+                      setSelectedContacts((current) =>
+                        event.target.checked
+                          ? [...current, name]
+                          : current.filter((item) => item !== name),
+                      )
+                    }
+                  />
+                  <UsersRound aria-hidden="true" />
+                  <span>{name}</span>
+                  <Check className="selection-check" aria-hidden="true" />
+                </label>
+              ))}
+            </div>
+          ) : (
+            <div className="contact-empty">
+              <UsersRound aria-hidden="true" />
+              <span>
+                Noch keine Kontakte verbunden. Verbinde zuerst eine bekannte
+                Familie, dann kannst du ihre freigegebenen Kontakte hier auswählen.
+              </span>
+              <Link className="btn btn-outline btn-sm" to="/families">
+                Kontakte verbinden
+              </Link>
+            </div>
+          )}
+        </div>
         <div className="custom-friends">
           {customFriends.map((name, index) => (
             <div className="custom-friend-row" key={`custom-friend-${index}`}>

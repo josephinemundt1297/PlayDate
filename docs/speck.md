@@ -10,7 +10,7 @@ Der aktuelle Stand ist ein Frontend-Prototyp. Funktionen, die ein Backend oder e
 
 Der bewertete Trainingsumfang umfasst Phase 0 und 1. React, TypeScript, Komponentenarchitektur, Routing, Formulare, Hooks, Context, Frontend-Persistenz, Responsive Design und Tests sind praktische Lernnachweise. Backend- und Produktionsanforderungen dienen nur als späterer Ausblick.
 
-**Dokumentationsstand: 17. Juli 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 64 Vitest-Tests, TypeScript und Produktions-Build ohne Fehler. 40 Playwright-Szenarien sind eingerichtet, aber noch nicht auf realen Browserinstallationen und physischen Geräten nachgewiesen. Er besitzt bewusst kein produktives Backend und ist nicht für echte Kinderdaten freigegeben.
+**Dokumentationsstand: 18. Juli 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 66 Vitest-Tests, TypeScript und Produktions-Build ohne Fehler. 40 Playwright-Szenarien sind eingerichtet, aber noch nicht auf realen Browserinstallationen und physischen Geräten nachgewiesen. Er besitzt bewusst kein produktives Backend und ist nicht für echte Kinderdaten freigegeben.
 
 Für die Phasen 2 bis 9 wurde „React-Simulation, lokal zuerst“ gewählt. Repository, Verbindungen, Erinnerungen, Kommentare, Aktivitätsverlauf sowie Export und Löschung werden lokal geübt. Serverseitige Sicherheit, echte Synchronisation und Produktivbetrieb bleiben außerhalb dieser Simulation.
 
