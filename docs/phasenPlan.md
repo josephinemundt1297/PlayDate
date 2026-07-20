@@ -65,7 +65,7 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Tests für Auth-Grenze, Familienseite und PlayDate-Formular ergänzen
 - [x] vollständige End-to-End-Teststrecke einrichten
 - [ ] optionaler Zusatznachweis: PWA-Updates auf mehreren Browsern und Geräten prüfen
-- [x] Playwright-Prüfung für Service-Worker-Registrierung und Cache-Version eingerichtet
+- [ ] Playwright-Prüfung für Service-Worker-Registrierung auf die aktuelle Cache-Version `playDate-v9` aktualisieren
 - [x] Chromium, Firefox, WebKit, Pixel 7 und iPhone 14 als Projekte konfiguriert
 - [ ] optionaler Zusatznachweis: Browserläufe mit installierten Playwright-Browsern ausführen
 - [ ] optionaler Zusatznachweis: PWA-Update auf echten Android- und iOS-Geräten prüfen
@@ -628,17 +628,17 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 
 ### Aktueller Auditstatus
 
-**Prüfdatum:** 17. Juli 2026
+**Prüfdatum:** 20. Juli 2026
 
-**Geprüfter Stand:** Frontend-Prototyp im lokalen Projektordner
+**Geprüfter Stand:** Frontend-Prototyp, lokaler Commit `1a7967975daf52d9ace66f51620c04b576b15e60`
 
-**Gesamtergebnis:** Phase 0 und 1 als React-Trainingsprojekt bestanden; freiwillige Geräteprüfungen und spätere Full-Stack-Phasen offen; keine Freigabe für echte Daten oder Produktivbetrieb
+**Gesamtergebnis:** Phase 0 und 1 als React-Trainingsprojekt bestanden. Freiwillige Browser-/Geräteprüfungen und spätere Full-Stack-Phasen bleiben offen. Ein früherer Clerk-Test-Secret-Key ist noch in der Git-Historie auffindbar und muss vor jeder weiteren Nutzung im Clerk-Dashboard widerrufen beziehungsweise rotiert werden. Keine Freigabe für echte Daten oder Produktivbetrieb.
 
 - [x] Oxlint ausgeführt
 - [x] alle 72 vorhandenen Vitest-Tests bestanden
 - [x] alle Vitest-Dateien zentral nach `src/tests` verschoben
 - [x] 40 Playwright-Szenarien werden von der E2E-Konfiguration erkannt
-- [ ] Playwright-Szenarien in echten Browser-Engines ausführen
+- [ ] Playwright-Szenarien in echten Browser-Engines ausführen; erneuter Versuch am 20. Juli 2026 durch fehlende Browser-Binaries blockiert
 - [x] TypeScript-Prüfung bestanden
 - [x] Produktions-Build mit Vite erfolgreich erstellt
 - [x] Dependency-Audit für produktive npm-Abhängigkeiten ausgeführt
@@ -654,6 +654,9 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 - [x] Cache- und Registrierungs-Promises gegen unbehandelte Fehler abgesichert
 - [x] Service-Worker-Regeln durch Regressionstests geschützt
 - [x] Testabdeckung für Authentifizierungsgrenze, Familienseite und PlayDate-Formular erweitert
+- [x] aktueller Quellstand und Produktions-Build auf typische Clerk-Secret-Muster geprüft; kein aktueller Treffer
+- [x] lokale Export- und Löschfunktionen durch automatisierte Tests erneut geprüft
+- [x] installierte Abhängigkeiten auf bekannte Schwachstellen und verfügbare Aktualisierungen geprüft
 - [ ] Backend-, API- und Datenbank-Audit durchführen
 - [ ] formales Berechtigungs- und IDOR-Audit durchführen
 - [ ] vollständiges DSGVO-Audit mit fachkundiger rechtlicher Prüfung durchführen
@@ -671,6 +674,9 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 | AUD-003 | Hoch        | Das Projekt besitzt noch kein produktives Backend; private Daten liegen im Prototyp in `localStorage`.                | bekannt, Phase 2 geplant                                                      |
 | AUD-004 | Hoch        | Serverseitige Autorisierungs-, IDOR- und Rollenprüfungen können ohne Backend noch nicht stattfinden.                  | bekannt, Phasen 2 bis 4 geplant                                               |
 | AUD-005 | Hoch        | Eine echte rechtliche DSGVO-Prüfung ist für das Übungsprojekt nicht vorgesehen.                                      | Übungskonzept abgeschlossen; vor realem Betrieb neu zu öffnen                 |
+| AUD-006 | Mittel      | Der PWA-E2E-Test erwartet noch `playDate-v4`, während der Service Worker bereits `playDate-v9` verwendet.             | Test vor einem echten Browserlauf aktualisieren                               |
+| AUD-007 | Kritisch    | Ein 50 Zeichen langer Clerk-Test-Secret-Key ist in einem älteren Commit in `.env.example` auffindbar.                 | Schlüssel sofort bei Clerk widerrufen/rotieren; Historienbereinigung planen   |
+| AUD-008 | Niedrig     | Für mehrere Pakete sind Patch-/Minor-Updates verfügbar; TypeScript 7 ist ein späteres Major-Upgrade.                  | Updates getrennt prüfen und mit vollständiger Prüfkette absichern             |
 
 Die erfolgreichen Prüfungen belegen ausschließlich den aktuellen Frontend-Build und die vorhandene Testbasis. Sie sind keine Aussage darüber, dass die Anwendung bereits produktionsreif, vollständig barrierefrei oder rechtlich DSGVO-konform ist.
 
@@ -716,7 +722,7 @@ Die erfolgreichen Prüfungen belegen ausschließlich den aktuellen Frontend-Buil
 - [x] `npm run check` protokollieren
 - [x] offene Oxlint-Warnungen bewertet und behoben
 - [ ] Architekturdiagramm mit tatsächlichem Code abgleichen
-- [ ] veraltete und ungenutzte Abhängigkeiten prüfen
+- [x] veraltete und ungenutzte Abhängigkeiten prüfen; verwendete direkte Abhängigkeiten belegt und verfügbare Updates dokumentiert
 - [ ] zentrale Komponenten stichprobenartig im Vier-Augen-Prinzip reviewen
 - [ ] technische Schulden als priorisierte Issues dokumentieren
 
@@ -738,12 +744,14 @@ Die erfolgreichen Prüfungen belegen ausschließlich den aktuellen Frontend-Buil
 - [x] bekannte und geplante Datenflüsse zu Anbietern dokumentiert
 - [x] Zweck, Sichtbarkeit und Übungs-Löschfrist je Datenart festgehalten
 - [ ] Einwilligungen mit Zeitstempel und Version nachweisen
-- [ ] Widerruf und Kontolöschung praktisch testen
-- [ ] Datenexport auf Vollständigkeit und Verständlichkeit prüfen
+- [x] lokale Löschung der Trainingsdaten praktisch und automatisiert testen
+- [ ] produktiven Widerruf und vollständige Kontolöschung mit Backend praktisch testen
+- [x] lokalen Datenexport auf Kontotrennung und enthaltene Trainingsbereiche automatisiert prüfen
+- [ ] produktiven Datenexport mit Backend auf Vollständigkeit und Verständlichkeit prüfen
 - [x] mögliche Auftragsverarbeiter und Transfermechanismen für die Übung dokumentiert
 - [x] DSFA-Vorprüfung und Übungsentscheidung dokumentiert
 
-Die konzeptionellen Nachweise stehen in [`phase1Datenschutz.md`](phase1Datenschutz.md). Praktische Nachweise für Einwilligung, Widerruf, Löschung und Export bleiben offen, weil die zugehörigen Backend-Funktionen noch fehlen. Vor einem echten Produktivstart wäre unabhängig vom Übungsstatus eine fachkundige rechtliche Bewertung nötig.
+Die konzeptionellen Nachweise stehen in [`phase1Datenschutz.md`](phase1Datenschutz.md). Lokaler Export und lokale Löschung sind für den Frontend-Prototyp getestet. Praktische Nachweise für Einwilligung, Widerruf, produktive Kontolöschung und serverseitigen Export bleiben offen, weil die zugehörigen Backend-Funktionen fehlen. Vor einem echten Produktivstart wäre unabhängig vom Übungsstatus eine fachkundige rechtliche Bewertung nötig.
 
 ### Audit 3 – Authentifizierung und Berechtigungen
 
@@ -758,7 +766,7 @@ Die konzeptionellen Nachweise stehen in [`phase1Datenschutz.md`](phase1Datenschu
 
 **Prüfungen und Nachweise:**
 
-- [ ] Zugriff ohne Anmeldung abweisen
+- [x] Frontend-Auth-Grenze weist Zugriff ohne Anmeldung ab und ist durch einen Komponententest belegt
 - [ ] manipulierte Nutzer-, Familien- und PlayDate-IDs testen
 - [ ] Zugriff einer fremden Familie automatisiert prüfen
 - [ ] Rechte nach Entfernen einer Verbindung erneut prüfen
@@ -801,7 +809,8 @@ Die konzeptionellen Nachweise stehen in [`phase1Datenschutz.md`](phase1Datenschu
 **Prüfungen und Nachweise:**
 
 - [x] automatisierten Dependency-Scan ausführen
-- [ ] Secret-Scan für Repository und Build-Artefakte ausführen
+- [x] aktuellen Quellstand und Build-Artefakte auf typische Clerk-Secrets prüfen
+- [ ] Secret-Scan der vollständigen Git-Historie ohne Befund abschließen; aktuell blockiert durch AUD-007
 - [ ] Security-Header in der Produktionsumgebung prüfen
 - [ ] Eingabefelder und API-Endpunkte mit ungültigen Daten testen
 - [ ] Logs auf Tokens, Kinderdaten und andere Geheimnisse prüfen
@@ -871,6 +880,7 @@ Damit erfüllen die geprüften Textpaare mindestens 4,5:1 und die geprüfte erke
 - [ ] Kalenderzugriff ohne Freigabe verhindern
 - [ ] PWA-Installation auf Android und iOS prüfen
 - [ ] Update von einer älteren PWA-Version testen
+- [ ] PWA-E2E-Erwartung von `playDate-v4` auf die aktuelle Cache-Version `playDate-v9` aktualisieren
 - [ ] Offline- und Wiederverbindungsverhalten dokumentieren
 
 ### Audit 8 – Betrieb und Notfallvorsorge
