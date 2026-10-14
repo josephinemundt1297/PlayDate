@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
-import type { playDate } from "../domain/playdates";
-import { PlayDateCalendar } from "../components/organisms/playDateCalendar";
+import type { spieletreffen } from "../domain/spieletreffen";
+import { SpieletreffenCalendar } from "../components/organisms/spieletreffenCalendar";
 
-const date: playDate = {
+const date: spieletreffen = {
   id: 1,
   title: "Abenteuer im Stadtpark",
   children: ["Mila"],
@@ -17,10 +17,10 @@ const date: playDate = {
   color: "mint",
 };
 
-describe("PlayDateCalendar", () => {
+describe("SpieletreffenCalendar", () => {
   it("zeigt Termine samt Status im passenden Monat", () => {
     render(
-      <PlayDateCalendar
+      <SpieletreffenCalendar
         dates={[date]}
         initialMonth={new Date(2026, 6, 1, 12)}
         onEdit={vi.fn()}
@@ -34,7 +34,7 @@ describe("PlayDateCalendar", () => {
 
   it("wechselt per Tastatur-bedienbarem Button in den nächsten Monat", async () => {
     render(
-      <PlayDateCalendar
+      <SpieletreffenCalendar
         dates={[date]}
         initialMonth={new Date(2026, 6, 1, 12)}
         onEdit={vi.fn()}
@@ -53,7 +53,7 @@ describe("PlayDateCalendar", () => {
       this.removeAttribute("open");
     };
     render(
-      <PlayDateCalendar
+      <SpieletreffenCalendar
         dates={[date]}
         initialMonth={new Date(2026, 6, 1, 12)}
         onEdit={vi.fn()}
@@ -69,7 +69,7 @@ describe("PlayDateCalendar", () => {
 
   it("zeigt eigene und freigegebene Geburtstage im Raster und Tagesbereich", () => {
     render(
-      <PlayDateCalendar
+      <SpieletreffenCalendar
         dates={[]}
         birthdays={[
           { id: "own", childName: "Mila", familyName: "Meine Familie", birthday: "2020-07-18", own: true },

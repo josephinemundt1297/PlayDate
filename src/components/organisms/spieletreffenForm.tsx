@@ -3,21 +3,21 @@ import { CalendarDays, Check, Plus, Trash2, UsersRound } from "lucide-react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useUser } from "@clerk/clerk-react";
 import {
-  playDatesStorageKey,
-  readPlayDates,
-} from "../../hooks/usePlayDates";
+  spieletreffenStorageKey,
+  readSpieletreffen,
+} from "../../hooks/useSpieletreffen";
 import { readFamilyProfile } from "../../hooks/useFamilyProfile";
 import { readFamilyConnections } from "../../hooks/useFamilyConnections";
-import type { playDate } from "../../domain/playdates";
-import { initialPlayDates } from "../../domain/playdates";
+import type { spieletreffen } from "../../domain/spieletreffen";
+import { initialSpieletreffen } from "../../domain/spieletreffen";
 import { createLocalRepository } from "../../data/localRepository";
-import { validatePlayDate, type validationErrors } from "../../utils/validation";
+import { validateSpieletreffen, type validationErrors } from "../../utils/validation";
 import { FormStep } from "../molecules/formStep";
 
 type editableTextField = "title" | "date" | "time" | "location" | "bring";
 
 // Das Formular kann beides: einen neuen Termin anlegen oder einen vorhandenen bearbeiten.
-export function PlayDateForm({ editId }: { editId?: number }) {
+export function SpieletreffenForm({ editId }: { editId?: number }) {
   const navigate = useNavigate();
   const { user } = useUser();
   // Ohne User-ID könnten Daten verschiedener Konten im selben Browser vermischt werden.
@@ -26,7 +26,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
 
   // Diese drei Lesezugriffe holen nur den lokalen Trainingsstand des angemeldeten Kontos.
   // In einer Full-Stack-Version würden hier später geschützte API-Aufrufe stehen.
-  const dates = readPlayDates(user.id);
+  const dates = readSpieletreffen(user.id);
   const family = readFamilyProfile(user.id);
   // Nur bestätigte Verbindungen tauchen als Kontakt auf. Doppelte Namen zeigen wir nur einmal.
   const contactNames = Array.from(
@@ -39,7 +39,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
   const existing = dates.find((date) => date.id === editId);
   // Gibt es eine editId, startet der State mit dem vorhandenen Termin.
   // Ohne editId bauen wir ein frisches Objekt mit verständlichen Standardwerten.
-  const [form, setForm] = useState<playDate>(
+  const [form, setForm] = useState<spieletreffen>(
     existing ?? {
       id: Date.now(),
       title: "",
@@ -84,7 +84,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
       ]),
     );
     const candidate = { ...form, friends };
-    const validation = validatePlayDate(candidate, family.children.map((child) => child.name), Boolean(existing));
+    const validation = validateSpieletreffen(candidate, family.children.map((child) => child.name), Boolean(existing));
     setErrors(validation);
     // Solange mindestens eine Meldung vorhanden ist, speichern wir bewusst gar nichts.
     // So landet kein halbfertiger Termin im localStorage.
@@ -99,7 +99,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
         // Der Verlauf macht später nachvollziehbar, wann der Termin angelegt oder geändert wurde.
         {
           id: crypto.randomUUID(),
-          message: existing ? "PlayDate bearbeitet" : "PlayDate erstellt",
+          message: existing ? "Spieletreffen bearbeitet" : "Spieletreffen erstellt",
           createdAt: new Date().toISOString(),
         },
       ],
@@ -110,13 +110,13 @@ export function PlayDateForm({ editId }: { editId?: number }) {
       // Beim Erstellen hängen wir den neuen Termin hinten an die vorhandene Liste.
       : [...dates, cleaned];
     createLocalRepository({
-      key: playDatesStorageKey(user.id),
-      fallback: initialPlayDates,
+      key: spieletreffenStorageKey(user.id),
+      fallback: initialSpieletreffen,
     }).write(next);
     navigate({ to: "/" });
   };
   return (
-    <form noValidate onSubmit={submit} className="card bg-base-100 border border-base-300 playdate-form">
+    <form noValidate onSubmit={submit} className="card bg-base-100 border border-base-300 spieletreffen-form">
       {Object.keys(errors).length > 0 && <div className="alert alert-error validation-summary full" role="alert"><strong>Bitte prüfe deine Angaben.</strong><span>{Object.values(errors)[0]}</span></div>}
       <FormStep
         number={1}
@@ -310,7 +310,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
           onChange={(event) =>
             setForm((current) => ({
               ...current,
-              bringOwner: event.target.value as playDate["bringOwner"],
+              bringOwner: event.target.value as spieletreffen["bringOwner"],
             }))
           }
         >
@@ -379,7 +379,7 @@ export function PlayDateForm({ editId }: { editId?: number }) {
           disabled={!family.children.length}
         >
           <CalendarDays />
-          {existing ? "Änderungen speichern" : "PlayDate erstellen"}
+          {existing ? "Änderungen speichern" : "Spieletreffen erstellen"}
         </button>
       </div>
     </form>

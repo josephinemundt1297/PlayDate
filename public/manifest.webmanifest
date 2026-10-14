@@ -1,13 +1,13 @@
 {
-  "name": "PlayDate – PlayDates einfach planen",
-  "short_name": "PlayDate",
-  "description": "Private PlayDates sicher planen und teilen.",
+  "name": "SpielZeit – Spieletreffen einfach planen",
+  "short_name": "SpielZeit",
+  "description": "Private Spieletreffen sicher planen und teilen.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f7f8f3",
   "theme_color": "#2d5a4d",
   "lang": "de",
   "icons": [
-    { "src": "/playDateIcon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+    { "src": "/spielZeitIcon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
   ]
 }

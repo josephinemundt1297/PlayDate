@@ -10,18 +10,18 @@ import {
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useState, type SyntheticEvent } from "react";
-import type { playDate } from "../../domain/playdates";
+import type { spieletreffen } from "../../domain/spieletreffen";
 import { StatusBadge } from "../atoms/statusBadge";
 
-// Eine Karte zeigt genau ein PlayDate und reicht Klicks an die übergeordnete Page zurück.
-export function PlayDateCard({
+// Eine Karte zeigt genau ein Spieletreffen und reicht Klicks an die übergeordnete Page zurück.
+export function SpieletreffenCard({
   date,
   onDelete,
   onInvite,
   onCalendar,
   onComment,
 }: {
-  date: playDate;
+  date: spieletreffen;
   onDelete: (id: number) => void;
   onInvite: () => void;
   onCalendar: () => void;
@@ -61,8 +61,8 @@ export function PlayDateCard({
           </button>
           <Link
             className="btn btn-ghost btn-sm btn-square"
-            to="/edit/$playDateId"
-            params={{ playDateId: String(date.id) }}
+            to="/edit/$spieletreffenId"
+            params={{ spieletreffenId: String(date.id) }}
             aria-label={`${date.title} bearbeiten`}
           >
             <Edit3 />

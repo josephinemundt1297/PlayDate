@@ -7,7 +7,7 @@ export function MissingConfiguration() {
         <p className="eyebrow">Einrichtung erforderlich</p>
         <h1>Login noch nicht konfiguriert</h1>
         <p>
-          PlayDate-Daten bleiben gesperrt, bis ein gültiger Clerk Publishable
+          SpielZeit-Daten bleiben gesperrt, bis ein gültiger Clerk Publishable
           Key hinterlegt ist.
         </p>
         <code>VITE_CLERK_PUBLISHABLE_KEY</code>

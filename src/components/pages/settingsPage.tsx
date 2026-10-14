@@ -16,7 +16,7 @@ export function SettingsPage() {
 
   const deleteTrainingData = () => {
     const confirmed = window.confirm(
-      "Wirklich alle lokalen PlayDate-Trainingsdaten in diesem Browser löschen? Dein Clerk-Konto bleibt bestehen.",
+      "Wirklich alle lokalen SpielZeit-Trainingsdaten in diesem Browser löschen? Dein Clerk-Konto bleibt bestehen.",
     );
     if (!confirmed) return;
 
@@ -47,7 +47,7 @@ export function SettingsPage() {
         <div>
           <h2>Meine lokalen Trainingsdaten</h2>
           <p>
-            Lade Familienprofil und PlayDates als JSON herunter oder entferne sie
+            Lade Familienprofil und Spieletreffen als JSON herunter oder entferne sie
             vollständig aus diesem Browser. Das Clerk-Login wird dabei nicht gelöscht.
           </p>
           <p className="privacy-caption" aria-live="polite">{privacyStatus}</p>
@@ -66,7 +66,7 @@ export function SettingsPage() {
       </section>
       <section className="card bg-base-100 border border-base-300 settings-card">
         <div>
-          <h2>PlayDate herunterladen</h2>
+          <h2>SpielZeit herunterladen</h2>
           <p>
             Installiere die App auf deinem Gerät. Danach kannst du sie wie eine
             normale App vom Startbildschirm öffnen.

@@ -23,7 +23,7 @@ createRoot(document.getElementById("root")!).render(
   </StrictMode>,
 );
 
-// Der Service Worker macht PlayDate installierbar und hält wichtige Dateien offline bereit.
+// Der Service Worker macht SpielZeit installierbar und hält wichtige Dateien offline bereit.
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     // Auch ein Registrierungsfehler wird behandelt und bleibt kein offenes Promise.

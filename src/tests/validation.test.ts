@@ -1,22 +1,22 @@
 import { describe, expect, it } from "vitest";
 import type { childProfile } from "../domain/family";
-import type { playDate } from "../domain/playdates";
-import { validateFamily, validatePlayDate } from "../utils/validation";
+import type { spieletreffen } from "../domain/spieletreffen";
+import { validateFamily, validateSpieletreffen } from "../utils/validation";
 
-const validDate: playDate = { id: 1, title: "Treffen im Park", children: ["Mila"], friends: ["Noah"], date: "2026-08-20", time: "15:00", location: "Stadtpark", bring: "Wasser", status: "Ausstehend", color: "mint" };
+const validDate: spieletreffen = { id: 1, title: "Treffen im Park", children: ["Mila"], friends: ["Noah"], date: "2026-08-20", time: "15:00", location: "Stadtpark", bring: "Wasser", status: "Ausstehend", color: "mint" };
 const child = (patch: Partial<childProfile> = {}): childProfile => ({ id: "1", name: "Mila", birthday: "2020-03-02", shareBirthday: false, ...patch });
 
 describe("Formularvalidierung", () => {
-  it("akzeptiert ein vollständiges PlayDate", () => {
-    expect(validatePlayDate(validDate, ["Mila"], false, new Date(2026, 6, 17))).toEqual({});
+  it("akzeptiert ein vollständiges Spieletreffen", () => {
+    expect(validateSpieletreffen(validDate, ["Mila"], false, new Date(2026, 6, 17))).toEqual({});
   });
   it("weist vergangene Termine und fremde Kinder zurück", () => {
-    const errors = validatePlayDate({ ...validDate, children: ["Unbekannt"], date: "2025-01-01" }, ["Mila"], false, new Date(2026, 6, 17));
+    const errors = validateSpieletreffen({ ...validDate, children: ["Unbekannt"], date: "2025-01-01" }, ["Mila"], false, new Date(2026, 6, 17));
     expect(errors.children).toBeDefined();
     expect(errors.date).toContain("Vergangenheit");
   });
   it("begrenzt lange Texte", () => {
-    expect(validatePlayDate({ ...validDate, bring: "x".repeat(501) }, ["Mila"]).bring).toBeDefined();
+    expect(validateSpieletreffen({ ...validDate, bring: "x".repeat(501) }, ["Mila"]).bring).toBeDefined();
   });
   it("verlangt Familienname und mindestens ein Kind", () => {
     expect(validateFamily("", [])).toMatchObject({ familyName: expect.any(String), children: expect.any(String) });

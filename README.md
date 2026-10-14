@@ -1,6 +1,6 @@
-# PlayDate – PlayDates einfach planen
+# SpielZeit – Spieletreffen einfach planen
 
-PlayDate ist mein mobile-first React-Trainingsprojekt im Rahmen meiner einjährigen Weiterbildung zur Web- und Softwareentwicklerin beim Digital Career Institute (DCI). An einer App zur Planung von Spieletreffen übe ich React, TypeScript, Routing, Formulare, State-Management, Tests, Responsive Design, A11Y und den Umgang mit externen Diensten.
+SpielZeit ist mein mobile-first React-Trainingsprojekt im Rahmen meiner einjährigen Weiterbildung zur Web- und Softwareentwicklerin beim Digital Career Institute (DCI). An einer App zur Planung von Spieletreffen übe ich React, TypeScript, Routing, Formulare, State-Management, Tests, Responsive Design, A11Y und den Umgang mit externen Diensten.
 
 Die Oberfläche ist deutschsprachig, tastaturbedienbar und für kleine Displays optimiert. Das Projekt ist ein Lern- und Portfolio-Prototyp, kein Kundenauftrag und keine produktive Anwendung.
 
@@ -8,7 +8,7 @@ Die Oberfläche ist deutschsprachig, tastaturbedienbar und für kleine Displays 
 
 **Stand: 18. Juli 2026 – Phase 0 und 1 des React-Trainingsprojekts sind abgeschlossen. Es dürfen ausschließlich erfundene Demo-Daten verwendet werden.**
 
-Login, lokale Familienprofile, Kindergeburtstage, lokale PlayDates, Monatskalender mit PlayDates und Geburtstagen, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Eine lokale Repository-Schicht, Demo-Familienverbindungen mit Trainingscodes, Mehrfachauswahl eigener Kinder und Kontakte, Erinnerungsoptionen, Kommentare, Datenexport/-löschung, Error Boundary sowie Lade-, Leer- und Offline-Zustände sind vorhanden. Die Prüfkette besteht aktuell aus Oxlint, 72 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet für die produktiven Abhängigkeiten 0 bekannte Schwachstellen.
+Login, lokale Familienprofile, Kindergeburtstage, lokale Spieletreffen, Monatskalender mit Spieletreffen und Geburtstagen, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Eine lokale Repository-Schicht, Demo-Familienverbindungen mit Trainingscodes, Mehrfachauswahl eigener Kinder und Kontakte, Erinnerungsoptionen, Kommentare, Datenexport/-löschung, Error Boundary sowie Lade-, Leer- und Offline-Zustände sind vorhanden. Die Prüfkette besteht aktuell aus Oxlint, 72 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet aktuell bekannte Schwachstellen in produktiven Transitiv-Abhängigkeiten; eine Aktualisierung sollte separat mit vollständiger Prüfkette erfolgen.
 
 Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos, produktive Datenlöschung und bidirektionale Kalendersynchronisation sind bewusst nicht Teil der abgeschlossenen React-Modul-Leistung. `localStorage` dient ausschließlich dazu, Persistenz im Frontend-Prototyp zu üben.
 
@@ -31,27 +31,27 @@ Der ausführliche Abgleich steht im [`docs/lernNachweis.md`](docs/lernNachweis.m
 
 ## Umgesetzte Funktionen
 
-- PlayDates erstellen, bearbeiten und löschen
+- Spieletreffen erstellen, bearbeiten und löschen
 - Familienprofil mit beliebig vielen Kindern verwalten
 - Geburtstage je Kind speichern und die Freigabe von Tag und Monat steuern
 - Geburtstagsübersicht für eigene und künftig verbundene Familien
 - mehrere eigene Kinder und mehrere verbundene oder frei eingetragene Kontakte auswählen
 - Treffpunkt, Teilnehmende und Mitbringsel festhalten
 - Einladungen über die Web Share-/WhatsApp-Schnittstelle vorbereiten
-- alle PlayDates als `.ics`-Kalenderdatei exportieren
-- PlayDates in einer responsiven Monatsansicht anzeigen und nach Tagen auswählen
+- alle Spieletreffen als `.ics`-Kalenderdatei exportieren
+- Spieletreffen in einer responsiven Monatsansicht anzeigen und nach Tagen auswählen
 - Kalendertermine in einer modalen Detail-Ebene vergrößern
-- PlayDate-Listen ohne horizontales Überlaufen auch in sehr schmalen eingebetteten Ansichten ab 240 CSS-Pixeln nutzen
+- Spieletreffen-Listen ohne horizontales Überlaufen auch in sehr schmalen eingebetteten Ansichten ab 240 CSS-Pixeln nutzen
 - kompakte Navigation auf Mobilgeräten und Tablets bis einschließlich 1024 CSS-Pixel
 - fünfteilige mobile Navigation mit mittigem Erstellen-Button; Konto, Download und Einstellungen liegen im Header-Menü
-- einzelne PlayDates direkt in Google Kalender öffnen
+- einzelne Spieletreffen direkt in Google Kalender öffnen
 - Status für bestätigte und ausstehende Treffen
 - Datenschutz-Hinweise für Fotos, Kommentare und eingeladene Familien
 - verknüpfte technische Datenschutzübersicht
 - eigener Fotomenüpunkt mit transparent dokumentiertem Sicherheitskonzept; Upload noch gesperrt
 - Datenschutz- und Fotoseite mit identischem Sicherheitslayout und semantischer Warnfarbe in beiden Themes
 - Clerk-Login und Abmeldung eingebunden
-- PlayDate-Bereich vollständig durch Clerk geschützt; ohne gültige Anmeldung werden keine Termindaten gerendert
+- Spieletreffen-Bereich vollständig durch Clerk geschützt; ohne gültige Anmeldung werden keine Termindaten gerendert
 - Benutzerspezifische Trennung der lokalen Prototyp-Daten über die Clerk User-ID
 - Routing mit TanStack Router
 - Light Mode, Dark Mode und automatische Systemeinstellung
@@ -65,7 +65,7 @@ Der ausführliche Abgleich steht im [`docs/lernNachweis.md`](docs/lernNachweis.m
 - lokale Repository-Schicht mit sicherem Rückfall bei beschädigten Browserdaten
 - simulierte Familienverbindungen annehmen, blockieren und entfernen
 - einmalige, 24 Stunden gültige Trainingscodes lokal erzeugen und einlösen
-- mehrere eigene Kinder für ein gemeinsames PlayDate auswählen
+- mehrere eigene Kinder für ein gemeinsames Spieletreffen auswählen
 - mehrere Sorgeberechtigte im lokalen Familienprofil simulieren
 - bestätigte Termine absagen, Änderungen nachvollziehen und Kommentare speichern
 - Zuständigkeiten für Mitbringsel und lokale Erinnerungsoptionen
@@ -82,7 +82,8 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Die App läuft anschließend normalerweise unter `http://localhost:5173`.
+Die veröffentlichte Demo läuft unter `https://spielzeit.netlify.app/`.
+Lokal läuft die App anschließend normalerweise unter `http://localhost:5173`.
 
 ## Clerk einrichten
 
@@ -94,7 +95,7 @@ Die App läuft anschließend normalerweise unter `http://localhost:5173`.
 VITE_CLERK_PUBLISHABLE_KEY=pk_test_...
 ```
 
-Ohne gültigen Key bleibt der PlayDate-Bereich gesperrt und zeigt ausschließlich einen Konfigurationshinweis. Geheimnisse wie der Clerk Secret Key gehören nie in eine `VITE_`-Variable oder ins Repository.
+Ohne gültigen Key bleibt der Spieletreffen-Bereich gesperrt und zeigt ausschließlich einen Konfigurationshinweis. Geheimnisse wie der Clerk Secret Key gehören nie in eine `VITE_`-Variable oder ins Repository.
 
 ## Atomic Design
 
@@ -104,7 +105,7 @@ Die Oberfläche folgt dem Atomic-Design-Pattern:
 src/components/
 ├── atoms/       # Buttons, Status und Theme-Steuerung
 ├── molecules/   # Quick Actions, Karten und Datenschutzhinweis
-├── organisms/   # Header, Navigation, Grid und Formular
+├── organisms/   # Header, Navigation, Flex-Liste und Formular
 ├── templates/   # App-Shell und Authentifizierungsgrenze
 └── pages/       # Routenseiten als höchste Atomic-Design-Ebene
 ```
@@ -113,11 +114,11 @@ src/components/
 
 Alle Vitest-Dateien liegen gemeinsam unter `src/tests`. So bleibt der Produktcode in den Atomic-, Domain-, Hook- und Utility-Ordnern frei von Testdateien, während die Tests trotzdem nach dem geprüften Baustein benannt sind.
 
-Der Code folgt KISS und soll auch für Junior-Entwickler gut lesbar bleiben. Selbst definierte TypeScript-Typen verwenden lower camelCase. React-Komponentenbezeichner bleiben wegen der JSX-Erkennung die technische Ausnahme; ihre Dateien verwenden weiterhin lower camelCase. DaisyUI stellt die semantischen UI-Bausteine bereit; eigenes CSS ergänzt nur das PlayDate-spezifische Layout und Branding.
+Der Code folgt KISS und soll auch für Junior-Entwickler gut lesbar bleiben. Selbst definierte TypeScript-Typen verwenden lower camelCase. React-Komponentenbezeichner bleiben wegen der JSX-Erkennung die technische Ausnahme; ihre Dateien verwenden weiterhin lower camelCase. DaisyUI stellt die semantischen UI-Bausteine bereit; eigenes CSS ergänzt nur das SpielZeit-spezifische Layout und Branding.
 
 ## App installieren
 
-PlayDate ist als PWA konfiguriert. Unterstützt der Browser die direkte Installation, öffnet **App laden** den Installationsdialog. Andernfalls wird eine `PlayDate.url`-Website-Verknüpfung heruntergeladen. Auf iOS kann zusätzlich in Safari **Teilen → Zum Home-Bildschirm** verwendet werden.
+SpielZeit ist als PWA konfiguriert. Unterstützt der Browser die direkte Installation, öffnet **App laden** den Installationsdialog. Andernfalls wird eine `SpielZeit.url`-Website-Verknüpfung heruntergeladen. Auf iOS kann zusätzlich in Safari **Teilen → Zum Home-Bildschirm** verwendet werden.
 
 ## Skripte
 
@@ -148,11 +149,11 @@ Die Testbasis verwendet Vitest, Testing Library, jest-dom und jsdom. Abgedeckt s
 - erlaubte Cache-Anfragen und behandelte Service-Worker-Promises
 - Darstellung bestätigter und ausstehender Status-Badges
 - Auth-Grenze, Error Boundary, Lade-, Leer- und Offline-Zustände
-- Familienseite, PlayDate-Formular und Validierungsrandfälle
+- Familienseite, Spieletreffen-Formular und Validierungsrandfälle
 
 Die Tests haben bereits einen echten Zeitzonenfehler bei der Google-Kalender-Endzeit gefunden und abgesichert.
 
-Zusätzlich sind 40 Playwright-Szenarien für Chromium, Firefox, WebKit, Pixel 7 und iPhone 14 eingerichtet. Sie prüfen Responsive-Überlauf, einen angemeldeten Familien-/PlayDate-Ablauf und PWA-Cache-Updates. Für den angemeldeten Ablauf wird ein nicht eingecheckter Clerk-Storage-State benötigt:
+Zusätzlich sind 40 Playwright-Szenarien für Chromium, Firefox, WebKit, Pixel 7 und iPhone 14 eingerichtet. Sie prüfen Responsive-Überlauf, einen angemeldeten Familien-/Spieletreffen-Ablauf und PWA-Cache-Updates. Für den angemeldeten Ablauf wird ein nicht eingecheckter Clerk-Storage-State benötigt:
 
 ```bash
 E2E_STORAGE_STATE=e2e/.auth/clerk.json npm run test:e2e
@@ -165,7 +166,7 @@ Die Einrichtung ersetzt keine abschließenden Tests auf echten physischen Gerät
 Der aktuelle Stand ist ein funktionsfähiger Frontend-Prototyp. Folgende Themen wären mögliche spätere Full-Stack-, Backend- oder Deployment-Vertiefungen:
 
 - **Authentifizierung:** Clerk-Sitzungen später zusätzlich im Backend prüfen und jede private Ressource serverseitig autorisieren.
-- **Datenbank:** PlayDates, Einladungen, Kommentare und Einwilligungen mandantenfähig speichern (z. B. PostgreSQL).
+- **Datenbank:** Spieletreffen, Einladungen, Kommentare und Einwilligungen mandantenfähig speichern (z. B. PostgreSQL).
 - **WhatsApp:** Einladungslinks über WhatsApp teilen; für automatisierte Nachrichten ausschließlich die offizielle WhatsApp Business Platform und ausdrückliches Opt-in verwenden.
 - **Kalender:** OAuth-Integration für Google/Microsoft sowie `.ics`-Export; nur die minimal notwendigen Kalenderrechte anfordern.
 - **Fotos:** EU-Hosting, kurzlebige Upload-URLs, rollenbasierter Zugriff, Löschfristen und dokumentierte Einwilligung der Sorgeberechtigten.
@@ -196,7 +197,7 @@ Der genaue Übungsabschluss und die Trennung zu einer realen Freigabe stehen in 
 src/
 ├── components/  # Atomic-Design-Ebenen
 ├── context/     # Theme-Zustand
-├── domain/      # PlayDate-Modell und Beispieldaten
+├── domain/      # Spieletreffen-Modell und Beispieldaten
 ├── hooks/       # Daten- und Installationslogik
 ├── app.tsx      # minimaler App-Einstieg
 ├── router.tsx   # TanStack-Routen

@@ -35,7 +35,7 @@ describe("Theme-Kontraste", () => {
 
   it("schützt den Bearbeiten-Button im Kalenderdialog vor unlesbarer Textfarbe", () => {
     expect(appCss).toMatch(
-      /\.playdate-dialog \.btn-primary \{[\s\S]*?background: var\(--color-primary\);[\s\S]*?color: var\(--color-primary-content\);/,
+      /\.spieletreffen-dialog \.btn-primary \{[\s\S]*?background: var\(--color-primary\);[\s\S]*?color: var\(--color-primary-content\);/,
     );
   });
 
@@ -48,7 +48,7 @@ describe("Theme-Kontraste", () => {
 
   it("hält Auswahl-Checkboxen kompakt statt sie wie Textfelder aufzublasen", () => {
     expect(appCss).toMatch(
-      /\.playdate-form \.selection-option input\[type="checkbox"\] \{[\s\S]*?min-height: 1\.25rem;[\s\S]*?padding: 0;/,
+      /\.spieletreffen-form \.selection-option input\[type="checkbox"\] \{[\s\S]*?min-height: 1\.25rem;[\s\S]*?padding: 0;/,
     );
   });
 
@@ -59,7 +59,7 @@ describe("Theme-Kontraste", () => {
     expect(appCss).toMatch(
       /\.selection-option \{[\s\S]*?font-size: 1rem;[\s\S]*?line-height: 1\.4;/,
     );
-    expect(appCss).not.toContain(".playdate-form label span {");
+    expect(appCss).not.toContain(".spieletreffen-form label span {");
   });
 
   it("hält das Plus in der mobilen Navigation auch auf der aktiven Route lesbar", () => {

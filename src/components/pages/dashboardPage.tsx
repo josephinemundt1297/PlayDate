@@ -7,16 +7,16 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { usePlayDates } from "../../hooks/usePlayDates";
+import { useSpieletreffen } from "../../hooks/useSpieletreffen";
 import { QuickAction } from "../molecules/quickAction";
-import { PlayDateGrid } from "../organisms/playDateGrid";
+import { SpieletreffenFlex } from "../organisms/spieletreffenFlex";
 import { PrivacyNote } from "../molecules/privacyNote";
-import { addPlayDateComment, cancelPlayDate, type playDate } from "../../domain/playdates";
+import { addSpieletreffenComment, cancelSpieletreffen, type spieletreffen } from "../../domain/spieletreffen";
 import { googleCalendarUrl } from "../../utils/calendar";
 
 // Die Dashboard-Page setzt mehrere kleinere Atomic-Bausteine zur fertigen Übersicht zusammen.
 export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
-  const { dates, save } = usePlayDates();
+  const { dates, save } = useSpieletreffen();
   const navigate = useNavigate();
   const [toast, setToast] = useState("");
   const sorted = useMemo(
@@ -33,16 +33,16 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
     if (!selected) return;
 
     if (selected.status === "Bestätigt") {
-      if (!confirm("Bestätigtes PlayDate wirklich absagen? Der Termin bleibt im Verlauf sichtbar.")) return;
-      save(dates.map((date) => date.id === id ? cancelPlayDate(date) : date));
-      announce("PlayDate wurde abgesagt");
+      if (!confirm("Bestätigtes Spieletreffen wirklich absagen? Der Termin bleibt im Verlauf sichtbar.")) return;
+      save(dates.map((date) => date.id === id ? cancelSpieletreffen(date) : date));
+      announce("Spieletreffen wurde abgesagt");
       return;
     }
 
-    if (confirm("Möchtest du diese offene PlayDate-Anfrage wirklich löschen?"))
+    if (confirm("Möchtest du diese offene Anfrage wirklich löschen?"))
       save(dates.filter((date) => date.id !== id));
   };
-  const invite = (date: playDate) => {
+  const invite = (date: spieletreffen) => {
     window.open(
       `https://wa.me/?text=${encodeURIComponent(`Einladung zu „${date.title}“ am ${date.date} um ${date.time} Uhr.`)}`,
       "_blank",
@@ -51,7 +51,7 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
     announce("WhatsApp-Einladung geöffnet");
   };
   const addComment = (id: number, text: string) => {
-    save(dates.map((date) => date.id === id ? addPlayDateComment(date, text) : date));
+    save(dates.map((date) => date.id === id ? addSpieletreffenComment(date, text) : date));
     announce("Kommentar lokal gespeichert");
   };
   return (
@@ -68,18 +68,18 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
             </div>
             <Link to="/new" className="btn btn-primary primary-button">
               <Plus />
-              PlayDate planen
+              Spieletreffen planen
             </Link>
             <div className="sun-doodle" aria-hidden="true">
               <Sparkles />
             </div>
           </section>
-          <section className="quick-grid" aria-label="Schnellaktionen">
+          <section className="quick-flex" aria-label="Schnellaktionen">
             <QuickAction
               icon={CalendarDays}
               tone="blue"
               title="Kalender ansehen"
-              description="Alle PlayDates in der Monatsansicht öffnen"
+              description="Alle Spieletreffen in der Monatsansicht öffnen"
               onClick={() => navigate({ to: "/calendar" })}
             />
             <QuickAction
@@ -89,7 +89,7 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
               description="Familien unkompliziert einladen"
               onClick={() =>
                 window.open(
-                  "https://wa.me/?text=Komm%20zu%20PlayDate!",
+                  "https://wa.me/?text=Komm%20zu%20SpielZeit!",
                   "_blank",
                   "noopener,noreferrer",
                 )
@@ -103,20 +103,20 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
           <p className="eyebrow">
             {showAll ? "Gemeinsame Zeit" : "Was als Nächstes kommt"}
           </p>
-          <h2>{showAll ? "Alle PlayDates" : "Deine PlayDates"}</h2>
+          <h2>{showAll ? "Alle Spieletreffen" : "Deine Spieletreffen"}</h2>
         </div>
         {showAll ? (
-          <Link to="/new" className="btn btn-primary primary-button new-playdate-button">
+          <Link to="/new" className="btn btn-primary primary-button new-spieletreffen-button">
             <Plus />
-            Neues PlayDate
+            Neues Spieletreffen
           </Link>
         ) : (
-          <Link to="/playdates">
+          <Link to="/spieletreffen">
             Alle ansehen <ChevronRight />
           </Link>
         )}
       </div>
-      <PlayDateGrid
+      <SpieletreffenFlex
         dates={showAll ? sorted : sorted.slice(0, 3)}
         onDelete={remove}
         onInvite={invite}

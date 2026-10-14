@@ -13,7 +13,7 @@ export function PhotosPage() {
     <SafetyPage
       eyebrow="Private Erinnerungen"
       title="Fotos sicher mit eingeladenen Familien teilen"
-      notice="Foto-Uploads sind noch gesperrt. Bis alle Schutzmaßnahmen serverseitig umgesetzt und getestet sind, nimmt PlayDate keine Kinderfotos entgegen."
+      notice="Foto-Uploads sind noch gesperrt. Bis alle Schutzmaßnahmen serverseitig umgesetzt und getestet sind, nimmt SpielZeit keine Kinderfotos entgegen."
       sectionTitle="So muss ein sicherer Fotolink funktionieren"
       items={photoTopics}
     />

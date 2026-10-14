@@ -6,20 +6,20 @@ import { AppMenu } from "./appMenu";
 export function AppHeader() {
   return (
     <header className="navbar topbar">
-      <Link to="/" className="brand" aria-label="PlayDate Startseite">
+      <Link to="/" className="brand" aria-label="SpielZeit Startseite">
         <span className="brand-mark">
           <Sparkles size={20} />
         </span>
         <span>
-          Play<span>Date</span>
+          Spiel<span>Zeit</span>
         </span>
       </Link>
       <nav className="desktop-nav" aria-label="Hauptnavigation">
         <Link to="/" activeProps={{ className: "active" }}>
           Übersicht
         </Link>
-        <Link to="/playdates" activeProps={{ className: "active" }}>
-          PlayDates
+        <Link to="/spieletreffen" activeProps={{ className: "active" }}>
+          Spieletreffen
         </Link>
         <Link to="/calendar" activeProps={{ className: "active" }}>
           Kalender

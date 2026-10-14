@@ -38,7 +38,7 @@ export function FamilyConnections() {
         Teile einen einmaligen Trainingscode mit einer Familie, die du bereits kennst.
         In dieser Übung funktioniert er nur zwischen Konten im selben Browser.
       </p>
-      <div className="connection-token-grid">
+      <div className="connection-token-flex">
         <section className="card bg-base-100 connection-token-card">
           <KeyRound />
           <div>

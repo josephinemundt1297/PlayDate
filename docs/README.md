@@ -1,6 +1,6 @@
-# PlayDate – Dokumentation des React-Trainingsprojekts
+# SpielZeit – Dokumentation des React-Trainingsprojekts
 
-Hier liegen alle ausführlichen Unterlagen zu meinem PlayDate-Trainingsprojekt im React-Modul meiner einjährigen Weiterbildung zur Web- und Softwareentwicklerin beim DCI.
+Hier liegen alle ausführlichen Unterlagen zu meinem SpielZeit-Trainingsprojekt im React-Modul meiner einjährigen Weiterbildung zur Web- und Softwareentwicklerin beim DCI.
 
 | Dokument | Inhalt |
 | --- | --- |
@@ -12,4 +12,4 @@ Hier liegen alle ausführlichen Unterlagen zu meinem PlayDate-Trainingsprojekt i
 
 `README.md` und `AGENTS.md` bleiben im Repository-Stamm. GitHub zeigt die README dort automatisch an, und Entwicklungswerkzeuge finden dort die Arbeitsregeln.
 
-PlayDate ist ein persönliches Trainings- und Portfolio-Projekt. Die Unterlagen dokumentieren den Lernprozess und simulieren eine saubere Produktentwicklung. Sie sind keine offizielle Bewertung des DCI, keine Rechtsberatung und keine Freigabe für den Betrieb mit echten personenbezogenen Daten.
+SpielZeit ist ein persönliches Trainings- und Portfolio-Projekt. Die Unterlagen dokumentieren den Lernprozess und simulieren eine saubere Produktentwicklung. Sie sind keine offizielle Bewertung des DCI, keine Rechtsberatung und keine Freigabe für den Betrieb mit echten personenbezogenen Daten.

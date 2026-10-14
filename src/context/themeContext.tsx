@@ -7,15 +7,14 @@ import {
   themeContext,
   type theme,
 } from "./themeContextDefinition";
-const themeKey = "playDate.theme";
-const legacyThemeKey = "playpal.theme";
+const themeKey = "spielZeit.theme";
 
 // Der Provider hält das Farbschema zentral. Einzelne Komponenten müssen so nicht selbst herumrechnen.
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<theme>(
     () => {
       const saved = (localStorage.getItem(themeKey) ??
-        localStorage.getItem(legacyThemeKey)) as theme | null;
+        null) as theme | null;
       if (saved && !localStorage.getItem(themeKey)) {
         localStorage.setItem(themeKey, saved);
       }

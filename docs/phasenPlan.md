@@ -1,6 +1,6 @@
-# PlayDate – Phasenplan
+# SpielZeit – Phasenplan
 
-> **Lernkontext:** PlayDate ist mein Trainingsprojekt im React-Modul der einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklerin. Ein Haken bedeutet „als Lernziel umgesetzt oder als Übung dokumentiert“, nicht „produktiv oder rechtlich freigegeben“.
+> **Lernkontext:** SpielZeit ist mein Trainingsprojekt im React-Modul der einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklerin. Ein Haken bedeutet „als Lernziel umgesetzt oder als Übung dokumentiert“, nicht „produktiv oder rechtlich freigegeben“.
 
 ## 1. Zweck des Plans
 
@@ -16,7 +16,7 @@ Die Zeitangaben sind grobe Richtwerte für ein kleines Team. Sie sind keine fest
 | 1     | Produkt- und Datenschutzübung        | abgeschlossen | dokumentierte fachliche Leitplanken              |
 | 2     | Backend und Datenmodell              | 2–4 Wochen  | sichere serverseitige Speicherung                 |
 | 3     | Familien und Verbindungen            | 2–3 Wochen  | echte private Familienbeziehungen                 |
-| 4     | PlayDates und Einladungen            | 2–4 Wochen  | vollständiger gemeinsamer Planungsablauf          |
+| 4     | Spieletreffen und Einladungen            | 2–4 Wochen  | vollständiger gemeinsamer Planungsablauf          |
 | 5     | Kalender und Erinnerungen            | 2–3 Wochen  | zuverlässige Terminübernahme und Benachrichtigung |
 | 6     | Datenschutzfunktionen und Sicherheit | 2–4 Wochen  | kontrollierbarer Datenlebenszyklus                |
 | 7     | A11Y, Qualität und Pilot             | 2–3 Wochen  | geprüfter MVP für Testfamilien                    |
@@ -37,7 +37,7 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] `app.tsx` auf die minimale App-Verbindung reduziert
 - [x] selbst angelegte Dateien und Ordner auf lower camelCase umgestellt
 - [x] Clerk-Anmeldung eingebunden
-- [x] PlayDate- und Familiendaten hinter der Anmeldung geschützt
+- [x] SpielZeit- und Familiendaten hinter der Anmeldung geschützt
 - [x] Light Mode, Dark Mode und Systemmodus umgesetzt
 - [x] Grün-Blau-Farbwelt als bevorzugtes Theme umgesetzt
 - [x] zentrale Dark-Mode-Kontraste rechnerisch auf mindestens 4,5:1 geprüft
@@ -47,14 +47,14 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] eigene DaisyUI-Themes für Light und Dark Mode erstellt
 - [x] zentrale Karten, Buttons, Formulare, Badges, Alerts und Navigation auf DaisyUI umgestellt
 - [x] mobile-first Oberfläche umgesetzt
-- [x] mobile PlayDate-Liste bei 320 CSS-Pixeln gegen horizontales Überlaufen abgesichert
+- [x] mobile Spieletreffen-Liste bei 320 CSS-Pixeln gegen horizontales Überlaufen abgesichert
 - [x] Tablet- und kleine Laptopbreiten bis 1024 CSS-Pixel mit kompakter Navigation abgesichert
 - [x] mobile Navigation auf fünf gleich breite Plätze mit mittigem Erstellen-Button reduziert; Einstellungen und Konto in das Header-Menü verschoben
 - [x] feste Mindestbreite des Seitenkörpers entfernt und Engstellen bis 240 CSS-Pixel abgesichert
 - [x] Kalenderaktionen auf sehr schmalen Ansichten gestapelt
 - [x] Datenschutzlink im mobilen Layout wieder sichtbar gemacht
 - [x] PWA-Manifest und Service Worker eingerichtet
-- [x] App und Repository einheitlich in PlayDate umbenannt
+- [x] App und Repository einheitlich in SpielZeit umbenannt
 - [x] erste Unit- und Komponententests mit Vitest eingerichtet
 - [x] gemeinsame Prüfkette über `npm run check` eingerichtet
 - [x] Projektspezifikation und Produktkonzept dokumentiert
@@ -62,10 +62,10 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] Error Boundary und einheitliche Fehlerzustände ergänzen
 - [x] Lade-, Leer- und Offline-Zustände vollständig prüfen
 - [x] Formularvalidierung für alle dokumentierten Randfälle erweitern
-- [x] Tests für Auth-Grenze, Familienseite und PlayDate-Formular ergänzen
+- [x] Tests für Auth-Grenze, Familienseite und Spieletreffen-Formular ergänzen
 - [x] vollständige End-to-End-Teststrecke einrichten
 - [ ] optionaler Zusatznachweis: PWA-Updates auf mehreren Browsern und Geräten prüfen
-- [ ] Playwright-Prüfung für Service-Worker-Registrierung auf die aktuelle Cache-Version `playDate-v9` aktualisieren
+- [x] Playwright-Prüfung für Service-Worker-Registrierung auf die aktuelle Cache-Version `spielZeit-v10` aktualisieren
 - [x] Chromium, Firefox, WebKit, Pixel 7 und iPhone 14 als Projekte konfiguriert
 - [ ] optionaler Zusatznachweis: Browserläufe mit installierten Playwright-Browsern ausführen
 - [ ] optionaler Zusatznachweis: PWA-Update auf echten Android- und iOS-Geräten prüfen
@@ -98,14 +98,14 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 
 - [x] Datenmodelle für den Frontend-Prototyp definiert
 - [x] lokale Prototyp-Daten nach Clerk User-ID getrennt
-- [x] Migration alter lokaler PlayDate-Schlüssel eingebaut
+- [x] Migration alter lokaler SpielZeit-Schlüssel eingebaut
 - [x] lokale Repository-Schicht als API-Vorbereitung ergänzt
 - [x] beschädigte Browserdaten mit sicheren Startwerten abgefangen
 - [ ] Backend-Technologie und EU-Hosting auswählen
 - [ ] relationale Datenbank einrichten
 - [ ] produktives Datenmodell mit stabilen IDs erstellen
 - [ ] Clerk-Sitzungen serverseitig validieren
-- [ ] geschützte API für Familien und PlayDates implementieren
+- [ ] geschützte API für Familien und Spieletreffen implementieren
 - [ ] serverseitige Eingabevalidierung ergänzen
 - [ ] Rollen und Berechtigungen serverseitig durchsetzen
 - [ ] Secret-Management einrichten
@@ -118,7 +118,7 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 - [x] beliebig viele eigene Kinder lokal verwaltbar
 - [x] Geburtstag pro Kind speicherbar
 - [x] Freigabeeinstellung für Geburtstage vorhanden
-- [x] mehrere eigene Kinder im PlayDate-Formular mit erkennbarem Auswahlzustand auswählbar
+- [x] mehrere eigene Kinder im Spieletreffen-Formular mit erkennbarem Auswahlzustand auswählbar
 - [x] Oberfläche für freigegebene Geburtstage vorbereitet
 - [x] Verbindungsanfragen lokal als React-Zustände simulieren
 - [x] Demo-Verbindungen annehmen, blockieren und entfernen
@@ -126,7 +126,7 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 - [ ] Familienprofile über die API speichern
 - [ ] echte private Familienverbindungen implementieren
 - [x] lokalen Trainingsablauf mit zufälligem, 24 Stunden gültigem Einmalcode simulieren
-- [x] mehrere eigene Kinder pro PlayDate auswählbar machen und alte Einzelauswahl migrieren
+- [x] mehrere eigene Kinder pro SpielZeit auswählbar machen und alte Einzelauswahl migrieren
 - [ ] Verbindungsanfragen annehmen, ablehnen und widerrufen
 - [ ] kurzlebige und widerrufbare Einladungstoken verwenden
 - [ ] Geburtstagsfreigaben serverseitig prüfen
@@ -134,22 +134,22 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 - [ ] Blockieren und Entfernen von Verbindungen ermöglichen
 - [ ] Rate Limits und Missbrauchsschutz ergänzen
 
-### Phase 4 – PlayDates und Einladungen
+### Phase 4 – Spieletreffen und Einladungen
 
-- [x] PlayDates lokal erstellen
-- [x] PlayDates lokal bearbeiten
-- [x] PlayDates nach Rückfrage lokal löschen
+- [x] Spieletreffen lokal erstellen
+- [x] Spieletreffen lokal bearbeiten
+- [x] Spieletreffen nach Rückfrage lokal löschen
 - [x] eigene Kinder, verbundene Kontakte oder freie Namen, Datum und Uhrzeit erfassen
 - [x] Auswahlgruppen semantisch mit Legende und gut lesbarem Hilfetext verknüpfen
-- [x] langes PlayDate-Formular in drei semantische, leicht scannbare Etappen gliedern
+- [x] langes Spieletreffen-Formular in drei semantische, leicht scannbare Etappen gliedern
 - [x] Erinnerungscheckboxen reparieren und durch einen Interaktionstest absichern
 - [x] Treffpunkt und Mitbringsel erfassen
 - [x] Status „Bestätigt“ und „Ausstehend“ anzeigen
 - [x] Teilen über Web Share beziehungsweise WhatsApp vorbereitet
-- [x] bestätigte PlayDates lokal absagen und im Verlauf behalten
+- [x] bestätigte Spieletreffen lokal absagen und im Verlauf behalten
 - [x] Mitbringsel mit lokaler Zuständigkeit versehen
 - [x] lokalen Aktivitätsverlauf für Erstellen, Bearbeiten, Absage und Kommentare ergänzen
-- [ ] PlayDates im Backend speichern
+- [ ] Spieletreffen im Backend speichern
 - [ ] Teilnehmer über stabile IDs zuordnen
 - [ ] echte Einladung an verbundene Familien senden
 - [ ] Einladungen annehmen oder ablehnen
@@ -161,15 +161,15 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 
 ### Phase 5 – Kalender und Erinnerungen
 
-- [x] responsive Monatsansicht mit PlayDates umgesetzt
-- [x] vergrößerbare PlayDate-Details als modalen Kalender-Layer umgesetzt
+- [x] responsive Monatsansicht mit Spieletreffen umgesetzt
+- [x] vergrößerbare Spieletreffen-Details als modalen Kalender-Layer umgesetzt
 - [x] Kalenderroute in Desktop- und Mobilnavigation eingebunden
-- [x] Export aller PlayDates als `.ics`-Datei umgesetzt
-- [x] Link zum Öffnen eines PlayDates in Google Kalender umgesetzt
+- [x] Export aller Spieletreffen als `.ics`-Datei umgesetzt
+- [x] Link zum Öffnen eines Spieletreffen in Google Kalender umgesetzt
 - [x] Kalenderfunktionen durch erste Tests abgesichert
 - [x] eigene und freigegebene Geburtstage im Monatskalender und Tagesbereich anzeigen
 - [x] Erinnerungsoptionen im Formular dargestellt
-- [x] Erinnerungsoptionen im lokalen PlayDate-Modell speichern und bei Absage deaktivieren
+- [x] Erinnerungsoptionen im lokalen Spieletreffen-Modell speichern und bei Absage deaktivieren
 - [ ] `.ics`-Export mit mehreren Kalenderprogrammen prüfen
 - [ ] Zeitzonen und Sommerzeit umfassend testen
 - [ ] Erinnerungseinstellungen produktiv speichern
@@ -187,7 +187,7 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 - [x] Foto-Menü und sichere technische Anforderungen sichtbar dokumentiert
 - [x] Secret Keys aus der Browserkonfiguration ausgeschlossen und dokumentiert
 - [x] lokale Trainingsdaten als verständliche JSON-Datei exportieren
-- [x] lokale Familien-, Verbindungs- und PlayDate-Daten gemeinsam löschen
+- [x] lokale Familien-, Verbindungs- und Spieletreffen-Daten gemeinsam löschen
 - [ ] serverseitige Autorisierung für jede private Ressource umsetzen
 - [ ] Einwilligungsübersicht und Widerruf umsetzen
 - [ ] Datenauskunft und Datenexport anbieten
@@ -231,7 +231,7 @@ Phase 1 ist für den Umfang des Übungsprojekts abgeschlossen. Annahmen und die 
 ### Phase 9 – Ausbau nach dem MVP
 
 - [x] Mitbringsel mit Zuständigkeiten lokal simulieren
-- [x] Kommentare im angemeldeten lokalen PlayDate-Bereich speichern
+- [x] Kommentare im angemeldeten lokalen Spieletreffen-Bereich speichern
 - [x] mehrere Sorgeberechtigte pro Familie lokal simulieren
 - [ ] private Fotos mit geprüfter Einwilligung
 - [ ] bidirektionale Google- und Microsoft-Kalendersynchronisation
@@ -260,7 +260,7 @@ Der vorhandene React-Prototyp wird zu einer verlässlichen Grundlage für die Ba
 - Clerk-Anmeldung und geschützte Oberfläche
 - Atomic-Design-Struktur
 - Familienprofil mit mehreren Kindern und Geburtstagen
-- PlayDates erstellen, bearbeiten und löschen
+- Spieletreffen erstellen, bearbeiten und löschen
 - `.ics`-Export und Google-Kalender-Link
 - Light Mode, Dark Mode und PWA
 - erste automatisierte Tests
@@ -272,7 +272,7 @@ Der vorhandene React-Prototyp wird zu einer verlässlichen Grundlage für die Ba
 - Error Boundary und verständliche Fehlerzustände ergänzen
 - Lade-, Leer- und Offline-Zustände vereinheitlichen
 - Formularvalidierung für Datum, Uhrzeit und Pflichtfelder erweitern
-- Tests für Login-Grenze, Familienformular und PlayDate-Formular ergänzen
+- Tests für Login-Grenze, Familienformular und Spieletreffen-Formular ergänzen
 - mindestens einen vollständigen End-to-End-Test vorbereiten
 - PWA-Aktualisierung und Service-Worker-Verhalten testen
 - Demo-Daten klar von echten Nutzerdaten trennen
@@ -340,9 +340,9 @@ Private Daten werden nicht länger als Hauptspeicher im Browser abgelegt, sonder
 
 - Backend-Technologie und EU-Hosting auswählen
 - relationale Datenbank einrichten
-- Tabellen für Nutzer, Familien, Kinder, PlayDates und Einwilligungen anlegen
+- Tabellen für Nutzer, Familien, Kinder, Spieletreffen und Einwilligungen anlegen
 - Clerk-Identität serverseitig prüfen
-- API für Familien und PlayDates implementieren
+- API für Familien und Spieletreffen implementieren
 - Berechtigungen bei jeder Lese- und Schreiboperation prüfen
 - Schema-Migrationen und Seed-Daten sauber trennen
 - Validierung auf Client und Server umsetzen
@@ -356,8 +356,8 @@ Private Daten werden nicht länger als Hauptspeicher im Browser abgelegt, sonder
 - `families`
 - `familyMembers`
 - `children`
-- `playDates`
-- `playDateParticipants`
+- `spieletreffen`
+- `spieletreffenParticipants`
 - `consents`
 - `auditEvents`
 
@@ -365,7 +365,7 @@ Namen dürfen nicht als technische Beziehungsschlüssel verwendet werden. Bezieh
 
 ### Ergebnis
 
-Eine versionierte API mit Datenbank, die Familien- und PlayDate-Daten sicher und nutzerbezogen speichert.
+Eine versionierte API mit Datenbank, die Familien- und Spieletreffen-Daten sicher und nutzerbezogen speichert.
 
 ### Abnahmekriterien
 
@@ -410,7 +410,7 @@ Zwei bekannte Familien können sich ausdrücklich verbinden und nur freigegebene
 - Einladungslinks laufen ab und können widerrufen werden
 - alle Verbindungszustände sind per Tastatur und Screenreader verständlich
 
-## 7. Phase 4 – PlayDates und Einladungen
+## 7. Phase 4 – Spieletreffen und Einladungen
 
 **Richtwert:** 2–4 Wochen  
 **Abhängigkeit:** Phasen 2 und 3
@@ -421,12 +421,12 @@ Der zentrale Ablauf funktioniert zwischen zwei echten Familien: erstellen, einla
 
 ### Arbeitspakete
 
-- PlayDates vollständig über das Backend speichern
+- Spieletreffen vollständig über das Backend speichern
 - eigenes Kind über eine stabile ID auswählen
 - verbundene Familie oder eingeladenes Kind auswählen
 - Teilnehmerrollen und Organisator festlegen
 - Einladungsstatus offen, angenommen und abgelehnt abbilden
-- PlayDate-Änderungen für Beteiligte sichtbar machen
+- Spieletreffen-Änderungen für Beteiligte sichtbar machen
 - Absage statt unbemerktem Löschen bei angenommenen Terminen verwenden
 - Einladung über Web Share und WhatsApp vorbereiten
 - öffentliche Links von privaten Inhalten trennen
@@ -435,7 +435,7 @@ Der zentrale Ablauf funktioniert zwischen zwei echten Familien: erstellen, einla
 
 ### Ergebnis
 
-Ein PlayDate kann zwischen verbundenen Familien vollständig geplant und abgestimmt werden.
+Ein Spieletreffen kann zwischen verbundenen Familien vollständig geplant und abgestimmt werden.
 
 ### Abnahmekriterien
 
@@ -532,7 +532,7 @@ Der MVP wird mit realistischen Geräten, Hilfsmitteln und einer kleinen Gruppe f
 - Tests mit VoiceOver und NVDA durchführen
 - Kontraste in Light und Dark Mode messen
 - mobile Tests mit verschiedenen Displaygrößen durchführen
-- End-to-End-Tests für Registrierung, Familie, Einladung und PlayDate ergänzen
+- End-to-End-Tests für Registrierung, Familie, Einladung und SpielZeit ergänzen
 - Fehler-, Offline- und langsame Netzwerkzustände testen
 - kleine Pilotgruppe mit klarer Einwilligung zusammenstellen
 - strukturiertes Feedback zu Verständnis, Vertrauen und Bedienbarkeit sammeln
@@ -559,7 +559,7 @@ Ein mit echten Nutzungsszenarien geprüfter Release Candidate.
 
 ### Ziel
 
-PlayDate geht schrittweise und beobachtbar in den produktiven Betrieb.
+SpielZeit geht schrittweise und beobachtbar in den produktiven Betrieb.
 
 ### Arbeitspakete
 
@@ -595,7 +595,7 @@ Neue Funktionen werden anhand von Pilotfeedback und tatsächlichem Nutzen priori
 ### Mögliche Reihenfolge
 
 1. strukturierte Mitbringlisten und Zuständigkeiten
-2. Kommentare im geschützten PlayDate-Bereich
+2. Kommentare im geschützten Spieletreffen-Bereich
 3. mehrere Sorgeberechtigte pro Familie
 4. private Fotos mit dokumentierter Einwilligung
 5. bidirektionale Google- und Microsoft-Kalendersynchronisation
@@ -642,18 +642,18 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 - [x] TypeScript-Prüfung bestanden
 - [x] Produktions-Build mit Vite erfolgreich erstellt
 - [x] Dependency-Audit für produktive npm-Abhängigkeiten ausgeführt
-- [x] Dependency-Audit meldet 0 bekannte Schwachstellen
+- [ ] Dependency-Audit meldet aktuell bekannte Schwachstellen in produktiven Transitiv-Abhängigkeiten; Updates separat prüfen
 - [x] die beiden zuvor dokumentierten Oxlint-Warnungen behoben
 - [x] Monatsraster, Terminzuordnung und Monatswechsel automatisiert getestet
 - [x] zentrale Light-Mode-Kontraste für Text, Fokus und UI-Grenzen rechnerisch geprüft
-- [x] responsive Regression der PlayDate-Liste anhand der gemeldeten schmalen Ansicht behoben
+- [x] responsive Regression der Spieletreffen-Liste anhand der gemeldeten schmalen Ansicht behoben
 - [x] Regressionstest für unsichtbare primäre Aktionen in Light und Dark Mode ergänzt
 - [x] Kalender-Detail-Layer und Website-Verknüpfung automatisiert geprüft
 - [x] Responsive-Regressionstest für Viewport, Tablet-Breakpoint und Navigation ergänzt
 - [x] fremde URL-Schemas im Service Worker vom Cache ausgeschlossen
 - [x] Cache- und Registrierungs-Promises gegen unbehandelte Fehler abgesichert
 - [x] Service-Worker-Regeln durch Regressionstests geschützt
-- [x] Testabdeckung für Authentifizierungsgrenze, Familienseite und PlayDate-Formular erweitert
+- [x] Testabdeckung für Authentifizierungsgrenze, Familienseite und Spieletreffen-Formular erweitert
 - [x] aktueller Quellstand und Produktions-Build auf typische Clerk-Secret-Muster geprüft; kein aktueller Treffer
 - [x] lokale Export- und Löschfunktionen durch automatisierte Tests erneut geprüft
 - [x] installierte Abhängigkeiten auf bekannte Schwachstellen und verfügbare Aktualisierungen geprüft
@@ -674,7 +674,7 @@ Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrol
 | AUD-003 | Hoch        | Das Projekt besitzt noch kein produktives Backend; private Daten liegen im Prototyp in `localStorage`.                | bekannt, Phase 2 geplant                                                      |
 | AUD-004 | Hoch        | Serverseitige Autorisierungs-, IDOR- und Rollenprüfungen können ohne Backend noch nicht stattfinden.                  | bekannt, Phasen 2 bis 4 geplant                                               |
 | AUD-005 | Hoch        | Eine echte rechtliche DSGVO-Prüfung ist für das Übungsprojekt nicht vorgesehen.                                      | Übungskonzept abgeschlossen; vor realem Betrieb neu zu öffnen                 |
-| AUD-006 | Mittel      | Der PWA-E2E-Test erwartet noch `playDate-v4`, während der Service Worker bereits `playDate-v9` verwendet.             | Test vor einem echten Browserlauf aktualisieren                               |
+| AUD-006 | Mittel      | Der PWA-E2E-Test erwartete noch eine alte Cache-Version, während der Service Worker bereits `spielZeit-v10` verwendet. | behoben; echter Browserlauf bleibt optionaler Zusatznachweis                  |
 | AUD-007 | Kritisch    | Ein 50 Zeichen langer Clerk-Test-Secret-Key ist in einem älteren Commit in `.env.example` auffindbar.                 | Schlüssel sofort bei Clerk widerrufen/rotieren; Historienbereinigung planen   |
 | AUD-008 | Niedrig     | Für mehrere Pakete sind Patch-/Minor-Updates verfügbar; TypeScript 7 ist ein späteres Major-Upgrade.                  | Updates getrennt prüfen und mit vollständiger Prüfkette absichern             |
 
@@ -697,7 +697,7 @@ Die erfolgreichen Prüfungen belegen ausschließlich den aktuellen Frontend-Buil
 | Datenschutz-Audit                     | Ende Phase 1                         | bei neuen Datenarten oder Anbietern, mindestens jährlich           | Dateninventar, Rechtsgrundlagen, Löschfristen und Maßnahmenliste    |
 | Berechtigungs-Audit                   | Ende Phase 2                         | nach Änderungen am Rollenmodell und vor Releases                   | Rollenmatrix und automatisierte Autorisierungstests                 |
 | Einladungs- und Token-Audit           | Ende Phase 3                         | bei Änderungen am Einladungsablauf                                 | Missbrauchsszenarien, Token-Prüfung und Testnachweise               |
-| PlayDate-Datenfluss-Audit             | Ende Phase 4                         | vor jedem größeren Release                                         | Datenflussdiagramm und Prüfung fremder Zugriffsversuche             |
+| Spieletreffen-Datenfluss-Audit             | Ende Phase 4                         | vor jedem größeren Release                                         | Datenflussdiagramm und Prüfung fremder Zugriffsversuche             |
 | Kalender- und Benachrichtigungs-Audit | Ende Phase 5                         | bei jeder neuen Integration                                        | Berechtigungsumfang, Opt-in-Nachweis und Zeitzonentests             |
 | Security-Audit                        | Ende Phase 6                         | vor Produktion, nach kritischen Änderungen und mindestens jährlich | Schwachstellenbericht, Risikoeinstufung und Behebungsnachweis       |
 | A11Y-Audit                            | Ende Phase 7                         | vor Releases und bei größeren UI-Änderungen                        | WCAG-Prüfbericht mit automatischen und manuellen Tests              |
@@ -758,7 +758,7 @@ Die konzeptionellen Nachweise stehen in [`phase1Datenschutz.md`](phase1Datenschu
 **Prüfumfang:**
 
 - gültige und ungültige Clerk-Sitzungen
-- Familien-, Kinder- und PlayDate-Zugehörigkeit
+- Familien-, Kinder- und Spieletreffen-Zugehörigkeit
 - Organisator- und Teilnehmerrechte
 - entfernte oder blockierte Verbindungen
 - Schutz vor IDOR und erratenen Ressourcen-IDs
@@ -767,7 +767,7 @@ Die konzeptionellen Nachweise stehen in [`phase1Datenschutz.md`](phase1Datenschu
 **Prüfungen und Nachweise:**
 
 - [x] Frontend-Auth-Grenze weist Zugriff ohne Anmeldung ab und ist durch einen Komponententest belegt
-- [ ] manipulierte Nutzer-, Familien- und PlayDate-IDs testen
+- [ ] manipulierte Nutzer-, Familien- und Spieletreffen-IDs testen
 - [ ] Zugriff einer fremden Familie automatisiert prüfen
 - [ ] Rechte nach Entfernen einer Verbindung erneut prüfen
 - [ ] Rechte nach Absage, Widerruf und Kontolöschung prüfen
@@ -872,7 +872,7 @@ Damit erfüllen die geprüften Textpaare mindestens 4,5:1 und die geprüfte erke
 
 **Prüfungen und Nachweise:**
 
-- [x] Kalenderansicht ordnet PlayDates in einem Montag-basierten Monatsraster zu
+- [x] Kalenderansicht ordnet Spieletreffen in einem Montag-basierten Monatsraster zu
 - [x] Monatswechsel und Jahreswechsel automatisiert getestet
 - [ ] `.ics`-Dateien in Google, Apple und Microsoft Kalender testen
 - [ ] Zeitumstellungen und Zeitzonenwechsel testen
@@ -880,7 +880,7 @@ Damit erfüllen die geprüften Textpaare mindestens 4,5:1 und die geprüfte erke
 - [ ] Kalenderzugriff ohne Freigabe verhindern
 - [ ] PWA-Installation auf Android und iOS prüfen
 - [ ] Update von einer älteren PWA-Version testen
-- [ ] PWA-E2E-Erwartung von `playDate-v4` auf die aktuelle Cache-Version `playDate-v9` aktualisieren
+- [x] PWA-E2E-Erwartung auf die aktuelle Cache-Version `spielZeit-v10` aktualisieren
 - [ ] Offline- und Wiederverbindungsverhalten dokumentieren
 
 ### Audit 8 – Betrieb und Notfallvorsorge
@@ -929,7 +929,7 @@ Ein akzeptiertes Risiko muss begründet, zeitlich begrenzt und von der fachlich 
 ### Audit-Freigaben je Meilenstein
 
 - **Meilenstein A:** Code-, Architektur-, Datenschutz- und erstes Berechtigungs-Audit abgeschlossen
-- **Meilenstein B:** Berechtigungs-, Einladungs- und PlayDate-Datenfluss-Audit ohne kritische offene Befunde
+- **Meilenstein B:** Berechtigungs-, Einladungs- und Spieletreffen-Datenfluss-Audit ohne kritische offene Befunde
 - **Meilenstein C:** Security-, A11Y-, Kalender-, PWA- und Betriebs-Audit abgeschlossen
 - **Meilenstein D:** alle kritischen und hohen Befunde behoben und erneut geprüft
 
@@ -947,7 +947,7 @@ Phasen 0 bis 2 abgeschlossen. Der Prototyp verwendet ein sicheres Backend.
 
 ### Meilenstein B – Kernablauf vollständig
 
-Phasen 3 und 4 abgeschlossen. Zwei Familien können sich verbinden und ein PlayDate gemeinsam abstimmen.
+Phasen 3 und 4 abgeschlossen. Zwei Familien können sich verbinden und ein Spieletreffen gemeinsam abstimmen.
 
 ### Meilenstein C – MVP Release Candidate
 
@@ -955,7 +955,7 @@ Phasen 5 bis 7 abgeschlossen. Kalender, Erinnerungen, Datenschutzfunktionen und 
 
 ### Meilenstein D – Produktiver MVP
 
-Phase 8 abgeschlossen. PlayDate läuft kontrolliert mit echten Nutzern.
+Phase 8 abgeschlossen. SpielZeit läuft kontrolliert mit echten Nutzern.
 
 ## 16. Unmittelbar nächste Schritte
 
