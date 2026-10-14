@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { playDatesStorageKey, readPlayDates } from "../hooks/usePlayDates";
+import { spieletreffenStorageKey, readSpieletreffen } from "../hooks/useSpieletreffen";
 
-describe("PlayDate-Datenmigration", () => {
+describe("SpielZeit-Datenmigration", () => {
   it("übernimmt ein altes einzelnes Kind in die neue Kinderliste", () => {
     localStorage.setItem(
-      playDatesStorageKey("user-1"),
+      spieletreffenStorageKey("user-1"),
       JSON.stringify([{
         id: 1,
         title: "Demo",
@@ -19,7 +19,7 @@ describe("PlayDate-Datenmigration", () => {
       }]),
     );
 
-    expect(readPlayDates("user-1")[0]?.children).toEqual(["Mila"]);
-    expect(readPlayDates("user-1")[0]?.friends).toEqual(["Noah"]);
+    expect(readSpieletreffen("user-1")[0]?.children).toEqual(["Mila"]);
+    expect(readSpieletreffen("user-1")[0]?.friends).toEqual(["Noah"]);
   });
 });

@@ -12,7 +12,7 @@ export function BottomNavigation() {
         <CalendarDays />
         <span>Kalender</span>
       </Link>
-      <Link to="/new" className="new-mobile" aria-label="Neues PlayDate">
+      <Link to="/new" className="new-mobile" aria-label="Neues Spieletreffen">
         <Plus />
       </Link>
       <Link to="/families" activeProps={{ className: "active" }}>

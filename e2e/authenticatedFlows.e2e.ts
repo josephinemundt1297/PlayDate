@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test.describe("angemeldete Kernabläufe", () => {
   test.skip(!process.env.E2E_STORAGE_STATE, "Benötigt einen zuvor gespeicherten Clerk-Login über E2E_STORAGE_STATE.");
 
-  test("Familie einrichten und PlayDate anlegen", async ({ page }) => {
+  test("Familie einrichten und Spieletreffen anlegen", async ({ page }) => {
     await page.goto("/families");
     await page.getByLabel("Familienname").fill("E2E Familie");
     const child = page.getByLabel("Vorname Kind 1");
@@ -18,7 +18,7 @@ test.describe("angemeldete Kernabläufe", () => {
     await page.getByLabel("Datum").fill("2027-08-20");
     await page.getByLabel("Uhrzeit").fill("15:00");
     await page.getByLabel("Treffpunkt").fill("Stadtpark");
-    await page.getByRole("button", { name: "PlayDate erstellen" }).click();
+    await page.getByRole("button", { name: "Spieletreffen erstellen" }).click();
     await expect(page.getByText("E2E Spielplatz")).toBeVisible();
   });
 });

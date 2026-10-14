@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-router";
 import { AppShell } from "./components/templates/appShell";
 import { DashboardPage } from "./components/pages/dashboardPage";
-import { PlayDateEditorPage } from "./components/pages/playDateEditorPage";
+import { SpieletreffenEditorPage } from "./components/pages/spieletreffenEditorPage";
 import { SettingsPage } from "./components/pages/settingsPage";
 import { FamiliesPage } from "./components/pages/familiesPage";
 import { CalendarPage } from "./components/pages/calendarPage";
@@ -22,7 +22,7 @@ const indexRoute = createRoute({
 });
 const datesRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/playdates",
+  path: "/spieletreffen",
   component: () => <DashboardPage showAll />,
 });
 const calendarRoute = createRoute({
@@ -33,13 +33,13 @@ const calendarRoute = createRoute({
 const newRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/new",
-  component: PlayDateEditorPage,
+  component: SpieletreffenEditorPage,
 });
 const editRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/edit/$playDateId",
+  path: "/edit/$spieletreffenId",
   component: () => (
-    <PlayDateEditorPage editId={Number(location.pathname.split("/").pop())} />
+    <SpieletreffenEditorPage editId={Number(location.pathname.split("/").pop())} />
   ),
 });
 const settingsRoute = createRoute({

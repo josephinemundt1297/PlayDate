@@ -2,10 +2,10 @@ import { describe, expect, it } from "vitest";
 import { collectLocalData, removeLocalData } from "../utils/privacyData";
 
 describe("lokale Datenschutzfunktionen", () => {
-  it("exportiert nur die PlayDate-Daten des gewählten Trainingskontos", () => {
-    localStorage.setItem("playDate.family.user-1", JSON.stringify({ familyName: "Demo" }));
-    localStorage.setItem("playDate.family.user-2", JSON.stringify({ familyName: "Fremd" }));
-    localStorage.setItem("playDate.trainingInvitations", JSON.stringify([
+  it("exportiert nur die SpielZeit-Daten des gewählten Trainingskontos", () => {
+    localStorage.setItem("spielZeit.family.user-1", JSON.stringify({ familyName: "Demo" }));
+    localStorage.setItem("spielZeit.family.user-2", JSON.stringify({ familyName: "Fremd" }));
+    localStorage.setItem("spielZeit.trainingInvitations", JSON.stringify([
       { token: "PD-USER-0001", createdBy: "user-1" },
       { token: "PD-USER-0002", createdBy: "user-2" },
     ]));
@@ -17,11 +17,11 @@ describe("lokale Datenschutzfunktionen", () => {
     expect(JSON.stringify(exported)).not.toContain("Fremd");
   });
 
-  it("löscht lokale Familiendaten, Geburtstage und PlayDates gemeinsam", () => {
-    ["family", "sharedBirthdays", "connections", "playDates"].forEach((area) =>
-      localStorage.setItem(`playDate.${area}.user-1`, "[]"),
+  it("löscht lokale Familiendaten, Geburtstage und Spieletreffen gemeinsam", () => {
+    ["family", "sharedBirthdays", "connections", "spieletreffen"].forEach((area) =>
+      localStorage.setItem(`spielZeit.${area}.user-1`, "[]"),
     );
-    localStorage.setItem("playDate.trainingInvitations", JSON.stringify([
+    localStorage.setItem("spielZeit.trainingInvitations", JSON.stringify([
       { token: "PD-USER-0001", createdBy: "user-1" },
     ]));
 

@@ -1,11 +1,11 @@
 import type { childProfile } from "../domain/family";
-import type { playDate } from "../domain/playdates";
+import type { spieletreffen } from "../domain/spieletreffen";
 
 export type validationErrors = Record<string, string>;
 const clean = (value: string) => value.trim();
 const validDate = (value: string) => /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(new Date(`${value}T12:00:00`).getTime());
 
-export function validatePlayDate(date: playDate, childNames: string[], allowPast = false, today = new Date()): validationErrors {
+export function validateSpieletreffen(date: spieletreffen, childNames: string[], allowPast = false, today = new Date()): validationErrors {
   const errors: validationErrors = {};
   // Jede Regel schreibt ihre Meldung unter den Feldnamen. Das Formular kann sie so leicht zuordnen.
   if (clean(date.title).length < 3) errors.title = "Der Titel braucht mindestens 3 Zeichen.";
@@ -18,7 +18,7 @@ export function validatePlayDate(date: playDate, childNames: string[], allowPast
   }
   if (!validDate(date.date)) errors.date = "Bitte wähle ein gültiges Datum.";
   const todayKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-  if (!allowPast && validDate(date.date) && date.date < todayKey) errors.date = "Ein neues PlayDate kann nicht in der Vergangenheit liegen.";
+  if (!allowPast && validDate(date.date) && date.date < todayKey) errors.date = "Ein neues Spieletreffen kann nicht in der Vergangenheit liegen.";
   if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(date.time)) errors.time = "Bitte wähle eine gültige Uhrzeit.";
   if (clean(date.location).length < 3) errors.location = "Der Treffpunkt braucht mindestens 3 Zeichen.";
   if (date.bring.length > 500) errors.bring = "Mitbringsel dürfen höchstens 500 Zeichen lang sein.";

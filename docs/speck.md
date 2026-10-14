@@ -1,10 +1,10 @@
-# PlayDate – Projektspezifikation
+# SpielZeit – Projektspezifikation
 
 > **Lernkontext:** Diese Spezifikation gehört zu meinem Trainingsprojekt im React-Modul der einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklerin. Erfundene Demo-Daten sind erlaubt, echte personenbezogene Daten nicht.
 
 ## 1. Kurzbeschreibung
 
-PlayDate ist eine mobile-first Web-App, mit der Eltern private Spieletreffen für ihre Kinder planen, verwalten und mit anderen Familien abstimmen können. Termine und Familiendaten sind ausschließlich nach einer Anmeldung sichtbar.
+SpielZeit ist eine mobile-first Web-App, mit der Eltern private Spieletreffen für ihre Kinder planen, verwalten und mit anderen Familien abstimmen können. Termine und Familiendaten sind ausschließlich nach einer Anmeldung sichtbar.
 
 Der aktuelle Stand ist ein Frontend-Prototyp. Funktionen, die ein Backend oder externe Freigaben benötigen, sind als Zielanforderungen beschrieben und klar vom bereits umgesetzten Stand getrennt.
 
@@ -18,7 +18,7 @@ Für die Phasen 2 bis 9 wurde „React-Simulation, lokal zuerst“ gewählt. Rep
 
 ## 2. Produktziele
 
-- PlayDates schnell und übersichtlich planen
+- Spieletreffen schnell und übersichtlich planen
 - Absprachen zu Ort, Uhrzeit und Mitbringseln an einem Ort sammeln
 - eigene Kinder in einem Familienprofil verwalten
 - freigegebene Kindergeburtstage verbundener Familien anzeigen
@@ -36,8 +36,8 @@ Die Hauptzielgruppe sind Eltern und Sorgeberechtigte, die regelmäßig Spieletre
 - **Familie:** Profil eines Nutzers mit Familienname und Kindern
 - **Kind:** Eintrag mit Name, Geburtstag und Freigabeeinstellung
 - **Verbundene Familie:** Familie, mit der Daten ausdrücklich geteilt werden
-- **PlayDate:** geplantes Spieletreffen zwischen mindestens zwei Kindern
-- **Einladung:** freigegebener Link oder eine Nachricht zu einem PlayDate
+- **SpielZeit:** geplantes Spieletreffen zwischen mindestens zwei Kindern
+- **Einladung:** freigegebener Link oder eine Nachricht zu einem SpielZeit
 
 Kinder erhalten im ersten Produktumfang keine eigenen Konten.
 
@@ -46,7 +46,7 @@ Kinder erhalten im ersten Produktumfang keine eigenen Konten.
 ### 5.1 Anmeldung und Zugriffsschutz
 
 - Nutzer können sich über Clerk anmelden und abmelden.
-- PlayDates und Familiendaten werden nur nach erfolgreicher Anmeldung angezeigt.
+- Spieletreffen und Familiendaten werden nur nach erfolgreicher Anmeldung angezeigt.
 - Lokal gespeicherte Prototyp-Daten werden anhand der Clerk User-ID getrennt.
 - Nicht angemeldete Personen sehen keine privaten Termindetails.
 
@@ -56,14 +56,14 @@ Kinder erhalten im ersten Produktumfang keine eigenen Konten.
 - Nutzer können beliebig viele Kinder hinzufügen, bearbeiten und entfernen.
 - Pro Kind können Name und Geburtstag gespeichert werden.
 - Pro Kind kann festgelegt werden, ob der Geburtstag geteilt wird.
-- Beim Erstellen eines PlayDates wird das eigene Kind aus dieser Liste ausgewählt.
+- Beim Erstellen eines Spieletreffen wird das eigene Kind aus dieser Liste ausgewählt.
 - Freigegebene Geburtstage verbundener Familien werden in einer Übersicht angezeigt.
 
 Für die produktive Version soll standardmäßig nur Tag und Monat geteilt werden. Das Geburtsjahr darf nur mit einer eigenen, ausdrücklichen Einwilligung sichtbar sein.
 
-### 5.3 PlayDates
+### 5.3 Spieletreffen
 
-Ein PlayDate enthält mindestens:
+Ein Spieletreffen enthält mindestens:
 
 - Titel
 - eigenes Kind
@@ -74,7 +74,7 @@ Ein PlayDate enthält mindestens:
 - Mitbringsel oder Aufgaben
 - Status „Bestätigt“ oder „Ausstehend“
 
-Nutzer können PlayDates erstellen, anzeigen, bearbeiten und löschen. Vor dem Löschen muss eine Bestätigung erscheinen.
+Nutzer können Spieletreffen erstellen, anzeigen, bearbeiten und löschen. Vor dem Löschen muss eine Bestätigung erscheinen.
 
 ### 5.4 Einladungen und WhatsApp
 
@@ -85,12 +85,12 @@ Nutzer können PlayDates erstellen, anzeigen, bearbeiten und löschen. Vor dem L
 
 ### 5.5 Kalender
 
-- Eine responsive Monatsansicht zeigt die vorhandenen PlayDates am jeweiligen Tag.
+- Eine responsive Monatsansicht zeigt die vorhandenen Spieletreffen am jeweiligen Tag.
 - Auf kleinen Displays wird nach der Monatsmatrix eine gut lesbare Liste für den ausgewählten Tag angezeigt.
 - Der Monat kann über beschriftete, tastaturbedienbare Schaltflächen gewechselt werden.
 - Ein Klick auf einen Termin öffnet dessen Details in einem modalen Layer; Fokus und Schließen per Escape werden vom nativen Dialog unterstützt.
-- Alle PlayDates können als standardkonforme `.ics`-Datei exportiert werden.
-- Einzelne PlayDates können über einen vorbereiteten Link in Google Kalender geöffnet werden.
+- Alle Spieletreffen können als standardkonforme `.ics`-Datei exportiert werden.
+- Einzelne Spieletreffen können über einen vorbereiteten Link in Google Kalender geöffnet werden.
 - Eine echte, dauerhafte Synchronisation mit Google oder Microsoft Kalender ist ein späterer Produktionsschritt und benötigt OAuth, ein Backend und möglichst kleine Kalenderberechtigungen.
 
 ### 5.6 Fotos und Kommentare
@@ -119,18 +119,18 @@ Für die produktive Umsetzung gelten folgende Anforderungen:
 
 - Die App bietet Light Mode, Dark Mode und die Systemeinstellung.
 - Die Oberfläche folgt dem mobile-first-Prinzip.
-- PlayDate ist als Progressive Web App installierbar.
-- Manifest, App-Name, Symbole und Metadaten verwenden einheitlich den Namen „PlayDate“.
+- SpielZeit ist als Progressive Web App installierbar.
+- Manifest, App-Name, Symbole und Metadaten verwenden einheitlich den Namen „SpielZeit“.
 
 ## 6. Routen
 
 | Route | Zweck | Zugriff |
 | --- | --- | --- |
-| `/` | Übersicht der nächsten PlayDates | angemeldet |
-| `/playdates` | Übersicht aller PlayDates | angemeldet |
-| `/calendar` | Monatsansicht aller PlayDates und Kalenderexport | angemeldet |
-| `/new` | neues PlayDate erstellen | angemeldet |
-| `/edit/$playDateId` | PlayDate bearbeiten | angemeldet |
+| `/` | Übersicht der nächsten Spieletreffen | angemeldet |
+| `/spieletreffen` | Übersicht aller Spieletreffen | angemeldet |
+| `/calendar` | Monatsansicht aller Spieletreffen und Kalenderexport | angemeldet |
+| `/new` | neues Spieletreffen erstellen | angemeldet |
+| `/edit/$spieletreffenId` | Spieletreffen bearbeiten | angemeldet |
 | `/families` | Familie, Kinder und Geburtstage verwalten | angemeldet |
 | `/photos` | Sicherheitskonzept und späterer privater Fotobereich | angemeldet |
 | `/privacy` | technische Datenschutzübersicht des Prototyps | angemeldet |
@@ -138,10 +138,10 @@ Für die produktive Umsetzung gelten folgende Anforderungen:
 
 ## 7. Datenmodell des Prototyps
 
-### PlayDate
+### SpielZeit
 
 ```ts
-type playDate = {
+type spieletreffen = {
   id: number;
   title: string;
   children: string[];
@@ -202,7 +202,7 @@ Geschäftsmodelle liegen unter `src/domain`, wiederverwendbare Zustandslogik unt
 
 ## 9. Barrierefreiheit
 
-PlayDate soll mindestens WCAG 2.2 auf Konformitätsstufe AA anstreben.
+SpielZeit soll mindestens WCAG 2.2 auf Konformitätsstufe AA anstreben.
 
 - vollständige Bedienbarkeit mit Tastatur
 - sichtbare Fokusmarkierungen
@@ -241,12 +241,12 @@ Geheimnisse dürfen niemals über `VITE_`-Umgebungsvariablen an den Browser ausg
 
 Phase 0 des Trainingsprojekts gilt als technisch abgeschlossen, weil:
 
-1. ohne Anmeldung keine PlayDate- oder Familiendaten sichtbar sind;
+1. ohne Anmeldung keine SpielZeit- oder Familiendaten sichtbar sind;
 2. ein angemeldeter Nutzer Kinder mit Geburtstag verwalten kann;
-3. beim Erstellen eines PlayDates ein oder mehrere eigene Kinder auswählbar sind;
-4. PlayDates erstellt, bearbeitet und nach Rückfrage gelöscht werden können;
+3. beim Erstellen eines Spieletreffen ein oder mehrere eigene Kinder auswählbar sind;
+4. Spieletreffen erstellt, bearbeitet und nach Rückfrage gelöscht werden können;
 5. Kalenderexport und Google-Kalender-Link gültige Termindaten erzeugen;
-6. der Name „PlayDate“ in Oberfläche, Metadaten und PWA einheitlich erscheint;
+6. der Name „SpielZeit“ in Oberfläche, Metadaten und PWA einheitlich erscheint;
 7. Light Mode, Dark Mode und Systemmodus funktionieren;
 8. die wichtigsten Abläufe per Tastatur bedienbar sind;
 9. `npm run check` ohne Fehler durchläuft;
@@ -270,11 +270,11 @@ Phase 1 gilt als konzeptionell abgeschlossen, wenn Zielgruppe, MVP, Rollen, Date
 ## 13. Nicht-Ziele des ersten Releases
 
 - eigene Konten für Kinder
-- öffentliche Profile oder öffentliche PlayDates
+- öffentliche Profile oder öffentliche Spieletreffen
 - Standortverfolgung in Echtzeit
 - Werbung oder Profiling von Kindern
 - ungefragte automatische Nachrichten
-- Speicherung vollständiger Kalenderinhalte, die nichts mit PlayDates zu tun haben
+- Speicherung vollständiger Kalenderinhalte, die nichts mit Spieletreffen zu tun haben
 
 ## 14. Qualitätsprüfung
 

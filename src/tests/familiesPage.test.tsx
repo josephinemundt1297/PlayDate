@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
@@ -16,8 +16,8 @@ import { FamiliesPage } from "../components/pages/familiesPage";
 describe("FamiliesPage", () => {
   it("speichert ein gültiges Familienprofil", async () => {
     render(<FamiliesPage />);
-    await userEvent.type(screen.getByLabelText("Familienname"), "Muster");
-    await userEvent.type(screen.getByLabelText("Vorname Kind 1"), "Mila");
+    fireEvent.change(screen.getByLabelText("Familienname"), { target: { value: "Muster" } });
+    fireEvent.change(screen.getByLabelText("Vorname Kind 1"), { target: { value: "Mila" } });
     await userEvent.click(screen.getByRole("button", { name: "Familie speichern" }));
     expect(familyMock.save).toHaveBeenCalledWith(expect.objectContaining({ familyName: "Muster" }));
   });

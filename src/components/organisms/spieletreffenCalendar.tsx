@@ -1,6 +1,6 @@
 import { CakeSlice, ChevronLeft, ChevronRight, Clock, MapPin } from "lucide-react";
 import { useMemo, useState } from "react";
-import type { playDate } from "../../domain/playdates";
+import type { spieletreffen } from "../../domain/spieletreffen";
 import {
   buildCalendarDays,
   formatCalendarMonth,
@@ -8,18 +8,18 @@ import {
   shiftCalendarMonth,
   toLocalDateKey,
   type calendarBirthday,
-} from "../../utils/calendarGrid";
-import { PlayDateDetailsDialog } from "./playDateDetailsDialog";
+} from "../../utils/calendarMatrix";
+import { SpieletreffenDetailsDialog } from "./spieletreffenDetailsDialog";
 
 const weekDays = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 
-export function PlayDateCalendar({
+export function SpieletreffenCalendar({
   dates,
   birthdays = [],
   onEdit,
   initialMonth,
 }: {
-  dates: playDate[];
+  dates: spieletreffen[];
   birthdays?: calendarBirthday[];
   onEdit: (id: number) => void;
   initialMonth?: Date;
@@ -37,7 +37,7 @@ export function PlayDateCalendar({
     }
     return toLocalDateKey(new Date());
   });
-  const [selectedEvent, setSelectedEvent] = useState<playDate | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<spieletreffen | null>(null);
   // Das Raster wird nur neu gebaut, wenn sich Monat, Termine oder Geburtstage ändern.
   const days = useMemo(
     () => buildCalendarDays(month, dates, birthdays),
@@ -87,8 +87,8 @@ export function PlayDateCalendar({
       </div>
 
       <div className="calendar-scroll">
-        <table className="calendar-grid">
-          <caption className="sr-only">PlayDates im {formatCalendarMonth(month)}</caption>
+        <table className="calendar-table">
+          <caption className="sr-only">Spieletreffen im {formatCalendarMonth(month)}</caption>
           <thead>
             <tr>{weekDays.map((day) => <th key={day} scope="col">{day}</th>)}</tr>
           </thead>
@@ -103,7 +103,7 @@ export function PlayDateCalendar({
                     <div className={selectedDate === day.dateKey ? "selected" : ""}>
                       <button
                         className="calendar-day-button"
-                        aria-label={`${day.date.toLocaleDateString("de-DE")}, ${day.events.length} PlayDates, ${day.birthdays.length} Geburtstage`}
+                        aria-label={`${day.date.toLocaleDateString("de-DE")}, ${day.events.length} Spieletreffen, ${day.birthdays.length} Geburtstage`}
                         aria-pressed={selectedDate === day.dateKey}
                         onClick={() => setSelectedDate(day.dateKey)}
                       >
@@ -161,10 +161,10 @@ export function PlayDateCalendar({
             </button>
           ))}
         {!selectedEvents.length && !selectedBirthdays.length && (
-          <p>An diesem Tag ist noch kein PlayDate geplant.</p>
+          <p>An diesem Tag ist noch kein Spieletreffen geplant.</p>
         )}
       </div>
-      <PlayDateDetailsDialog
+      <SpieletreffenDetailsDialog
         date={selectedEvent}
         onClose={() => setSelectedEvent(null)}
         onEdit={onEdit}

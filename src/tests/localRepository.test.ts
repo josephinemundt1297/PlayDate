@@ -18,14 +18,14 @@ describe("lokale Repository-Schicht", () => {
   });
 
   it("übernimmt alte Daten einmal unter den neuen Schlüssel", () => {
-    localStorage.setItem("playpal.old", JSON.stringify(["Demo"]));
+    localStorage.setItem("spielZeit.alt", JSON.stringify(["Demo"]));
     const repository = createLocalRepository({
-      key: "playDate.new",
-      legacyKeys: ["playpal.old"],
+      key: "spielZeit.new",
+      legacyKeys: ["spielZeit.alt"],
       fallback: [] as string[],
     });
 
     expect(repository.read()).toEqual(["Demo"]);
-    expect(localStorage.getItem("playDate.new")).toBe('["Demo"]');
+    expect(localStorage.getItem("spielZeit.new")).toBe('["Demo"]');
   });
 });

@@ -3,8 +3,8 @@ import { createWebsiteShortcut } from "../utils/websiteShortcut";
 
 describe("Website-Verknüpfung", () => {
   it("erstellt eine Windows-kompatible Internet-Verknüpfung", () => {
-    expect(createWebsiteShortcut("https://playdate.example/calendar")).toBe(
-      "[InternetShortcut]\r\nURL=https://playdate.example/calendar\r\n",
+    expect(createWebsiteShortcut("https://spielzeit.netlify.app/calendar")).toBe(
+      "[InternetShortcut]\r\nURL=https://spielzeit.netlify.app/calendar\r\n",
     );
   });
 });

@@ -9,8 +9,8 @@ import {
   type familyProfile,
 } from "../domain/family";
 
-const connectionKey = (userId: string) => `playDate.connections.${userId}`;
-const invitationKey = "playDate.trainingInvitations";
+const connectionKey = (userId: string) => `spielZeit.connections.${userId}`;
+const invitationKey = "spielZeit.trainingInvitations";
 
 type legacyConnection = Omit<familyConnection, "children"> & {
   childName: string;

@@ -1,5 +1,5 @@
-// Der gemeinsame Bauplan für ein PlayDate. So wissen alle Dateien, welche Felder vorhanden sind.
-export type playDate = {
+// Der gemeinsame Bauplan für ein Spieletreffen. So wissen alle Dateien, welche Felder vorhanden sind.
+export type spieletreffen = {
   id: number;
   title: string;
   // Listen erlauben Treffen mit mehreren Kindern auf beiden Seiten.
@@ -14,21 +14,21 @@ export type playDate = {
   reminder?: "Keine" | "24 Stunden vorher";
   emailReminder?: boolean;
   bringOwner?: "Wir" | "Andere Familie" | "Gemeinsam";
-  activity?: playDateActivity[];
-  comments?: playDateComment[];
+  activity?: spieletreffenActivity[];
+  comments?: spieletreffenComment[];
 };
-export type playDateActivity = {
+export type spieletreffenActivity = {
   id: string;
   message: string;
   createdAt: string;
 };
-export type playDateComment = {
+export type spieletreffenComment = {
   id: string;
   text: string;
   createdAt: string;
 };
 
-export function cancelPlayDate(date: playDate): playDate {
+export function cancelSpieletreffen(date: spieletreffen): spieletreffen {
   // Absagen bleiben im Verlauf sichtbar. Löschen würde die Geschichte des Termins verlieren.
   return {
     ...date,
@@ -37,12 +37,12 @@ export function cancelPlayDate(date: playDate): playDate {
     emailReminder: false,
     activity: [
       ...(date.activity ?? []),
-      { id: crypto.randomUUID(), message: "PlayDate abgesagt", createdAt: new Date().toISOString() },
+      { id: crypto.randomUUID(), message: "Spieletreffen abgesagt", createdAt: new Date().toISOString() },
     ],
   };
 }
 
-export function addPlayDateComment(date: playDate, text: string): playDate {
+export function addSpieletreffenComment(date: spieletreffen, text: string): spieletreffen {
   // Wir bauen ein neues Objekt, damit React die Änderung sicher erkennt.
   return {
     ...date,
@@ -58,7 +58,7 @@ export function addPlayDateComment(date: playDate, text: string): playDate {
 }
 
 // Nur Startdaten für den Prototyp. Echte Termine kommen später aus dem Backend.
-export const initialPlayDates: playDate[] = [
+export const initialSpieletreffen: spieletreffen[] = [
   {
     id: 1,
     title: "Abenteuer im Stadtpark",

@@ -5,17 +5,17 @@ export type localDataExport = {
   family: unknown;
   sharedBirthdays: unknown;
   connections: unknown;
-  playDates: unknown;
+  spieletreffen: unknown;
   trainingInvitations: familyInvitation[];
 };
 
-const invitationKey = "playDate.trainingInvitations";
+const invitationKey = "spielZeit.trainingInvitations";
 
 const keysFor = (userId: string) => ({
-  family: `playDate.family.${userId}`,
-  sharedBirthdays: `playDate.sharedBirthdays.${userId}`,
-  connections: `playDate.connections.${userId}`,
-  playDates: `playDate.playDates.${userId}`,
+  family: `spielZeit.family.${userId}`,
+  sharedBirthdays: `spielZeit.sharedBirthdays.${userId}`,
+  connections: `spielZeit.connections.${userId}`,
+  spieletreffen: `spielZeit.spieletreffen.${userId}`,
 });
 
 const readJson = (key: string) => {
@@ -37,7 +37,7 @@ export function collectLocalData(userId: string): localDataExport {
     family: readJson(keys.family),
     sharedBirthdays: readJson(keys.sharedBirthdays),
     connections: readJson(keys.connections),
-    playDates: readJson(keys.playDates),
+    spieletreffen: readJson(keys.spieletreffen),
     trainingInvitations: Array.isArray(invitations)
       ? invitations.filter((item) => item?.createdBy === userId)
       : [],
@@ -61,7 +61,7 @@ export function downloadLocalData(userId: string) {
   const url = URL.createObjectURL(file);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "playDate-meine-daten.json";
+  link.download = "spielZeit-meine-daten.json";
   link.click();
   URL.revokeObjectURL(url);
 }

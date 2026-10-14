@@ -29,7 +29,7 @@ export function createLocalRepository<data>({
     try {
       const parsed = JSON.parse(stored) as data;
 
-      // Beim ersten Lesen ziehen wir alte PlayPal-Daten unter den neuen Namen um.
+      // Beim ersten Lesen ziehen wir alte Daten unter den neuen Namen um.
       if (current === null) localStorage.setItem(key, stored);
       return parsed;
     } catch {

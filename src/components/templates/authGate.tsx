@@ -12,14 +12,14 @@ export function AuthGate({ children }: { children: ReactNode }) {
             <span className="auth-logo" aria-hidden="true">
               ✦
             </span>
-            <p className="eyebrow">Willkommen bei PlayDate</p>
+            <p className="eyebrow">Willkommen bei SpielZeit</p>
             <h1 id="auth-title">
               Mehr Spielen.
               <br />
               Weniger Organisieren.
             </h1>
             <p>
-              PlayDate-Daten sind privat. Melde dich an, um deine Termine zu
+              SpielZeit-Daten sind privat. Melde dich an, um deine Termine zu
               sehen und zu verwalten.
             </p>
             <SignInButton mode="modal">

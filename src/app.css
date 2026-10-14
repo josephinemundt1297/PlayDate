@@ -37,7 +37,7 @@
   width: 2.375rem;
   height: 2.375rem;
   border-radius: 0.8125rem;
-  display: grid;
+  display: flex;
   place-items: center;
   color: #fff;
   background: var(--color-primary);
@@ -67,7 +67,7 @@
   position: relative;
 }
 .header-menu-toggle {
-  display: grid;
+  display: flex;
   min-width: 2.75rem;
   min-height: 2.75rem;
   border: 1px solid var(--line);
@@ -121,7 +121,7 @@
   border: 0;
   border-radius: 0.4375rem;
   background: transparent;
-  display: grid;
+  display: flex;
   place-items: center;
   cursor: pointer;
 }
@@ -158,9 +158,9 @@
   margin: 2.2rem auto 7rem;
 }
 .page-wrap > *,
-.date-grid > *,
-.quick-grid > *,
-.safety-grid > * {
+.date-flex > *,
+.quick-flex > *,
+.safety-flex > * {
   min-width: 0;
 }
 .welcome-card {
@@ -226,7 +226,7 @@
   height: 9.375rem;
   border: 0.125rem dashed var(--line);
   border-radius: 50%;
-  display: grid;
+  display: flex;
   place-items: center;
   color: var(--accent);
   transform: rotate(8deg);
@@ -235,13 +235,16 @@
   width: 3.75rem;
   height: 3.75rem;
 }
-.quick-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.quick-flex {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin: 1.2rem 0 3.1rem;
 }
-.quick-grid button {
+.quick-flex > * {
+  flex: 1 1 18rem;
+}
+.quick-flex button {
   display: flex;
   align-items: center;
   gap: 1.25rem;
@@ -253,20 +256,20 @@
   padding: 1.5rem;
   cursor: pointer;
 }
-.quick-grid button > span:nth-child(2) {
+.quick-flex button > span:nth-child(2) {
   display: flex;
   flex: 1;
   flex-direction: column;
 }
-.quick-grid small {
+.quick-flex small {
   color: var(--muted);
   margin-top: 0.15rem;
 }
-.quick-grid strong {
+.quick-flex strong {
   font-size: 1.1rem;
 }
 .quick-icon {
-  display: grid;
+  display: flex;
   place-items: center;
   flex: 0 0 auto;
   width: 3.75rem;
@@ -314,30 +317,30 @@
 .calendar-scroll {
   overflow-x: auto;
 }
-.calendar-grid {
+.calendar-table {
   width: 100%;
   min-width: 47.5rem;
   border-collapse: collapse;
   table-layout: fixed;
 }
-.calendar-grid th {
+.calendar-table th {
   height: 2.75rem;
   color: var(--muted);
   font-size: 0.85rem;
   text-align: center;
   border-bottom: 1px solid var(--line);
 }
-.calendar-grid td {
+.calendar-table td {
   height: 7.875rem;
   padding: 0;
   vertical-align: top;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.calendar-grid td:last-child {
+.calendar-table td:last-child {
   border-right: 0;
 }
-.calendar-grid td > div {
+.calendar-table td > div {
   width: 100%;
   height: 100%;
   min-height: 7.875rem;
@@ -346,12 +349,12 @@
   color: var(--ink);
   text-align: left;
 }
-.calendar-grid td > div:hover,
-.calendar-grid td > div.selected {
+.calendar-table td > div:hover,
+.calendar-table td > div.selected {
   background: color-mix(in srgb, var(--color-primary) 12%, var(--surface));
 }
 .calendar-day-button {
-  display: grid;
+  display: flex;
   place-items: center;
   padding: 0;
   border: 0;
@@ -360,24 +363,24 @@
   color: inherit;
   cursor: pointer;
 }
-.calendar-grid .outside-month {
+.calendar-table .outside-month {
   background: var(--color-base-200);
   color: var(--muted);
 }
 .calendar-day-number {
-  display: grid;
+  display: flex;
   place-items: center;
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
   font-weight: 700;
 }
-.calendar-grid .today .calendar-day-number {
+.calendar-table .today .calendar-day-number {
   background: var(--color-primary);
   color: var(--color-primary-content);
 }
 .calendar-events {
-  display: grid;
+  display: flex;
   gap: 0.3rem;
   margin-top: 0.35rem;
 }
@@ -463,7 +466,7 @@
   cursor: pointer;
 }
 .calendar-detail > span:first-child {
-  display: grid;
+  display: flex;
   gap: 0.25rem;
 }
 .calendar-detail small {
@@ -475,7 +478,7 @@
 .calendar-detail small svg {
   width: 1rem;
 }
-.playdate-dialog .modal-box {
+.spieletreffen-dialog .modal-box {
   width: min(92vw, 35rem);
   max-width: 35rem;
   border: 1px solid var(--line);
@@ -483,7 +486,7 @@
   color: var(--ink);
 }
 /* Diese Farbe bleibt bewusst explizit: globale Button-Regeln dürfen sie nicht wieder überschreiben. */
-.playdate-dialog .btn-primary {
+.spieletreffen-dialog .btn-primary {
   background: var(--color-primary);
   color: var(--color-primary-content);
 }
@@ -492,17 +495,17 @@
   top: 0.75rem;
   right: 0.75rem;
 }
-.playdate-dialog-details {
-  display: grid;
+.spieletreffen-dialog-details {
+  display: flex;
   gap: 1rem;
   margin: 1.5rem 0 0;
 }
-.playdate-dialog-details div {
+.spieletreffen-dialog-details div {
   padding: 0.85rem;
   border-radius: 0.875rem;
   background: var(--color-base-200);
 }
-.playdate-dialog-details dt {
+.spieletreffen-dialog-details dt {
   display: flex;
   align-items: center;
   gap: 0.45rem;
@@ -510,10 +513,10 @@
   font-size: 0.82rem;
   font-weight: 700;
 }
-.playdate-dialog-details dt svg {
+.spieletreffen-dialog-details dt svg {
   width: 1.0625rem;
 }
-.playdate-dialog-details dd {
+.spieletreffen-dialog-details dd {
   margin: 0.35rem 0 0;
   font-weight: 600;
 }
@@ -552,10 +555,13 @@
 .section-heading svg {
   width: 1rem;
 }
-.date-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.date-flex {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+}
+.date-flex > * {
+  flex: 1 1 18rem;
 }
 .date-card {
   min-width: 0;
@@ -592,8 +598,6 @@
   padding: 0.3rem 0.55rem;
   border-radius: 6.1875rem;
 }
-.status.confirmed {
-}
 .card-actions {
   display: flex;
   gap: 0.25rem;
@@ -602,7 +606,7 @@
 .card-actions button {
   width: 2.125rem;
   height: 2.125rem;
-  display: grid;
+  display: flex;
   place-items: center;
   border: 0;
   border-radius: 0.875rem;
@@ -676,7 +680,7 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  display: grid;
+  display: flex;
   place-items: center;
   background: color-mix(in srgb, var(--color-success) 18%, var(--surface));
   color: var(--forest);
@@ -723,30 +727,30 @@
 .form-intro > p:last-child {
   color: var(--muted);
 }
-.playdate-form {
-  display: grid;
-  grid-template-columns: 1fr;
+.spieletreffen-form {
+  display: flex;
+  flex-direction: column;
   gap: 1.1rem;
   background: var(--surface);
   border: 1px solid var(--line);
   padding: 1.6rem;
   border-radius: 1.5rem;
 }
-.playdate-form label,
-.form-step-grid > label {
+.spieletreffen-form label,
+.form-step-flex > label {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
   font-weight: 700;
 }
-.form-step-grid > label > span {
+.form-step-flex > label > span {
   font-weight: 400;
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.5;
 }
-.playdate-form input,
-.playdate-form textarea {
+.spieletreffen-form input,
+.spieletreffen-form textarea {
   color: var(--ink);
   border: 1px solid var(--line);
   border-radius: 1rem;
@@ -754,12 +758,12 @@
   background: var(--field);
   min-height: 2.875rem;
 }
-.playdate-form textarea {
+.spieletreffen-form textarea {
   min-height: 5.625rem;
   resize: vertical;
 }
 .full {
-  grid-column: 1/-1;
+  width: 100%;
 }
 .form-step {
   padding: 1.25rem;
@@ -773,7 +777,7 @@
   margin-bottom: 1.25rem;
 }
 .form-step-heading > span {
-  display: grid;
+  display: flex;
   flex: 0 0 auto;
   width: 2rem;
   height: 2rem;
@@ -792,17 +796,20 @@
   color: var(--muted);
   line-height: 1.5;
 }
-.form-step-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.form-step-flex {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
-.playdate-form fieldset {
+.form-step-flex > * {
+  flex: 1 1 16rem;
+}
+.spieletreffen-form fieldset {
   border: 1px solid var(--line);
   border-radius: 1rem;
   padding: 1rem;
 }
-.playdate-form legend {
+.spieletreffen-form legend {
   font-weight: 700;
   padding: 0 0.35rem;
 }
@@ -814,7 +821,7 @@
   font-weight: 500;
   cursor: pointer;
 }
-.playdate-form .check-row input[type="checkbox"] {
+.spieletreffen-form .check-row input[type="checkbox"] {
   flex: 0 0 auto;
   width: 1.25rem;
   height: 1.25rem;
@@ -839,7 +846,7 @@
   color: var(--muted);
   font-size: 0.88rem;
 }
-.form-actions {
+  .form-actions {
   display: flex;
   justify-content: flex-end;
   gap: 0.7rem;
@@ -880,7 +887,7 @@
 }
 .auth-page {
   min-height: 100vh;
-  display: grid;
+  display: flex;
   place-items: center;
   padding: 1.5rem;
   background:
@@ -900,7 +907,7 @@
 .auth-logo {
   width: 3.625rem;
   height: 3.625rem;
-  display: grid;
+  display: flex;
   place-items: center;
   margin: 0 auto 1.4rem;
   border-radius: 1.125rem;
@@ -954,14 +961,13 @@
     width: 7.5rem;
     height: 7.5rem;
   }
-  .quick-grid {
-    grid-template-columns: 1fr;
+  .quick-flex {
     margin: 1rem 0 2.4rem;
   }
-  .quick-grid small {
+  .quick-flex small {
     font-size: 0.78rem;
   }
-  .quick-grid button {
+  .quick-flex button {
     min-height: 7rem;
     padding: 1.1rem;
   }
@@ -989,17 +995,17 @@
   .calendar-toolbar h1 {
     font-size: 1.45rem;
   }
-  .calendar-grid {
+  .calendar-table {
     min-width: 0;
   }
-  .calendar-grid th {
+  .calendar-table th {
     height: 2.375rem;
     font-size: 0.72rem;
   }
-  .calendar-grid td {
+  .calendar-table td {
     height: 3.625rem;
   }
-  .calendar-grid td > div {
+  .calendar-table td > div {
     min-height: 3.625rem;
     padding: 0.25rem;
   }
@@ -1031,15 +1037,18 @@
     display: block;
     border-top: 1px solid var(--line);
   }
-  .date-grid {
-    grid-template-columns: 1fr;
+  .date-flex {
+    flex-direction: column;
+  }
+  .date-flex > * {
+    flex-basis: auto;
   }
   .section-heading {
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 1rem;
   }
-  .section-heading .new-playdate-button {
+  .section-heading .new-spieletreffen-button {
     width: 100%;
   }
   .card-top {
@@ -1064,9 +1073,9 @@
   }
   .bottom-nav {
     position: fixed;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
     align-items: center;
+    justify-content: space-around;
     bottom: 0;
     left: 0;
     right: 0;
@@ -1076,10 +1085,6 @@
     z-index: 20;
     padding: 0 0.3rem;
   }
-  .bottom-nav > a:nth-child(1) { grid-column: 1; }
-  .bottom-nav > a:nth-child(2) { grid-column: 2; }
-  .bottom-nav > a:nth-child(4) { grid-column: 4; }
-  .bottom-nav > a:nth-child(5) { grid-column: 5; }
   .bottom-nav a {
     display: flex;
     min-width: 0;
@@ -1135,27 +1140,23 @@
   .form-intro h1 {
     font-size: 2rem;
   }
-  .playdate-form {
-    grid-template-columns: 1fr;
+  .spieletreffen-form {
     padding: 1rem;
   }
   .form-step {
     padding: 1rem;
   }
-  .form-step-grid {
-    grid-template-columns: 1fr;
+  .form-step-flex {
+    flex-direction: column;
   }
-  .playdate-form input,
-  .playdate-form select,
-  .playdate-form textarea,
+  .spieletreffen-form input,
+  .spieletreffen-form select,
+  .spieletreffen-form textarea,
   .family-form input,
   .family-form select {
     width: 100%;
     min-width: 0;
     max-width: 100%;
-  }
-  .playdate-form > * {
-    grid-column: 1 !important;
   }
   .form-actions {
     flex-direction: column-reverse;
@@ -1185,15 +1186,17 @@
 .family-connections {
   margin-top: 3rem;
 }
-.connection-token-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.connection-token-flex {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
 }
+.connection-token-flex > * {
+  flex: 1 1 18rem;
+}
 .connection-token-card {
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
   align-content: start;
   gap: 1rem;
   padding: 1.25rem;
@@ -1206,13 +1209,8 @@
 .connection-token-card p {
   margin-bottom: 0.35rem;
 }
-.connection-token-card > button,
-.connection-token-card > label,
-.invitation-code {
-  grid-column: 1 / -1;
-}
 .connection-token-card label {
-  display: grid;
+  display: flex;
   gap: 0.4rem;
   font-weight: 700;
 }
@@ -1240,7 +1238,7 @@
   color: var(--muted);
 }
 .children-choice {
-  display: grid;
+  display: flex;
   gap: 0.5rem;
 }
 .field-help {
@@ -1250,29 +1248,27 @@
   line-height: 1.5;
 }
 .children-checklist {
-  display: grid;
+  display: flex;
   gap: 0.5rem;
   margin-top: 0.25rem;
 }
-.playdate-form .children-choice,
-.playdate-form .friends-choice {
+.spieletreffen-form .children-choice,
+.spieletreffen-form .friends-choice {
   padding: 0;
   border: 0;
 }
-.playdate-form .children-choice legend,
-.playdate-form .friends-choice legend {
+.spieletreffen-form .children-choice legend,
+.spieletreffen-form .friends-choice legend {
   padding: 0;
   margin-bottom: 0.25rem;
 }
 .contact-options {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
   gap: 0.6rem;
 }
 /* Die ganze Karte reagiert auf die Checkbox. Der Haken erklärt den Zustand zusätzlich zur Farbe. */
 .selection-option {
-  display: grid;
-  grid-template-columns: auto auto 1fr;
+  display: flex;
   min-height: 3rem;
   align-items: center;
   gap: 0.6rem;
@@ -1286,15 +1282,12 @@
   font-weight: 700;
   line-height: 1.4;
 }
-.playdate-form .selection-option input[type="checkbox"] {
+.spieletreffen-form .selection-option input[type="checkbox"] {
   width: 1.25rem;
   height: 1.25rem;
   min-height: 1.25rem;
   padding: 0;
   border-radius: 0.375rem;
-}
-.children-checklist .selection-option {
-  grid-template-columns: auto 1fr;
 }
 .selection-option:has(input:checked) {
   border-color: var(--color-primary);
@@ -1302,13 +1295,12 @@
   box-shadow: inset 0 0 0 1px var(--color-primary);
 }
 .contact-picker {
-  display: grid;
+  display: flex;
   gap: 0.6rem;
   margin-top: 0.75rem;
 }
-.contact-empty {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  .contact-empty {
+  display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem;
@@ -1316,17 +1308,16 @@
   background: var(--color-base-200);
   color: var(--muted);
 }
-.contact-empty > svg {
+  .contact-empty > svg {
   color: var(--accent);
 }
 .custom-friends {
-  display: grid;
+  display: flex;
   gap: 0.75rem;
   margin-top: 0.5rem;
 }
 .custom-friend-row {
-  display: grid;
-  grid-template-columns: 8.5rem minmax(0, 1fr) 2.75rem;
+  display: flex;
   align-items: center;
   gap: 0.75rem;
 }
@@ -1337,7 +1328,7 @@
   justify-self: start;
 }
 .connection-list {
-  display: grid;
+  display: flex;
   gap: 0.75rem;
   padding: 0;
   margin: 1rem 0 0;
@@ -1378,7 +1369,7 @@
 }
 .comment-area form,
 .comment-area label {
-  display: grid;
+  display: flex;
   gap: 0.5rem;
 }
 .comment-area form {
@@ -1388,37 +1379,15 @@
   justify-self: start;
 }
 .caregiver-row {
-  display: grid;
-  grid-template-columns: 8.75rem 1fr 2.75rem;
+  display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 @media (max-width: 1024px) {
-  .caregiver-row {
-    grid-template-columns: 1fr 2.75rem;
-  }
-  .caregiver-row label {
-    grid-column: 1 / -1;
-  }
-}
-@media (max-width: 1024px) {
-  .connection-token-grid {
-    grid-template-columns: 1fr;
-  }
-  .contact-options {
-    grid-template-columns: 1fr;
-  }
-  .custom-friend-row {
-    grid-template-columns: 1fr 2.75rem;
-  }
-  .custom-friend-row label {
-    grid-column: 1 / -1;
-  }
-  .contact-empty {
-    grid-template-columns: auto 1fr;
+  .connection-token-flex {
+    flex-direction: column;
   }
   .contact-empty .btn {
-    grid-column: 1 / -1;
     width: 100%;
   }
   .connection-list li {
@@ -1440,10 +1409,13 @@
   margin-bottom: 1rem;
   font-size: 1rem;
 }
-.safety-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.safety-flex {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+}
+.safety-flex > * {
+  flex: 1 1 20rem;
 }
 .safety-card,
 .safety-footer {
@@ -1472,7 +1444,7 @@
   margin-top: 1rem;
 }
 .playful-loader {
-  display: grid;
+  display: flex;
   place-items: center;
   gap: 1rem;
   color: var(--ink);
@@ -1508,7 +1480,6 @@
 }
 .offline-banner svg { width: 1.1875rem; }
 .empty-state {
-  grid-column: 1/-1;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -1518,7 +1489,7 @@
   background: var(--surface);
 }
 .empty-state > span {
-  display: grid;
+  display: flex;
   flex: 0 0 auto;
   width: 3rem;
   height: 3rem;
@@ -1530,7 +1501,7 @@
 .empty-state p { margin: 0.25rem 0 0; color: var(--muted); }
 .error-page {
   min-height: 100vh;
-  display: grid;
+  display: flex;
   place-items: center;
   padding: 1rem;
 }
@@ -1546,8 +1517,8 @@
   .loader-orbit { animation: none; }
 }
 @media (max-width: 1024px) {
-  .safety-grid {
-    grid-template-columns: 1fr;
+  .safety-flex {
+    flex-direction: column;
   }
 }
 
@@ -1588,11 +1559,7 @@
   .brand > span:last-child,
   .header-menu-title {
     display: none;
-  }
-  .bottom-nav {
-    grid-template-columns: repeat(5, 1fr);
-  }
-  .bottom-nav a.new-mobile,
+  }  .bottom-nav a.new-mobile,
   .bottom-nav a.new-mobile.active {
     width: 2.75rem;
     height: 2.75rem;
@@ -1602,7 +1569,7 @@
   }
 }
 
-.playdate-form select {
+.spieletreffen-form select {
   color: var(--ink);
   border: 1px solid var(--line);
   border-radius: 1rem;
@@ -1632,7 +1599,7 @@
   max-width: 40.625rem;
 }
 .family-form {
-  display: grid;
+  display: flex;
   gap: 1.2rem;
   padding: 1.5rem;
   margin-top: 1.5rem;
@@ -1641,7 +1608,7 @@
   background: var(--surface);
 }
 .family-form > label {
-  display: grid;
+  display: flex;
   gap: 0.4rem;
   font-weight: 700;
 }
@@ -1654,7 +1621,7 @@
   border-radius: 1rem;
 }
 .family-form fieldset {
-  display: grid;
+  display: flex;
   gap: 0.8rem;
   border: 1px solid var(--line);
   border-radius: 0.875rem;
@@ -1671,8 +1638,7 @@
   width: 1.1875rem;
 }
 .child-row {
-  display: grid;
-  grid-template-columns: 8.75rem 1fr 2.625rem;
+  display: flex;
   align-items: center;
   gap: 0.7rem;
 }
@@ -1708,25 +1674,18 @@
   color: var(--muted);
   font-size: 0.85rem;
 }
-.new-playdate-button {
+.new-spieletreffen-button {
   color: #fff !important;
   background: var(--accent-strong) !important;
 }
-.new-playdate-button svg {
+.new-spieletreffen-button svg {
   stroke: #fff !important;
 }
 @media (max-width: 1024px) {
   .families-page {
     width: min(100% - 1.4rem, 37.5rem);
     margin-top: 1.6rem;
-  }
-  .child-row {
-    grid-template-columns: 1fr 2.625rem;
-  }
-  .child-row label {
-    grid-column: 1/-1;
-  }
-  .family-form > .primary-button {
+  }  .family-form > .primary-button {
     width: 100%;
   }
 }
@@ -1742,19 +1701,15 @@
 }
 
 .child-profile {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 0.8rem;
   padding: 1rem;
   background: var(--field);
   border: 1px solid var(--line);
   border-radius: 0.8125rem;
 }
-.child-profile .child-row {
-  grid-column: 1/-1;
-}
-.birthday-field {
-  display: grid;
+.child-profile.birthday-field {
+  display: flex;
   gap: 0.35rem;
   font-size: 0.88rem;
   font-weight: 700;
@@ -1785,7 +1740,7 @@
   margin-bottom: 1rem;
 }
 .birthday-heading > span {
-  display: grid;
+  display: flex;
   place-items: center;
   width: 2.875rem;
   height: 2.875rem;
@@ -1797,8 +1752,7 @@
   margin: 0;
 }
 .birthday-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: 0.8rem;
 }
 .birthday-list article {
@@ -1853,15 +1807,4 @@
 }
 .birthday-empty strong {
   color: var(--ink);
-}
-@media (max-width: 1024px) {
-  .child-profile {
-    grid-template-columns: 1fr;
-  }
-  .child-profile > * {
-    grid-column: 1 !important;
-  }
-  .birthday-list {
-    grid-template-columns: 1fr;
-  }
 }

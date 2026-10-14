@@ -41,8 +41,8 @@ export function AppMenu() {
             installed
               ? "App ist installiert"
               : canInstall
-                ? "PlayDate installieren"
-                : "PlayDate-Website als Verknüpfung herunterladen"
+                ? "SpielZeit installieren"
+                : "SpielZeit-Website als Verknüpfung herunterladen"
           }
         >
           <Download />

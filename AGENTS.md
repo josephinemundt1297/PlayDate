@@ -1,15 +1,15 @@
-# AGENTS.md – Arbeitsregeln für PlayDate
+# AGENTS.md – Arbeitsregeln für SpielZeit
 
-Diese Datei gilt für das gesamte Repository. Sie richtet sich an Coding-Agents und Entwickler, die PlayDate prüfen oder verändern.
+Diese Datei gilt für das gesamte Repository. Sie richtet sich an Coding-Agents und Entwickler, die SpielZeit prüfen oder verändern.
 
 ## Projektziel und aktueller Stand
 
-PlayDate ist ein deutschsprachiges React-Trainingsprojekt im Rahmen einer einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklung. Es dient als Lern- und Portfolio-Nachweis für das React-Modul und zeigt eine mobile-first App zur privaten Planung von Spieletreffen.
+SpielZeit ist ein deutschsprachiges React-Trainingsprojekt im Rahmen einer einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklung. Es dient als Lern- und Portfolio-Nachweis für das React-Modul und zeigt eine mobile-first App zur privaten Planung von Spieletreffen.
 
 Der aktuelle Stand ist ein Frontend-Prototyp:
 
 - Clerk schützt die Oberfläche und stellt den Login bereit.
-- Familien, Kinder, Geburtstage und PlayDates werden lokal und pro Clerk User-ID getrennt gespeichert.
+- Familien, Kinder, Geburtstage und Spieletreffen werden lokal und pro Clerk User-ID getrennt gespeichert.
 - Monatskalender mit Detail-Dialog, Kalenderexport, Google-Kalender-Link, Web Share, WhatsApp-Link, technische Datenschutzseite, Foto-Konzeptseite, Themes und PWA sind vorhanden.
 - Ein produktives Backend, echte Familienverbindungen, gemeinsame Einladungsantworten, serverseitige Erinnerungen, Kommentare, Foto-Uploads und bidirektionale Kalendersynchronisation fehlen noch.
 
@@ -69,7 +69,7 @@ Für die aktuellen Lernphasen ist „React-Simulation, lokal zuerst“ festgeleg
 
 - Bevorzuge eine ruhige Grün-Blau-Farbwelt. Neue Hauptfarben sollen dazu passen.
 - DaisyUI ist eingebunden und die bevorzugte Komponentenbibliothek für Buttons, Formulare, Karten, Badges, Alerts und ähnliche UI-Bausteine.
-- Nutze zuerst semantische DaisyUI-Klassen und ergänze eigenes CSS nur für PlayDate-spezifische Gestaltung oder Layouts.
+- Nutze zuerst semantische DaisyUI-Klassen und ergänze eigenes CSS nur für SpielZeit-spezifische Gestaltung oder Layouts.
 - Vermische DaisyUI nicht unnötig mit einem zweiten Komponentenframework.
 - Halte Styling ebenfalls nach KISS: wenige wiederverwendbare Variablen, klare Zustände und keine unnötigen Sonderregeln.
 - Prüfe neue oder geänderte Farben in Light und Dark Mode.
@@ -78,7 +78,7 @@ Für die aktuellen Lernphasen ist „React-Simulation, lokal zuerst“ festgeleg
 
 ## Authentifizierung, Datenschutz und Sicherheit
 
-- Private PlayDate- und Familiendaten dürfen niemals außerhalb der Authentifizierungsgrenze gerendert werden.
+- Private SpielZeit- und Familiendaten dürfen niemals außerhalb der Authentifizierungsgrenze gerendert werden.
 - `localStorage` ist ausschließlich eine Prototyp-Lösung. Neue produktive Funktionen dürfen es nicht als Hauptdatenbank einplanen.
 - Ein späteres Backend muss jede Ressource serverseitig autorisieren. Eine versteckte Schaltfläche ist kein Zugriffsschutz.
 - Sammle nur Daten, die für die Funktion notwendig sind.

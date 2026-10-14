@@ -1,14 +1,14 @@
-# PlayDate – Lernnachweis für das DCI React-Modul
+# SpielZeit – Lernnachweis für das DCI React-Modul
 
 ## Einordnung
 
-PlayDate ist mein Trainingsprojekt im React-Modul meiner einjährigen Weiterbildung zur Web- und Softwareentwicklerin beim Digital Career Institute (DCI). Das Repository dient dazu, gelernte Frontend-Themen an einer zusammenhängenden Anwendung praktisch anzuwenden, Entscheidungen zu erklären und meinen Lernfortschritt nachvollziehbar zu machen.
+SpielZeit ist mein Trainingsprojekt im React-Modul meiner einjährigen Weiterbildung zur Web- und Softwareentwicklerin beim Digital Career Institute (DCI). Das Repository dient dazu, gelernte Frontend-Themen an einer zusammenhängenden Anwendung praktisch anzuwenden, Entscheidungen zu erklären und meinen Lernfortschritt nachvollziehbar zu machen.
 
 Es handelt sich nicht um ein Kundenprojekt und nicht um eine produktiv freigegebene Anwendung. Alle Personen-, Familien- und Kinderdaten sind ausschließlich erfundene Demo-Daten.
 
 ## Lernziele
 
-Mit PlayDate übe und belege ich:
+Mit SpielZeit übe und belege ich:
 
 - eine React-Anwendung mit Vite und TypeScript aufzubauen
 - Komponenten sinnvoll aufzuteilen und über Props zusammenzusetzen
@@ -16,7 +16,7 @@ Mit PlayDate übe und belege ich:
 - wiederverwendbare Logik in eigenen Hooks zu kapseln
 - globalen UI-Zustand mit Context zu verwalten
 - mehrere Seiten mit TanStack Router zu verbinden
-- CRUD-Abläufe für PlayDates und Kinderprofile umzusetzen
+- CRUD-Abläufe für Spieletreffen und Kinderprofile umzusetzen
 - Browserdaten für einen Prototyp kontrolliert in `localStorage` zu speichern
 - asynchrone Lade-, Fehler-, Leer- und Offline-Zustände verständlich darzustellen
 - eine externe Authentifizierung mit Clerk einzubinden
@@ -34,7 +34,7 @@ Mit PlayDate übe und belege ich:
 | Komponentenarchitektur | Atomic Design mit Atoms bis Pages | erledigt |
 | Hooks und Context | eigene Daten-Hooks und Theme-Context | erledigt |
 | Routing | geschützte Routen mit TanStack Router | erledigt |
-| Formulare und CRUD | Familienprofil und PlayDates erstellen, bearbeiten und löschen | erledigt |
+| Formulare und CRUD | Familienprofil und Spieletreffen erstellen, bearbeiten und löschen | erledigt |
 | TypeScript | typisierte Domainmodelle, Props und Hilfsfunktionen | erledigt |
 | Responsive Design | mobile Navigation, Kalender und schmale Viewports | erledigt |
 | Skalierbares Styling | Abstände und Größen in `rem`, abgesichert durch Regressionstest | erledigt |
@@ -64,7 +64,7 @@ Da Backend noch nicht Teil meines Lernstands ist, werden ausgewählte Inhalte de
 - sichere Behandlung beschädigter `localStorage`-Daten
 - Demo-Familienverbindungen mit offenen, verbundenen und blockierten Zuständen
 - lokal erzeugte, einmal verwendbare Trainingscodes für bekannte Familien
-- Mehrfachauswahl eigener Kinder bei einem PlayDate mit Migration alter Termine
+- Mehrfachauswahl eigener Kinder bei einem Spieletreffen mit Migration alter Termine
 - Mehrfachauswahl verbundener Kontakte plus frei ergänzbare Namen
 - gut sichtbare Auswahlzustände mit Haken sowie lockere Lernkommentare an den neuen Datenwegen
 - mehrere Sorgeberechtigte als dynamische React-Formularliste

@@ -1,6 +1,6 @@
-# PlayDate – Produktkonzept
+# SpielZeit – Produktkonzept
 
-> **Lernkontext:** PlayDate ist mein Trainingsprojekt im React-Modul meiner einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklerin. Das Konzept beschreibt eine simulierte Produktidee und ist keine Freigabe für echte Kinderdaten.
+> **Lernkontext:** SpielZeit ist mein Trainingsprojekt im React-Modul meiner einjährigen DCI-Weiterbildung zur Web- und Softwareentwicklerin. Das Konzept beschreibt eine simulierte Produktidee und ist keine Freigabe für echte Kinderdaten.
 
 ## 0. Ziel des Trainingsprojekts
 
@@ -10,9 +10,9 @@ Backend, Datenbank, produktiver Betrieb und echte Rechtsfreigaben sind nicht Tei
 
 ## 1. Die Idee
 
-PlayDate ist eine private Organisations-App für Eltern und Sorgeberechtigte. Sie hilft dabei, Spieletreffen für Kinder unkompliziert zu planen, mit anderen Familien abzustimmen und zuverlässig im Blick zu behalten.
+SpielZeit ist eine private Organisations-App für Eltern und Sorgeberechtigte. Sie hilft dabei, Spieletreffen für Kinder unkompliziert zu planen, mit anderen Familien abzustimmen und zuverlässig im Blick zu behalten.
 
-Heute verteilen sich die nötigen Informationen häufig auf WhatsApp-Nachrichten, Kalender, Notizen und mündliche Absprachen. Dadurch entstehen Rückfragen: Wann treffen wir uns? Wo genau? Welches Kind kommt mit? Wer bringt Snacks mit? PlayDate bündelt diese Informationen in einem geschützten Termin.
+Heute verteilen sich die nötigen Informationen häufig auf WhatsApp-Nachrichten, Kalender, Notizen und mündliche Absprachen. Dadurch entstehen Rückfragen: Wann treffen wir uns? Wo genau? Welches Kind kommt mit? Wer bringt Snacks mit? SpielZeit bündelt diese Informationen in einem geschützten Termin.
 
 ## 2. Das Problem
 
@@ -31,9 +31,9 @@ Messenger sind gut für Gespräche, aber schlecht als dauerhafte Terminübersich
 
 ## 3. Das Produktversprechen
 
-> Mit PlayDate können Eltern ein privates Spieletreffen in wenigen Schritten planen, teilen und gemeinsam organisieren, ohne Informationen aus verschiedenen Chats zusammensuchen zu müssen.
+> Mit SpielZeit können Eltern ein privates Spieletreffen in wenigen Schritten planen, teilen und gemeinsam organisieren, ohne Informationen aus verschiedenen Chats zusammensuchen zu müssen.
 
-PlayDate soll nicht den persönlichen Austausch ersetzen. Die App strukturiert die organisatorischen Informationen und lässt Messenger wie WhatsApp weiterhin als freiwilligen Kommunikationskanal zu.
+SpielZeit soll nicht den persönlichen Austausch ersetzen. Die App strukturiert die organisatorischen Informationen und lässt Messenger wie WhatsApp weiterhin als freiwilligen Kommunikationskanal zu.
 
 ## 4. Zielgruppe
 
@@ -58,7 +58,7 @@ Kinder erhalten im ersten Produktumfang keine eigenen Konten. Öffentliche Profi
 
 ### Privat als Standard
 
-PlayDates und Familiendaten sind nur nach Anmeldung sichtbar. Informationen werden nur mit ausdrücklich eingeladenen oder verbundenen Familien geteilt.
+Spieletreffen und Familiendaten sind nur nach Anmeldung sichtbar. Informationen werden nur mit ausdrücklich eingeladenen oder verbundenen Familien geteilt.
 
 ### Weniger Daten sind besser
 
@@ -82,15 +82,15 @@ Tastaturbedienung, ausreichende Kontraste, sichtbarer Fokus, verständliche Labe
 
 ### 6.1 Einstieg und Familie einrichten
 
-1. Ein Elternteil öffnet PlayDate und meldet sich an.
+1. Ein Elternteil öffnet SpielZeit und meldet sich an.
 2. Die Person trägt einen Familiennamen ein.
 3. Sie legt die eigenen Kinder mit Name und optionalem Geburtstag an.
 4. Pro Kind entscheidet sie, ob der Geburtstag für verbundene Familien sichtbar sein darf.
 5. Danach gelangt sie zur persönlichen Übersicht.
 
-### 6.2 PlayDate erstellen
+### 6.2 Spieletreffen erstellen
 
-1. Der Nutzer wählt „PlayDate planen“.
+1. Der Nutzer wählt „Spieletreffen planen“.
 2. Er wählt ein oder mehrere eigene Kinder aus dem Familienprofil.
 3. Er trägt das andere Kind, Datum, Uhrzeit und Treffpunkt ein.
 4. Optional ergänzt er Mitbringsel und eine Erinnerung.
@@ -98,8 +98,8 @@ Tastaturbedienung, ausreichende Kontraste, sichtbarer Fokus, verständliche Labe
 
 ### 6.3 Einladung versenden
 
-1. Der Nutzer öffnet ein PlayDate und wählt „Einladung teilen“.
-2. PlayDate erzeugt eine verständliche Nachricht beziehungsweise einen geschützten Einladungslink.
+1. Der Nutzer öffnet ein Spieletreffen und wählt „Einladung teilen“.
+2. SpielZeit erzeugt eine verständliche Nachricht beziehungsweise einen geschützten Einladungslink.
 3. Die Einladung kann über die Teilen-Funktion des Geräts oder über WhatsApp versendet werden.
 4. Der eingeladene Elternteil sieht nur die für diese Einladung freigegebenen Informationen.
 
@@ -112,7 +112,7 @@ Tastaturbedienung, ausreichende Kontraste, sichtbarer Fokus, verständliche Labe
 
 ### 6.5 Termin in den Kalender übernehmen
 
-Der Nutzer sieht seine PlayDates in einer responsiven Monatsansicht. Er kann außerdem ein einzelnes PlayDate in Google Kalender öffnen oder alle Termine als `.ics`-Datei exportieren. Eine spätere Synchronisation soll nur nach ausdrücklicher Freigabe und mit minimalen Kalenderberechtigungen erfolgen.
+Der Nutzer sieht seine Spieletreffen in einer responsiven Monatsansicht. Er kann außerdem ein einzelnes Spieletreffen in Google Kalender öffnen oder alle Termine als `.ics`-Datei exportieren. Eine spätere Synchronisation soll nur nach ausdrücklicher Freigabe und mit minimalen Kalenderberechtigungen erfolgen.
 
 ### 6.6 Geburtstag sehen
 
@@ -122,13 +122,13 @@ In der Familienübersicht sieht der Nutzer die freigegebenen Geburtstage eigener
 
 ### Persönliche Übersicht
 
-- nächste PlayDates
+- nächste Spieletreffen
 - Status der Einladungen
 - schnelle Aktion zum Erstellen eines Treffens
 - Kalenderexport
 - Hinweis auf anstehende Geburtstage
 
-### PlayDate-Verwaltung
+### Spieletreffen-Verwaltung
 
 - erstellen, anzeigen, bearbeiten und löschen
 - ein oder mehrere eigene Kinder auswählen
@@ -148,7 +148,7 @@ In der Familienübersicht sieht der Nutzer die freigegebenen Geburtstage eigener
 - verbundene Familien und freigegebene Geburtstage anzeigen
 - bekannte Familien über einen lokalen, einmal verwendbaren Trainingscode verbinden
 
-### Gemeinsamer PlayDate-Bereich
+### Gemeinsamer Spieletreffen-Bereich
 
 Für eine spätere Version ist ein geschützter Bereich pro Treffen vorgesehen:
 
@@ -171,12 +171,12 @@ Für eine spätere Version ist ein geschützter Bereich pro Treffen vorgesehen:
 | Bereich | Inhalt |
 | --- | --- |
 | Übersicht | nächste Termine, Schnellaktionen und Erinnerungen |
-| PlayDates | vollständige Terminliste und Terminverwaltung |
-| Neues PlayDate | geführtes Formular zur Erstellung |
+| Spieletreffen | vollständige Terminliste und Terminverwaltung |
+| Neues Spieletreffen | geführtes Formular zur Erstellung |
 | Familien | eigene Kinder, Geburtstage und Verbindungen |
 | Einstellungen | Darstellung, Installation, Datenschutz und Konto |
 
-Die mobile Navigation enthält Start, Kalender, den mittigen Button für neue PlayDates, Familien und Fotos. Einstellungen, Download, Darstellung und Clerk-Konto liegen platzsparend in einem aufklappbaren Menü oben rechts. Die technische Datenschutzübersicht ist über Hinweise und Einstellungen erreichbar.
+Die mobile Navigation enthält Start, Kalender, den mittigen Button für neue Spieletreffen, Familien und Fotos. Einstellungen, Download, Darstellung und Clerk-Konto liegen platzsparend in einem aufklappbaren Menü oben rechts. Die technische Datenschutzübersicht ist über Hinweise und Einstellungen erreichbar.
 
 ## 9. MVP
 
@@ -187,7 +187,7 @@ Das Minimum Viable Product soll einen vollständigen, aber bewusst kleinen Ablau
 - Anmeldung und geschützte Bereiche
 - Familienprofil mit mehreren Kindern
 - optionaler Geburtstag und Freigabe pro Kind
-- PlayDates erstellen, bearbeiten und löschen
+- Spieletreffen erstellen, bearbeiten und löschen
 - Mehrfachauswahl der eigenen Kinder
 - Termin, Ort und Mitbringsel
 - Einladungslink und Teilen über WhatsApp beziehungsweise Web Share
@@ -210,7 +210,7 @@ Das Minimum Viable Product soll einen vollständigen, aber bewusst kleinen Ablau
 
 ## 10. Datenschutz- und Sicherheitskonzept
 
-PlayDate verarbeitet besonders schützenswerte Informationen über Kinder. Deshalb folgt das Produkt dem Prinzip „Privacy by Design“.
+SpielZeit verarbeitet besonders schützenswerte Informationen über Kinder. Deshalb folgt das Produkt dem Prinzip „Privacy by Design“.
 
 ### Grundregeln
 
@@ -232,7 +232,7 @@ Der Übungsstand für diese Entscheidungen ist in [`phase1Datenschutz.md`](phase
 
 ## 11. Barrierefreiheitskonzept
 
-PlayDate strebt WCAG 2.2 AA an. Die Qualität wird nicht nur automatisiert, sondern auch manuell geprüft.
+SpielZeit strebt WCAG 2.2 AA an. Die Qualität wird nicht nur automatisiert, sondern auch manuell geprüft.
 
 - semantisches HTML und logische Überschriftenstruktur
 - vollständige Tastaturbedienung
@@ -249,7 +249,7 @@ PlayDate strebt WCAG 2.2 AA an. Die Qualität wird nicht nur automatisiert, sond
 
 Der Prototyp verwendet React, TypeScript, Vite, TanStack Router und Clerk. Die Oberfläche folgt Atomic Design. Vitest und Testing Library bilden die Testbasis.
 
-Die visuelle Richtung nutzt DaisyUI mit eigenen PlayDate-Themes. Der Light Mode ist hell, neutral und blau akzentuiert. Der Dark Mode verwendet einen fast schwarzen Hintergrund und gedämpftes Blau. Grün bleibt positiven Zuständen vorbehalten. Große Rundungen sorgen für Freundlichkeit, ohne den klaren, modernen Charakter aufzugeben.
+Die visuelle Richtung nutzt DaisyUI mit eigenen SpielZeit-Themes. Der Light Mode ist hell, neutral und blau akzentuiert. Der Dark Mode verwendet einen fast schwarzen Hintergrund und gedämpftes Blau. Grün bleibt positiven Zuständen vorbehalten. Große Rundungen sorgen für Freundlichkeit, ohne den klaren, modernen Charakter aufzugeben.
 
 Für den produktiven Betrieb wird zusätzlich benötigt:
 
@@ -277,8 +277,8 @@ Im React-Modul wird der Erfolg zuerst daran gemessen, ob die Lernziele verständ
 
 Für eine rein gedachte spätere Produktphase wären zusätzlich folgende Kennzahlen sinnvoll:
 
-- Anteil erfolgreich abgeschlossener PlayDate-Erstellungen
-- benötigte Zeit bis zum gespeicherten ersten PlayDate
+- Anteil erfolgreich abgeschlossener Spieletreffen-Erstellungen
+- benötigte Zeit bis zum gespeicherten ersten Spieletreffen
 - Anteil beantworteter Einladungen
 - Anteil der Termine, die ohne zusätzliche organisatorische Rückfrage stattfinden
 - freiwillige Wiederverwendung der App
@@ -301,7 +301,7 @@ Analysen müssen datensparsam und möglichst ohne personenbezogenes Tracking erf
 
 ## 15. Abgrenzung
 
-PlayDate ist keine öffentliche Vermittlungsplattform, kein soziales Netzwerk für Kinder und kein Ortungsdienst. Die App bewertet weder Kinder noch Eltern und erstellt keine Verhaltensprofile. Der Fokus liegt ausschließlich auf der privaten Organisation bereits bekannter Familien.
+SpielZeit ist keine öffentliche Vermittlungsplattform, kein soziales Netzwerk für Kinder und kein Ortungsdienst. Die App bewertet weder Kinder noch Eltern und erstellt keine Verhaltensprofile. Der Fokus liegt ausschließlich auf der privaten Organisation bereits bekannter Familien.
 
 ## 16. Aktueller Stand
 
@@ -309,11 +309,11 @@ PlayDate ist keine öffentliche Vermittlungsplattform, kein soziales Netzwerk f�
 
 Der vorhandene Frontend-Prototyp bildet bereits wesentliche Teile des Konzepts ab:
 
-- geschützter PlayDate-Bereich mit Clerk
-- PlayDate-Verwaltung
+- geschützter Spieletreffen-Bereich mit Clerk
+- Spieletreffen-Verwaltung
 - Familienprofil und Kindergeburtstage
 - Kalenderexport
-- responsive Monatsansicht mit den vorhandenen PlayDates
+- responsive Monatsansicht mit den vorhandenen Spieletreffen
 - vergrößerbare Kalenderdetails in einer modalen Ebene
 - technische Datenschutzseite und sicher abgegrenzter Foto-Konzeptbereich
 - PWA-Installation mit Website-Verknüpfung als Browser-Fallback

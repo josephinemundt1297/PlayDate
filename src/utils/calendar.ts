@@ -1,4 +1,4 @@
-import type { playDate } from "../domain/playdates";
+import type { spieletreffen } from "../domain/spieletreffen";
 
 // Kalenderdateien sind etwas pingelig: Sonderzeichen müssen vorher sauber escaped werden.
 const escapeIcs = (value: string) =>
@@ -14,13 +14,13 @@ const stampLocalDate = (date: Date) => {
   return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}T${pad(date.getHours())}${pad(date.getMinutes())}00`;
 };
 
-export function downloadCalendar(dates: playDate[]) {
-  // Aus jedem PlayDate wird ein VEVENT. Danach laden wir alles als eine .ics-Datei herunter.
+export function downloadCalendar(dates: spieletreffen[]) {
+  // Aus jedem Spieletreffen wird ein VEVENT. Danach laden wir alles als eine .ics-Datei herunter.
   const events = dates
     .map((date) =>
       [
         "BEGIN:VEVENT",
-        `UID:playDate-${date.id}@playdate.app`,
+        `UID:spielZeit-${date.id}@spielzeit.netlify.app`,
         `DTSTAMP:${new Date()
           .toISOString()
           .replace(/[-:]/g, "")
@@ -37,7 +37,7 @@ export function downloadCalendar(dates: playDate[]) {
   const ics = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//PlayDate//PlayDates//DE",
+    "PRODID:-//SpielZeit//Spieletreffen//DE",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     events,
@@ -48,12 +48,12 @@ export function downloadCalendar(dates: playDate[]) {
   );
   const anchor = document.createElement("a");
   anchor.href = url;
-  anchor.download = "playDate-playDates.ics";
+  anchor.download = "spielZeit-spieletreffen.ics";
   anchor.click();
   URL.revokeObjectURL(url);
 }
 
-export function googleCalendarUrl(date: playDate) {
+export function googleCalendarUrl(date: spieletreffen) {
   // Google Kalender versteht Termine über URL-Parameter. Dafür brauchen wir hier kein OAuth.
   const start = stamp(date.date, date.time);
   const endDate = new Date(`${date.date}T${date.time}:00`);

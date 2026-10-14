@@ -17,10 +17,8 @@ describe("Responsive Layout", () => {
     expect(mobileLinkRule).toContain("overflow: hidden");
   });
 
-  it("setzt den Erstellen-Button in die mittlere von fünf Spalten", () => {
-    expect(appCss).toMatch(
-      /\.bottom-nav \{[\s\S]*?grid-template-columns: repeat\(5, 1fr\)/,
-    );
+  it("zentriert den Erstellen-Button in der mobilen Navigation", () => {
+    expect(appCss).toMatch(/\.bottom-nav \{[\s\S]*?display: flex;/);
     expect(appCss).toMatch(
       /\.bottom-nav a\.new-mobile,[\s\S]*?\.bottom-nav a\.new-mobile\.active \{[\s\S]*?position: absolute;[\s\S]*?left: 50%;[\s\S]*?transform: translate\(-50%, -35%\)/,
     );
@@ -47,7 +45,7 @@ describe("Responsive Layout", () => {
       /@media \(max-width: 380px\)[\s\S]*\.calendar-page-actions \{[\s\S]*flex-direction: column/,
     );
     expect(appCss).toMatch(
-      /@media \(max-width: 1024px\)[\s\S]*\.form-step-grid \{[\s\S]*grid-template-columns: 1fr/,
+      /@media \(max-width: 1024px\)[\s\S]*\.form-step-flex \{[\s\S]*flex-direction: column/,
     );
   });
 

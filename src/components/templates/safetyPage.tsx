@@ -34,7 +34,7 @@ export function SafetyPage({
       </div>
       <section className="safety-content" aria-labelledby="safety-section-title">
         <h2 id="safety-section-title">{sectionTitle}</h2>
-        <div className="safety-grid">
+        <div className="safety-flex">
           {items.map(({ icon: Icon, title: itemTitle, text }) => (
             <article className="card bg-base-100 safety-card" key={itemTitle}>
               <Icon />

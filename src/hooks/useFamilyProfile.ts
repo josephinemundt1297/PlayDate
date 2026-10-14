@@ -10,12 +10,9 @@ import {
 import { createLocalRepository } from "../data/localRepository";
 import { readFamilyConnections } from "./useFamilyConnections";
 
-const keyFor = (userId: string) => `playDate.family.${userId}`;
+const keyFor = (userId: string) => `spielZeit.family.${userId}`;
 const connectionsKey = (userId: string) =>
-  `playDate.sharedBirthdays.${userId}`;
-const legacyKeyFor = (userId: string) => `playpal.family.${userId}`;
-const legacyConnectionsKey = (userId: string) =>
-  `playpal.shared-birthdays.${userId}`;
+  `spielZeit.sharedBirthdays.${userId}`;
 // Alte Profile hatten nur Namen als Text. Beim Lesen bauen wir daraus automatisch das neue Format.
 export function readFamilyProfile(userId: string): familyProfile {
   const parsed = createLocalRepository<
@@ -23,7 +20,6 @@ export function readFamilyProfile(userId: string): familyProfile {
     | { familyName: string; children: string[] }
   >({
     key: keyFor(userId),
-    legacyKeys: [legacyKeyFor(userId)],
     fallback: emptyFamilyProfile,
   }).read();
   const children: childProfile[] = parsed.children.map((child) =>
@@ -46,7 +42,6 @@ export function readFamilyProfile(userId: string): familyProfile {
 export function readSharedBirthdays(userId: string): sharedBirthday[] {
   return createLocalRepository<sharedBirthday[]>({
     key: connectionsKey(userId),
-    legacyKeys: [legacyConnectionsKey(userId)],
     fallback: [],
   }).read();
 }
@@ -60,7 +55,6 @@ export function useFamilyProfile() {
     setProfile(next);
     createLocalRepository({
       key: keyFor(user.id),
-      legacyKeys: [legacyKeyFor(user.id)],
       fallback: emptyFamilyProfile,
     }).write(next);
   };

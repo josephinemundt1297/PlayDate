@@ -1,4 +1,4 @@
-import type { playDate } from "../domain/playdates";
+import type { spieletreffen } from "../domain/spieletreffen";
 
 // Der Kalender braucht für Geburtstage nur Anzeigeinfos und Tag/Monat.
 // Das Geburtsjahr verbundener Kinder bleibt absichtlich draußen.
@@ -15,7 +15,7 @@ export type calendarDay = {
   dateKey: string;
   isCurrentMonth: boolean;
   isToday: boolean;
-  events: playDate[];
+  events: spieletreffen[];
   birthdays: calendarBirthday[];
 };
 
@@ -27,20 +27,20 @@ export const toLocalDateKey = (date: Date) =>
 
 export function buildCalendarDays(
   month: Date,
-  dates: playDate[],
+  dates: spieletreffen[],
   birthdays: calendarBirthday[] = [],
   today = new Date(),
 ): calendarDay[] {
   const firstDay = new Date(month.getFullYear(), month.getMonth(), 1, 12);
   // JavaScript startet bei Sonntag. Für uns ist Montag der erste Wochentag.
   const daysBeforeMonth = (firstDay.getDay() + 6) % 7;
-  const gridStart = new Date(firstDay);
-  gridStart.setDate(firstDay.getDate() - daysBeforeMonth);
+  const matrixStart = new Date(firstDay);
+  matrixStart.setDate(firstDay.getDate() - daysBeforeMonth);
   const todayKey = toLocalDateKey(today);
 
   return Array.from({ length: 42 }, (_, index) => {
-    const date = new Date(gridStart);
-    date.setDate(gridStart.getDate() + index);
+    const date = new Date(matrixStart);
+    date.setDate(matrixStart.getDate() + index);
     const dateKey = toLocalDateKey(date);
 
     // Für wiederkehrende Geburtstage vergleichen wir nur Monat und Tag.
@@ -51,7 +51,7 @@ export function buildCalendarDays(
       dateKey,
       isCurrentMonth: date.getMonth() === month.getMonth(),
       isToday: dateKey === todayKey,
-      events: dates.filter((playDate) => playDate.date === dateKey),
+      events: dates.filter((spieletreffen) => spieletreffen.date === dateKey),
       birthdays: birthdays.filter((birthday) =>
         birthday.birthday.endsWith(birthdayKey),
       ),
@@ -68,7 +68,7 @@ export const formatCalendarMonth = (month: Date) =>
     year: "numeric",
   }).format(month);
 
-export function getInitialCalendarMonth(dates: playDate[], today = new Date()) {
+export function getInitialCalendarMonth(dates: spieletreffen[], today = new Date()) {
   const todayKey = toLocalDateKey(today);
   const firstUpcoming = [...dates]
     .sort((a, b) => a.date.localeCompare(b.date))

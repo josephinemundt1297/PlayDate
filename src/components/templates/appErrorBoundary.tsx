@@ -13,7 +13,7 @@ export class AppErrorBoundary extends Component<appErrorBoundaryProps, appErrorB
 
   componentDidCatch(error: Error, info: ErrorInfo) {
     // Keine Nutzerdaten loggen: Für den Prototyp reichen technische Fehlerinfos.
-    console.error("PlayDate konnte die Ansicht nicht laden", error.name, info.componentStack);
+    console.error("SpielZeit konnte die Ansicht nicht laden", error.name, info.componentStack);
   }
 
   render() {

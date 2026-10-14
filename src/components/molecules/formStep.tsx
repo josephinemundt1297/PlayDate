@@ -21,7 +21,7 @@ export function FormStep({ number, title, description, children }: formStepProps
           <p>{description}</p>
         </div>
       </header>
-      <div className="form-step-grid">{children}</div>
+      <div className="form-step-flex">{children}</div>
     </section>
   );
 }

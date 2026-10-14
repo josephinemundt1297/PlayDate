@@ -1,4 +1,4 @@
-# PlayDate – Phase 1: Produkt- und Datenschutzübung im React-Modul
+# SpielZeit – Phase 1: Produkt- und Datenschutzübung im React-Modul
 
 **Stand:** 17. Juli 2026
 
@@ -25,7 +25,7 @@ Dieses Dokument zeigt als Lernnachweis, dass Frontend-Funktionen Daten, Rollen, 
 - eigenes Familienprofil mit mehreren Kindern
 - Vorname oder selbst gewählter Anzeigename des Kindes
 - optionaler Geburtstag; für verbundene Familien höchstens Tag und Monat
-- private PlayDates erstellen, bearbeiten, absagen und löschen
+- private Spieletreffen erstellen, bearbeiten, absagen und löschen
 - eigenes Kind, eingeladene Familie, Termin, Treffpunkt und Mitbringsel
 - Einladung an eine bereits bekannte Familie; annehmen, ablehnen und widerrufen
 - Monatskalender, `.ics`-Export und bewusst ausgelöster Google-Kalender-Link
@@ -67,7 +67,7 @@ Der Server muss jede Aktion prüfen. Ausgeblendete Buttons und schwer erratbare 
 | eigenes Konto und Familienprofil sehen/ändern | nein | ja | nein | nur nach dokumentiertem Supportfall und minimal | nein |
 | eigenes Kind anlegen/ändern/löschen | nein | ja | nein | nein | nein |
 | freigegebenen Geburtstag sehen | nein | ja | nur bei bestätigter Verbindung und Freigabe | nein | nein |
-| eigenes PlayDate erstellen/ändern/absagen | nein | als Organisator | nur als berechtigter Teilnehmer im erlaubten Umfang | nein | technische Zustellung |
+| eigenes Spieletreffen erstellen/ändern/absagen | nein | als Organisator | nur als berechtigter Teilnehmer im erlaubten Umfang | nein | technische Zustellung |
 | Einladung annehmen/ablehnen | nein | wenn Empfänger | wenn Empfänger | nein | Status zustellen |
 | Verbindung widerrufen/blockieren | nein | ja | eigene Verbindung beenden | nein | Zugriff entziehen |
 | eigene Daten exportieren/löschen | nein | ja | nein | nur unterstützend, protokolliert | Löschauftrag ausführen |
@@ -77,7 +77,7 @@ Zusätzliche Regeln:
 
 - Ein Kind ist betroffene Person, aber keine App-Rolle und besitzt kein Konto.
 - Support erhält standardmäßig keinen Zugriff auf Kinder-, Termin- oder Nachrichteninhalte.
-- Verbindungen und PlayDate-Teilnahmen verwenden stabile IDs, nicht Namen.
+- Verbindungen und Spieletreffen-Teilnahmen verwenden stabile IDs, nicht Namen.
 - Jeder Zugriff wird serverseitig anhand Konto, Familie, Ressource und Beziehung geprüft.
 - Kurzlebige Einladungstoken sind zufällig, widerrufbar, nur einmal beziehungsweise zweckgebunden nutzbar und werden nicht im Klartext protokolliert.
 
@@ -91,7 +91,7 @@ Die folgende Zuordnung ist die dokumentierte Übungsannahme. Bei einer echten Ve
 | Familienprofil | eigene Familie organisieren | Anzeigename der Familie | Art. 6 Abs. 1 lit. b | als Übung bewertet |
 | Kindprofil | eigenes Kind einem Termin zuordnen | Vor-/Anzeigename, stabile ID | für Kinderdaten ggf. Art. 6 Abs. 1 lit. f mit Interessenabwägung | als Übung bewertet |
 | Geburtstag | Geburtstage merken/teilen | intern Datum; geteilt nur Tag/Monat | Speichern/Teilen getrennt; freiwillige Einwilligung nach Art. 6 Abs. 1 lit. a als Kandidat | als Übung bewertet |
-| PlayDate | Treffen planen | Teilnehmer-IDs, Datum, Uhrzeit, Ort, Mitbringsel, Status | für Kontoinhaber lit. b; Daten Dritter ggf. lit. f | als Übung bewertet |
+| Spieletreffen | Treffen planen | Teilnehmer-IDs, Datum, Uhrzeit, Ort, Mitbringsel, Status | für Kontoinhaber lit. b; Daten Dritter ggf. lit. f | als Übung bewertet |
 | Einladung/Verbindung | bekannte Familien verbinden | Token-Hash, Empfänger, Status, Ablauf | lit. b / lit. f | als Übung bewertet |
 | Erinnerung | gewünschte Benachrichtigung | Kanal, Zeitpunkt, Zustellstatus | lit. b; zusätzliche Kanäle ggf. Einwilligung | als Übung bewertet |
 | Sicherheits-/Auditdaten | Missbrauch erkennen und nachweisen | Ereignis, pseudonyme IDs, Zeit, Ergebnis | lit. f; ggf. lit. c | als Übung bewertet |
@@ -123,9 +123,9 @@ Einwilligung wird nicht pauschal beim Login eingeholt. Notwendige Vertragsverarb
 
 ### Fotos nach dem MVP
 
-- eigener Ablauf pro Album/PlayDate, bevor ein Upload möglich ist
+- eigener Ablauf pro Album/SpielZeit, bevor ein Upload möglich ist
 - nachweisbare Zustimmung aller erforderlichen Sorgeberechtigten
-- kein Zwang und keine Kopplung an die normale PlayDate-Nutzung
+- kein Zwang und keine Kopplung an die normale SpielZeit-Nutzung
 - Widerruf stoppt Zugriff und löst den vereinbarten Löschablauf aus
 - erneute Prüfung bei neuem Zweck oder neuem Empfängerkreis
 
@@ -137,7 +137,7 @@ Einwilligung wird nicht pauschal beim Login eingeholt. Notwendige Vertragsverarb
 | --- | --- | --- | --- |
 | aktives Konto und Familienprofil | bis Kontolöschung | Löschauftrag entfernt Produktivdaten sofort aus der Nutzung | für Übung festgelegt |
 | Kindprofil/Geburtstag | bis Entfernung des Kindes oder Kontolöschung | Freigabewiderruf beendet fremden Zugriff sofort | für Übung festgelegt |
-| zukünftiges PlayDate | bis Termin plus 90 Tage | danach löschen oder nur auf ausdrücklichen Wunsch archivieren | für Übung festgelegt |
+| zukünftiges Spieletreffen | bis Termin plus 90 Tage | danach löschen oder nur auf ausdrücklichen Wunsch archivieren | für Übung festgelegt |
 | abgelehnte/abgelaufene Einladung | 30 Tage | automatischer Löschjob | für Übung festgelegt |
 | Einladungstoken | höchstens 7 Tage oder bis Nutzung/Widerruf | Token danach ungültig und löschen | für Übung festgelegt |
 | Erinnerungsauftrag | 7 Tage nach Zustellung/Termin | Inhalt löschen; nur minimales Fehlerereignis behalten | für Übung festgelegt |
@@ -176,9 +176,9 @@ Für das Übungsprojekt bleibt der Betreiber absichtlich als Platzhalter erkennb
 
 `[Telefon, falls vorgesehen]`
 
-### Verarbeitung in PlayDate
+### Verarbeitung in SpielZeit
 
-PlayDate verarbeitet Kontodaten zur Anmeldung, Familien- und Kindprofile zur privaten Organisation, Termindaten zur Planung von PlayDates sowie technische Sicherheitsdaten. Kinder erhalten keine eigenen Konten. Inhalte sind nicht öffentlich und werden nur mit ausdrücklich verbundenen oder eingeladenen Familien geteilt. Zwecke, Rechtsgrundlagen, Empfänger, Speicherdauer und Betroffenenrechte müssen anhand der finalen Tabellen dieses Dokuments übernommen werden.
+SpielZeit verarbeitet Kontodaten zur Anmeldung, Familien- und Kindprofile zur privaten Organisation, Termindaten zur Planung von Spieletreffen sowie technische Sicherheitsdaten. Kinder erhalten keine eigenen Konten. Inhalte sind nicht öffentlich und werden nur mit ausdrücklich verbundenen oder eingeladenen Familien geteilt. Zwecke, Rechtsgrundlagen, Empfänger, Speicherdauer und Betroffenenrechte müssen anhand der finalen Tabellen dieses Dokuments übernommen werden.
 
 Clerk wird für die Anmeldung eingesetzt. Bei einem bewusst ausgelösten Teilen an WhatsApp oder Google Kalender werden die vorher angezeigten Daten an den vom Nutzer gewählten externen Dienst übergeben. Systemschriftarten werden lokal verwendet; es findet kein Google-Fonts-Aufruf statt.
 
@@ -232,7 +232,7 @@ Für den lokalen Prototyp werden keine Produktivdaten freigegeben. Vor einem Pil
 
 ### Schutzwerte und Grenzen
 
-Zu schützen sind Konten, Familienbeziehungen, Kinderprofile, Geburtstage, Termine, Treffpunkte, Einwilligungen, Einladungslinks und Löschaufträge. Vertrauensgrenzen liegen zwischen Browser und API, API und Datenbank, PlayDate und Clerk, PlayDate und externen Teilen-Zielen sowie zwischen zwei Familien.
+Zu schützen sind Konten, Familienbeziehungen, Kinderprofile, Geburtstage, Termine, Treffpunkte, Einwilligungen, Einladungslinks und Löschaufträge. Vertrauensgrenzen liegen zwischen Browser und API, API und Datenbank, SpielZeit und Clerk, SpielZeit und externen Teilen-Zielen sowie zwischen zwei Familien.
 
 | Bedrohung | Folge | Risiko | Notwendige Maßnahme |
 | --- | --- | --- | --- |

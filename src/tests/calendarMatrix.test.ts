@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
-import type { playDate } from "../domain/playdates";
+import type { spieletreffen } from "../domain/spieletreffen";
 import {
   buildCalendarDays,
   formatCalendarMonth,
   getInitialCalendarMonth,
   shiftCalendarMonth,
-} from "../utils/calendarGrid";
+} from "../utils/calendarMatrix";
 
-const date: playDate = {
+const date: spieletreffen = {
   id: 1,
   title: "Abenteuer im Stadtpark",
   children: ["Mila"],
@@ -34,7 +34,7 @@ describe("Kalenderansicht", () => {
     expect(days.at(-1)?.date.getDay()).toBe(0);
   });
 
-  it("ordnet ein PlayDate dem richtigen Tag zu", () => {
+  it("ordnet ein Spieletreffen dem richtigen Tag zu", () => {
     const days = buildCalendarDays(new Date(2026, 6, 1, 12), [date]);
     const eventDay = days.find((day) => day.dateKey === date.date);
 
