@@ -5,6 +5,14 @@ const appCss = readFileSync(`${process.cwd()}/src/app.css`, "utf8");
 const indexHtml = readFileSync(`${process.cwd()}/index.html`, "utf8");
 
 describe("Responsive Layout", () => {
+  it("zentriert die öffentliche Startkarte auf beiden Flex-Achsen", () => {
+    const authPageRule = appCss.match(/\.auth-page \{[^}]*\}/)?.[0];
+
+    expect(authPageRule).toContain("display: flex");
+    expect(authPageRule).toContain("place-items: center");
+    expect(authPageRule).toContain("justify-content: center");
+  });
+
   it("aktiviert das kompakte Layout schon auf Tablets", () => {
     expect(appCss).toContain("@media (max-width: 1024px)");
     expect(appCss).not.toContain("@media (max-width: 760px)");
