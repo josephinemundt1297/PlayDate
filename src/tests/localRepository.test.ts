@@ -3,7 +3,10 @@ import { createLocalRepository } from "../data/localRepository";
 
 describe("lokale Repository-Schicht", () => {
   it("liest und schreibt typisierte Trainingsdaten", () => {
-    const repository = createLocalRepository({ key: "test.profile", fallback: { name: "" } });
+    const repository = createLocalRepository({
+      key: "test.profile",
+      fallback: { name: "" },
+    });
 
     repository.write({ name: "Familie Demo" });
 
@@ -12,7 +15,10 @@ describe("lokale Repository-Schicht", () => {
 
   it("fällt bei beschädigten Browserdaten sicher auf den Startwert zurück", () => {
     localStorage.setItem("test.broken", "kein json");
-    const repository = createLocalRepository({ key: "test.broken", fallback: [] as string[] });
+    const repository = createLocalRepository({
+      key: "test.broken",
+      fallback: [] as string[],
+    });
 
     expect(repository.read()).toEqual([]);
   });
@@ -27,5 +33,17 @@ describe("lokale Repository-Schicht", () => {
 
     expect(repository.read()).toEqual(["Demo"]);
     expect(localStorage.getItem("spielZeit.new")).toBe('["Demo"]');
+  });
+  it("gibt bei aktivierter Fehlerprüfung kaputtes JSON als Fehler weiter", () => {
+    localStorage.setItem("test.invalid", "kein JSON");
+
+    const repository = createLocalRepository({
+      key: "test.invalid",
+      fallback: [],
+      rejectInvalidJson: true,
+    });
+
+    expect(() => repository.read()).toThrow();
+    expect(localStorage.getItem("test.invalid")).toBe("kein JSON");
   });
 });

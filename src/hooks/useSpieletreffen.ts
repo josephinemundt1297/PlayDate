@@ -1,44 +1,138 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
-import { initialSpieletreffen, type spieletreffen } from "../domain/spieletreffen";
+import {
+  isSpieletreffenList,
+  type spieletreffen,
+} from "../domain/spieletreffen";
 import { createLocalRepository } from "../data/localRepository";
 
-// Die User-ID steckt im Schlüssel, damit zwei Eltern nicht dieselben lokalen Daten sehen.
 export const spieletreffenStorageKey = (userId: string) =>
   `spielZeit.spieletreffen.${userId}`;
 
 export function readSpieletreffen(userId: string): spieletreffen[] {
-  type legacySpieletreffen = Omit<spieletreffen, "children" | "friends"> & {
-    child?: string;
-    friend?: string;
-    children?: string[];
-  };
-  const stored = createLocalRepository<Array<spieletreffen | legacySpieletreffen>>({
+  const stored = createLocalRepository<unknown>({
     key: spieletreffenStorageKey(userId),
-    fallback: initialSpieletreffen,
+    fallback: [],
+    rejectInvalidJson: true,
   }).read();
 
-  // Früher gab es für jede Seite nur einen Namen. Hier packen wir alte Werte in die neuen Listen.
-  return stored.map((date) => ({
-    ...date,
-    children:
-      date.children ?? ("child" in date && date.child ? [date.child] : []),
-    friends: "friends" in date ? date.friends : date.friend ? [date.friend] : [],
-  }));
+  if (!Array.isArray(stored)) {
+    throw new Error("Die gespeicherten Termine sind keine Liste.");
+  }
+
+  // Erst alte Einträge umwandeln, dann ihre Struktur prüfen.
+  const migrated = stored.map((item: unknown) => {
+    if (typeof item !== "object" || item === null || Array.isArray(item)) {
+      throw new Error("Ein gespeicherter Termin ist ungültig.");
+    }
+
+    const date = item as Record<string, unknown>;
+
+    return {
+      ...date,
+      children:
+        date.children ??
+        (typeof date.child === "string" && date.child ? [date.child] : []),
+      friends:
+        date.friends ??
+        (typeof date.friend === "string" && date.friend ? [date.friend] : []),
+    };
+  });
+
+  if (!isSpieletreffenList(migrated)) {
+    throw new Error("Die gespeicherten Termine enthalten ungültige Daten.");
+  }
+
+  return migrated;
 }
 
 export function useSpieletreffen() {
   const { user } = useUser();
-  if (!user)
-    throw new Error("SpielZeit-Daten dürfen nur angemeldet geladen werden");
-  const [dates, setDates] = useState<spieletreffen[]>(() => readSpieletreffen(user.id));
-  // State aktualisiert sofort die Ansicht, LocalStorage merkt sich alles nach dem Neuladen.
+
+  if (!user) {
+    throw new Error("SpielZeit-Daten dürfen nur angemeldet geladen werden.");
+  }
+
+  const userId = user.id;
+  const [dates, setDates] = useState<spieletreffen[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [attempt, setAttempt] = useState(0);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    let active = true;
+
+    async function loadDates() {
+      setLoading(true);
+      setError("");
+
+      try {
+        const key = spieletreffenStorageKey(userId);
+
+        if (localStorage.getItem(key) === null) {
+          const response = await fetch("/demoSpieletreffen.json", {
+            signal: controller.signal,
+          });
+
+          if (!response.ok) {
+            throw new Error(
+              "Die Beispieltermine konnten nicht geladen werden.",
+            );
+          }
+
+          const data: unknown = await response.json();
+
+          if (!isSpieletreffenList(data)) {
+            throw new Error("Die Beispieltermine enthalten ungültige Daten.");
+          }
+
+          if (!active) return;
+
+          // Ein inzwischen gespeicherter Stand darf nicht überschrieben werden.
+          if (localStorage.getItem(key) === null) {
+            localStorage.setItem(key, JSON.stringify(data));
+          }
+        }
+
+        const storedDates = readSpieletreffen(userId);
+
+        if (active) {
+          setDates(storedDates);
+        }
+      } catch {
+        if (active) {
+          setError(
+            "Die Spieletreffen konnten nicht geladen werden. Bitte versuche es erneut.",
+          );
+        }
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    }
+
+    loadDates();
+
+    return () => {
+      active = false;
+      controller.abort();
+    };
+  }, [userId, attempt]);
+
   const save = (next: spieletreffen[]) => {
-    setDates(next);
-    createLocalRepository({
-      key: spieletreffenStorageKey(user.id),
-      fallback: initialSpieletreffen,
+    createLocalRepository<spieletreffen[]>({
+      key: spieletreffenStorageKey(userId),
+      fallback: [],
     }).write(next);
+
+    setDates(next);
   };
-  return { dates, save };
+
+  const retry = () => {
+    setAttempt((current) => current + 1);
+  };
+
+  return { dates, save, loading, error, retry };
 }

@@ -61,6 +61,10 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] bestehende Oxlint-Warnungen vollständig behoben
 - [x] Error Boundary und einheitliche Fehlerzustände ergänzen
 - [x] Lade-, Leer- und Offline-Zustände vollständig prüfen
+- [x] Beispieltermine asynchron aus statischer JSON-Datei laden und vorhandene lokale Termine einschließlich leerer Listen erhalten
+- [x] Lade-, Erfolgs-, Fehler- und Leerzustand des Terminabrufs sowie erneuten Versuch automatisiert prüfen
+- [x] Termindaten zur Laufzeit prüfen; beschädigtes JSON und ungültige Kalendertage automatisiert absichern
+- [x] neuen Terminabruf nach Anmeldung gezielt im Browser prüfen; Umfang und Grenzen in `browserPruefung.md`
 - [x] Formularvalidierung für alle dokumentierten Randfälle erweitern
 - [x] Tests für Auth-Grenze, Familienseite und Spieletreffen-Formular ergänzen
 - [x] vollständige End-to-End-Teststrecke einrichten
@@ -627,6 +631,36 @@ Diese Regeln gelten in jeder Phase:
 Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrolle kurz vor dem Release. Jede Prüfung erzeugt nachvollziehbare Nachweise, konkrete Feststellungen und eine Entscheidung darüber, ob die nächste Phase beginnen darf.
 
 ### Aktueller Auditstatus
+
+**Prüfdatum:** 20. Oktober 2026
+
+**Geprüfter Stand:** Datums-/Speicherprüfung im lokalen Arbeitsstand, anschließend als Commit `362a39f` vorhanden. Der ergänzende Browsercheck verwendet diesen Stand und den zugehörigen Produktions-Build. Der Bericht dokumentiert meine Projektarbeit mit technischer Prüfunterstützung und ist keine offizielle Bewertung des DCI oder der IHK.
+
+**Ergebnis des begrenzten Folgechecks:** `npm run check` erfolgreich: Oxlint, 98 Tests in 28 Testdateien, TypeScript und Vite-Produktions-Build. `git diff --check` ebenfalls ohne Befund. Geprüft wurde der neue asynchrone Datenfluss für Beispieltermine; daraus folgt keine vollständige Abnahme des Projekts.
+
+**Anschließende Profilkorrektur:** Das aktuelle Familienprofil wird per Props an `FamilyConnections` weitergegeben. Ein neuer Komponententest sowie ein frischer angemeldeter Browserstand bestätigen, dass „Code erzeugen“ unmittelbar nach dem Speichern aktiv wird. `npm run check` besteht anschließend mit 99 Tests in 29 Testdateien. BROWSER-002 ist behoben; die übrigen Befunde bleiben offen.
+
+- [x] erfundene Beispieltermine aus öffentlicher statischer JSON-Datei statt eingebauter Startkonstante laden
+- [x] vorhandene lokale Termine und bewusst gespeicherte leere Listen automatisiert prüfen
+- [x] HTTP-, Netzwerk-, JSON- und Strukturfehler, erneuten Versuch und Abbruch beim Verlassen automatisiert prüfen
+- [x] Datenstruktur und nicht existierende Kalendertage einschließlich Schaltjahren automatisiert prüfen
+- [x] beschädigtes JSON im Terminspeicher als Fehler behandeln und den Inhalt erhalten
+- [x] Lade-/Fehlerausgabe sowie erfolgreichen Inhalt ohne zusätzliches Layout-Element automatisiert prüfen
+- [x] bestehende CSS-Klassen in Dashboard, Kalender, Editor und Formular mit dem vorherigen Stand vergleichen; unverändert
+- [x] Laden, Erfolg, Fehler, leere Antwort und erneuten Versuch im angemeldeten Browser mit getrennten lokalen Testantworten prüfen
+- [x] erfundenen Termin erstellen, nach Reload bearbeiten und gespeicherte Änderung per direktem Bearbeitungsaufruf sowie im Kalenderdialog prüfen
+- [ ] vollständige Mehrbrowser-, Geräte-, Tastatur- und Screenreaderprüfung durchführen
+- [ ] bestehende E2E-Strecke an die aktuelle Kinderauswahl anpassen und erfolgreich ausführen; heutiger Lauf: 35 Startfehler wegen fehlender Browser-Binaries, 5 angemeldete Fälle ohne Testlogin übersprungen
+- [ ] verständliche Rückmeldung für Speicherfehler beim Bearbeiten und Speichern von Terminen ergänzen
+- [ ] vorerst zurückgestellt: optionale Geburtsjahrfreigabe für verbundene Demo-Familien; fachliche Entscheidung vom 20. Oktober 2026: Jahr standardmäßig verborgen, zusätzliche Freigabe ausdrücklich auswählbar und getrennt von der allgemeinen Geburtstagsfreigabe; bisherige Checkbox für Tag und Monat bleibt bestehen, mobile Bedienprobleme haben zunächst Vorrang
+- [ ] Größenfehler im mobilen Planungsformular beheben: Flex-Basis erzeugt überhohe Felder, Feldgruppen verursachen horizontalen Überlauf
+- [ ] mobile Familienformulare stapeln und einen beim Scrollen verlässlich sichtbaren Header sicherstellen; CSS-Vorschlag in getrennter Prüfansicht bei sechs tatsächlichen CSS-Breiten erfolgreich geprüft, noch nicht im Projekt übernommen
+
+Weitere offene Befunde aus dem heutigen Statuscheck bleiben getrennte Aufgaben: direkte Live-Unterseitenaufrufe liefern HTTP 404, die voreingestellte Geburtstagsfreigabe erschwert das Speichern ohne Geburtstag und einzelne Oberflächentexte beschreiben noch geplante statt tatsächlich vorhandene Freigaben. Die veralteten Profilwerte im Verbindungsbereich sind durch die oben dokumentierte Props-Weitergabe behoben. Der heutige Dependency-Scan meldete vier betroffene Pakete (ein kritischer, zwei hohe und ein mittlerer Befund); Ausnutzbarkeit und Aktualisierungen sind gesondert zu prüfen. Der historische Secret-Befund bleibt offen, solange kein Widerrufsnachweis vorliegt; der aktuelle Platzhalter ist kein Secret.
+
+Der ergänzende [Browserbericht](browserPruefung.md) dokumentiert die Formularprobleme und die inzwischen behobene Profilweitergabe. Zusätzlich läuft der Kalenderdialog in schmalen Ansichten horizontal über. Die Startseite zeigt die drei ältesten Termine einschließlich vergangener Beispiele, wodurch ein neu erstellter zukünftiger Termin erst unter „Alle ansehen“ sichtbar sein kann. Diese Bedienprobleme wurden dokumentiert; der Browsercheck selbst hat keinen Anwendungscode und keine CSS-Datei verändert.
+
+### Historischer Auditstatus vom 20. Juli 2026
 
 **Prüfdatum:** 20. Juli 2026
 

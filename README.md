@@ -6,9 +6,9 @@ Die Oberfläche ist deutschsprachig, tastaturbedienbar und für kleine Displays 
 
 ## Aktueller Status
 
-**Stand: 18. Juli 2026 – Phase 0 und 1 des React-Trainingsprojekts sind abgeschlossen. Es dürfen ausschließlich erfundene Demo-Daten verwendet werden.**
+**Stand: 20. Oktober 2026 – Phase 0 und 1 des React-Trainingsprojekts sind abgeschlossen. Es dürfen ausschließlich erfundene Demo-Daten verwendet werden.**
 
-Login, lokale Familienprofile, Kindergeburtstage, lokale Spieletreffen, Monatskalender mit Spieletreffen und Geburtstagen, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Eine lokale Repository-Schicht, Demo-Familienverbindungen mit Trainingscodes, Mehrfachauswahl eigener Kinder und Kontakte, Erinnerungsoptionen, Kommentare, Datenexport/-löschung, Error Boundary sowie Lade-, Leer- und Offline-Zustände sind vorhanden. Die Prüfkette besteht aktuell aus Oxlint, 72 Vitest-Tests, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet aktuell bekannte Schwachstellen in produktiven Transitiv-Abhängigkeiten; eine Aktualisierung sollte separat mit vollständiger Prüfkette erfolgen.
+Login, lokale Familienprofile, Kindergeburtstage, lokale Spieletreffen, Monatskalender mit Spieletreffen und Geburtstagen, Kalenderexport, Teilen, technische Datenschutzseite, Foto-Konzeptbereich, eigene DaisyUI-Themes und PWA funktionieren. Eine lokale Repository-Schicht, Demo-Familienverbindungen mit Trainingscodes, Mehrfachauswahl eigener Kinder und Kontakte, Erinnerungsoptionen, Kommentare, Datenexport/-löschung, Error Boundary sowie Lade-, Leer- und Offline-Zustände sind vorhanden. Die Prüfkette besteht aktuell aus Oxlint, 99 Vitest-Tests in 29 Testdateien, TypeScript und dem Vite-Produktions-Build und läuft ohne Fehler durch. `npm audit --omit=dev` meldet aktuell bekannte Schwachstellen in produktiven Transitiv-Abhängigkeiten; eine Aktualisierung sollte separat mit vollständiger Prüfkette erfolgen.
 
 Ein Backend, echte Familienverbindungen, gemeinsam beantwortete Einladungen, serverseitige Erinnerungen, Kommentare, Fotos, produktive Datenlöschung und bidirektionale Kalendersynchronisation sind bewusst nicht Teil der abgeschlossenen React-Modul-Leistung. `localStorage` dient ausschließlich dazu, Persistenz im Frontend-Prototyp zu üben.
 
@@ -62,7 +62,8 @@ Der ausführliche Abgleich steht im [`docs/lernNachweis.md`](docs/lernNachweis.m
 - installierbare Progressive Web App (PWA) mit Manifest und Service Worker
 - Service Worker cached ausschließlich eigene HTTP-/HTTPS-GET-Anfragen und behandelt Cachefehler ohne Seitenabbruch
 - Persistenz des Prototyps über `localStorage`
-- lokale Repository-Schicht mit sicherem Rückfall bei beschädigten Browserdaten
+- lokale Repository-Schicht; beschädigte Termindaten werden mit einer Fehlermeldung statt als erfolgreicher Leerzustand behandelt
+- asynchroner Abruf erfundener Beispieltermine mit Lade-, Erfolgs-, Fehler- und Leerzustand sowie erneutem Versuch
 - simulierte Familienverbindungen annehmen, blockieren und entfernen
 - einmalige, 24 Stunden gültige Trainingscodes lokal erzeugen und einlösen
 - mehrere eigene Kinder für ein gemeinsames Spieletreffen auswählen
@@ -71,6 +72,14 @@ Der ausführliche Abgleich steht im [`docs/lernNachweis.md`](docs/lernNachweis.m
 - Zuständigkeiten für Mitbringsel und lokale Erinnerungsoptionen
 - lokale Trainingsdaten als JSON exportieren oder vollständig löschen
 - automatisierte axe-Basisprüfungen für zentrale Seiten
+
+## Datenfluss der Beispieltermine
+
+Beim ersten Öffnen eines Terminbereichs nach der Anmeldung lädt `useSpieletreffen` die erfundenen Termine aus `public/demoSpieletreffen.json` über `fetch`. Sie werden auf ihre Struktur geprüft und unter der Clerk User-ID lokal gespeichert. Existiert bereits ein Speichereintrag, wird dieser verwendet; auch eine bewusst gespeicherte leere Liste bleibt erhalten. Ein zwischenzeitlich gespeicherter Stand wird durch eine laufende Anfrage nicht überschrieben.
+
+Dashboard, Kalender und Editor zeigen während des Ladens den vorhandenen Loader und bei Fehlern eine Meldung mit erneutem Versuch. Im Erfolgsfall bleiben die bisherigen Karten, Formulare und Layouts erhalten. Tests prüfen auch ungültige Kalendertage, beschädigte lokale JSON-Daten und den Abbruch einer Anfrage beim Verlassen der Seite. Ein gezielter angemeldeter Browsercheck bestätigt Laden, Erfolg, Fehler, erneuten Versuch, Leerzustand sowie Erstellen und Bearbeiten mit dauerhaft gespeicherten Änderungen. Die gefundenen Bedienprobleme und die Grenzen des Checks stehen in [`docs/browserPruefung.md`](docs/browserPruefung.md); eine vollständige Mehrbrowser- und Geräteprüfung bleibt offen.
+
+Die JSON-Datei ist öffentlich abrufbar und darf ausschließlich erfundene Beispieldaten enthalten. Der Abruf ist eine Frontend-Übung mit statischen JSON-Daten, keine private REST-API und keine Mehrbenutzersynchronisation. Persönliche Trainingsänderungen bleiben lokal. Wird der lokale Terminspeicher vollständig entfernt, lädt die App beim nächsten Öffnen erneut die allgemeinen Beispieltermine. Intern wird das Datum als `YYYY-MM-DD` gespeichert; die deutsche Darstellung wird getrennt davon formatiert.
 
 ## Lokale Entwicklung
 
@@ -150,6 +159,11 @@ Die Testbasis verwendet Vitest, Testing Library, jest-dom und jsdom. Abgedeckt s
 - Darstellung bestätigter und ausstehender Status-Badges
 - Auth-Grenze, Error Boundary, Lade-, Leer- und Offline-Zustände
 - Familienseite, Spieletreffen-Formular und Validierungsrandfälle
+- asynchrones Laden der Beispieltermine, HTTP-/Netzwerk-/JSON-Fehler und erneuter Versuch
+- vorhandene und leere lokale Terminlisten sowie leere JSON-Antworten
+- Laufzeitprüfung der Termindaten, Schaltjahre und nicht existierende Kalendertage
+- Fehlermeldung bei beschädigtem JSON im Terminspeicher ohne Überschreiben des Inhalts
+- Lade-/Fehlerausgabe und erfolgreicher Inhalt ohne zusätzliches Layout-Element
 
 Die Tests haben bereits einen echten Zeitzonenfehler bei der Google-Kalender-Endzeit gefunden und abgesichert.
 
@@ -197,7 +211,8 @@ Der genaue Übungsabschluss und die Trennung zu einer realen Freigabe stehen in 
 src/
 ├── components/  # Atomic-Design-Ebenen
 ├── context/     # Theme-Zustand
-├── domain/      # Spieletreffen-Modell und Beispieldaten
+├── domain/      # Geschäftsmodelle, Zustandsänderungen und Datenprüfung
+├── data/        # lokale Repository-Schicht
 ├── hooks/       # Daten- und Installationslogik
 ├── app.tsx      # minimaler App-Einstieg
 ├── router.tsx   # TanStack-Routen

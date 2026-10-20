@@ -6,10 +6,11 @@ import { downloadCalendar } from "../../utils/calendar";
 import { SpieletreffenCalendar } from "../organisms/spieletreffenCalendar";
 import { useFamilyProfile } from "../../hooks/useFamilyProfile";
 import type { calendarBirthday } from "../../utils/calendarMatrix";
+import { SpieletreffenDataState } from "../molecules/spieletreffenDataState";
 
 // Die Page holt die privaten Termine. Die eigentliche Kalenderdarstellung bleibt im Organism.
 export function CalendarPage() {
-  const { dates } = useSpieletreffen();
+  const { dates, loading, error, retry } = useSpieletreffen();
   const { profile, sharedBirthdays } = useFamilyProfile();
   const navigate = useNavigate();
   const sortedDates = useMemo(
@@ -39,7 +40,11 @@ export function CalendarPage() {
           <h2>Dein SpielZeit-Kalender</h2>
         </div>
         <div className="calendar-page-actions">
-          <button className="btn btn-outline" onClick={() => downloadCalendar(sortedDates)}>
+          <button
+            className="btn btn-outline"
+            disabled={loading || Boolean(error)}
+            onClick={() => downloadCalendar(sortedDates)}
+          >
             <Download /> Kalenderdatei
           </button>
           <Link to="/new" className="btn btn-primary">
@@ -47,11 +52,18 @@ export function CalendarPage() {
           </Link>
         </div>
       </div>
-      <SpieletreffenCalendar
-        dates={sortedDates}
-        birthdays={birthdays}
-        onEdit={(id) => navigate({ to: "/edit/$spieletreffenId", params: { spieletreffenId: String(id) } })}
-      />
+      <SpieletreffenDataState loading={loading} error={error} onRetry={retry}>
+        <SpieletreffenCalendar
+          dates={sortedDates}
+          birthdays={birthdays}
+          onEdit={(id) =>
+            navigate({
+              to: "/edit/$spieletreffenId",
+              params: { spieletreffenId: String(id) },
+            })
+          }
+        />
+      </SpieletreffenDataState>
     </div>
   );
 }

@@ -11,12 +11,17 @@ import { useSpieletreffen } from "../../hooks/useSpieletreffen";
 import { QuickAction } from "../molecules/quickAction";
 import { SpieletreffenFlex } from "../organisms/spieletreffenFlex";
 import { PrivacyNote } from "../molecules/privacyNote";
-import { addSpieletreffenComment, cancelSpieletreffen, type spieletreffen } from "../../domain/spieletreffen";
+import {
+  addSpieletreffenComment,
+  cancelSpieletreffen,
+  type spieletreffen,
+} from "../../domain/spieletreffen";
 import { googleCalendarUrl } from "../../utils/calendar";
+import { SpieletreffenDataState } from "../molecules/spieletreffenDataState";
 
 // Die Dashboard-Page setzt mehrere kleinere Atomic-Bausteine zur fertigen Übersicht zusammen.
 export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
-  const { dates, save } = useSpieletreffen();
+  const { dates, save, loading, error, retry } = useSpieletreffen();
   const navigate = useNavigate();
   const [toast, setToast] = useState("");
   const sorted = useMemo(
@@ -33,8 +38,17 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
     if (!selected) return;
 
     if (selected.status === "Bestätigt") {
-      if (!confirm("Bestätigtes Spieletreffen wirklich absagen? Der Termin bleibt im Verlauf sichtbar.")) return;
-      save(dates.map((date) => date.id === id ? cancelSpieletreffen(date) : date));
+      if (
+        !confirm(
+          "Bestätigtes Spieletreffen wirklich absagen? Der Termin bleibt im Verlauf sichtbar.",
+        )
+      )
+        return;
+      save(
+        dates.map((date) =>
+          date.id === id ? cancelSpieletreffen(date) : date,
+        ),
+      );
       announce("Spieletreffen wurde abgesagt");
       return;
     }
@@ -51,14 +65,21 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
     announce("WhatsApp-Einladung geöffnet");
   };
   const addComment = (id: number, text: string) => {
-    save(dates.map((date) => date.id === id ? addSpieletreffenComment(date, text) : date));
+    save(
+      dates.map((date) =>
+        date.id === id ? addSpieletreffenComment(date, text) : date,
+      ),
+    );
     announce("Kommentar lokal gespeichert");
   };
   return (
     <div className="page-wrap">
       {!showAll && (
         <>
-          <section className="card bg-base-100 border border-base-300 welcome-card" aria-labelledby="welcome-title">
+          <section
+            className="card bg-base-100 border border-base-300 welcome-card"
+            aria-labelledby="welcome-title"
+          >
             <div>
               <p className="eyebrow">Deine private Übersicht</p>
               <h1 id="welcome-title">
@@ -106,7 +127,10 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
           <h2>{showAll ? "Alle Spieletreffen" : "Deine Spieletreffen"}</h2>
         </div>
         {showAll ? (
-          <Link to="/new" className="btn btn-primary primary-button new-spieletreffen-button">
+          <Link
+            to="/new"
+            className="btn btn-primary primary-button new-spieletreffen-button"
+          >
             <Plus />
             Neues Spieletreffen
           </Link>
@@ -116,15 +140,21 @@ export function DashboardPage({ showAll = false }: { showAll?: boolean }) {
           </Link>
         )}
       </div>
-      <SpieletreffenFlex
-        dates={showAll ? sorted : sorted.slice(0, 3)}
-        onDelete={remove}
-        onInvite={invite}
-        onCalendar={(date) =>
-          window.open(googleCalendarUrl(date), "_blank", "noopener,noreferrer")
-        }
-        onComment={addComment}
-      />
+      <SpieletreffenDataState loading={loading} error={error} onRetry={retry}>
+        <SpieletreffenFlex
+          dates={showAll ? sorted : sorted.slice(0, 3)}
+          onDelete={remove}
+          onInvite={invite}
+          onCalendar={(date) =>
+            window.open(
+              googleCalendarUrl(date),
+              "_blank",
+              "noopener,noreferrer",
+            )
+          }
+          onComment={addComment}
+        />
+      </SpieletreffenDataState>
       <PrivacyNote />
       <div className="toast" role="status" aria-live="polite">
         {toast}
