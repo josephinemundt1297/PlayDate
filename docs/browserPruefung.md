@@ -73,6 +73,12 @@ Der anschließende Versuch mit einer zusätzlichen Namenszeile brach durch eine 
 
 ## Grenzen und Entscheidung
 
+### Rückmeldung aus manuellen Gerätetests
+
+Am 20. Oktober 2026 haben zwei befreundete Testpersonen die Anwendung auf einem Samsung-Smartphone und einem iPhone geprüft. Laut bestätigter Rückmeldung der Projektentwicklerin umfasste dies „Meine Familie“, das geöffnete Planungsformular, den Kalenderdialog sowie Scrollen mit sichtbar bleibendem Header. Beide meldeten funktionierende Abläufe und passende Skalierung.
+
+Damit gelten BROWSER-004, BROWSER-005 und BROWSER-006 für diese gemeldeten Geräteabläufe als abgeschlossen. Dies ist ein manueller Fremdtest, keine eigene erneute Browsermessung und kein automatisierter Regressionstest. Gerätemodelle, Betriebssystem-/Browserversionen und genaue Viewport-Breiten wurden nicht erfasst. Die vollständige Mehrbrowser-, Tastatur- und Screenreaderprüfung bleibt davon unabhängig offen.
+
 ### Folgeprüfung der Profilweitergabe
 
 Im anschließenden lokalen Arbeitsstand wurde `FamilyConnections` auf ein Profil-Prop umgestellt. Die Familienseite gibt ihren aktuellen gespeicherten Profil-State weiter; der zweite eigene `useFamilyProfile`-Aufruf im Verbindungsbereich entfällt. Ein neuer Komponententest prüft aktualisierte Props und das an die Einladungserzeugung übergebene Profil. Die vollständige Prüfkette besteht nun mit 99 Tests in 29 Testdateien.
