@@ -63,6 +63,14 @@ Die Viewport-Vorgaben wurden anhand der tatsächlichen DOM-Breite nachjustiert. 
 
 Diese Vorprüfung belegt den Vorschlag, noch keine Behebung im Repository. Nach manueller Übernahme sind Prüfkette und Browsercheck erneut nötig. Mehrere dynamische Kinder-/Kontaktzeilen und zusätzliche Themes wurden in dieser Vorprüfung nicht vollständig geprüft. Die vorhandene Geburtstagsfreigabe blieb unverändert.
 
+### Folgeprüfung nach manueller Übernahme
+
+Im Stand `e7423a1` ist der Korrekturblock am Ende von `src/app.css` übernommen. Die echte Entwicklungsansicht `/new` wurde erneut bei gemessenen 240, 320, 375, 768, 1024 und 1280 CSS-Pixeln geprüft. Seitenbreite und scrollbare Breite waren jeweils gleich; kein gemessenes Element innerhalb von `main` ragte horizontal aus dem Viewport. Der feste Header lag jeweils mit seiner Oberkante bei 0.
+
+Der anschließende Versuch mit einer zusätzlichen Namenszeile brach durch eine Zeitüberschreitung des Prüfbrowsers ab. Danach war der Browser nicht mehr erreichbar. Deshalb fehlen die erneute Prüfung von `/families`, dynamischen Zeilen und des Headers nach Scrollen am tatsächlich übernommenen Stand. Die erfolgreiche isolierte Vorprüfung ersetzt diese Nachprüfung nicht. BROWSER-005 und BROWSER-006 bleiben bis dahin teilweise geprüft.
+
+`npm run check` wurde gestartet: Oxlint bestand, Vitest scheiterte jedoch am Start paralleler Test-Worker, auch bei einem Wiederholungsversuch außerhalb der Sandbox. Mit `npm run test -- --maxWorkers=2` bestanden anschließend alle 99 Tests in 29 Dateien. `npm run build` bestand ebenfalls einschließlich TypeScript. Damit sind die einzelnen Prüfbestandteile erfolgreich, der unveränderte Gesamtbefehl ist bei dieser Folgeprüfung jedoch nicht erfolgreich durchgelaufen. Anwendungscode und Testkonfiguration wurden dafür nicht geändert.
+
 ## Grenzen und Entscheidung
 
 ### Folgeprüfung der Profilweitergabe
