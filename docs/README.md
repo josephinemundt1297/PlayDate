@@ -2,6 +2,8 @@
 
 Hier liegen alle ausführlichen Unterlagen zu meinem SpielZeit-Trainingsprojekt im React-Modul meiner einjährigen Weiterbildung zur Web- und Softwareentwicklerin beim DCI.
 
+**Dokumentationsstand: 20. Oktober 2026.** Die lokale Prüfkette besteht mit 98 Tests in 28 Testdateien. Der asynchrone Abruf erfundener Beispieltermine und seine Fehler-/Leerzustände sind automatisiert geprüft; die abschließende Prüfung im angemeldeten Browser bleibt offen. Den aktuellen Folgecheck und die unveränderten historischen Auditwerte enthält der Phasenplan.
+
 | Dokument | Inhalt |
 | --- | --- |
 | [`lernNachweis.md`](lernNachweis.md) | Lernziele, Nachweise, Reflexion und Bewertung von Phase 0 und 1 |

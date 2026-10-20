@@ -6,6 +6,8 @@ SpielZeit ist mein Trainingsprojekt im React-Modul meiner einjährigen Weiterbil
 
 Es handelt sich nicht um ein Kundenprojekt und nicht um eine produktiv freigegebene Anwendung. Alle Personen-, Familien- und Kinderdaten sind ausschließlich erfundene Demo-Daten.
 
+**Aktualisiert: 20. Oktober 2026.** Die lokale Prüfkette besteht mit 98 Tests in 28 Testdateien. Der neue asynchrone Terminabruf ist durch automatisierte Tests belegt; der vollständige angemeldete Browserablauf bleibt offen.
+
 ## Lernziele
 
 Mit SpielZeit übe und belege ich:
@@ -42,7 +44,9 @@ Mit SpielZeit übe und belege ich:
 | A11Y | Semantik, Fokus, Tastatur, Kontraste und Statusmeldungen | als Frontend-Basis erledigt |
 | Authentifizierung | Clerk-Grenze vor privaten Routen | erledigt |
 | Persistenz | benutzerbezogener Prototyp mit `localStorage` | erledigt |
-| Tests | 72 Unit- und Komponententests in `src/tests` | erledigt |
+| Asynchroner Datenfluss | `fetch` einer statischen JSON-Datei, Lade-/Erfolgs-/Fehler-/Leerzustand, erneuter Versuch und Abbruch | umgesetzt und automatisiert getestet; Browsernachweis offen |
+| Laufzeitprüfung | Struktur eingelesener Termine, gültige Kalendertage und fehlerhaftes JSON im Terminspeicher | automatisiert getestet |
+| Tests | 98 Unit- und Komponententests in 28 Dateien unter `src/tests` | erledigt |
 | E2E-Vorbereitung | 40 Playwright-Szenarien konfiguriert | erledigt |
 | E2E auf realen Browsern/Geräten | Browser-Binaries und physische Geräte nötig | freiwilliger Zusatznachweis offen |
 | Produktkonzept | Zielgruppe, MVP, Rollen und Nicht-Ziele | erledigt |
@@ -54,7 +58,15 @@ Mit SpielZeit übe und belege ich:
 
 **Ergebnis: für das React-Trainingsprojekt abgeschlossen.**
 
-Die App lässt sich bauen, besitzt eine nachvollziehbare Komponentenstruktur und deckt zentrale React-Themen ab. Linting, 72 automatisierte Tests, TypeScript und der Produktions-Build laufen fehlerfrei. Reale Mehrbrowser- und Gerätetests bleiben als zusätzlicher Praxisnachweis offen und sind kein fehlendes React-Lernziel.
+Die App lässt sich bauen, besitzt eine nachvollziehbare Komponentenstruktur und deckt zentrale React-Themen ab. Linting, 98 automatisierte Tests, TypeScript und der Produktions-Build laufen fehlerfrei. Der neue Datenfluss ist automatisiert geprüft. Seine abschließende manuelle Prüfung im angemeldeten Browser sowie reale Mehrbrowser- und Gerätetests stehen noch aus.
+
+### Lernnachweis – Asynchroner Terminabruf
+
+Ich lade die erfundenen Beispiel-Spieletreffen beim ersten Öffnen eines Terminbereichs asynchron aus einer statischen JSON-Datei. Dabei unterscheide ich Lade-, Erfolgs-, Fehler- und Leerzustand. Vorhandene lokale Termine werden erhalten; eine bewusst gespeicherte leere Liste wird nicht mit Beispielen aufgefüllt. Die vorhandenen Karten, Formulare und CSS-Klassen bleiben bestehen.
+
+Ich übe dabei `useEffect`, `fetch`, `async`/`await`, Fehlerbehandlung und das Beenden verlassener Anfragen mit `AbortController`. Die Daten werden zur Laufzeit geprüft, weil ein TypeScript-Typ allein keine JSON-Inhalte validiert. Tests sichern Netzwerkfehler, erneute Versuche, leere Listen, beschädigte Speicherdaten und ungültige Kalendertage einschließlich Schaltjahren ab. Die Statuskomponente zeigt im Erfolgsfall ihren Inhalt ohne zusätzliches Layout-Element.
+
+Im Test ersetzt ein Clerk-Stellvertreter den echten Login durch eine erfundene User-ID. Das macht den Datenfluss unabhängig vom externen Dienst prüfbar; es ersetzt keinen Test der echten Anmeldung. Die öffentliche JSON-Datei enthält ausschließlich erfundene Beispiele. Der Datenabruf ist keine produktive API oder Mehrbenutzersynchronisation. Intern bleibt das Datum im Format `YYYY-MM-DD`, während die Oberfläche es getrennt davon deutsch formatiert.
 
 ## Spätere Phasen als React-Simulation
 

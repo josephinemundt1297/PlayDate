@@ -141,15 +141,18 @@ describe("asynchrones Laden der Spieletreffen", () => {
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
-  it("meldet fehlerhafte gespeicherte Einträge ohne sie zu überschreiben", async () => {
-    localStorage.setItem(key, "[null]");
+  it.each(["[null]", "kein JSON"])(
+    "meldet den kaputten Speicherinhalt %s ohne ihn zu überschreiben",
+    async (storedValue) => {
+      localStorage.setItem(key, storedValue);
 
-    const { result } = renderHook(() => useSpieletreffen());
+      const { result } = renderHook(() => useSpieletreffen());
 
-    await waitFor(() => expect(result.current.loading).toBe(false));
+      await waitFor(() => expect(result.current.loading).toBe(false));
 
-    expect(result.current.error).not.toBe("");
-    expect(localStorage.getItem(key)).toBe("[null]");
-    expect(fetchMock).not.toHaveBeenCalled();
-  });
+      expect(result.current.error).not.toBe("");
+      expect(localStorage.getItem(key)).toBe(storedValue);
+      expect(fetchMock).not.toHaveBeenCalled();
+    },
+  );
 });

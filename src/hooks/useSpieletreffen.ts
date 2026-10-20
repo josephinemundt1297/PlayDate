@@ -13,6 +13,7 @@ export function readSpieletreffen(userId: string): spieletreffen[] {
   const stored = createLocalRepository<unknown>({
     key: spieletreffenStorageKey(userId),
     fallback: [],
+    rejectInvalidJson: true,
   }).read();
 
   if (!Array.isArray(stored)) {

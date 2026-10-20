@@ -61,6 +61,10 @@ Diese Checkliste zeigt den aktuellen Stand auf einen Blick. Ein Haken bedeutet, 
 - [x] bestehende Oxlint-Warnungen vollständig behoben
 - [x] Error Boundary und einheitliche Fehlerzustände ergänzen
 - [x] Lade-, Leer- und Offline-Zustände vollständig prüfen
+- [x] Beispieltermine asynchron aus statischer JSON-Datei laden und vorhandene lokale Termine einschließlich leerer Listen erhalten
+- [x] Lade-, Erfolgs-, Fehler- und Leerzustand des Terminabrufs sowie erneuten Versuch automatisiert prüfen
+- [x] Termindaten zur Laufzeit prüfen; beschädigtes JSON und ungültige Kalendertage automatisiert absichern
+- [ ] vollständigen neuen Terminablauf nach Anmeldung manuell im Browser prüfen
 - [x] Formularvalidierung für alle dokumentierten Randfälle erweitern
 - [x] Tests für Auth-Grenze, Familienseite und Spieletreffen-Formular ergänzen
 - [x] vollständige End-to-End-Teststrecke einrichten
@@ -627,6 +631,27 @@ Diese Regeln gelten in jeder Phase:
 Der Auditplan begleitet die Entwicklung und ist nicht nur eine einmalige Kontrolle kurz vor dem Release. Jede Prüfung erzeugt nachvollziehbare Nachweise, konkrete Feststellungen und eine Entscheidung darüber, ob die nächste Phase beginnen darf.
 
 ### Aktueller Auditstatus
+
+**Prüfdatum:** 20. Oktober 2026
+
+**Geprüfter Stand:** lokaler Arbeitsstand auf Basis von Commit `1bc06d2` einschließlich der noch nicht committeden Datums-/Speicherprüfung und zugehöriger Tests. Der Bericht dokumentiert meine Projektarbeit mit technischer Prüfunterstützung und ist keine offizielle Bewertung des DCI oder der IHK.
+
+**Ergebnis des begrenzten Folgechecks:** `npm run check` erfolgreich: Oxlint, 98 Tests in 28 Testdateien, TypeScript und Vite-Produktions-Build. `git diff --check` ebenfalls ohne Befund. Geprüft wurde der neue asynchrone Datenfluss für Beispieltermine; daraus folgt keine vollständige Abnahme des Projekts.
+
+- [x] erfundene Beispieltermine aus öffentlicher statischer JSON-Datei statt eingebauter Startkonstante laden
+- [x] vorhandene lokale Termine und bewusst gespeicherte leere Listen automatisiert prüfen
+- [x] HTTP-, Netzwerk-, JSON- und Strukturfehler, erneuten Versuch und Abbruch beim Verlassen automatisiert prüfen
+- [x] Datenstruktur und nicht existierende Kalendertage einschließlich Schaltjahren automatisiert prüfen
+- [x] beschädigtes JSON im Terminspeicher als Fehler behandeln und den Inhalt erhalten
+- [x] Lade-/Fehlerausgabe sowie erfolgreichen Inhalt ohne zusätzliches Layout-Element automatisiert prüfen
+- [x] bestehende CSS-Klassen in Dashboard, Kalender, Editor und Formular mit dem vorherigen Stand vergleichen; unverändert
+- [ ] vollständigen angemeldeten Ablauf manuell im Browser prüfen, einschließlich Laden, Fehler, leerer Antwort und erneutem Versuch
+- [ ] bestehende E2E-Strecke an die aktuelle Kinderauswahl anpassen und erfolgreich ausführen; heutiger Lauf: 35 Startfehler wegen fehlender Browser-Binaries, 5 angemeldete Fälle ohne Testlogin übersprungen
+- [ ] verständliche Rückmeldung für Speicherfehler beim Bearbeiten und Speichern von Terminen ergänzen
+
+Weitere offene Befunde aus dem heutigen Statuscheck bleiben getrennte Aufgaben: direkte Live-Unterseitenaufrufe liefern HTTP 404, die voreingestellte Geburtstagsfreigabe erschwert das Speichern ohne Geburtstag, getrennte Profil-Hooks können veraltete Werte behalten und einzelne Oberflächentexte beschreiben noch geplante statt tatsächlich vorhandene Freigaben. Der heutige Dependency-Scan meldete vier betroffene Pakete (ein kritischer, zwei hohe und ein mittlerer Befund); Ausnutzbarkeit und Aktualisierungen sind gesondert zu prüfen. Der historische Secret-Befund bleibt offen, solange kein Widerrufsnachweis vorliegt; der aktuelle Platzhalter ist kein Secret.
+
+### Historischer Auditstatus vom 20. Juli 2026
 
 **Prüfdatum:** 20. Juli 2026
 

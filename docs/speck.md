@@ -10,7 +10,7 @@ Der aktuelle Stand ist ein Frontend-Prototyp. Funktionen, die ein Backend oder e
 
 Der bewertete Trainingsumfang umfasst Phase 0 und 1. React, TypeScript, Komponentenarchitektur, Routing, Formulare, Hooks, Context, Frontend-Persistenz, Responsive Design und Tests sind praktische Lernnachweise. Backend- und Produktionsanforderungen dienen nur als späterer Ausblick.
 
-**Dokumentationsstand: 18. Juli 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 72 Vitest-Tests, TypeScript und Produktions-Build ohne Fehler. Alle Vitest-Dateien liegen zentral in `src/tests`. 40 Playwright-Szenarien sind eingerichtet, aber noch nicht auf realen Browserinstallationen und physischen Geräten nachgewiesen. Er besitzt bewusst kein produktives Backend und ist nicht für echte Kinderdaten freigegeben.
+**Dokumentationsstand: 20. Oktober 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 98 Vitest-Tests in 28 Testdateien, TypeScript und Produktions-Build ohne Fehler. Alle Vitest-Dateien liegen zentral in `src/tests`. 40 Playwright-Szenarien sind eingerichtet, aber noch nicht erfolgreich auf realen Browserinstallationen und physischen Geräten nachgewiesen. Die abschließende manuelle Browserprüfung des neuen Terminabrufs steht ebenfalls aus. Er besitzt bewusst kein produktives Backend und ist nicht für echte Kinderdaten freigegeben.
 
 Für die Phasen 2 bis 9 wurde „React-Simulation, lokal zuerst“ gewählt. Repository, Verbindungen, Erinnerungen, Kommentare, Aktivitätsverlauf sowie Export und Löschung werden lokal geübt. Serverseitige Sicherheit, echte Synchronisation und Produktivbetrieb bleiben außerhalb dieser Simulation.
 
@@ -75,6 +75,19 @@ Ein Spieletreffen enthält mindestens:
 - Status „Bestätigt“ oder „Ausstehend“
 
 Nutzer können Spieletreffen erstellen, anzeigen, bearbeiten und löschen. Vor dem Löschen muss eine Bestätigung erscheinen.
+
+#### Asynchroner Datenfluss im Frontend-Prototyp
+
+- Ohne lokalen Termineintrag werden erfundene Beispieltermine über `fetch` aus `public/demoSpieletreffen.json` geladen, geprüft und lokal pro Clerk User-ID gespeichert.
+- Vorhandene Speichereinträge einschließlich leerer Listen werden verwendet, ohne erneut Beispiele zu laden. Eine während des Abrufs erfolgte Speicherung wird nicht überschrieben.
+- Lade-, Erfolgs-, Fehler- und Leerzustand sind getrennt. Der Fehlerzustand bietet einen erneuten Versuch; der vorhandene Leerzustand bleibt bestehen.
+- Dashboard, Kalender und Editor berücksichtigen den Ladezustand. Das Formular wird erst nach erfolgreichem Laden eingebunden; der Kalenderexport ist während des Ladens und bei Fehlern deaktiviert.
+- Verlassene Anfragen werden abgebrochen. Im Erfolgsfall entsteht durch die Statuskomponente kein zusätzliches Layout-Element.
+- Termindaten werden auf ihre Struktur und gültige Kalendertage geprüft. Ungültiges JSON im lokalen Terminspeicher löst einen Fehler aus und wird nicht automatisch überschrieben.
+- Das interne Datumsformat bleibt `YYYY-MM-DD`. Die sichtbare deutsche Datumsdarstellung ist davon getrennt.
+- Die öffentliche JSON-Datei enthält ausschließlich erfundene Beispiele. Persönliche Trainingsänderungen bleiben lokal; eine private REST-API oder Mehrbenutzersynchronisation entsteht dadurch nicht.
+
+Diese Punkte sind durch Unit- und Komponententests belegt. Die abschließende Prüfung des vollständigen Ablaufs im angemeldeten Browser bleibt offen. Wird der lokale Terminspeicher vollständig gelöscht, beginnt beim nächsten Öffnen wieder die Initialisierung mit allgemeinen Beispielterminen.
 
 ### 5.4 Einladungen und WhatsApp
 

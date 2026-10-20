@@ -68,7 +68,22 @@ export function addSpieletreffenComment(
   };
 }
 
-// Nur Startdaten für den Prototyp. Echte Termine kommen später aus dem Backend.
+function isCalendarDate(value: unknown) {
+  if (typeof value !== "string" || value.length !== 10) {
+    return false;
+  }
+
+  const parsedDate = new Date(`${value}T00:00:00Z`);
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    return false;
+  }
+
+  const checkedDate = parsedDate.toISOString().slice(0, 10);
+
+  return checkedDate === value;
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -107,9 +122,7 @@ export function isSpieletreffenList(value: unknown): value is spieletreffen[] {
       typeof item.title === "string" &&
       isTextList(item.children) &&
       isTextList(item.friends) &&
-      typeof item.date === "string" &&
-      /^\d{4}-\d{2}-\d{2}$/.test(item.date) &&
-      !Number.isNaN(new Date(`${item.date}T12:00:00`).getTime()) &&
+      isCalendarDate(item.date) &&
       typeof item.time === "string" &&
       /^([01]\d|2[0-3]):[0-5]\d$/.test(item.time) &&
       typeof item.location === "string" &&
