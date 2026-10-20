@@ -9,9 +9,11 @@ import {
 import { readFamilyProfile } from "../../hooks/useFamilyProfile";
 import { readFamilyConnections } from "../../hooks/useFamilyConnections";
 import type { spieletreffen } from "../../domain/spieletreffen";
-import { initialSpieletreffen } from "../../domain/spieletreffen";
 import { createLocalRepository } from "../../data/localRepository";
-import { validateSpieletreffen, type validationErrors } from "../../utils/validation";
+import {
+  validateSpieletreffen,
+  type validationErrors,
+} from "../../utils/validation";
 import { FormStep } from "../molecules/formStep";
 
 type editableTextField = "title" | "date" | "time" | "location" | "bring";
@@ -33,7 +35,9 @@ export function SpieletreffenForm({ editId }: { editId?: number }) {
     new Set(
       readFamilyConnections(user.id)
         .filter((connection) => connection.status === "Verbunden")
-        .flatMap((connection) => connection.children.map((child) => child.name)),
+        .flatMap((connection) =>
+          connection.children.map((child) => child.name),
+        ),
     ),
   );
   const existing = dates.find((date) => date.id === editId);
@@ -84,7 +88,11 @@ export function SpieletreffenForm({ editId }: { editId?: number }) {
       ]),
     );
     const candidate = { ...form, friends };
-    const validation = validateSpieletreffen(candidate, family.children.map((child) => child.name), Boolean(existing));
+    const validation = validateSpieletreffen(
+      candidate,
+      family.children.map((child) => child.name),
+      Boolean(existing),
+    );
     setErrors(validation);
     // Solange mindestens eine Meldung vorhanden ist, speichern wir bewusst gar nichts.
     // So landet kein halbfertiger Termin im localStorage.
@@ -99,266 +107,294 @@ export function SpieletreffenForm({ editId }: { editId?: number }) {
         // Der Verlauf macht später nachvollziehbar, wann der Termin angelegt oder geändert wurde.
         {
           id: crypto.randomUUID(),
-          message: existing ? "Spieletreffen bearbeitet" : "Spieletreffen erstellt",
+          message: existing
+            ? "Spieletreffen bearbeitet"
+            : "Spieletreffen erstellt",
           createdAt: new Date().toISOString(),
         },
       ],
     };
     const next = existing
-      // Beim Bearbeiten ersetzen wir genau den Treffer. Alle anderen Termine bleiben unverändert.
-      ? dates.map((date) => (date.id === existing.id ? cleaned : date))
-      // Beim Erstellen hängen wir den neuen Termin hinten an die vorhandene Liste.
-      : [...dates, cleaned];
-    createLocalRepository({
+      ? // Beim Bearbeiten ersetzen wir genau den Treffer. Alle anderen Termine bleiben unverändert.
+        dates.map((date) => (date.id === existing.id ? cleaned : date))
+      : // Beim Erstellen hängen wir den neuen Termin hinten an die vorhandene Liste.
+        [...dates, cleaned];
+    createLocalRepository<spieletreffen[]>({
       key: spieletreffenStorageKey(user.id),
-      fallback: initialSpieletreffen,
+      fallback: [],
     }).write(next);
     navigate({ to: "/" });
   };
   return (
-    <form noValidate onSubmit={submit} className="card bg-base-100 border border-base-300 spieletreffen-form">
-      {Object.keys(errors).length > 0 && <div className="alert alert-error validation-summary full" role="alert"><strong>Bitte prüfe deine Angaben.</strong><span>{Object.values(errors)[0]}</span></div>}
+    <form
+      noValidate
+      onSubmit={submit}
+      className="card bg-base-100 border border-base-300 spieletreffen-form"
+    >
+      {Object.keys(errors).length > 0 && (
+        <div className="alert alert-error validation-summary full" role="alert">
+          <strong>Bitte prüfe deine Angaben.</strong>
+          <span>{Object.values(errors)[0]}</span>
+        </div>
+      )}
       <FormStep
         number={1}
         title="Wer ist dabei?"
         description="Gib dem Treffen einen Namen und wähle die Kinder aus."
       >
-      <label className="full">
-        Titel<span>Wie soll euer Treffen heißen?</span>
-        <input
-          className="input input-bordered w-full"
-          required
-          maxLength={80}
-          aria-invalid={Boolean(errors.title)}
-          value={form.title}
-          onChange={(event) => update("title", event.target.value)}
-          placeholder="z. B. Abenteuer im Stadtpark"
-        />
-      </label>
-      <fieldset className="children-choice" aria-describedby="children-choice-help">
-        <legend>Welche Kinder kommen mit?</legend>
-        <p className="field-help" id="children-choice-help">
-          Du kannst ein oder mehrere Kinder auswählen.
-        </p>
-        {family.children.length ? (
-          <div className="children-checklist" aria-invalid={Boolean(errors.children)}>
-            {family.children.map((child) => (
-              <label className="selection-option" key={child.id}>
-                <input
-                  className="checkbox checkbox-primary"
-                  type="checkbox"
-                  checked={form.children.includes(child.name)}
-                  onChange={(event) =>
-                    setForm((current) => ({
-                      ...current,
-                      children: event.target.checked
-                        ? [...current.children, child.name]
-                        : current.children.filter((name) => name !== child.name),
-                    }))
-                  }
-                />
-                <span>{child.name}</span>
-              </label>
-            ))}
-          </div>
-        ) : (
-          <span className="missing-children">
-            Noch keine Kinder hinterlegt.{" "}
-            <Link to="/families">Jetzt Familie einrichten</Link>
-          </span>
-        )}
-      </fieldset>
-      {/* Kontakte kommen aus bestätigten Familienverbindungen. Freie Namen bleiben trotzdem möglich. */}
-      <fieldset className="friends-choice full" aria-describedby="friends-choice-help">
-        <legend>Trifft sich mit</legend>
-        <p className="field-help" id="friends-choice-help">
-          Wähle verbundene Kontakte aus oder ergänze eigene Namen.
-        </p>
-        <div className="contact-picker">
-          <strong>Verbundene Kontakte</strong>
-          {contactNames.length > 0 ? (
-            <div className="contact-options" aria-label="Verbundene Kontakte">
-              {contactNames.map((name) => (
-                <label className="selection-option" key={name}>
+        <label className="full">
+          Titel<span>Wie soll euer Treffen heißen?</span>
+          <input
+            className="input input-bordered w-full"
+            required
+            maxLength={80}
+            aria-invalid={Boolean(errors.title)}
+            value={form.title}
+            onChange={(event) => update("title", event.target.value)}
+            placeholder="z. B. Abenteuer im Stadtpark"
+          />
+        </label>
+        <fieldset
+          className="children-choice"
+          aria-describedby="children-choice-help"
+        >
+          <legend>Welche Kinder kommen mit?</legend>
+          <p className="field-help" id="children-choice-help">
+            Du kannst ein oder mehrere Kinder auswählen.
+          </p>
+          {family.children.length ? (
+            <div
+              className="children-checklist"
+              aria-invalid={Boolean(errors.children)}
+            >
+              {family.children.map((child) => (
+                <label className="selection-option" key={child.id}>
                   <input
                     className="checkbox checkbox-primary"
                     type="checkbox"
-                    checked={selectedContacts.includes(name)}
+                    checked={form.children.includes(child.name)}
                     onChange={(event) =>
-                      setSelectedContacts((current) =>
-                        event.target.checked
-                          ? [...current, name]
-                          : current.filter((item) => item !== name),
-                      )
+                      setForm((current) => ({
+                        ...current,
+                        children: event.target.checked
+                          ? [...current.children, child.name]
+                          : current.children.filter(
+                              (name) => name !== child.name,
+                            ),
+                      }))
                     }
                   />
-                  <UsersRound aria-hidden="true" />
-                  <span>{name}</span>
+                  <span>{child.name}</span>
                 </label>
               ))}
             </div>
           ) : (
-            <div className="contact-empty">
-              <UsersRound aria-hidden="true" />
-              <span>
-                Noch keine Kontakte verbunden. Verbinde zuerst eine bekannte
-                Familie, dann kannst du ihre freigegebenen Kontakte hier auswählen.
-              </span>
-              <Link className="btn btn-outline btn-sm" to="/families">
-                Kontakte verbinden
-              </Link>
-            </div>
+            <span className="missing-children">
+              Noch keine Kinder hinterlegt.{" "}
+              <Link to="/families">Jetzt Familie einrichten</Link>
+            </span>
           )}
-        </div>
-        <div className="custom-friends">
-          {customFriends.map((name, index) => (
-            <div className="custom-friend-row" key={`custom-friend-${index}`}>
-              <label htmlFor={`custom-friend-${index}`}>
-                Eigener Name {index + 1}
-              </label>
-              <input
-                id={`custom-friend-${index}`}
-                className="input input-bordered w-full"
-                maxLength={60}
-                aria-invalid={Boolean(errors.friends)}
-                value={name}
-                onChange={(event) =>
-                  setCustomFriends((current) =>
-                    current.map((item, itemIndex) =>
-                      itemIndex === index ? event.target.value : item,
-                    ),
-                  )
-                }
-                placeholder="Vorname"
-              />
-              <button
-                className="btn btn-ghost btn-square"
-                type="button"
-                aria-label={`Eigenen Namen ${index + 1} entfernen`}
-                disabled={customFriends.length === 1}
-                onClick={() =>
-                  setCustomFriends((current) =>
-                    current.filter((_, itemIndex) => itemIndex !== index),
-                  )
-                }
-              >
-                <Trash2 />
-              </button>
-            </div>
-          ))}
-          <button
-            className="btn btn-outline add-friend"
-            type="button"
-            onClick={() => setCustomFriends((current) => [...current, ""])}
-          >
-            <Plus /> Weiteren Namen ergänzen
-          </button>
-        </div>
-      </fieldset>
+        </fieldset>
+        {/* Kontakte kommen aus bestätigten Familienverbindungen. Freie Namen bleiben trotzdem möglich. */}
+        <fieldset
+          className="friends-choice full"
+          aria-describedby="friends-choice-help"
+        >
+          <legend>Trifft sich mit</legend>
+          <p className="field-help" id="friends-choice-help">
+            Wähle verbundene Kontakte aus oder ergänze eigene Namen.
+          </p>
+          <div className="contact-picker">
+            <strong>Verbundene Kontakte</strong>
+            {contactNames.length > 0 ? (
+              <div className="contact-options" aria-label="Verbundene Kontakte">
+                {contactNames.map((name) => (
+                  <label className="selection-option" key={name}>
+                    <input
+                      className="checkbox checkbox-primary"
+                      type="checkbox"
+                      checked={selectedContacts.includes(name)}
+                      onChange={(event) =>
+                        setSelectedContacts((current) =>
+                          event.target.checked
+                            ? [...current, name]
+                            : current.filter((item) => item !== name),
+                        )
+                      }
+                    />
+                    <UsersRound aria-hidden="true" />
+                    <span>{name}</span>
+                  </label>
+                ))}
+              </div>
+            ) : (
+              <div className="contact-empty">
+                <UsersRound aria-hidden="true" />
+                <span>
+                  Noch keine Kontakte verbunden. Verbinde zuerst eine bekannte
+                  Familie, dann kannst du ihre freigegebenen Kontakte hier
+                  auswählen.
+                </span>
+                <Link className="btn btn-outline btn-sm" to="/families">
+                  Kontakte verbinden
+                </Link>
+              </div>
+            )}
+          </div>
+          <div className="custom-friends">
+            {customFriends.map((name, index) => (
+              <div className="custom-friend-row" key={`custom-friend-${index}`}>
+                <label htmlFor={`custom-friend-${index}`}>
+                  Eigener Name {index + 1}
+                </label>
+                <input
+                  id={`custom-friend-${index}`}
+                  className="input input-bordered w-full"
+                  maxLength={60}
+                  aria-invalid={Boolean(errors.friends)}
+                  value={name}
+                  onChange={(event) =>
+                    setCustomFriends((current) =>
+                      current.map((item, itemIndex) =>
+                        itemIndex === index ? event.target.value : item,
+                      ),
+                    )
+                  }
+                  placeholder="Vorname"
+                />
+                <button
+                  className="btn btn-ghost btn-square"
+                  type="button"
+                  aria-label={`Eigenen Namen ${index + 1} entfernen`}
+                  disabled={customFriends.length === 1}
+                  onClick={() =>
+                    setCustomFriends((current) =>
+                      current.filter((_, itemIndex) => itemIndex !== index),
+                    )
+                  }
+                >
+                  <Trash2 />
+                </button>
+              </div>
+            ))}
+            <button
+              className="btn btn-outline add-friend"
+              type="button"
+              onClick={() => setCustomFriends((current) => [...current, ""])}
+            >
+              <Plus /> Weiteren Namen ergänzen
+            </button>
+          </div>
+        </fieldset>
       </FormStep>
       <FormStep
         number={2}
         title="Wann und wo?"
         description="Lege Termin und Treffpunkt fest."
       >
-      <label>
-        Datum
-        <input
-          className="input input-bordered w-full"
-          required
-          type="date"
-          min={existing ? undefined : new Date().toISOString().slice(0, 10)}
-          aria-invalid={Boolean(errors.date)}
-          value={form.date}
-          onChange={(event) => update("date", event.target.value)}
-        />
-      </label>
-      <label>
-        Uhrzeit
-        <input
-          className="input input-bordered w-full"
-          required
-          type="time"
-          aria-invalid={Boolean(errors.time)}
-          value={form.time}
-          onChange={(event) => update("time", event.target.value)}
-        />
-      </label>
-      <label className="full">
-        Treffpunkt
-        <input
-          className="input input-bordered w-full"
-          required
-          maxLength={160}
-          aria-invalid={Boolean(errors.location)}
-          value={form.location}
-          onChange={(event) => update("location", event.target.value)}
-          placeholder="Adresse oder Lieblingsplatz"
-        />
-      </label>
+        <label>
+          Datum
+          <input
+            className="input input-bordered w-full"
+            required
+            type="date"
+            min={existing ? undefined : new Date().toISOString().slice(0, 10)}
+            aria-invalid={Boolean(errors.date)}
+            value={form.date}
+            onChange={(event) => update("date", event.target.value)}
+          />
+        </label>
+        <label>
+          Uhrzeit
+          <input
+            className="input input-bordered w-full"
+            required
+            type="time"
+            aria-invalid={Boolean(errors.time)}
+            value={form.time}
+            onChange={(event) => update("time", event.target.value)}
+          />
+        </label>
+        <label className="full">
+          Treffpunkt
+          <input
+            className="input input-bordered w-full"
+            required
+            maxLength={160}
+            aria-invalid={Boolean(errors.location)}
+            value={form.location}
+            onChange={(event) => update("location", event.target.value)}
+            placeholder="Adresse oder Lieblingsplatz"
+          />
+        </label>
       </FormStep>
       <FormStep
         number={3}
         title="Organisation"
         description="Verteilt Mitbringsel und entscheidet, ob ihr erinnert werden möchtet."
       >
-      <label>
-        Zuständig für Mitbringsel
-        <select
-          className="select select-bordered w-full"
-          value={form.bringOwner ?? "Gemeinsam"}
-          onChange={(event) =>
-            setForm((current) => ({
-              ...current,
-              bringOwner: event.target.value as spieletreffen["bringOwner"],
-            }))
-          }
-        >
-          <option>Wir</option>
-          <option>Andere Familie</option>
-          <option>Gemeinsam</option>
-        </select>
-      </label>
-      <label className="full">
-        Wer bringt was mit?
-        <textarea
-          className="textarea textarea-bordered w-full"
-          maxLength={500}
-          aria-invalid={Boolean(errors.bring)}
-          value={form.bring}
-          onChange={(event) => update("bring", event.target.value)}
-          placeholder="Snacks, Getränke, Spielsachen …"
-        />
-      </label>
-      <fieldset className="full">
-        <legend>Erinnerung</legend>
-        {/* Beide Checkboxen sind kontrolliert: Der sichtbare Haken und der React-State bleiben gleich. */}
-        <label className="check-row">
-          <input
-            className="checkbox checkbox-primary"
-            type="checkbox"
-            checked={form.reminder === "24 Stunden vorher"}
+        <label>
+          Zuständig für Mitbringsel
+          <select
+            className="select select-bordered w-full"
+            value={form.bringOwner ?? "Gemeinsam"}
             onChange={(event) =>
               setForm((current) => ({
                 ...current,
-                reminder: event.target.checked ? "24 Stunden vorher" : "Keine",
+                bringOwner: event.target.value as spieletreffen["bringOwner"],
               }))
             }
-          />{" "}
-          24 Stunden vorher erinnern
+          >
+            <option>Wir</option>
+            <option>Andere Familie</option>
+            <option>Gemeinsam</option>
+          </select>
         </label>
-        <label className="check-row">
-          <input
-            className="checkbox checkbox-primary"
-            type="checkbox"
-            checked={Boolean(form.emailReminder)}
-            onChange={(event) =>
-              setForm((current) => ({ ...current, emailReminder: event.target.checked }))
-            }
-          /> Auch
-          per E-Mail erinnern
+        <label className="full">
+          Wer bringt was mit?
+          <textarea
+            className="textarea textarea-bordered w-full"
+            maxLength={500}
+            aria-invalid={Boolean(errors.bring)}
+            value={form.bring}
+            onChange={(event) => update("bring", event.target.value)}
+            placeholder="Snacks, Getränke, Spielsachen …"
+          />
         </label>
-      </fieldset>
+        <fieldset className="full">
+          <legend>Erinnerung</legend>
+          {/* Beide Checkboxen sind kontrolliert: Der sichtbare Haken und der React-State bleiben gleich. */}
+          <label className="check-row">
+            <input
+              className="checkbox checkbox-primary"
+              type="checkbox"
+              checked={form.reminder === "24 Stunden vorher"}
+              onChange={(event) =>
+                setForm((current) => ({
+                  ...current,
+                  reminder: event.target.checked
+                    ? "24 Stunden vorher"
+                    : "Keine",
+                }))
+              }
+            />{" "}
+            24 Stunden vorher erinnern
+          </label>
+          <label className="check-row">
+            <input
+              className="checkbox checkbox-primary"
+              type="checkbox"
+              checked={Boolean(form.emailReminder)}
+              onChange={(event) =>
+                setForm((current) => ({
+                  ...current,
+                  emailReminder: event.target.checked,
+                }))
+              }
+            />{" "}
+            Auch per E-Mail erinnern
+          </label>
+        </fieldset>
       </FormStep>
       <div className="consent full">
         <Check />

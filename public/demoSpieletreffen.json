@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "title": "Abenteuer im Stadtpark",
+    "children": ["Mila"],
+    "friends": ["Noah"],
+    "date": "2026-07-18",
+    "time": "15:00",
+    "location": "Volkspark, Spielplatz West",
+    "bring": "Picknickdecke & Trauben",
+    "status": "Bestätigt",
+    "color": "mint",
+    "reminder": "24 Stunden vorher",
+    "emailReminder": false,
+    "bringOwner": "Gemeinsam",
+    "activity": [],
+    "comments": []
+  },
+  {
+    "id": 2,
+    "title": "Kreativnachmittag",
+    "children": ["Mila"],
+    "friends": ["Leni"],
+    "date": "2026-07-22",
+    "time": "16:00",
+    "location": "Bei Familie Berger",
+    "bring": "Malkittel",
+    "status": "Ausstehend",
+    "color": "peach",
+    "reminder": "24 Stunden vorher",
+    "emailReminder": false,
+    "bringOwner": "Wir",
+    "activity": [],
+    "comments": []
+  },
+  {
+    "id": 3,
+    "title": "Planschen & Eis",
+    "children": ["Jonas"],
+    "friends": ["Emil"],
+    "date": "2026-07-27",
+    "time": "14:30",
+    "location": "Freibad Pankow",
+    "bring": "Sonnencreme",
+    "status": "Bestätigt",
+    "color": "lilac",
+    "reminder": "Keine",
+    "emailReminder": false,
+    "bringOwner": "Andere Familie",
+    "activity": [],
+    "comments": []
+  }
+]
