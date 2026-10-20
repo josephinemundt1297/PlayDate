@@ -6,7 +6,7 @@ SpielZeit ist mein Trainingsprojekt im React-Modul meiner einjährigen Weiterbil
 
 Es handelt sich nicht um ein Kundenprojekt und nicht um eine produktiv freigegebene Anwendung. Alle Personen-, Familien- und Kinderdaten sind ausschließlich erfundene Demo-Daten.
 
-**Aktualisiert: 20. Oktober 2026.** Die lokale Prüfkette besteht mit 98 Tests in 28 Testdateien. Der neue asynchrone Terminabruf ist durch automatisierte Tests belegt; der vollständige angemeldete Browserablauf bleibt offen.
+**Aktualisiert: 20. Oktober 2026.** Die lokale Prüfkette besteht mit 99 Tests in 29 Testdateien. Der neue asynchrone Terminabruf ist durch automatisierte Tests und einen gezielten angemeldeten Browsercheck belegt. Die vollständige Mehrbrowser- und Geräteprüfung bleibt offen.
 
 ## Lernziele
 
@@ -44,9 +44,9 @@ Mit SpielZeit übe und belege ich:
 | A11Y | Semantik, Fokus, Tastatur, Kontraste und Statusmeldungen | als Frontend-Basis erledigt |
 | Authentifizierung | Clerk-Grenze vor privaten Routen | erledigt |
 | Persistenz | benutzerbezogener Prototyp mit `localStorage` | erledigt |
-| Asynchroner Datenfluss | `fetch` einer statischen JSON-Datei, Lade-/Erfolgs-/Fehler-/Leerzustand, erneuter Versuch und Abbruch | umgesetzt und automatisiert getestet; Browsernachweis offen |
+| Asynchroner Datenfluss | `fetch` einer statischen JSON-Datei, Lade-/Erfolgs-/Fehler-/Leerzustand, erneuter Versuch und Abbruch | automatisiert getestet; Lade-/Erfolgs-/Fehler-/Leerzustand und erneuter Versuch zusätzlich im Browser geprüft |
 | Laufzeitprüfung | Struktur eingelesener Termine, gültige Kalendertage und fehlerhaftes JSON im Terminspeicher | automatisiert getestet |
-| Tests | 98 Unit- und Komponententests in 28 Dateien unter `src/tests` | erledigt |
+| Tests | 99 Unit- und Komponententests in 29 Dateien unter `src/tests` | erledigt |
 | E2E-Vorbereitung | 40 Playwright-Szenarien konfiguriert | erledigt |
 | E2E auf realen Browsern/Geräten | Browser-Binaries und physische Geräte nötig | freiwilliger Zusatznachweis offen |
 | Produktkonzept | Zielgruppe, MVP, Rollen und Nicht-Ziele | erledigt |
@@ -58,7 +58,7 @@ Mit SpielZeit übe und belege ich:
 
 **Ergebnis: für das React-Trainingsprojekt abgeschlossen.**
 
-Die App lässt sich bauen, besitzt eine nachvollziehbare Komponentenstruktur und deckt zentrale React-Themen ab. Linting, 98 automatisierte Tests, TypeScript und der Produktions-Build laufen fehlerfrei. Der neue Datenfluss ist automatisiert geprüft. Seine abschließende manuelle Prüfung im angemeldeten Browser sowie reale Mehrbrowser- und Gerätetests stehen noch aus.
+Die App lässt sich bauen, besitzt eine nachvollziehbare Komponentenstruktur und deckt zentrale React-Themen ab. Linting, 99 automatisierte Tests, TypeScript und der Produktions-Build laufen fehlerfrei. Der neue Datenfluss ist automatisiert und gezielt im angemeldeten Browser geprüft. Weitere Mehrbrowser- und Gerätetests sowie die Behebung der im Browser gefundenen Bedienprobleme stehen noch aus; die Einzelheiten stehen in [`browserPruefung.md`](browserPruefung.md).
 
 ### Lernnachweis – Asynchroner Terminabruf
 
@@ -67,6 +67,10 @@ Ich lade die erfundenen Beispiel-Spieletreffen beim ersten Öffnen eines Terminb
 Ich übe dabei `useEffect`, `fetch`, `async`/`await`, Fehlerbehandlung und das Beenden verlassener Anfragen mit `AbortController`. Die Daten werden zur Laufzeit geprüft, weil ein TypeScript-Typ allein keine JSON-Inhalte validiert. Tests sichern Netzwerkfehler, erneute Versuche, leere Listen, beschädigte Speicherdaten und ungültige Kalendertage einschließlich Schaltjahren ab. Die Statuskomponente zeigt im Erfolgsfall ihren Inhalt ohne zusätzliches Layout-Element.
 
 Im Test ersetzt ein Clerk-Stellvertreter den echten Login durch eine erfundene User-ID. Das macht den Datenfluss unabhängig vom externen Dienst prüfbar; es ersetzt keinen Test der echten Anmeldung. Die öffentliche JSON-Datei enthält ausschließlich erfundene Beispiele. Der Datenabruf ist keine produktive API oder Mehrbenutzersynchronisation. Intern bleibt das Datum im Format `YYYY-MM-DD`, während die Oberfläche es getrennt davon deutsch formatiert.
+
+Beim ergänzenden Browsercheck wurde ein echter Clerk-Testlogin verwendet. Getrennte lokale Testadressen lieferten gezielt eine verzögerte Antwort, einen HTTP-Fehler mit anschließend erfolgreichem Versuch und eine leere Liste. Dadurch konnten die sichtbaren Zustände mit demselben gebauten App-Code geprüft werden. Ein erfundener Termin ließ sich außerdem erstellen, bearbeiten und nach direktem erneutem Aufruf mit gespeichertem Treffpunkt öffnen. Dabei wurden auch die bereits vermuteten Formular- und Profilprobleme sowie ein Überlauf im schmalen Kalenderdialog sichtbar. Erfolgreiche Einzeltests bedeuten deshalb keine vollständige Abnahme der Anwendung.
+
+Anschließend habe ich die veralteten Profilwerte im Verbindungsbereich durch Props-Weitergabe behoben. Dabei wurde deutlich: Zwei Aufrufe desselben eigenen Hooks teilen nicht automatisch ihren State. Die Familienseite besitzt jetzt das gespeicherte Profil und gibt es an die untergeordnete Komponente weiter. Ein Komponententest und ein erneuter Browsercheck belegen die sofortige Aktualisierung ohne Reload.
 
 ## Spätere Phasen als React-Simulation
 

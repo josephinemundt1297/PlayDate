@@ -10,7 +10,7 @@ Der aktuelle Stand ist ein Frontend-Prototyp. Funktionen, die ein Backend oder e
 
 Der bewertete Trainingsumfang umfasst Phase 0 und 1. React, TypeScript, Komponentenarchitektur, Routing, Formulare, Hooks, Context, Frontend-Persistenz, Responsive Design und Tests sind praktische Lernnachweise. Backend- und Produktionsanforderungen dienen nur als späterer Ausblick.
 
-**Dokumentationsstand: 20. Oktober 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 98 Vitest-Tests in 28 Testdateien, TypeScript und Produktions-Build ohne Fehler. Alle Vitest-Dateien liegen zentral in `src/tests`. 40 Playwright-Szenarien sind eingerichtet, aber noch nicht erfolgreich auf realen Browserinstallationen und physischen Geräten nachgewiesen. Die abschließende manuelle Browserprüfung des neuen Terminabrufs steht ebenfalls aus. Er besitzt bewusst kein produktives Backend und ist nicht für echte Kinderdaten freigegeben.
+**Dokumentationsstand: 20. Oktober 2026.** Der Prototyp besteht die lokale Prüfkette aus Oxlint, 99 Vitest-Tests in 29 Testdateien, TypeScript und Produktions-Build ohne Fehler. Alle Vitest-Dateien liegen zentral in `src/tests`. Der neue Terminabruf und ausgewählte Kernabläufe sind zusätzlich im angemeldeten Browser geprüft; Ergebnisse und offene Bedienprobleme stehen in [`browserPruefung.md`](browserPruefung.md). Die vollständige Strecke mit 40 Playwright-Szenarien und Tests auf physischen Geräten sind noch nicht erfolgreich nachgewiesen. Er besitzt bewusst kein produktives Backend und ist nicht für echte Kinderdaten freigegeben.
 
 Für die Phasen 2 bis 9 wurde „React-Simulation, lokal zuerst“ gewählt. Repository, Verbindungen, Erinnerungen, Kommentare, Aktivitätsverlauf sowie Export und Löschung werden lokal geübt. Serverseitige Sicherheit, echte Synchronisation und Produktivbetrieb bleiben außerhalb dieser Simulation.
 
@@ -87,7 +87,7 @@ Nutzer können Spieletreffen erstellen, anzeigen, bearbeiten und löschen. Vor d
 - Das interne Datumsformat bleibt `YYYY-MM-DD`. Die sichtbare deutsche Datumsdarstellung ist davon getrennt.
 - Die öffentliche JSON-Datei enthält ausschließlich erfundene Beispiele. Persönliche Trainingsänderungen bleiben lokal; eine private REST-API oder Mehrbenutzersynchronisation entsteht dadurch nicht.
 
-Diese Punkte sind durch Unit- und Komponententests belegt. Die abschließende Prüfung des vollständigen Ablaufs im angemeldeten Browser bleibt offen. Wird der lokale Terminspeicher vollständig gelöscht, beginnt beim nächsten Öffnen wieder die Initialisierung mit allgemeinen Beispielterminen.
+Diese Punkte sind durch Unit- und Komponententests belegt. Ein gezielter angemeldeter Browsercheck bestätigt Laden, Erfolg, Fehler, erneuten Versuch und Leerzustand sowie das Erstellen, Bearbeiten und erneute Öffnen eines erfundenen Termins. Dies ersetzt keine vollständige Prüfung aller Funktionen, Browser und Geräte. Wird der lokale Terminspeicher vollständig gelöscht, beginnt beim nächsten Öffnen wieder die Initialisierung mit allgemeinen Beispielterminen.
 
 ### 5.4 Einladungen und WhatsApp
 

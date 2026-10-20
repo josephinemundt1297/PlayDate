@@ -323,7 +323,7 @@ Der vorhandene Frontend-Prototyp bildet bereits wesentliche Teile des Konzepts a
 - mobile PWA
 - Atomic-Design-Struktur und erste automatisierte Tests
 
-Die lokale Prüfkette aus Oxlint, 98 Vitest-Tests in 28 Testdateien, TypeScript und Vite-Build läuft ohne Fehler. Alle Vitest-Dateien liegen zentral in `src/tests`. Eine Playwright-Strecke mit 40 Desktop-, Mobil-, Responsive- und PWA-Szenarien ist eingerichtet; erfolgreiche Mehrbrowser- und Geräteläufe sowie die abschließende manuelle Prüfung des neuen Terminabrufs stehen noch aus. Der aktuelle Auditstand wird in [`phasenPlan.md`](phasenPlan.md) gepflegt.
+Die lokale Prüfkette aus Oxlint, 99 Vitest-Tests in 29 Testdateien, TypeScript und Vite-Build läuft ohne Fehler. Alle Vitest-Dateien liegen zentral in `src/tests`. Ein gezielter angemeldeter Browsercheck bestätigt die Zustände des neuen Terminabrufs und das Erstellen und Bearbeiten eines erfundenen Termins. Die Ergebnisse und offenen Bedienprobleme stehen in [`browserPruefung.md`](browserPruefung.md). Eine Playwright-Strecke mit 40 Desktop-, Mobil-, Responsive- und PWA-Szenarien ist eingerichtet; erfolgreiche vollständige Mehrbrowser- und Geräteläufe bleiben offen. Der aktuelle Auditstand wird in [`phasenPlan.md`](phasenPlan.md) gepflegt.
 
 Die Beispieltermine werden nur bei fehlendem lokalem Speichereintrag aus einer öffentlichen statischen JSON-Datei geladen. Bereits gespeicherte Termine und leere Listen bleiben erhalten. Persönliche Trainingsänderungen werden nicht an diese Datei übertragen. Dies ist ein Lernnachweis für asynchronen Frontend-Datenfluss, kein Backend und keine echte gemeinsame Terminverwaltung.
 

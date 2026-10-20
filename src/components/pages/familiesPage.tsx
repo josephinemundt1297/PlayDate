@@ -49,8 +49,17 @@ export function FamiliesPage() {
         Geburtstage können verbundene Familien sehen – das vollständige
         Geburtsdatum bleibt privat.
       </p>
-      <form noValidate className="card bg-base-100 border border-base-300 family-form" onSubmit={submit}>
-        {Object.keys(errors).length > 0 && <div className="alert alert-error validation-summary" role="alert"><strong>Bitte prüfe dein Familienprofil.</strong><span>{Object.values(errors)[0]}</span></div>}
+      <form
+        noValidate
+        className="card bg-base-100 border border-base-300 family-form"
+        onSubmit={submit}
+      >
+        {Object.keys(errors).length > 0 && (
+          <div className="alert alert-error validation-summary" role="alert">
+            <strong>Bitte prüfe dein Familienprofil.</strong>
+            <span>{Object.values(errors)[0]}</span>
+          </div>
+        )}
         <label>
           Familienname
           <input
@@ -79,7 +88,10 @@ export function FamiliesPage() {
                   required
                   minLength={2}
                   maxLength={60}
-                  aria-invalid={Boolean(errors[`child-${child.id}`]) || Boolean(errors.children)}
+                  aria-invalid={
+                    Boolean(errors[`child-${child.id}`]) ||
+                    Boolean(errors.children)
+                  }
                   value={child.name}
                   onChange={(event) =>
                     updateChild(child.id, { name: event.target.value })
@@ -140,7 +152,8 @@ export function FamiliesPage() {
         <fieldset>
           <legend>Sorgeberechtigte Personen</legend>
           <p className="privacy-caption">
-            Diese Liste ist nur eine lokale React-Simulation für ein späteres Familienkonto.
+            Diese Liste ist nur eine lokale React-Simulation für ein späteres
+            Familienkonto.
           </p>
           {caregivers.map((caregiver, index) => (
             <div className="caregiver-row" key={`caregiver-${index}`}>
@@ -193,7 +206,7 @@ export function FamiliesPage() {
         profile={{ familyName, children }}
         shared={sharedBirthdays}
       />
-      <FamilyConnections />
+      <FamilyConnections profile={profile} />
     </div>
   );
 }
